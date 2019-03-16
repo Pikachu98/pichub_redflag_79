@@ -4,4 +4,5 @@ import com.pichub.hello.bo.User;
 
 public interface UserService {
     boolean saveUser(User user) throws  Exception;
+    boolean focusChange(int userId) throws Exception;
 }

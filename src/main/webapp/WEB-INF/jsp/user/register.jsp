@@ -3,6 +3,7 @@
   User: msi
   Date: 2019/3/14
   Time: 23:46
+
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,7 +15,7 @@
 <div>
 
 </div>
-<input type="button" id="btnSave">
+<input type="button" id="btnSave" value="登陆">
 
 <script>
     $(function () {

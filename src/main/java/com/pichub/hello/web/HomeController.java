@@ -30,7 +30,8 @@ public class HomeController {
 
         Photo photo = photoService.getPhoto(photoId);
         model.put("p",photo);
-
         return "photo";
     }
+
+
 }
