@@ -11,6 +11,8 @@
     <title>qwePhoto</title>
 </head>
 <body>
+
+<%--This is a test!--%>
 <div>Photo Id:${requestScope.p.photoId}</div>
 <div>Photo Name:${requestScope.p.photoName}</div>
 <div>User Id:${requestScope.p.userId}</div>
