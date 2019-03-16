@@ -4,8 +4,10 @@ import com.pichub.hello.bo.User;
 import com.pichub.hello.dao.UserDao;
 import com.pichub.hello.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+@Service("userService")
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
