@@ -16,14 +16,10 @@ public class FocusController {
     private FocusService focusService;
 
     @RequestMapping(value="/user/changeFocus")
-    @ResponseBody
-    public String focusSave(int userId, ModelMap model, HttpServletRequest request, HttpServletResponse response)
+    public String focusSave(Integer userId, ModelMap model, HttpServletRequest request, HttpServletResponse response)
             throws Exception
     {
-        if (focusService.focusChange(userId))
-        {
-            model.put("s",true);
-        }
+
         return "focus";
     }
 }

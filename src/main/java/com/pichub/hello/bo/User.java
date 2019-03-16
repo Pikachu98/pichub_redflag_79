@@ -3,7 +3,7 @@ package com.pichub.hello.bo;
 import java.util.Date;
 
 public class User {
-    private Long userId;
+    private Integer userId;
     private String userName;
     private String email;
     private String password;
@@ -105,11 +105,11 @@ public class User {
         this.phone = phone;
     }
 
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

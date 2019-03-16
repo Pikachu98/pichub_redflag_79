@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class FocusServicelmpl implements FocusService {
     @Autowired
     private UserDao userDao;
-    public boolean focusChange(int userId) throws Exception {
+    public boolean focusChange(Integer userId) throws Exception {
         return userDao.focusUser(userId);
     }
 }
