@@ -9,4 +9,7 @@ public interface PhotoService {
     Photo getPhoto(Long photoId) throws Exception;
     List<Photo> listPhoto(Long userId) throws Exception;
     void insetPhoto(Photo photo) throws Exception;
+
+    //jyt add deletePhoto
+    void deletePhoto(Photo photo) throws Exception;
 }

@@ -27,4 +27,9 @@ public class PhotoServiceImpl implements PhotoService {
 
         photoDao.insetPhoto(photo);
     }
+
+    @Override
+    public void deletePhoto(Photo photo) throws Exception {
+        photoDao.deletePhoto(photo);
+    }
 }
