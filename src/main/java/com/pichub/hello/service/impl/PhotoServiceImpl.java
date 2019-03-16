@@ -12,23 +12,23 @@ public class PhotoServiceImpl implements PhotoService {
     @Autowired
     PhotoDao photoDao;
 
-    @Override
+
     public Photo getPhoto(Long photoId) throws Exception {
         return photoDao.getPhoto(photoId);
     }
 
-    @Override
+
     public List<Photo> listPhoto(Long userId) throws Exception {
         return photoDao.listPhoto(userId);
     }
 
-    @Override
+
     public void insetPhoto(Photo photo) throws Exception {
 
         photoDao.insetPhoto(photo);
     }
 
-    @Override
+
     public void deletePhoto(Photo photo) throws Exception {
         photoDao.deletePhoto(photo);
     }
