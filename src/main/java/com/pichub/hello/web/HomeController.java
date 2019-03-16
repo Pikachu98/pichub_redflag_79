@@ -19,6 +19,11 @@ public class HomeController {
     //@Autowired
     //PhotoDao photoDao;
     //http://url/photo/photoid
+    /*@RequestMapping(value = "/photo")
+    public String index() {
+
+        return "index";
+    }*/
     @RequestMapping(value = "/photo/{photoId}")
     public String photoDetail(@PathVariable Long photoId,ModelMap model,
                               HttpServletRequest request, HttpServletResponse response) throws Exception {
