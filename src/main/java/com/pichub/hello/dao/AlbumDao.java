@@ -8,8 +8,8 @@ import java.util.List;
 
 @Mapper
 public interface AlbumDao {
-    Album getAlbum(@Param("album_id") Long album_id) throws Exception;
-    List<Album> listAlbum(@Param("user_id") Long album_id) throws Exception;
-    Album createAlbum(@Param("album") Album album) throws Exception;
-    Album deleteAlbum(@Param("album_id") Long album_id) throws Exception;
+    Album getAlbum(@Param("album_id") Long album_id);
+    List<Album> listAlbum(@Param("user_id") Long album_id);
+    Album createAlbum(@Param("album") Album album);
+    Album deleteAlbum(@Param("album_id") Long album_id);
 }
