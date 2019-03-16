@@ -8,4 +8,5 @@ public interface UserDao {
     boolean insertUser(User user);
     boolean existsByPhone(String phone);
     boolean existsByEmail(String email);
+    boolean focusUser(int userId);
 }
