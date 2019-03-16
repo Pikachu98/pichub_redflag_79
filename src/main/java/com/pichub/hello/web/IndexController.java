@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.Null;
 
 @Controller
-public class IndexControl {
+public class IndexController {
     @RequestMapping(value = "/")
     public String index(){
         return "index";
