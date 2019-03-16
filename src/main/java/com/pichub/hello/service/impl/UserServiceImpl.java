@@ -23,9 +23,4 @@ public class UserServiceImpl implements UserService {
         }
         return userDao.insertUser(user) ;
     }
-
-    @Override
-    public boolean focusChange(int userId) throws Exception {
-        return userDao.focusUser(userId);
-    }
 }

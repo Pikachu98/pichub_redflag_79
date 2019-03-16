@@ -1,6 +1,7 @@
 package com.pichub.hello.web;
 
 import com.pichub.hello.bo.User;
+import com.pichub.hello.service.FocusService;
 import com.pichub.hello.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,17 +36,5 @@ public class UserController
             msg = e.getMessage();
         }
         return "{success:"+isSuccess+",msg:"+msg+"}";
-    }
-
-    @RequestMapping(value="/user/changeFocus")
-    @ResponseBody
-    public String focusSave(int userId, ModelMap model, HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-    {
-        if (userService.focusChange(userId))
-        {
-            model.put("s",true);
-        }
-        return "focus";
     }
 }
