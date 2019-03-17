@@ -6,10 +6,11 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface UserDao {
-    boolean focusUser(long userId1,long userId2) throws Exception;
+    boolean focusUser(Integer userId1,Integer userId2) throws Exception;
     boolean insertUser(User user);
     boolean existsByPhone(String phone);
     boolean existsByEmail(String email);
+    User getUser(@Param("userId")long userId)throws Exception;
     //boolean focusUser(Integer userId);
     int belikeCheck(@Param("userId") long userId, @Param("pictureId") long pictureId)throws Exception;
     boolean deleteBelike(@Param("userId") long userId, @Param("pictureId") long pictureId)throws Exception;

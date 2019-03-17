@@ -2,68 +2,68 @@ package com.pichub.hello.bo;
 
 import java.util.Date;
 
-public class Album {
-    private Long album_id;
-    private String album_name;
-    private Date create_time;
-    private Date update_time;
-    private int album_state;
-    private Long user_id;
-    private String cover_thumbnail_path;
+public class album {
+    private Long albumId;
+    private String albumName;
+    private Date createTime;
+    private Date updateTime;
+    private int albumState;
+    private Long userId;
+    private String coverThumbnailPath;
 
-    public Long getAlbum_id() {
-        return album_id;
+    public Long getAlbumId() {
+        return albumId;
     }
 
-    public void setAlbum_id(Long album_id) {
-        this.album_id = album_id;
+    public void setAlbumId(Long albumId) {
+        this.albumId = albumId;
     }
 
-    public String getAlbum_name() {
-        return album_name;
+    public String getAlbumName() {
+        return albumName;
     }
 
-    public void setAlbum_name(String album_name) {
-        this.album_name = album_name;
+    public void setAlbumName(String albumName) {
+        this.albumName = albumName;
     }
 
-    public Date getCreate_time() {
-        return create_time;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getUpdate_time() {
-        return update_time;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdate_time(Date update_time) {
-        this.update_time = update_time;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
-    public int getAlbum_state() {
-        return album_state;
+    public int getAlbumState() {
+        return albumState;
     }
 
-    public void setAlbum_state(int album_state) {
-        this.album_state = album_state;
+    public void setAlbumState(int albumState) {
+        this.albumState = albumState;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getCover_thumbnail_path() {
-        return cover_thumbnail_path;
+    public String getCoverThumbnailPath() {
+        return coverThumbnailPath;
     }
 
-    public void setCover_thumbnail_path(String cover_thumbnail_path) {
-        this.cover_thumbnail_path = cover_thumbnail_path;
+    public void setCoverThumbnailPath(String coverThumbnailPath) {
+        this.coverThumbnailPath = coverThumbnailPath;
     }
 }
