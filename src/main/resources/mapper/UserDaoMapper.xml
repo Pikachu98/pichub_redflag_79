@@ -20,15 +20,15 @@
         #{qqNum},#{wechatNum},#{userPhone})
     </insert>
 
-    <select id="belikeCheck" resultType="int" parameterType="{long,long}">
+    <select id="belikeCheck" resultType="int">
         select count(*) from belike where user_id = #{userId} and pic_id = #{pictureId}
     </select>
 
-    <delete id="deleteBelike" parameterType="{long,long}">
+    <delete id="deleteBelike">
         delete from belike where user_id=#{userId} and pic_id=#{pictureId}
     </delete>
 
-    <insert id="insertBelike" parameterType="{long,long}">
+    <insert id="insertBelike">
         insert into belike (user_id,pic_id)
         values (#{userId},#{pictureId})
     </insert>
