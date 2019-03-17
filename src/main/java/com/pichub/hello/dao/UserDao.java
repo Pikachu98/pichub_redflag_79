@@ -12,4 +12,7 @@ public interface UserDao {
     boolean existsByEmail(String email);
     User getUser(@Param("userId")long userId)throws Exception;
     //boolean focusUser(Integer userId);
+    int belikeCheck(@Param("userId") long userId, @Param("pictureId") long pictureId)throws Exception;
+    boolean deleteBelike(@Param("userId") long userId, @Param("pictureId") long pictureId)throws Exception;
+    boolean insertBelike(@Param("userId") long userId, @Param("pictureId") long pictureId)throws Exception;
 }

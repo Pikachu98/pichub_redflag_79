@@ -5,12 +5,32 @@
 <mapper namespace="com.pichub.hello.dao.UserDao">
 
     <insert id="focusUser">
-    insert into follower (user_id,use_user_id)
-    values (#{userId1},#{userId2})
+        insert into follower (user_id,use_user_id)
+        values (#{userId1},#{userId2})
     </insert>
 
     <select id="getUser" resultType="com.pichub.hello.bo.User" parameterType="long">
         select * from user where user_id=#{userId}
     </select>
+
+    <insert id="insertUser" parameterType="com.pichub.hello.bo.User">
+        insert into user (user_name,user_email,user_password,create_time,user_gender,user_subscription,avatar_path,user_capacity,user_used_capacity,
+        user_qq_num,wechat_num,phone)
+        values (#{userName},#{userEmail},#{userPassword},#{createTime},#{userGender},#{userSubscription},#{avatarPath},#{userCapacity},#{usedCapacity},
+        #{qqNum},#{wechatNum},#{userPhone})
+    </insert>
+
+    <select id="belikeCheck" resultType="int" parameterType="{long,long}">
+        select count(*) from belike where user_id = #{userId} and pic_id = #{pictureId}
+    </select>
+
+    <delete id="deleteBelike" parameterType="{long,long}">
+        delete from belike where user_id=#{userId} and pic_id=#{pictureId}
+    </delete>
+
+    <insert id="insertBelike" parameterType="{long,long}">
+        insert into belike (user_id,pic_id)
+        values (#{userId},#{pictureId})
+    </insert>
 
 </mapper>
