@@ -1,6 +1,7 @@
 package com.pichub.hello.web;
 
 import com.pichub.hello.bo.User;
+import com.pichub.hello.service.FocusService;
 import com.pichub.hello.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,12 +19,12 @@ public class UserController
 {
     @Autowired
     private UserService userService;
-    @RequestMapping(value = "/user/register", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/register")
     public String register(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
-        return  "/user/regdsfister";
+        return  "/user/register";
     }
 
-    @RequestMapping(value="/user/saveregister", method = RequestMethod.POST)
+    @RequestMapping(value="/user/saveregister")
     @ResponseBody
     public String saveregister(User user, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
@@ -34,13 +35,6 @@ public class UserController
         } catch (Exception e) {
             msg = e.getMessage();
         }
-
         return "{success:"+isSuccess+",msg:"+msg+"}";
-
-    }
-
-    @RequestMapping(value="/user/login", method = RequestMethod.GET)
-    public String hello() {
-        return "login";
     }
 }
