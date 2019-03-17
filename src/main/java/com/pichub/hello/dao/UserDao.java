@@ -2,6 +2,7 @@ package com.pichub.hello.dao;
 
 import com.pichub.hello.bo.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface UserDao {
@@ -10,4 +11,7 @@ public interface UserDao {
     boolean existsByPhone(String phone);
     boolean existsByEmail(String email);
     //boolean focusUser(Integer userId);
+    int belikeCheck(@Param("userId") long userId, @Param("pictureId") long pictureId)throws Exception;
+    boolean deleteBelike(@Param("userId") long userId, @Param("pictureId") long pictureId)throws Exception;
+    boolean insertBelike(@Param("userId") long userId, @Param("pictureId") long pictureId)throws Exception;
 }
