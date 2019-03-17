@@ -5,8 +5,8 @@
 <mapper namespace="com.pichub.hello.dao.UserDao">
 
     <insert id="focusUser">
-    insert into follwer (user_id,use_user_id)
-    values (#{userId},#{userId})
+    insert into follower (user_id,use_user_id)
+    values (#{userId1},#{userId2})
     </insert>
 
 </mapper>
