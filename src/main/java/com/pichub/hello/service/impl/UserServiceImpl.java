@@ -23,4 +23,22 @@ public class UserServiceImpl implements UserService {
         }
         return userDao.insertUser(user) ;
     }
+
+    public User getUser(long userId)throws Exception{
+        return userDao.getUser(userId);
+    }
+
+    public boolean belikeCheck(long userId, long pictureId)throws Exception{
+        int flag = userDao.belikeCheck(userId, pictureId);
+        if(flag > 0)    return true;
+        else return false;
+    }
+
+    public boolean deleteBelike(long userId, long pictureId)throws Exception{
+        return userDao.deleteBelike(userId, pictureId);
+    }
+
+    public boolean insertBelike(long userId, long pictureId)throws Exception{
+        return userDao.insertBelike(userId, pictureId);
+    }
 }
