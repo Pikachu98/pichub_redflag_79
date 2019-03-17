@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface AlbumService {
-    Album getAlbum();
+    Album getAlbum(Long albumId);
     List<Album> listAlbum();
     Album createAlbum();
     Album deleteAlbum();
