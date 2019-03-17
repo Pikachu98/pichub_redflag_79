@@ -1,6 +1,6 @@
 package com.pichub.hello.bo;
 
-public class administrator {
+public class Administrator {
     private int controllerId;
     private String username;
     private String email;

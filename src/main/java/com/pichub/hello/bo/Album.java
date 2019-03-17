@@ -2,7 +2,7 @@ package com.pichub.hello.bo;
 
 import java.util.Date;
 
-public class album {
+public class Album {
     private Long albumId;
     private String albumName;
     private Date createTime;
