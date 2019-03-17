@@ -6,8 +6,12 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface UserDao {
+
+    //关注用户功能
     boolean focusUser(Integer userId1,Integer userId2) throws Exception;
-    //boolean delFocus(Integer userId1,Integer userId2) throws Exception;
+    boolean delFocus(Integer userId1,Integer userId2) throws Exception;
+    int checkFocus(Integer userId1,Integer userId2) throws Exception;
+
     boolean insertUser(User user)throws Exception;
     boolean existsByPhone(String phone)throws Exception;
     //boolean existsByEmail(String email);

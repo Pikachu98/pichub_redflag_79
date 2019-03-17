@@ -14,9 +14,12 @@ public class FocusServicelmpl implements FocusService {
     }
 
     public boolean delFocus(Integer userId1, Integer userId2) throws Exception {
-        return false;
+        return userDao.delFocus(userId1,userId2);
     }
 
+    public int checkFocus(Integer userId1, Integer userId2) throws Exception {
+        return userDao.checkFocus(userId1,userId2);
+    }
 
 }
 

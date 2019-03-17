@@ -25,8 +25,8 @@
                     "loginState":true
                 },
                 success:function (result) {
-                    $("#btnFocus").removeClass("Saving");
-                    $("#btnFocus").val("Save");
+                    $("#btnFocus").removeClass("关注中");
+                    $("#btnFocus").val("关注");
 
                     if (result.backMsg == true) {
                         alert("关注成功！")
@@ -39,8 +39,8 @@
                     }
                 },
                 error:function () {
-                    $("#btnFocus").removeClass("Saving");
-                    $("#btnFocus").val("Save");
+                    $("#btnFocus").removeClass("关注中");
+                    $("#btnFocus").val("关注");
                 }
             })
         })
