@@ -23,4 +23,8 @@ public class UserServiceImpl implements UserService {
         }
         return userDao.insertUser(user) ;
     }
+
+    public User getUser(long userId)throws Exception{
+        return userDao.getUser(userId);
+    }
 }
