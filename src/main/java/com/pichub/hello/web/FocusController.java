@@ -73,6 +73,7 @@ public class FocusController {
             else//当前用户已经关注了这个用户
             {
                 //取消关注，从follower表中删除记录
+
                 result.put("backMsg","取消关注");
             }
         }else//未登录
