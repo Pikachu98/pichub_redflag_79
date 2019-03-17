@@ -17,16 +17,16 @@ public class IndexController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(HttpServletRequest request, HttpServletResponse response){
-        return Null;
+        return null;
     }
 
     @RequestMapping(value = "/zhuce", method = RequestMethod.POST)
     public String zhuce(HttpServletRequest request, HttpServletResponse response){
-        return Null;
+        return null;
     }
     @RequestMapping(value = "/chongzhimima", method = RequestMethod.POST)
     public String chongzhimima(HttpServletRequest request, HttpServletResponse response){
-        return Null;
+        return null;
     }
 
 

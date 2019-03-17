@@ -2,5 +2,5 @@ package com.pichub.hello.service;
 
 
 public interface FocusService {
-    boolean focusChange(long userId1,long userId2) throws Exception;
+    boolean focusChange(Integer userId1,Integer userId2) throws Exception;
 }

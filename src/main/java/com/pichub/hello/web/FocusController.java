@@ -51,20 +51,22 @@ public class FocusController {
 
     @RequestMapping(value="/user/doInsertFocus")
     @ResponseBody
-    public Map<String,Object> doInsertFocus(boolean loginState, @SessionAttribute(value = "userId") long uerIdNow, ModelMap model, HttpServletRequest request, HttpServletResponse response)
+    public Map<String,Object> doInsertFocus(boolean loginState/*@SessionAttribute(value = "userId") long userIdNow*/, ModelMap model, HttpServletRequest request, HttpServletResponse response)
             throws Exception
     {
+        //request.getSession().setAttribute("userId",1L);
         Map<String,Object> result = new HashMap<String,Object>();
         //loginState传递用户登陆状态
         if (loginState)//已登陆
         {
+            int userIdNow = 2;
             //在点击关注按钮前已经获取了此用户Id
             boolean hadFocus = false;
             if (!hadFocus)//如果这个用户还没关注这个用户
             {
-                long userId2=3;//当前用户想要关注的用户的ID
-                boolean focus = focusService.focusChange(uerIdNow,userId2);//获得插入的结果，成功为true，失败为false
-                result.put("focusId1",uerIdNow);//将当前用户Id显示到页面上
+                Integer userId2=3;//当前用户想要关注的用户的ID
+                boolean focus = focusService.focusChange(userIdNow,userId2);//获得插入的结果，成功为true，失败为false
+                result.put("focusId1",userIdNow);//将当前用户Id显示到页面上
                 result.put("focusId2",userId2);//当前用户想关注的用户的ID
                 result.put("backMsg",focus);//将插入结果显示到页面上
             }

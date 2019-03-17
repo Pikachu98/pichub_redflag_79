@@ -1,18 +1,18 @@
 package com.pichub.hello.bo;
 
 public class administrator {
-    private int controller_id;
+    private int controllerId;
     private String username;
     private String email;
     private String phone;
     private String password;
 
-    public int getController_id() {
-        return controller_id;
+    public int getControllerId() {
+        return controllerId;
     }
 
-    public void setController_id(int controller_id) {
-        this.controller_id = controller_id;
+    public void setControllerId(int controllerId) {
+        this.controllerId = controllerId;
     }
 
     public String getUsername() {
