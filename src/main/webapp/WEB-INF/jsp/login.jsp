@@ -13,12 +13,12 @@
 </head>
 <body>
 <%--<%--%>
-    <%--// 如果用户名已经存在，说明已经登录，跳转到主页--%>
-    <%--String username = (String) request.getSession().getAttribute("username");--%>
-    <%--if (username != null && username.length() > 0) {--%>
-        <%--response.sendRedirect("index.jsp");--%>
-        <%--return;--%>
-    <%--}--%>
+<%--// 如果用户名已经存在，说明已经登录，跳转到主页--%>
+<%--String username = (String) request.getSession().getAttribute("username");--%>
+<%--if (username != null && username.length() > 0) {--%>
+<%--response.sendRedirect("index.jsp");--%>
+<%--return;--%>
+<%--}--%>
 <%--%>--%>
 <form action="login.do" method="post">
     username:<input type="text" name = "username" ><p>
