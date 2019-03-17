@@ -15,18 +15,18 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(HttpServletRequest request, HttpServletResponse response){
-        return "----待完善----";
+        return null;
     }
 
-    @RequestMapping(value = "/zhuce")
+    @RequestMapping(value = "/zhuce", method = RequestMethod.POST)
     public String zhuce(HttpServletRequest request, HttpServletResponse response){
-        return "------待完善-----";
+        return null;
     }
-    @RequestMapping(value = "/chongzhimima")
+    @RequestMapping(value = "/chongzhimima", method = RequestMethod.POST)
     public String chongzhimima(HttpServletRequest request, HttpServletResponse response){
-        return "------待完善-----";
+        return null;
     }
 
 
