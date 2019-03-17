@@ -20,7 +20,7 @@
         #{qqNum},#{wechatNum},#{userPhone})
     </insert>
 
-    <select id="belikeCheck">
+    <select id="belikeCheck" resultType="int">
         select count(*) from belike where user_id = #{userId} and pic_id = #{pictureId}
     </select>
 
