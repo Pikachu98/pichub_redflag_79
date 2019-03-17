@@ -3,7 +3,7 @@
 <head>
     <title>Focus</title>
 
-    <script src="/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <div>
@@ -25,7 +25,7 @@
                     "loginState":true
                 },
                 success:function (result) {
-                    $("#btnFocus").removeClass("关注中");
+                    $("#btnFocus").removeClass("Saving");
                     $("#btnFocus").val("关注");
 
                     if (result.backMsg == true) {
@@ -39,7 +39,7 @@
                     }
                 },
                 error:function () {
-                    $("#btnFocus").removeClass("关注中");
+                    $("#btnFocus").removeClass("Saving");
                     $("#btnFocus").val("关注");
                 }
             })
