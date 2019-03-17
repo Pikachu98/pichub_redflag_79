@@ -9,4 +9,8 @@
     values (#{userId},#{userId})
     </insert>
 
+    <select id="getUser" resultType="com.pichub.hello.bo.User" parameterType="long">
+        select * from user where user_id=#{userId}
+    </select>
+
 </mapper>
