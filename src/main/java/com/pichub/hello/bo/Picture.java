@@ -47,4 +47,8 @@ public class Picture {
     public String getPicThumbnailPath(){return picThumbnailPath;}
 
     public void setPicThumbnailPath(String picThumbnailPath){this.picThumbnailPath = picThumbnailPath;}
+
+    public byte getSize(){return size;}
+
+    public void setSize(byte size){this.size = size;}
 }

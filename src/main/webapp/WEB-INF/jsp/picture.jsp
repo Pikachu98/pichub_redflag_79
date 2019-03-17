@@ -12,7 +12,8 @@
     <script type="text/javascript">
         function like() {
             //check liked state
-
+            //var userId = ${sessionScope.user.userId};
+            //var picId = ${p.picId};
             //according to check to change state
         }
     </script>
@@ -20,7 +21,6 @@
 <body>
 
 <div>Picture id:${p.picId}</div>
-<div>User id:${}</div>
-<input type="button" value="like" onclick="like()">
+<!--<input type="button" value="like" onclick="like()">-->
 </body>
 </html>
