@@ -11,14 +11,14 @@
     <title>zhuce</title>
 </head>
 <body>
-<h3>
-    输入昵称 <input type="text" name="zhuce_username"><br> <br>
-    绑定邮箱 <input type="password" name="zhuce_userpassword"><br> <br>
-    绑定手机 <input type="password" name="zhuce_userpassword"><br> <br>
-    <input type="submit" value="注册新账号">
-</h3>
 
 <form>
+    <h3>
+        输入昵称 <input type="text" name="zhuce_username"><br> <br>
+        绑定邮箱 <input type="password" name="zhuce_userpassword"><br> <br>
+        绑定手机 <input type="password" name="zhuce_userpassword"><br> <br>
+        <input type="submit" value="注册新账号">
+    </h3>
 
 </form>
 </body>
