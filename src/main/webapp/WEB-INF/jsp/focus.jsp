@@ -13,6 +13,8 @@
 <div>当前用户ID：<input type="text" value="userId1" id="userId1"></div>
 <div>关注用户ID：<input type="text" value="userId2" id="userId2"></div>
 <div><input type="button" value="关注" id="btnFocus"></div>
+<div><input type="button" value="我的关注" id="btnMyFocus"></div>
+<div><input type="button" value="我的粉丝" id="btnFocusMe"></div>
 <script>
     $(function (){
         $("#btnFocus").on("click",function () {
@@ -44,9 +46,53 @@
                 }
             })
         })
+
+        $("#btnMyFocus").on("click",function () {
+            $.ajax({
+                type:"POST",
+                url:"/user/doShowMyFocus",
+                dataType:"json",
+                data:{
+                    "loginState":true
+                },
+                success:function (result) {
+                    $("#btnMyFocus").removeClass("Saving");
+                    $("#btnMyFocus").val("关注");
+
+                    alert("关注成功！")
+                    $("#userId2").val(result.MyFocus.toString());
+                },
+                error:function () {
+                    $("#btnMyFocus").removeClass("Saving");
+                    $("#btnMyFocus").val("关注");
+                }
+            })
+        })
+
+        $("#btnFocusMe").on("click",function () {
+            $.ajax({
+                type:"POST",
+                url:"/user/doShowFocusMe",
+                dataType:"json",
+                data:{
+                    "loginState":true
+                },
+                success:function (result) {
+                    $("#btnFocusMe").removeClass("Saving");
+                    $("#btnFocusMe").val("关注");
+
+                    alert("关注成功！")
+                    $("#userId2").val(result.FocusMe.toString());
+                },
+                error:function () {
+                    $("#btnFocusMe").removeClass("Saving");
+                    $("#btnFocusMe").val("关注");
+                }
+            })
+        })
     })
 </script>
-<div>Result:${result.backMsg}</div>
+<div></div>
 
 </body>
 </html>
