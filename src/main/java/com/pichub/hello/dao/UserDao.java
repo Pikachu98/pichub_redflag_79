@@ -4,6 +4,8 @@ import com.pichub.hello.bo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface UserDao {
 
@@ -11,6 +13,8 @@ public interface UserDao {
     boolean focusUser(Integer userId1,Integer userId2) throws Exception;
     boolean delFocus(Integer userId1,Integer userId2) throws Exception;
     int checkFocus(Integer userId1,Integer userId2) throws Exception;
+    List showMyFocus(Integer userId) throws Exception;
+    List showFocusMe(Integer userId) throws Exception;
 
     boolean insertUser(User user)throws Exception;
     boolean existsByPhone(String phone)throws Exception;

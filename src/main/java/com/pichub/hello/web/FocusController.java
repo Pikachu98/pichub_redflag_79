@@ -1,6 +1,5 @@
 package com.pichub.hello.web;
 
-import com.pichub.hello.bo.User;
 import com.pichub.hello.service.FocusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -82,6 +82,30 @@ public class FocusController {
             //提示用户登陆
             result.put("backMsg","请先登陆");
         }
+        return result;
+    }
+
+    @RequestMapping(value="/user/doShowMyFocus")
+    @ResponseBody
+    public Map<String,Object> doShowMyFocus(boolean loginState/*@SessionAttribute(value = "userId") long userIdNow*/, ModelMap model, HttpServletRequest request, HttpServletResponse response)
+            throws Exception
+    {
+        Map<String,Object> result = new HashMap<String,Object>();
+        int userIdNow = 2;
+        List myFocus = focusService.showMyFocus(userIdNow);
+        result.put("MyFocus",myFocus);
+        return result;
+    }
+
+    @RequestMapping(value="/user/doShowFocusMe")
+    @ResponseBody
+    public Map<String,Object> doShowFocusMe(boolean loginState/*@SessionAttribute(value = "userId") long userIdNow*/, ModelMap model, HttpServletRequest request, HttpServletResponse response)
+            throws Exception
+    {
+        Map<String,Object> result = new HashMap<String,Object>();
+        int userIdNow = 2;
+        List focusMe = focusService.showFocusMe(userIdNow);
+        result.put("FocusMe",focusMe);
         return result;
     }
 }
