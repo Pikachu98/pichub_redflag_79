@@ -11,7 +11,7 @@ import org.springframework.util.StringUtils;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
-    @Override
+
     public boolean saveUser(User user)  throws  Exception {
         if (user.getUserName()==null || user.getUserName().trim().length()==0) {
             throw new Exception("User name is empty!");

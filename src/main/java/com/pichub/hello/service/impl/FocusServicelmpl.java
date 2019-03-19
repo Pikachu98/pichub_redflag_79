@@ -5,6 +5,8 @@ import com.pichub.hello.service.FocusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("focusService")
 public class FocusServicelmpl implements FocusService {
     @Autowired
@@ -12,5 +14,24 @@ public class FocusServicelmpl implements FocusService {
     public boolean focusChange(Integer userId1,Integer userId2) throws Exception {
         return userDao.focusUser(userId1,userId2);
     }
+
+    public boolean delFocus(Integer userId1, Integer userId2) throws Exception {
+        return userDao.delFocus(userId1,userId2);
+    }
+
+    public int checkFocus(Integer userId1, Integer userId2) throws Exception {
+        return userDao.checkFocus(userId1,userId2);
+    }
+
+    @Override
+    public List showMyFocus(Integer userId) throws Exception {
+        return userDao.showMyFocus(userId);
+    }
+
+    @Override
+    public List showFocusMe(Integer userId) throws Exception {
+        return userDao.showFocusMe(userId);
+    }
+
 }
 
