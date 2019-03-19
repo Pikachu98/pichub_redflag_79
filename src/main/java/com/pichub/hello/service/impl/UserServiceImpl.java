@@ -24,6 +24,26 @@ public class UserServiceImpl implements UserService {
         return userDao.insertUser(user) ;
     }
 
+    @Override
+    public User tOrfUser(String userEmail, String userPassword) throws Exception{
+        User user = userDao.tOrfUser(userEmail,userPassword);
+        if (user == null) {
+            return null;
+        }
+        return user;
+    }
+
+
+
+
+//    @Override
+//    public boolean isPwd(String userpassword) {
+//        if(userpassword == #{password})
+//        return false;
+//    }
+
+
+
     public User getUser(long userId)throws Exception{
         return userDao.getUser(userId);
     }

@@ -18,9 +18,14 @@ public interface UserDao {
 
     boolean insertUser(User user)throws Exception;
     boolean existsByPhone(String phone)throws Exception;
-    //boolean existsByEmail(String email);
+
+    boolean existsByEmail(String email);
+
+    User tOrfUser(@Param("userEmail")String userEmail,@Param("userPassword")String userPassword) throws Exception;
+
+
     User getUser(@Param("userId")long userId)throws Exception;
-    //boolean focusUser(Integer userId);
+    boolean focusUser(Integer userId);
     int belikeCheck(@Param("userId") long userId, @Param("pictureId") long pictureId)throws Exception;
     boolean deleteBelike(@Param("userId") long userId, @Param("pictureId") long pictureId)throws Exception;
     boolean insertBelike(@Param("userId") long userId, @Param("pictureId") long pictureId)throws Exception;
