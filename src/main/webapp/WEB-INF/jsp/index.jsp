@@ -13,8 +13,8 @@
 <body>
 <h1>这是index主页</h1>
 <a href="login">登录<br></a>
-<a href="zhuce">注册<br></a>
-<a href="chongzhimima">重置密码<br></a>
-<a href="MailCode">邮箱验证码</a>
+<a href="rigister">注册<br></a>
+<a href="resetPassword">重置密码<br></a>
+<a href="MailCode">邮箱验证码</a><br>
 </body>
 </html>
