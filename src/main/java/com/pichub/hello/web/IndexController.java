@@ -9,4 +9,11 @@ public class IndexController {
     public String index(){
         return "index";
     }
+
+    @RequestMapping(value = "/rigister")
+    public String rigister(){
+        return "rigister";
+    }
 }
+
+

@@ -16,13 +16,13 @@
 <div>旧密码：<input type="password" id="old_pwd"></div>
 <div>新密码：<input type="password" id="new_pwd"></div>
 <div>确认新密码：<input type="password" id="con_new_pwd"></div>
-<div><input type="button" id="btnSave" value="提交更改"></div>
+<div><input type="button" id="btnSub" value="提交更改"></div>
 </form>
 
 <script>
 
     $(function () {
-        $("#btnSave").on("click", function () {
+        $("#btnSub").on("click", function () {
             $.ajax({
                 type:"post",
                 url:"/doguanliyuangaimima",

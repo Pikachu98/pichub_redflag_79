@@ -12,6 +12,10 @@
     <script src="/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-
+    <form>
+        <div>用户名：<input type="text" id="username"></div>
+        <div>密码：<input type="password" id="password"></div>
+        <div><input type="button" id="btnSave" value="登录"></div>
+    </form>
 </body>
 </html>

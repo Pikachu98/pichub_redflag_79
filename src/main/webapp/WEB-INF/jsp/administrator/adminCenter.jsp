@@ -11,6 +11,11 @@
     <title>管理中心</title>
 </head>
 <body>
-
+    <div>登录成功，除注销与改密码外其余功能均待实现</div>
+    <a href="login">注销<br></a>
+    <a href="/administrator/changePassword">改密码<br></a>
+    <div>待实现功能一，，，</div>
+    <div>待实现功能二，，，</div>
+    <div>待实现功能三，，，</div>
 </body>
 </html>
