@@ -16,7 +16,5 @@
 <a href="rigister">注册<br></a>
 <a href="resetPassword">重置密码<br></a>
 <a href="MailCode">邮箱验证码</a><br>
-<a href="gerenxinxixiugai">用户个人信息修改</a><br>
-<a href="guanliyuangaimima">管理员密码更改</a><br>
 </body>
 </html>
