@@ -14,8 +14,34 @@
 <body>
     <form>
         <div>用户名：<input type="text" id="username"></div>
-        <div>密码：<input type="password" id="password"></div>
-        <div><input type="button" id="btnSave" value="登录"></div>
+        <div>密&nbsp;&nbsp;&nbsp;码：<input type="password" id="password"></div>
+        <div><input type="button" id="btnLogin" value="登录"></div>
     </form>
+
+    <script>
+
+        $(function () {
+            $("#btnLogin").on("click", function () {
+                $.ajax({
+                    type:"post",
+                    url:"/administrator/doLogin",
+                    data: {
+                        username:$("#username").val(),
+                        password:$("#password").val()
+                    },
+                    success: function (result) {
+                        if(result==true)
+                            alert("登陆成功进入管理中心页");
+                        else
+                            alert("密码错误或用户名/密码不匹配");
+                    },
+                    error:function () {
+                        alert("未响应请刷新页面重试！")
+                    }
+                })
+            })
+        })
+
+    </script>
 </body>
 </html>

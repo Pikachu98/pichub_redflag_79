@@ -25,17 +25,25 @@
         $("#btnSub").on("click", function () {
             $.ajax({
                 type:"post",
-                url:"/doguanliyuangaimima",
+                url:"/administrator/doChangePassword",
                 data: {
-                    oldpwd:$("#old_pwd").val(),
-                    newpwd:$("#new_pwd").val(),
-                    connewpwd:$("#con_new_pwd").val()
+                    old_pwd:$("#old_pwd").val(),
+                    new_pwd:$("#new_pwd").val(),
+                    con_new_pwd:$("#con_new_pwd").val()
                 },
                 success: function (result) {
-                    alert(result)
+                    /*  "100","用户名不存在"
+                    "150","密码错误或用户名/密码不匹配"
+                    "200","登陆成功"*/
+                    if(result=100)
+                        alert("用户名错误");
+                    else if(result=150)
+                        alert("密码错误或用户名/密码不匹配");
+                    else if(result=200)
+                        alert("登陆成功进入管理中心页");
                 },
                 error:function () {
-                    alert("未响应请刷新页面重试！")
+                    alert("未响应请刷新页面重试！");
                 }
             })
         })
