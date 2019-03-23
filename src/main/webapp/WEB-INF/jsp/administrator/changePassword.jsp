@@ -20,32 +20,36 @@
 </form>
 
 <script>
-
     $(function () {
         $("#btnSub").on("click", function () {
-            $.ajax({
-                type:"post",
-                url:"/administrator/doChangePassword",
-                data: {
-                    old_pwd:$("#old_pwd").val(),
-                    new_pwd:$("#new_pwd").val(),
-                    con_new_pwd:$("#con_new_pwd").val()
-                },
-                success: function (result) {
-                    /*  "100","用户名不存在"
-                    "150","密码错误或用户名/密码不匹配"
-                    "200","登陆成功"*/
-                    if(result=100)
-                        alert("用户名错误");
-                    else if(result=150)
-                        alert("密码错误或用户名/密码不匹配");
-                    else if(result=200)
-                        alert("登陆成功进入管理中心页");
-                },
-                error:function () {
-                    alert("未响应请刷新页面重试！");
-                }
-            })
+            if ($("#new_pwd").val()==$("#con_new_pwd").val()){
+                $.ajax({
+                    type:"post",
+                    url:"/administrator/doChangePassword",
+                    data: {
+                        old_pwd:$("#old_pwd").val(),
+                        new_pwd:$("#new_pwd").val(),
+                        con_new_pwd:$("#con_new_pwd").val()
+                    },
+                    success: function (result) {
+                        /*  "100","原密码输入错误，请联系后台管理员更改"
+                        "150","请重新登陆"
+                        "200","修改成功请重新登录"*/
+                        if(result==100)
+                            alert("原密码输入错误，请联系后台管理员更改");
+                        else if(result==150)
+                            alert("请重新登录再修改");
+                        else if(result==200)
+                            alert("修改成功请重新登录");
+                    },
+                    error:function () {
+                        alert("未响应请刷新页面重试！");
+                    }
+                })
+            }
+            else
+                alert("两次设置的新密码不一致");
+
         })
     })
 

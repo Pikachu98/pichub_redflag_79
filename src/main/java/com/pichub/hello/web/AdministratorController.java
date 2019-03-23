@@ -28,13 +28,28 @@ public class AdministratorController {
     @RequestMapping(value = "/doLogin",method = RequestMethod.POST)
     @ResponseBody
     public Boolean doLogin( HttpServletRequest request, HttpServletResponse response){
+        if(administratorService.doLoginStatus(request.getParameter("username"),request.getParameter("password"))==true)
+            //增加seesion
+        {
+            request.getSession().setAttribute("username", request.getParameter("username"));
+            System.out.println(request.getSession().getAttribute("username"));
+        }
         return administratorService.doLoginStatus(request.getParameter("username"),request.getParameter("password"));
     }
 
 
     @RequestMapping(value = "/admincenter")
-    public String adminCenter(){
-        return "administrator/adminCenter";
+    public String adminCenter(HttpServletRequest request){
+        if (request.getSession().getAttribute("username")!=null)
+            return "administrator/adminCenter";
+        else
+            return "administrator/login";
+    }
+
+    @RequestMapping(value = "/loginOut")
+    public String loginOut(HttpServletRequest request){
+        request.getSession().removeAttribute("username");
+        return "administrator/login";
     }
 
 
@@ -52,11 +67,21 @@ public class AdministratorController {
 
     @RequestMapping(value = "/doChangePassword",method = RequestMethod.POST)
     @ResponseBody
-    public String doChangePassword(HttpServletRequest request, HttpServletResponse response){
-        System.out.println(request.getParameter("old_pwd"));
-        System.out.println(request.getParameter("new_pwd"));
-        System.out.println(request.getParameter("con_new_pwd"));
-        String result="hahaha";
-        return result;
+    public int doChangePassword(HttpServletRequest request, HttpServletResponse response){
+        if (request.getSession().getAttribute("username")!=null){
+            /*  "100","原密码输入错误，请联系后台管理员更改"
+                        "150","请重新登陆"
+                        "200","修改成功请重新登录"*/
+            if (administratorService.checkOldPwd((String)request.getSession().getAttribute("username"),request.getParameter("old_pwd"))){
+                //密码检查函数对或者错
+                //update旧密码
+                administratorService.updatePwd((String)request.getSession().getAttribute("username"),request.getParameter("new_pwd"));
+                return 200;
+            }
+            else
+                return 100;
+        }
+        else
+            return 150;
     }
 }

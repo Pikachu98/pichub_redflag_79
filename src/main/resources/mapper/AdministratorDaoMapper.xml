@@ -9,4 +9,16 @@
     </select>
 
 
+    <select id="checkOldPwd" resultType="com.pichub.hello.bo.Administrator" parameterType="String">
+        select * from administrator where username= #{username};
+    </select>
+
+
+    <update id="updatePwd">
+        update administrator
+        set password=#{newPassword}
+        where username=#{username}
+    </update>
+
+
 </mapper>

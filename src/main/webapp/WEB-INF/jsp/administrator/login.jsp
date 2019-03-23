@@ -31,7 +31,7 @@
                     },
                     success: function (result) {
                         if(result==true)
-                            alert("登陆成功进入管理中心页");
+                            window.location.href ="/administrator/admincenter";
                         else
                             alert("密码错误或用户名/密码不匹配");
                     },

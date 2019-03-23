@@ -10,4 +10,6 @@ import java.util.List;
 public interface AdministratorDao {
     //管理员登陆，查询用户名密码是否匹配
     Administrator getAdministrator(@Param("username") String username,@Param("password") String password);
+    Administrator checkOldPwd(@Param("username") String username);
+    void updatePwd(@Param("username") String username,@Param("newPassword") String newPassword);
 }
