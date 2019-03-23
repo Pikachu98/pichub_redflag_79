@@ -6,9 +6,15 @@
 
 
     <!-- 根据用户名和密码查询 -->
+    <!-- 是否要写parameter type-->
     <select id="tOrfUser" resultType="com.pichub.hello.bo.User">
         select * from user_table where user_email=#{userEmail} and user_password=#{userPassword}
     </select>
+
+    <select id="tOrfUserName" resultType="com.pichub.hello.bo.User">
+        select * from user_table where user_email=#{userEmail}
+    </select>
+
     <insert id="focusUser">
         insert into follower (user_id,use_user_id)
         values (#{userId1},#{userId2})
@@ -34,11 +40,15 @@
         select * from user_table where user_id=#{userId}
     </select>
 
-    <insert id="insertUser" parameterType="com.pichub.hello.bo.User">
-        insert into user (user_name,user_email,user_password,create_time,user_gender,user_subscription,avatar_path,user_capacity,user_used_capacity,
-        user_qq_num,wechat_num,phone)
-        values (#{userName},#{userEmail},#{userPassword},#{createTime},#{userGender},#{userSubscription},#{avatarPath},#{userCapacity},#{usedCapacity},
-        #{qqNum},#{wechatNum},#{userPhone})
+    <!--<insert id="insertUser" parameterType="com.pichub.hello.bo.User">-->
+        <!--insert into user (user_name,user_email,user_password,create_time,user_gender,user_subscription,avatar_path,user_capacity,user_used_capacity,-->
+        <!--user_qq_num,wechat_num,phone)-->
+        <!--values (#{userName},#{userEmail},#{userPassword},#{createTime},#{userGender},#{userSubscription},#{avatarPath},#{userCapacity},#{usedCapacity},-->
+        <!--#{qqNum},#{wechatNum},#{userPhone})-->
+    <!--</insert>-->
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="userId" keyColumn="user_id" parameterType="com.pichub.hello.bo.User">
+        insert into user_table (user_name,user_email,user_password,user_phone)
+        values (#{user.userName},#{user.userEmail},#{user.userPassword},#{user.userPhone})
     </insert>
 
     <select id="belikeCheck" resultType="int">

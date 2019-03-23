@@ -57,13 +57,13 @@ public class User {
         this.createTime = createTime;
     }
 
-    public char getUserGender() {
-        return userGender;
-    }
-
-    public void setUserGender(char userGender) {
-        this.userGender = userGender;
-    }
+//    public char getUserGender() {
+//        return userGender;
+//    }
+//
+//    public void setUserGender(char userGender) {
+//        this.userGender = userGender;
+//    }
 
     public String getUserSubscription() {
         return userSubscription;
