@@ -1,5 +1,6 @@
 package com.pichub.hello.service.impl;
 
+import com.pichub.hello.bo.Photo;
 import com.pichub.hello.bo.User;
 import com.pichub.hello.dao.UserDao;
 import com.pichub.hello.service.UserService;
@@ -7,30 +8,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
+
 @Service("userService")
 public class UserServiceImpl implements UserService {
     @Autowired
-    private UserDao userDao;
-
-    public boolean saveUser(User user)  throws  Exception {
-        if (user.getUserName()==null || user.getUserName().trim().length()==0) {
-            throw new Exception("User name is empty!");
-        }
-        boolean exists= false;
-        exists = userDao.existsByPhone("");
-        if (exists) {
-            throw new Exception("User 's phone is exists");
-        }
-        return userDao.insertUser(user) ;
-    }
+    UserDao userDao;
 
     @Override
-    public User tOrfUser(String userEmail, String userPassword) throws Exception{
-        User user = userDao.tOrfUser(userEmail,userPassword);
-        if (user == null) {
-            return null;
+    public int checkLogin(String userEmail, String userPassword){
+        if(userDao.tOrfUserName(userEmail)!=null){
+            if (userDao.tOrfUser(userEmail,userPassword)!=null)
+                return 200;//欢迎登陆
+            return 150;//密码错误
         }
-        return user;
+        else
+            return 100;//用户名不存在
     }
 
 
@@ -42,23 +35,28 @@ public class UserServiceImpl implements UserService {
 //        return false;
 //    }
 
-
-
-    public User getUser(long userId)throws Exception{
+    @Override
+    public User getUser(Long userId)throws Exception{
         return userDao.getUser(userId);
     }
 
-    public boolean belikeCheck(long userId, long pictureId)throws Exception{
+    @Override
+    public int insertUser(User user) throws Exception {
+
+        return userDao.insertUser(user);
+    }
+
+    public boolean belikeCheck(Long  userId, long pictureId)throws Exception{
         int flag = userDao.belikeCheck(userId, pictureId);
         if(flag > 0)    return true;
         else return false;
     }
 
-    public boolean deleteBelike(long userId, long pictureId)throws Exception{
+    public boolean deleteBelike(Long  userId, long pictureId)throws Exception{
         return userDao.deleteBelike(userId, pictureId);
     }
 
-    public boolean insertBelike(long userId, long pictureId)throws Exception{
+    public boolean insertBelike(Long userId, long pictureId)throws Exception{
         return userDao.insertBelike(userId, pictureId);
     }
 }

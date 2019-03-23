@@ -15,18 +15,23 @@ public interface UserDao {
     int checkFocus(Integer userId1,Integer userId2) throws Exception;
     List showMyFocus(Integer userId) throws Exception;
     List showFocusMe(Integer userId) throws Exception;
+    List showMyLike(Integer userId) throws Exception;
+    List showMyAlbum(Integer userId) throws Exception;
+    boolean changeUsername(Integer userId, String userName) throws Exception;
 
-    boolean insertUser(User user)throws Exception;
-    boolean existsByPhone(String phone)throws Exception;
+    int insertUser(@Param("user") User user)throws Exception;
+   // boolean existsByPhone(String phone)throws Exception;
 
     boolean existsByEmail(String email);
 
-    User tOrfUser(@Param("userEmail")String userEmail,@Param("userPassword")String userPassword) throws Exception;
+    User tOrfUser(@Param("userEmail")String userEmail,@Param("userPassword")String userPassword);
+    User tOrfUserName(@Param("userEmail")String userEmail);
 
 
-    User getUser(@Param("userId")long userId)throws Exception;
+    User getUser(@Param("userId")Long userId)throws Exception;
     boolean focusUser(Integer userId);
-    int belikeCheck(@Param("userId") long userId, @Param("pictureId") long pictureId)throws Exception;
-    boolean deleteBelike(@Param("userId") long userId, @Param("pictureId") long pictureId)throws Exception;
-    boolean insertBelike(@Param("userId") long userId, @Param("pictureId") long pictureId)throws Exception;
+    int belikeCheck(@Param("userId") Long userId, @Param("pictureId") long pictureId)throws Exception;
+    boolean deleteBelike(@Param("userId") Long  userId, @Param("pictureId") long pictureId)throws Exception;
+    boolean insertBelike(@Param("userId") Long userId, @Param("pictureId") long pictureId)throws Exception;
+    //int insertUser(@Param("user") User user) throws Exception;
 }

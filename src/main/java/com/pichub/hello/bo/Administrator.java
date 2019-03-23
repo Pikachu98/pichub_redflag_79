@@ -1,18 +1,16 @@
 package com.pichub.hello.bo;
 
 public class Administrator {
-    private int controllerId;
+    private int administratorId;
     private String username;
-    private String email;
-    private String phone;
     private String password;
 
-    public int getControllerId() {
-        return controllerId;
+    public int getAdministratorId() {
+        return administratorId;
     }
 
-    public void setControllerId(int controllerId) {
-        this.controllerId = controllerId;
+    public void setAdministratorId(int administratorId) {
+        this.administratorId = administratorId;
     }
 
     public String getUsername() {
@@ -21,22 +19,6 @@ public class Administrator {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getPassword() {

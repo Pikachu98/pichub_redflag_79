@@ -10,12 +10,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
-    <script src="/js/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
+<form>
 <div>用户名：<input type="text" id="user_email"></div>
 <div>密码：<input type="text" id="user_pwd"></div>
-<div><input type="button" value="Log" id="login"></div>
+<div><input type="button" value="Log" id="login"></div></form>
+<a href="index">back</a>
 <script>
     $(function () {
         $("#login").on("click", function () {
@@ -50,18 +52,23 @@
                     $("#login").removeClass("Logging");
                     $("#login").val("Log");
 
-                    if (user != null) {
+
+
+                    if (user ==100) {
                         //window.location.href = "/test";
-                        alert("lalllala");
-                    } else {
-                        alert("还没注册玩啥呢！");
+                        alert("用户名错误");
+                    } else if(user==150){
+                        alert("密码错误");
                     }
-                }
-                // error:function () {
-                //     $("#login").removeClass("Logging");
-                //     $("#login").val("Log");
-                //     alert("还没注册玩啥呢！");
-                // }
+                    else
+                        alert("成功");
+
+                },
+                 error:function () {
+                     $("#login").removeClass("Logging");
+                     $("#login").val("Log");
+                     alert("未响应");
+                 }
 
 
 

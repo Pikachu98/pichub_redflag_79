@@ -12,8 +12,8 @@
         select * from photo where user_id=#{userId}
     </select>
 
-    <!--<insert id="insetPhoto">-->
-        <!--insert into photo (photo_id, photo_name, user_id)-->
-        <!--values (#{photoId}, #{photoName}, #{userId})-->
-    <!--</insert>-->
+    <insert id="insetPhoto">
+        insert into photo (photo_id, photo_name, user_id)
+        values (#{photoId}, #{photoName}, #{userId})
+    </insert>
 </mapper>

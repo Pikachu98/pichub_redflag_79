@@ -5,13 +5,12 @@ import com.pichub.hello.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class UserController
@@ -46,25 +45,47 @@ public class UserController
 //    }
     //Spring 语法
 
-    @RequestMapping(value="/login", method = RequestMethod.GET)
+
+    @RequestMapping(value="/register", method = RequestMethod.GET)
+
+    public String register(HttpServletRequest request, HttpServletResponse response){
+
+        return "register";
+    }
+
+    @RequestMapping(value="/user/doRegister")
+    @ResponseBody
+    public Map<String,Object> doRegister(User user, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+       int count = userService.insertUser(user);
+
+
+        Map<String, Object> result = new HashMap<String,Object>();
+//        result.put("code", 0);
+//        result.put("meg", "创建成功");
+        result.put("userId", user.getUserId());
+        return result;
+    }
+
+
+    @RequestMapping(value="/login")
 
     public String login(HttpServletRequest request, HttpServletResponse response){
 
         return "login";
     }
-    @RequestMapping(value="/doLogin")
+    @RequestMapping(value="/doLogin",method = RequestMethod.GET)
     @ResponseBody
-    public User doLogin(String userEmail,String userPassword, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception{
-        return null;
+    public int doLogin(String userEmail,String userPassword, HttpServletRequest request, HttpServletResponse response){
+        System.out.println(userEmail);
+        return userService.checkLogin(userEmail,userPassword);
     }
 
     @RequestMapping(value = "/user/{userId}")
-    public String getUser(@PathVariable long userId, ModelMap map,
+    public String getUser(@PathVariable Long userId, ModelMap map,
                           HttpServletRequest request, HttpServletResponse response)throws Exception {
         User user = userService.getUser(userId);
         map.put("u", user);
-
-        return "user";
+        return "index";
     }
 
 }
