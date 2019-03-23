@@ -8,8 +8,5 @@
         select * from administrator where username= #{username} and password=#{password};
     </select>
 
-    <select id="getUsername" resultType="com.pichub.hello.bo.Administrator" parameterType="String">
-        select * from administrator where username= #{username};
-    </select>
 
 </mapper>
