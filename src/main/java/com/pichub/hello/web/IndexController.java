@@ -9,10 +9,10 @@ public class IndexController {
     public String index(){
         return "index";
     }
-
-    @RequestMapping(value = "/rigister")
-    public String rigister(){
-        return "rigister";
+//hahahahha
+    @RequestMapping(value = "/register")
+    public String register(){
+        return "register";
     }
 }
 
