@@ -17,4 +17,21 @@ public class AdministratorServiceImpl implements AdministratorService {
             return true;
         return false;
     }
+
+    public Boolean checkOldPwd(String username,String oldPassword){
+
+        if (administratorDao.checkOldPwd(username).getPassword().equals(oldPassword)) {
+            return true;
+        }
+        else{
+            System.out.println("原密码检查未通过");
+            return false;
+        }
+
+    }
+
+    public Boolean updatePwd(String username,String newPassword){
+        administratorDao.updatePwd(username,newPassword);
+        return true;
+    }
 }
