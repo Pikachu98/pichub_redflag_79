@@ -55,7 +55,7 @@ public class UserController
     @RequestMapping(value="/doLogin")
     @ResponseBody
     public User doLogin(String userEmail,String userPassword, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception{
-        return null;
+        return userService.tOrfUser(userEmail,userPassword);
     }
 
     @RequestMapping(value = "/user/{userId}")
