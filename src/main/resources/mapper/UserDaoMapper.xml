@@ -7,7 +7,7 @@
 
     <!-- 根据用户名和密码查询 -->
     <select id="tOrfUser" resultType="com.pichub.hello.bo.User">
-        select * from user where user_email=#{userEmail} and user_password=#{userPassword}
+        select * from user_table where user_email=#{userEmail} and user_password=#{userPassword}
     </select>
     <insert id="focusUser">
         insert into follower (user_id,use_user_id)
@@ -31,7 +31,7 @@
     </select>
 
     <select id="getUser" resultType="com.pichub.hello.bo.User" parameterType="long">
-        select * from user where user_id=#{userId}
+        select * from user_table where user_id=#{userId}
     </select>
 
     <insert id="insertUser" parameterType="com.pichub.hello.bo.User">

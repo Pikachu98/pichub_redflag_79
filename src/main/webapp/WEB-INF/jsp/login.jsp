@@ -10,7 +10,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
-    <script src="/js/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <div>用户名：<input type="text" id="user_email"></div>
@@ -50,18 +50,20 @@
                     $("#login").removeClass("Logging");
                     $("#login").val("Log");
 
+
+
                     if (user != null) {
                         //window.location.href = "/test";
                         alert("lalllala");
                     } else {
                         alert("还没注册玩啥呢！");
                     }
-                }
-                // error:function () {
-                //     $("#login").removeClass("Logging");
-                //     $("#login").val("Log");
-                //     alert("还没注册玩啥呢！");
-                // }
+                },
+                 error:function () {
+                     $("#login").removeClass("Logging");
+                     $("#login").val("Log");
+                     alert("还没注册玩啥呢！");
+                 }
 
 
 

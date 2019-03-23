@@ -27,9 +27,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User tOrfUser(String userEmail, String userPassword) throws Exception{
         User user = userDao.tOrfUser(userEmail,userPassword);
-        if (user == null) {
-            return null;
-        }
+
         return user;
     }
 
