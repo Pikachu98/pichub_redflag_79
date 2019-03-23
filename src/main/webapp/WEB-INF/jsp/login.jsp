@@ -43,7 +43,7 @@
             $.ajax({
                 type: "GET",
                 url: "/doLogin",
-                //dataType: "json",
+                dataType: "json",
                 data: {
                     "userEmail": userEmail,
                     "userPassword": userPassword
