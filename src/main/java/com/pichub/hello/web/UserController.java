@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+
 public class UserController
 {
     @Autowired
@@ -70,13 +71,14 @@ public class UserController
     @RequestMapping(value="/login")
 
     public String login(HttpServletRequest request, HttpServletResponse response){
-
         return "login";
     }
+
     @RequestMapping(value="/doLogin",method = RequestMethod.GET)
     @ResponseBody
     public int doLogin(String userEmail,String userPassword, HttpServletRequest request, HttpServletResponse response){
-        System.out.println(userEmail);
+        if (userService.checkLogin(userEmail,userPassword)==200)
+            request.getSession().setAttribute("userName",userService.getUserName(userEmail));
         return userService.checkLogin(userEmail,userPassword);
     }
 

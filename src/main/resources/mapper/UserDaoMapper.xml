@@ -15,6 +15,10 @@
         select * from user_table where user_email=#{userEmail}
     </select>
 
+    <select id="getUserName" resultType="String">
+        select user_name from user_table where user_email=#{userEmail}
+    </select>
+
     <insert id="focusUser">
         insert into follower (user_id,use_user_id)
         values (#{userId1},#{userId2})

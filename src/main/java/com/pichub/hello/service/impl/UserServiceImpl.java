@@ -18,8 +18,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int checkLogin(String userEmail, String userPassword){
         if(userDao.tOrfUserName(userEmail)!=null){
-            if (userDao.tOrfUser(userEmail,userPassword)!=null)
+            if (userDao.tOrfUser(userEmail,userPassword)!=null) {
+
                 return 200;//欢迎登陆
+            }
             return 150;//密码错误
         }
         else
@@ -58,5 +60,10 @@ public class UserServiceImpl implements UserService {
 
     public boolean insertBelike(Long userId, long pictureId)throws Exception{
         return userDao.insertBelike(userId, pictureId);
+    }
+
+    @Override
+    public String getUserName(String userEmail) {
+        return userDao.getUserName(userEmail);
     }
 }

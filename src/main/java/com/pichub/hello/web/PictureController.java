@@ -24,7 +24,9 @@ public class PictureController {
                                 HttpServletRequest request, HttpServletResponse response)throws Exception{
         Picture picture = pictureService.getPicture(pictureId);
         model.put("p", picture);
-
         return "picture";
     }
+
+
+
 }

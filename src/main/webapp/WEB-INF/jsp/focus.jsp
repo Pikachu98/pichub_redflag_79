@@ -31,7 +31,7 @@
                     $("#btnFocus").val("关注");
 
                     if (result.backMsg == true) {
-                        alert("关注成功！")
+                        alert("关注成功！");
                         $("#userId1").val(result.focusId1.toString());
                         $("#userId1").val(result.focusId2.toString());
                     } else if (result.backMsg == false) {

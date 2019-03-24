@@ -49,20 +49,16 @@
                     "userPassword": userPassword
                 },
                 success:function (user) {
-                    $("#login").removeClass("Logging");
-                    $("#login").val("Log");
-
-
-
                     if (user ==100) {
                         //window.location.href = "/test";
                         alert("用户名错误");
                     } else if(user==150){
                         alert("密码错误");
                     }
-                    else
+                    else{
                         alert("成功");
-
+                        window.location.href = "/loginIndex";
+                    }
                 },
                  error:function () {
                      $("#login").removeClass("Logging");

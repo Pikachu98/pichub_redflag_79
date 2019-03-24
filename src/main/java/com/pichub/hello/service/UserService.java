@@ -13,5 +13,6 @@ public interface UserService {
     boolean deleteBelike(Long  userId, long pictureId)throws Exception;
     boolean insertBelike(Long userId, long pictureId)throws Exception;
     // boolean isPwd(String userpassword);
+    String getUserName(String userEmail);
 
 }
