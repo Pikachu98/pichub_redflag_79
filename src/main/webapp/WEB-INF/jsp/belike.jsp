@@ -9,24 +9,42 @@
 <html>
 <head>
     <title>belike</title>
-    <script type="text/javascript">
-        function insert() {
-
-        }
-
-        function check() {
-
-        }
-
-        function del() {
-
-        }
-    </script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-<input type="button" value="insert" onclick="insert()">
-<input type="button" value="check" onclick="check()">
-<input type="button" value="delete" onclick="del()">
+<div>user id:<input type="text" id="userId"></div>
+<div>picture id:<input type="text" id="pictureId"></div>
+<input type="button" value="check" id="check">
+<input type="button" value="do" id="reserse">
+<script>
+    $(function () {
+        $("#reserse").on("click",function () {
+            var uId = $("#userId").val();
+            var pId = $("#pictureId").val();
+
+            $.ajax({
+                type: "GET",
+                url: "/belike/reverseState",
+                datatype: "json",
+                data:{
+                    "userId": uId,
+                    "pictureId": pId
+                },
+                success:function (result) {
+                    if(result == "{true}")
+                    {
+                        alert("reverse is success!");
+                    }
+                    else
+                    {
+                        alert("reverse is not success!");
+                    }
+                }
+            })
+        })
+
+    })
+</script>
 
 </body>
 </html>
