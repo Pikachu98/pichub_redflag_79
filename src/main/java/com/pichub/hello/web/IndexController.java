@@ -43,8 +43,7 @@ public class IndexController {
     @ResponseBody
     public List<Picture> picturelist(HttpServletRequest request){
 
-        //List<Picture> picList = pictureService.getHotPicture();
-        //System.out.println(pictureService.getHotPicture().get(0));
+        List<Picture> picList = pictureService.getHotPicture();
         return pictureService.getHotPicture();
     }
 }
