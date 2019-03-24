@@ -28,19 +28,19 @@ public class UpanddownController {
     {
         if(file == null && file.getSize() > 0)
         {
-            return "err!";
+            return "{" + "false" + "}";
         }
 
 
         String fileName = file.getOriginalFilename();
         String exName = fileName.substring(fileName.lastIndexOf(".") + 1 );
-        String newName = UUID.randomUUID().toString().replaceAll("-","") + "." + exName;
-        String picturePath = getParent(request.getServletContext().getRealPath("/"))
+        String newOriginiName = UUID.randomUUID().toString().replaceAll("-","") + "." + exName;
+        String originPicturePath = getParent(request.getServletContext().getRealPath("/"))
                              + "resources" + File.separator + "originPictures" +File.separator;
 
-        FileOutputStream fos;
+        FileOutputStream fos;//upload origin picture
         try {
-            fos = new FileOutputStream(picturePath + File.separator + newName);
+            fos = new FileOutputStream(originPicturePath + File.separator + newOriginiName);
             fos.write(file.getBytes());
             fos.close();
         }catch (Exception e)
@@ -48,7 +48,13 @@ public class UpanddownController {
             e.printStackTrace();
         }
 
-        return "";
+        //upload thumbnail
+        String newThumbnailName =UUID.randomUUID().toString().replaceAll("-", "") + "." + exName;
+        String thumnailPath = getParent(request.getServletContext().getRealPath(","))
+                            + "resources" + File.separator + "static" + File.separator + "thumbnail" + File.separator;
+
+
+        return "{" + "true" + "}";
 
     }
 
@@ -58,4 +64,6 @@ public class UpanddownController {
         String str = realPath.substring(0,realPath.lastIndexOf(File.separator));
         return str.substring(0,str.lastIndexOf(File.separator) + 1);
     }
+
+
 }
