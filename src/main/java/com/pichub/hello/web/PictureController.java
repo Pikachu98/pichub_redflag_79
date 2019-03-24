@@ -27,4 +27,12 @@ public class PictureController {
 
         return "picture";
     }
+
+    @RequestMapping(value = "/upload")
+    public String upload(HttpServletRequest request, HttpServletResponse response)throws Exception
+    {
+        return "upload";
+    }
+
+
 }
