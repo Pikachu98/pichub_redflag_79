@@ -21,7 +21,6 @@ public class PictureServicempl implements PictureService{
     }
 
     public List<Picture> getHotPicture(){
-        System.out.println(pictureDao.getHotPicture());
         return pictureDao.getHotPicture();
     }
 }

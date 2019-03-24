@@ -42,8 +42,7 @@ public class IndexController {
     @RequestMapping(value = "/picturelist",method = RequestMethod.POST)
     @ResponseBody
     public List<Picture> picturelist(HttpServletRequest request){
-        System.out.println(request.getParameter("1"));
-        System.out.println("23453445");
+
         //List<Picture> picList = pictureService.getHotPicture();
         //System.out.println(pictureService.getHotPicture().get(0));
         return pictureService.getHotPicture();
