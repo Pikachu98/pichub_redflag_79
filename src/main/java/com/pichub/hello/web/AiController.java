@@ -26,8 +26,10 @@ public class AiController {
         //baiduAiService.getAuth("nTEvGCU4s8QboxwAYHr0DEjG","mzpshf9qwpeBiCvV75ylmtrtHLU0QH0f");
         //baiduAiService.TongYongWuTi();
         try {
-            readJsonService.getJson(baiduAiService.TongYongWuTi());
-            return "百度ai为为为为为为为为为为："+baiduAiService.TongYongWuTi();
+            readJsonService.getBaiDuJson(baiduAiService.TongYongWuTi());
+            readJsonService.getTecentJson(tecentAiService.jianHuang());
+            return "腾讯ai为为为为为为为为为为："+tecentAiService.jianHuang();
+            //return "百度ai为为为为为为为为为为："+baiduAiService.TongYongWuTi();
         } catch (Exception e) {
             e.printStackTrace();
         }

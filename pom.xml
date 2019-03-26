@@ -79,7 +79,7 @@
         <dependency>
             <groupId>cn.xsshome</groupId>
             <artifactId>taip</artifactId>
-            <version>4.1.0</version>
+            <version>4.3.5</version>
         </dependency>
 
     </dependencies>
