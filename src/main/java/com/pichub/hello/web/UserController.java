@@ -70,12 +70,9 @@ public class UserController
             result.put("meg", "验证码错误");
             return result;
         }
-
     }
 
-
     @RequestMapping(value="/login")
-
     public String login(HttpServletRequest request, HttpServletResponse response){
         return "login";
     }
@@ -87,7 +84,6 @@ public class UserController
             request.getSession().setAttribute("userName",userService.getUserName(user.getUserEmail()));
 //        user.getUserPhone() != null{
 //            userService.checkLogin(userPhone)
-
         return userService.checkLogin(user);
     }
 
@@ -110,14 +106,12 @@ public class UserController
         return userService.checkEmail(email);//返回值10表示已有此email,15表示无此email
     }
 
-
     @RequestMapping(value = "doChangeEmail",method = RequestMethod.POST)
     @ResponseBody
     public int doChangeEmail(HttpServletRequest request, HttpServletResponse response){
-        request.getParameter("oldEmail");
-        request.getParameter("oldCheckCod");request.getSession().getAttribute("oldEmailCheckCode");
-        request.getParameter("newEmail");
-        request.getParameter("newCheckCode");request.getSession().getAttribute("newEmailCheckCode");
-        return 1;
+
+        return userService.doChangeEmail(request.getParameter("oldEmail"), request.getParameter("oldCheckCod"),(String) request.getSession().getAttribute("oldEmailCheckCode"),
+                request.getParameter("newEmail"), request.getParameter("newCheckCode"),(String)request.getSession().getAttribute("newEmailCheckCode"));
     }
+
 }
