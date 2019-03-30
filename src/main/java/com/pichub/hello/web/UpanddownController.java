@@ -5,6 +5,8 @@ import com.pichub.hello.bo.Picture;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGEncodeParam;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import net.coobird.thumbnailator.Thumbnailator;
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,8 +77,6 @@ public class UpanddownController {
         try{
             fos = new FileOutputStream(finalThumbnailPath);
             fos.write(file.getBytes());
-
-
         }catch (Exception e)
         {
             e.printStackTrace();
@@ -91,15 +91,20 @@ public class UpanddownController {
         }
 
         File tFile;
-        if(exName!="jpg")
+        if(exName!="jpg")//change file if it isn't jpg
         {
             tFile = new File(conversion(finalThumbnailPath));
+            File otFile = new File(finalThumbnailPath);//origin thumbnail file
+            otFile.delete();
+            finalThumbnailPath = finalThumbnailPath.substring(0,finalThumbnailPath.lastIndexOf(".")) + ".jpg";
+            handleDpi(tFile,300,300);
         }
         else
         {
             tFile = new File(finalThumbnailPath);
+            handleDpi(tFile,300,300);
         }
-        handleDpi(tFile,300,300);
+
 
 
         //insert to database
@@ -141,6 +146,7 @@ public class UpanddownController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
 
@@ -162,9 +168,8 @@ public class UpanddownController {
     private String  conversion(String realPath)
     {
         File input = new File(realPath);
-        System.out.println(realPath);
         String outputFilePath = realPath.substring(0,realPath.lastIndexOf(".")) + ".jpg";
-        try {
+       /* try {
             BufferedImage bim = ImageIO.read(input);
             BufferedImage newBim = new BufferedImage(bim.getWidth(),bim.getHeight(),BufferedImage.TYPE_INT_RGB);
             newBim.setData(bim.getData());
@@ -173,6 +178,14 @@ public class UpanddownController {
             ImageIO.write(bim,"jpg",output);
         }catch (IOException e)
         {
+            e.printStackTrace();
+        }*/
+
+        try {
+            BufferedImage bim = ImageIO.read(input);
+
+            Thumbnails.of(input).size(bim.getWidth(),bim.getHeight()).outputFormat("jpg").toFile(outputFilePath);
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
