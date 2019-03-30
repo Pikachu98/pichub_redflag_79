@@ -86,7 +86,7 @@
             <groupId>net.coobird</groupId>
             <artifactId>thumbnailator</artifactId>
             <version>0.4.8</version>
-        </dependency><!-- 图片缩略图 图片压缩 水印 end-->
+        </dependency>
 
         <dependency>
             <groupId>com.drewnoakes</groupId>

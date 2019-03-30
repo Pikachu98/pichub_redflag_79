@@ -33,6 +33,11 @@ public class PictureServicempl implements PictureService{
         return pictureDao.getHotPicture();
     }
 
+    public int insertPicture(Picture picture)throws Exception{
+        return pictureDao.insertPicture(picture);
+    }
+
+
     @Override
     public Picture getThumbnail() {
         try {

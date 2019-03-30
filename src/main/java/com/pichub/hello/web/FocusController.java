@@ -59,7 +59,7 @@ public class FocusController {
         //loginState传递用户登陆状态
         if (loginState)//已登陆
         {
-            int userIdNow = 2;
+            Integer userIdNow = 2;
             Integer userId2=3;//当前用户想要关注的用户的ID
             //在点击关注按钮前已经获取了此用户Id
             //boolean hadFocus = true;
