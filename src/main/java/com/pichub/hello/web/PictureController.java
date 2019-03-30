@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,5 +35,19 @@ public class PictureController {
         return "upload";
     }
 
+    @RequestMapping(value = "/getThumbnail")
+    @ResponseBody
+    public String Thumbnail(HttpServletRequest request, HttpServletResponse response)
+    {
+        pictureService.getThumbnail();
+        return null;
+    }
 
+    @RequestMapping(value = "/getExif")
+    @ResponseBody
+    public String getExif(HttpServletRequest request, HttpServletResponse response)
+    {
+        pictureService.getExif();
+        return null;
+    }
 }

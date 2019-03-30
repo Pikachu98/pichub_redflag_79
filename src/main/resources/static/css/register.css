@@ -1,0 +1,6 @@
+.int{ height: 30px; text-align: left; width: 600px; }
+label{ width: 200px; margin-left: 20px; }
+.high{ color: red; }
+.msg{ font-size: 13px; }
+.onError{ color: red; }
+.onSuccess{ color: green;}
