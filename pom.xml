@@ -70,7 +70,17 @@
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.baidu.aip</groupId>
+            <artifactId>java-sdk</artifactId>
+            <version>4.9.0</version>
+        </dependency>
 
+        <dependency>
+            <groupId>cn.xsshome</groupId>
+            <artifactId>taip</artifactId>
+            <version>4.3.5</version>
+        </dependency>
 
     </dependencies>
 

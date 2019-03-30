@@ -24,9 +24,15 @@ public class PictureController {
                                 HttpServletRequest request, HttpServletResponse response)throws Exception{
         Picture picture = pictureService.getPicture(pictureId);
         model.put("p", picture);
+
         return "picture";
     }
 
+    @RequestMapping(value = "/upload")
+    public String upload(HttpServletRequest request, HttpServletResponse response)throws Exception
+    {
+        return "upload";
+    }
 
 
 }

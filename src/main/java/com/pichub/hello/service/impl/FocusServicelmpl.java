@@ -33,5 +33,20 @@ public class FocusServicelmpl implements FocusService {
         return userDao.showFocusMe(userId);
     }
 
+    @Override
+    public List showMyLike(Integer userId) throws Exception {
+        return userDao.showMyLike(userId);
+    }
+
+    @Override
+    public List showMyAlbum(Integer userId) throws Exception {
+        return userDao.showMyAlbum(userId);
+    }
+
+    @Override
+    public boolean changeUsername(Integer userId, String userName) throws Exception {
+        return userDao.changeUsername(userId,userName);
+    }
+
 }
 

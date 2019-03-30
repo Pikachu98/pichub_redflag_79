@@ -29,10 +29,10 @@
         <input type="password" id="password2" class="required" />
     </div>
     <%--<div class="int">--%>
-        <%--<label>性别：</label>--%>
-        <%--<input type="radio" id="male" name="gender" class="gender" />男--%>
-        <%--<input type="radio" id="female" name="gender" class="gender" />女--%>
-        <%--<input type="radio" id="secret" name="gender" class="gender" />保密--%>
+    <%--<label>性别：</label>--%>
+    <%--<input type="radio" id="male" name="gender" class="gender" />男--%>
+    <%--<input type="radio" id="female" name="gender" class="gender" />女--%>
+    <%--<input type="radio" id="secret" name="gender" class="gender" />保密--%>
     <%--</div>--%>
     <div class="int">
         <label for="email">邮箱：</label>

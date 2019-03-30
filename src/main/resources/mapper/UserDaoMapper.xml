@@ -40,6 +40,14 @@
         select user_id from follower where use_user_id = #{userId}
     </select>
 
+    <select id="showMyLike" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select pic_id from belike where user_id = #{userId}
+    </select>
+
+    <select id="showMyAlbum" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select album_id from album where user_id = #{userId}
+    </select>
+
     <select id="getUser" resultType="com.pichub.hello.bo.User" parameterType="long">
         select * from user_table where user_id=#{userId}
     </select>
@@ -67,5 +75,9 @@
         insert into belike (user_id,pic_id)
         values (#{userId},#{pictureId})
     </insert>
+
+    <update id="changeUsername">
+        UPDATE user_table SET user_name = #{userName} WHERE user_id = #{userId};
+    </update>
 
 </mapper>

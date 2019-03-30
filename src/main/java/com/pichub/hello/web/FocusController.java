@@ -108,4 +108,40 @@ public class FocusController {
         result.put("FocusMe",focusMe);
         return result;
     }
+
+    @RequestMapping(value="/user/doShowMyLike")
+    @ResponseBody
+    public Map<String,Object> doShowMyLike(boolean loginState/*@SessionAttribute(value = "userId") long userIdNow*/, ModelMap model, HttpServletRequest request, HttpServletResponse response)
+            throws Exception
+    {
+        Map<String,Object> result = new HashMap<String,Object>();
+        int userIdNow = 2;
+        List MyLike = focusService.showMyLike(userIdNow);
+        result.put("MyLike",MyLike);
+        return result;
+    }
+
+    @RequestMapping(value="/user/doShowMyAlbum")
+    @ResponseBody
+    public Map<String,Object> doShowMyAlbum(boolean loginState/*@SessionAttribute(value = "userId") long userIdNow*/, ModelMap model, HttpServletRequest request, HttpServletResponse response)
+            throws Exception
+    {
+        Map<String,Object> result = new HashMap<String,Object>();
+        int userIdNow = 1;
+        List MyAlbum = focusService.showMyAlbum(userIdNow);
+        result.put("MyAlbum",MyAlbum);
+        return result;
+    }
+
+    @RequestMapping(value="/user/doChangeUserName")
+    @ResponseBody
+    public Map<String,Object> doChangeUserName(boolean loginState/*@SessionAttribute(value = "userId") long userIdNow*/,String newUsername, ModelMap model, HttpServletRequest request, HttpServletResponse response)
+            throws Exception
+    {
+        Map<String,Object> result = new HashMap<String,Object>();
+        int userIdNow = 1;
+        boolean changeName = focusService.changeUsername(userIdNow,newUsername);
+        result.put("changeName",changeName);
+        return result;
+    }
 }
