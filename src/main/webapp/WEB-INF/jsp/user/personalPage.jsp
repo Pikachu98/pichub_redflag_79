@@ -12,5 +12,6 @@
 </head>
 <body>
 这是登录后的个人空间
+<a href="personalCenter">个人信息设置<br></a>
 </body>
 </html>

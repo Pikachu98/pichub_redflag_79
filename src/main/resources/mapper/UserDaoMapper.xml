@@ -80,4 +80,12 @@
         UPDATE user_table SET user_name = #{userName} WHERE user_id = #{userId};
     </update>
 
+    <select id="checkEmail" resultType="com.pichub.hello.bo.User">
+        select * from user_table where user_email=#{email}
+    </select>
+
+    <update id="changeEmail">
+        update user_table set user_email=#{newEmail} where user_email=#{oldEmail}
+    </update>
+
 </mapper>

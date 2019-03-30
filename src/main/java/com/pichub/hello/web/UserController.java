@@ -99,7 +99,25 @@ public class UserController
         return "index";
     }
 
+    @RequestMapping(value = "/user/changeEmail")
+    public String getUser(HttpServletRequest request, HttpServletResponse response){
+        return "user/changeEmail";
+    }
+
+    @RequestMapping(value = "/doCheckEmail/{email}")
+    @ResponseBody
+    public int getUser(@PathVariable String email, HttpServletRequest request, HttpServletResponse response){
+        return userService.checkEmail(email);//返回值10表示已有此email,15表示无此email
+    }
+
+
+    @RequestMapping(value = "doChangeEmail",method = RequestMethod.POST)
+    @ResponseBody
+    public int doChangeEmail(HttpServletRequest request, HttpServletResponse response){
+        request.getParameter("oldEmail");
+        request.getParameter("oldCheckCod");request.getSession().getAttribute("oldEmailCheckCode");
+        request.getParameter("newEmail");
+        request.getParameter("newCheckCode");request.getSession().getAttribute("newEmailCheckCode");
+        return 1;
+    }
 }
-
-
-

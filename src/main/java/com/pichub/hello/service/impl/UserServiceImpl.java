@@ -70,4 +70,27 @@ public class UserServiceImpl implements UserService {
     public String getUserName(String userEmail) {
         return userDao.getUserName(userEmail);
     }
+
+    @Override
+    public int checkEmail(String email) {
+        if (userDao.checkEmail(email) != null)
+            return 10;//10表示已有此email
+        return 15;//15表示无此email
+    }
+
+    @Override
+    public int doChangeEmail(String oldEmail, String oldCheckCod, String oldEmailCheckCode, String newEmail, String newCheckCode, String newEmailCheckCode) {
+        if(oldCheckCod.equals(oldEmailCheckCode)!=true|| newCheckCode.equals(newEmailCheckCode)!=true)
+            return 100;
+        else if (checkEmail(oldEmail)==15)
+            return 150;
+        else if(checkEmail(oldEmail)==10)
+            return 200;
+        else if(oldCheckCod.equals(oldEmailCheckCode)&&newCheckCode.equals(newEmailCheckCode)&&checkEmail(oldEmail)==15&&checkEmail(oldEmail)==10){
+            userDao.changeEmail(oldEmail,newEmail);
+            return 250;
+        }
+        else
+            return 0;
+    }
 }

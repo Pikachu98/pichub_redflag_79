@@ -14,5 +14,6 @@ public interface UserService {
     boolean insertBelike(Long userId, long pictureId)throws Exception;
     // boolean isPwd(String userpassword);
     String getUserName(String userEmail);
-
+    int checkEmail(String email);
+    int doChangeEmail(String oldEmail, String oldCheckCod, String oldEmailCheckCode, String newEmail, String newCheckCode, String newEmailCheckCode);
 }

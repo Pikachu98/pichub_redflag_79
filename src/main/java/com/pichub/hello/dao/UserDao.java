@@ -35,4 +35,6 @@ public interface UserDao {
     boolean deleteBelike(@Param("userId") Long  userId, @Param("pictureId") long pictureId)throws Exception;
     boolean insertBelike(@Param("userId") Long userId, @Param("pictureId") long pictureId)throws Exception;
     //int insertUser(@Param("user") User user) throws Exception;
+    User checkEmail(@Param("email")String email);
+    void changeEmail(@Param("oldEmail")String oldEmail,@Param("newEmail")String newEmail);
 }
