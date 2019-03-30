@@ -20,7 +20,7 @@ public interface UserDao {
     boolean changeUsername(Integer userId, String userName) throws Exception;
 
     int insertUser(@Param("user") User user)throws Exception;
-   // boolean existsByPhone(String phone)throws Exception;
+    boolean existsByPhone(String phone)throws Exception;
 
     boolean existsByEmail(String email);
 

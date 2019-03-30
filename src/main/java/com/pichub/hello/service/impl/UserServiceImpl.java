@@ -26,9 +26,6 @@ public class UserServiceImpl implements UserService {
             return 100;//用户名不存在
     }
 
-
-
-
 //    @Override
 //    public boolean isPwd(String userpassword) {
 //        if(userpassword == #{password})
