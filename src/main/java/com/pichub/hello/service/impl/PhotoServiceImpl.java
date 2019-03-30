@@ -32,4 +32,6 @@ public class PhotoServiceImpl implements PhotoService {
     public void deletePhoto(Photo photo) throws Exception {
         photoDao.deletePhoto(photo);
     }
+
+
 }
