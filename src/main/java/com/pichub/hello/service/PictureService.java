@@ -10,4 +10,5 @@ import java.util.List;
 public interface PictureService {
     Picture getPicture(long pictureId) throws Exception;
     List<Picture> getHotPicture();
+    int insertPicture(Picture picture)throws Exception;
 }

@@ -9,12 +9,12 @@ public class Picture {
     private long picId;
     private String picName;
     private Date uploadTime;
-    private Date delTime;
+    private int delState;
     private String picStory;
     private long userId;
     private String picPath;
     private String picThumbnailPath;
-    private byte picSize;
+    private long picSize;
 
     public long getPicId(){return picId;}
 
@@ -28,9 +28,9 @@ public class Picture {
 
     public void setUploadTime(Date uploadTime){this.uploadTime = uploadTime;}
 
-    public Date getDelTime(){return  delTime;}
+    public int getDelState(){return  delState;}
 
-    public void setDelTime(Date delTime){this.delTime = delTime;}
+    public void setDelState(int delState){this.delState = delState;}
 
     public String getStory(){return picStory;}
 
@@ -48,7 +48,8 @@ public class Picture {
 
     public void setPicThumbnailPath(String picThumbnailPath){this.picThumbnailPath = picThumbnailPath;}
 
-    public byte getPicSize(){return picSize;}
+    public long getPicSize(){return picSize;}
 
-    public void setPicSize(byte picSize){this.picSize = picSize;}
+    public void setPicSize(long picSize){this.picSize = picSize;}
+
 }

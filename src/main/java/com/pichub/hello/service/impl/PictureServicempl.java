@@ -23,4 +23,9 @@ public class PictureServicempl implements PictureService{
     public List<Picture> getHotPicture(){
         return pictureDao.getHotPicture();
     }
+
+    public int insertPicture(Picture picture)throws Exception{
+        return pictureDao.insertPicture(picture);
+    }
+
 }
