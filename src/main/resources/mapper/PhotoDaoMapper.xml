@@ -16,4 +16,7 @@
         insert into photo (photo_id, photo_name, user_id)
         values (#{photoId}, #{photoName}, #{userId})
     </insert>
+
+
+
 </mapper>

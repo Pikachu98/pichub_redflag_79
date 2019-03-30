@@ -15,16 +15,22 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.List;
+
 /**
  * Created by root on 19-3-16.
  */
-@Service
+@Service("pictureService")
 public class PictureServicempl implements PictureService{
     @Autowired
     PictureDao pictureDao;
 
     public Picture getPicture(long pictureId)throws Exception{
         return pictureDao.getPicture(pictureId);
+    }
+
+    public List<Picture> getHotPicture(){
+        return pictureDao.getHotPicture();
     }
 
     @Override
