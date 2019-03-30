@@ -56,7 +56,11 @@ public class UserController
     @ResponseBody
     public Map<String,Object> doRegister(User user, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Map<String, Object> result = new HashMap<String, Object>();
+        System.out.print(request.getParameter("inputCheckCode"));
+        System.out.print(request.getSession().getAttribute("checkCode"));
+
         if (request.getParameter("inputCheckCode").equals(request.getSession().getAttribute("checkCode"))) {
+
             int count = userService.insertUser(user);
             result.put("meg", "创建成功");
             result.put("userId", user.getUserId());
