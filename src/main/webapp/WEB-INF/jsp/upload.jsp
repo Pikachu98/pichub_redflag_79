@@ -9,9 +9,10 @@
 <html>
 <head>
     <title>upload</title>
+    <script src="/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-<form action="/uploadFile" enctype="multipart/form-data" method="post">
+<form id="uploadForm" action="/uploadFile" enctype="multipart/form-data" method="post">
     <div><input type="file" name="file"></div>
     <div><input type="submit" id="do"></div>
 </form>

@@ -8,4 +8,9 @@
         select * from picture where pic_id=#{pictureId}
     </select>
 
+    <insert id="insertPicture" parameterType="com.pichub.hello.bo.Picture" useGeneratedKeys="true" keyProperty="pictureId" keyColumn="pic_id">
+        insert into picture (pic_name,upload_time,del_state,pic_story,user_id,pic_path,pic_thumbnail_path,pic_size)
+        values (#{picture.pictureName},#{picture.uploadTime})
+    </insert>
+
 </mapper>

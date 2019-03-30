@@ -10,5 +10,6 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface PictureDao {
     Picture getPicture(@Param("pictureId") long pictureId) throws Exception;
+    int insertPicture(@Param("picture") Picture picture)throws Exception;
 
 }
