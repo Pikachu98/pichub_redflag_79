@@ -8,11 +8,15 @@
     <!-- 根据用户名和密码查询 -->
     <!-- 是否要写parameter type-->
     <select id="tOrfUser" resultType="com.pichub.hello.bo.User">
-        select * from user_table where user_email=#{userEmail} and user_password=#{userPassword}
+        select * from user_table where (user_email=#{userEmail} or user_phone=#{userEmail}) and user_password=#{userPassword}
     </select>
 
     <select id="tOrfUserName" resultType="com.pichub.hello.bo.User">
-        select * from user_table where user_email=#{userEmail}
+        select * from user_table where (user_email=#{userEmail} or user_phone=#{userEmail})
+    </select>
+
+    <select id="getUserName" resultType="String">
+        select user_name from user_table where user_email=#{userEmail}
     </select>
 
     <insert id="focusUser">

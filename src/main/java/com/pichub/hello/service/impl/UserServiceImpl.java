@@ -16,15 +16,24 @@ public class UserServiceImpl implements UserService {
     UserDao userDao;
 
     @Override
-    public int checkLogin(String userEmail, String userPassword){
-        if(userDao.tOrfUserName(userEmail)!=null){
-            if (userDao.tOrfUser(userEmail,userPassword)!=null)
+    public int checkLogin(User user){
+
+        if(userDao.tOrfUserName(user.getUserEmail())!=null){
+            if (userDao.tOrfUser(user.getUserEmail(),user.getUserPassword())!=null) {
                 return 200;//欢迎登陆
+            }
             return 150;//密码错误
         }
+
         else
             return 100;//用户名不存在
+
     }
+
+
+
+
+
 
 //    @Override
 //    public boolean isPwd(String userpassword) {
@@ -55,5 +64,10 @@ public class UserServiceImpl implements UserService {
 
     public boolean insertBelike(Long userId, long pictureId)throws Exception{
         return userDao.insertBelike(userId, pictureId);
+    }
+
+    @Override
+    public String getUserName(String userEmail) {
+        return userDao.getUserName(userEmail);
     }
 }

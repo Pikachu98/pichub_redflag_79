@@ -11,4 +11,5 @@ public interface PhotoDao {
     List<Photo> listPhoto(@Param("userId") Long userId) throws Exception;
     void insetPhoto(@Param("photo") Photo photo) throws Exception;
     void deletePhoto(@Param("photo") Photo photo) throws Exception;
+
 }
