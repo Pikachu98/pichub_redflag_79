@@ -22,19 +22,18 @@ $(window.onload=function() {
     $.ajax({
         type: "POST",
         url: "/picturelist",
-        dataType: "json",
         date: {
             "1": "123",
         },
     success:function (picList) {
-            alert("shoudaoxiangy");
-        alert(picList.toString());
+            alert("shoudaoxiangying");
+        alert(picList);
 
-
-<c:forEach items ="${picList}" var="list" >
-    <div>${items.picName}</div>
-</c:forEach>
-
+<%--<c:choose>--%>
+<%--<c:forEach items ="${picList}" var="list" >--%>
+    <%--<div>${items.picName}</div>--%>
+<%--</c:forEach>--%>
+<%--</c:choose>--%>
     },
     error:function () {
         alert("错误");
@@ -45,5 +44,11 @@ $(window.onload=function() {
 <%--<c:forEach items ="${picList}" var="list" >
     <div>${items.picName}</div>
 </c:forEach>--%>
+<c:choose>
+    <c:forEach items ="${picList}" var="list" >
+        <div>${items.picName}</div>
+    </c:forEach>
+</c:choose>
+
 </body>
 </html>

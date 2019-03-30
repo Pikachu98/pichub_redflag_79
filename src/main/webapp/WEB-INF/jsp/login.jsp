@@ -28,11 +28,19 @@
             $("#login").addClass("Logging");
             $("#login").val("logging");
 
+
+
             var userEmail = $("#user_email").val();
-            if (userEmail.trim() == "") {
+
+
+
+            if ($("#user_email").val().trim() == "") {
                 alert("User name is empty!");
                 return;
             }
+
+
+
 
             var userPassword = $("#user_pwd").val();
             if (userPassword.trim() == null) {
@@ -47,6 +55,7 @@
                 data: {
                     "userEmail": userEmail,
                     "userPassword": userPassword
+
                 },
                 success:function (user) {
                     if (user ==100) {

@@ -76,10 +76,13 @@ public class UserController
 
     @RequestMapping(value="/doLogin",method = RequestMethod.GET)
     @ResponseBody
-    public int doLogin(String userEmail,String userPassword, HttpServletRequest request, HttpServletResponse response){
-        if (userService.checkLogin(userEmail,userPassword)==200)
-            request.getSession().setAttribute("userName",userService.getUserName(userEmail));
-        return userService.checkLogin(userEmail,userPassword);
+    public int doLogin(User user, HttpServletRequest request, HttpServletResponse response){
+        if (userService.checkLogin(user)==200)
+            request.getSession().setAttribute("userName",userService.getUserName(user.getUserEmail()));
+//        user.getUserPhone() != null{
+//            userService.checkLogin(userPhone)
+
+        return userService.checkLogin(user);
     }
 
     @RequestMapping(value = "/user/{userId}")
