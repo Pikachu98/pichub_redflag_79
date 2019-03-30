@@ -5,14 +5,8 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>jQueryStudy</title>
     <script src="js/jquery-3.3.1.js"></script>
-    <style>
-        .int{ height: 30px; text-align: left; width: 600px; }
-        label{ width: 200px; margin-left: 20px; }
-        .high{ color: red; }
-        .msg{ font-size: 13px; }
-        .onError{ color: red; }
-        .onSuccess{ color: green; }
-    </style>
+    <script src="layui/layui.js"></script>
+    <link href="css/register.css" rel="stylesheet">
 </head>
 <body>
 <form>
@@ -28,26 +22,84 @@
         <label for="password2">确认密码：</label>
         <input type="password" id="password2" class="required" />
     </div>
-    <%--<div class="int">--%>
-    <%--<label>性别：</label>--%>
-    <%--<input type="radio" id="male" name="gender" class="gender" />男--%>
-    <%--<input type="radio" id="female" name="gender" class="gender" />女--%>
-    <%--<input type="radio" id="secret" name="gender" class="gender" />保密--%>
-    <%--</div>--%>
     <div class="int">
         <label for="email">邮箱：</label>
-        <input type="text" id="email" class="required" />
+        <input id="email" type="email" name="username" class="required layui-input" lay-verify="required"/>
     </div>
+    <div class="int">
+        <label>邮箱验证码：</label>
+        <input id="checkCode" type="text" name="checkCode" class="layui-input" lay-verify="required"/>
+        <button id="sendCheckCode" type="button" class="layui-btn layui-btn-normal">获取验证码</button>
+    </div>
+    <%--<div class="int">--%>
+        <%--<label for="email">邮箱：</label>--%>
+        <%--<input type="text" id="email" class="required" />--%>
+    <%--</div>--%>
     <div class="int">
         <label for="phone">手机：</label>
         <input type="text" id="phone" />
     </div>
-    <div class="int">
-        <input type="button" value="提交" id="send" style="margin-left: 70px;" />
+    <div class="int layui-input-block">
+        <button id="send" lay-submit lay-filter="register">确认</button>
         <input type="reset" value="重置" id="res" />
     </div>
 </form>
 <script>
+    //验证码
+    var checkCode = "";
+
+    layui.use("form",function () {
+        var form = layui.form;
+        var $ = layui.$;
+
+        $("#sendCheckCode").click(function () {
+            var email = $("#email").val();
+            if (email == null || email == ""){
+                layer.msg("请输入邮箱！！！");
+                return;
+            }
+            var index = layer.open({
+                type:3,
+                content:"邮件发送中..."
+            });
+
+            $.ajax({
+                url:"/getCheckCode?email="+email,
+                type:"get",
+
+                success:function (text) {
+                    if (text != null && text != ""){
+                        layer.close(index);
+                        layer.msg("已发送");
+                        // checkCode = text;
+                        countDown();
+                    } else{
+                        layer.alert("获取失败，请重新获取")
+                    }
+                }
+            });
+        });
+
+        var maxTime = 60;
+        function countDown(){
+            if (maxTime == 0){
+                checkCode = "";
+                $("#sendCheckCode").removeClass("layui-btn-disabled");
+                $("#sendCheckCode").removeAttr("disabled")
+                $("#sendCheckCode").html("获取验证码");
+                maxTime = 60;
+            }else{
+                $("#sendCheckCode").attr("disabled","disabled");
+                $("#sendCheckCode").addClass("layui-btn-disabled");
+                form.render();
+                $("#sendCheckCode").html(maxTime+"秒后重新获取");
+                maxTime--;
+                setTimeout(countDown,1000);
+            }
+        }
+
+    });
+
     $(function () {
         //为表单的必填文本框添加提示信息（选择form中的所有后代input元素）
         $("form :input.required").each(function () {
@@ -110,6 +162,8 @@
         //点击重置按钮时，通过trigger()来触发文本框的失去焦点事件
 
         $("#send").on("click", function () {
+            var inputCheckCode = $("#checkCode").val();
+
             //trigger 事件执行完后，浏览器会为submit按钮获得焦点
             $("form .required:input").trigger("blur");
             var numError = $("form .onError").length;
@@ -126,7 +180,37 @@
 
             var userName=$("#userName").val();
 
+            // if (inputCheckCode == checkCode){
             $.ajax({
+                url: "/user/doRegister",
+                type:"POST",
+                dataType:"json",
+                async:false,
+                data: {
+                    "userName":userName,
+                    "userPassword": $("#password1").val(),
+                    "userEmail": $("#email").val(),
+                    "userPhone": $("#phone").val(),
+                    "inputCheckCode": inputCheckCode
+                },
+                success: function (result) {
+                    alert(result.meg);
+                    // window.location.href = "index";
+                }
+                    /*success:function (text) {
+                        if ("ok" == text){
+                            layer.alert("注册成功",function () {
+                                window.location.href = "index.html";
+                            });
+                        }else{
+                            layer.alert("注册失败");
+                        }
+                    }*/
+            });
+            // } else{
+            //     layer.msg("验证码输入错误");
+            // }
+        /*    $.ajax({
                 type:"POST",
                 dataType:"json",
                 url: "/user/doRegister",
@@ -138,10 +222,10 @@
                 },
                 success: function (result) {
                     window.location.href = "index";
-                }
-            })
+                }*/
         })
     })
+    // })
 </script>
 </body>
 </html>
