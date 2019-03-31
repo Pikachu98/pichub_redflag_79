@@ -91,6 +91,7 @@
             $.ajax({
                 url:"/getCheckCode?email="+email,
                 type:"get",
+
                 success:function (text) {
                     if (text != null && text != ""){
                         layer.close(index);

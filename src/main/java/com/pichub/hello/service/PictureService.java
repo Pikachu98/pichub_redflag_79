@@ -11,6 +11,6 @@ public interface PictureService {
     Picture getPicture(long pictureId) throws Exception;
     Picture getThumbnail();//将原图压缩至500K左右
     String getExif();//获取图片exif信息
-    List<Picture> getHotPicture();
     int insertPicture(Picture picture)throws Exception;
+    List<Picture> getHotPicture() throws Exception;
 }

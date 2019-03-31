@@ -6,7 +6,6 @@
 
 
     <!-- 根据用户名和密码查询 -->
-    <!-- 是否要写parameter type-->
     <select id="tOrfUser" resultType="com.pichub.hello.bo.User">
         select * from user_table where (user_email=#{userEmail} or user_phone=#{userEmail}) and user_password=#{userPassword}
     </select>
@@ -14,10 +13,16 @@
     <select id="tOrfUserName" resultType="com.pichub.hello.bo.User">
         select * from user_table where (user_email=#{userEmail} or user_phone=#{userEmail})
     </select>
-
+    <!--将用户名返回到主页上，并添加到session里-->
     <select id="getUserName" resultType="String">
         select user_name from user_table where user_email=#{userEmail}
     </select>
+
+    <!-- 修改用户密码，(1.用户输错密码，重新修改  2.用户忘记密码进而直接重置密码) -->
+    <update id = "changePassword">
+            UPDATE user_table SET user_password = #{userPassword} WHERE user_email =#{userEmail} ;
+    </update>
+
 
     <insert id="focusUser">
         insert into follower (user_id,use_user_id)
@@ -52,12 +57,7 @@
         select * from user_table where user_id=#{userId}
     </select>
 
-    <!--<insert id="insertUser" parameterType="com.pichub.hello.bo.User">-->
-        <!--insert into user (user_name,user_email,user_password,create_time,user_gender,user_subscription,avatar_path,user_capacity,user_used_capacity,-->
-        <!--user_qq_num,wechat_num,phone)-->
-        <!--values (#{userName},#{userEmail},#{userPassword},#{createTime},#{userGender},#{userSubscription},#{avatarPath},#{userCapacity},#{usedCapacity},-->
-        <!--#{qqNum},#{wechatNum},#{userPhone})-->
-    <!--</insert>-->
+
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="userId" keyColumn="user_id" parameterType="com.pichub.hello.bo.User">
         insert into user_table (user_name,user_email,user_password,user_phone)
         values (#{user.userName},#{user.userEmail},#{user.userPassword},#{user.userPhone})

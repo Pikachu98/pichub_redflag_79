@@ -29,7 +29,11 @@ public class PictureServicempl implements PictureService{
         return pictureDao.getPicture(pictureId);
     }
 
-    public List<Picture> getHotPicture(){
+    public List<Picture> getHotPicture() throws Exception{
+        List<Picture> l1 = pictureDao.getHotPicture();
+        System.out.println("我在service层这里");
+        for(int i = 0; i < l1.size(); i++)
+            System.out.println(l1.get(i).getPicName());
         return pictureDao.getHotPicture();
     }
 
