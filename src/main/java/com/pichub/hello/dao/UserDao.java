@@ -33,7 +33,7 @@ public interface UserDao {
     int changePassword(@Param("userEmail")String userEmail, @Param("userPassword")String userPassword);
 
 
-    User getUser(@Param("userId")Long userId)throws Exception;
+    User getUser(@Param("userId")Long userId);
     boolean focusUser(Integer userId);
     int belikeCheck(@Param("userId") Long userId, @Param("pictureId") long pictureId)throws Exception;
     boolean deleteBelike(@Param("userId") Long  userId, @Param("pictureId") long pictureId)throws Exception;

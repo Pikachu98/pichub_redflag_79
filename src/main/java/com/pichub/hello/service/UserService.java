@@ -20,4 +20,6 @@ public interface UserService {
     String getUserName(String userEmail);
     int checkEmail(String email);
     int doChangeEmail(String oldEmail, String oldCheckCod, String oldEmailCheckCode, String newEmail, String newCheckCode, String newEmailCheckCode);
+    String getAvatarPath(long userId);
+    boolean GenerateImage(String imgStr);
 }
