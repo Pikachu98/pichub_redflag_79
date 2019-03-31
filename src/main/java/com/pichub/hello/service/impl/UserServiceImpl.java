@@ -104,6 +104,11 @@ public class UserServiceImpl implements UserService {
             return 0;
     }
 
+    public void changeAvatar(long userId, String avatarPath)throws Exception
+    {
+        userDao.changeAvatarPath(userId,avatarPath);
+    }
+
     @Override
     public String getAvatarPath(long userId) {
         if(userDao.getUser(userId).getAvatarPath()==null||userDao.getUser(userId).getAvatarPath()=="")

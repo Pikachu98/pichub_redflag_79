@@ -22,4 +22,5 @@ public interface UserService {
     int doChangeEmail(String oldEmail, String oldCheckCod, String oldEmailCheckCode, String newEmail, String newCheckCode, String newEmailCheckCode);
     String getAvatarPath(long userId);
     boolean GenerateImage(String imgStr);
+    void changeAvatar(long userId, String avatarPath)throws Exception;
 }

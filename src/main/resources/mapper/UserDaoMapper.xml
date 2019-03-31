@@ -88,4 +88,8 @@
         update user_table set user_email=#{newEmail} where user_email=#{oldEmail}
     </update>
 
+    <update id="changeAvatarPath">
+        update user_table set avatar_path=#{avatarPath} where user_id=#{userId}
+    </update>
+
 </mapper>
