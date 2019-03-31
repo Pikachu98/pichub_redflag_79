@@ -13,6 +13,8 @@ import java.util.List;
 public interface PictureDao {
     Picture getPicture(@Param("pictureId") long pictureId) throws Exception;
     int insertPicture(Picture picture)throws Exception;
+    String getPictureOriginPath(long pictureId)throws Exception;
+    String getPictureThumbnailPath(long pictureId)throws Exception;
 
     List<Picture> getHotPicture() throws Exception;
 }

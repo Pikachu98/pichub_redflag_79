@@ -18,4 +18,8 @@
         values (#{picName},#{uploadTime},#{delState},#{picStory},#{userId},#{picPath},#{picThumbnailPath},#{picSize})
     </insert>
 
+    <select id="getPictureOriginPath"resultType="java.lang.String">
+        select pi from picture where pic_id =
+    </select>
+
 </mapper>
