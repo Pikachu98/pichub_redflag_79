@@ -2,11 +2,13 @@ package com.pichub.hello.web;
 
 import com.pichub.hello.service.PictureService;
 import com.pichub.hello.bo.Picture;
+import com.pichub.hello.service.UserService;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGEncodeParam;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import net.coobird.thumbnailator.Thumbnailator;
 import net.coobird.thumbnailator.Thumbnails;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;
@@ -32,6 +35,9 @@ import java.util.Date;
 public class UpanddownController {
     @Autowired
     PictureService pictureService;
+
+    @Autowired
+    UserService userService;
 
     @RequestMapping(value = "/uploadFile" ,method = RequestMethod.POST)
     public String uploadFile(@RequestParam(value="file") MultipartFile file, @RequestParam(value = "story")String story,
@@ -131,6 +137,69 @@ public class UpanddownController {
 
 
 
+    @RequestMapping(value = "/uploadAvatar",method = RequestMethod.POST)
+    public String uploadAvatar(@Param("avatar") MultipartFile avatar,@Param("userId")long userId,
+                               HttpServletRequest request, HttpServletResponse response)
+    {
+        if(avatar == null && avatar.getSize() > 0)
+        {
+            return "{" + false + "}";
+        }
+
+        String avatarName = avatar.getOriginalFilename();
+        String exName = avatarName.substring(avatarName.lastIndexOf(".") + 1 );
+        String dirName = String.valueOf(userId);
+        String avatarPath = getParent(request.getServletContext().getRealPath("/"))
+                + "resources/static/avatar/" + dirName;
+        File file = new File(avatarPath);
+
+        if(!file.exists())
+        {
+
+            file.mkdir();
+        }
+
+        clear(avatarPath); //clear up previous files
+
+        FileOutputStream fos = null;
+        try {//save origin avatar
+            fos = new FileOutputStream(avatarPath + "/origin." + exName);
+            fos.write(avatar.getBytes());
+
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+        }finally {
+            if (fos != null)
+            {
+                try {
+                    fos.close();
+                }catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        try {// make square avatar
+            Thumbnails.of(avatarPath + "/origin." + exName).size(150,150).keepAspectRatio(false)
+                      .toFile(avatarPath + "/" + "square." +exName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            userService.changeAvatar(userId,real2realative(avatarPath));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return "{" + true + "}";
+    }
+
+
+
     private void handleDpi(File file, int xDensity, int yDensity) {//change Dpi
         try {
             BufferedImage image = ImageIO.read(file);
@@ -192,5 +261,15 @@ public class UpanddownController {
         return outputFilePath;
     }
 
+    private void clear(String path)
+    {
+        File file = new File(path);
+        String[] context = file.list();
+        for (String f : context)
+        {
+            File temp = new File(path,f);
+            temp.delete();
+        }
+    }
 
 }

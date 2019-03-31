@@ -93,4 +93,9 @@ public class UserServiceImpl implements UserService {
         else
             return 0;
     }
+
+    public void changeAvatar(long userId, String avatarPath)throws Exception
+    {
+        userDao.changeAvatarPath(userId,avatarPath);
+    }
 }
