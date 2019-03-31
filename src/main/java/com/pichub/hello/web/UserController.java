@@ -18,33 +18,6 @@ public class UserController
 {
     @Autowired
     private UserService userService;
-//    @RequestMapping(value = "/user/register", method = RequestMethod.GET)
-//    public String register(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
-//        return  "/user/regdsfister";
-//    }
-
-//    @RequestMapping(value="/user/saveregister", method = RequestMethod.POST)
-//    @ResponseBody
-//    //spring 框架，request:请求的参数 (queryString,cookie,head)   response:响应参数
-//    public String saveregister(User user, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
-//
-//        boolean isSuccess=false;
-//        String msg = "";
-//        try {
-//            isSuccess = userService.saveUser(user);
-//        } catch (Exception e) {
-//            msg = e.getMessage();
-//        }
-//
-//        return "{success:"+isSuccess+",msg:"+msg+"}";
-//
-//    }
-
-//    @RequestMapping(value="/login", method = RequestMethod.POST)
-//    public String insert(ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        return "/login";
-//    }
-
 
     @RequestMapping(value="/register", method = RequestMethod.GET)
     public String register(HttpServletRequest request, HttpServletResponse response){
@@ -70,9 +43,12 @@ public class UserController
             result.put("meg", "验证码错误");
             return result;
         }
+
     }
 
+
     @RequestMapping(value="/login")
+
     public String login(HttpServletRequest request, HttpServletResponse response){
         return "login";
     }
@@ -82,10 +58,40 @@ public class UserController
     public int doLogin(User user, HttpServletRequest request, HttpServletResponse response){
         if (userService.checkLogin(user)==200)
             request.getSession().setAttribute("userName",userService.getUserName(user.getUserEmail()));
-//        user.getUserPhone() != null{
-//            userService.checkLogin(userPhone)
+
         return userService.checkLogin(user);
     }
+
+/*
+* @重置密码+忘记密码
+* */
+    @RequestMapping(value = "/userChangePassword")
+    public String userChangePassword(){
+        return "userChangePassword";
+    }
+
+    @RequestMapping(value = "/doReset")
+    @ResponseBody
+    public Map<String,Object> doReset(User user, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception{
+        Map<String, Object> result = new HashMap<String, Object>();
+//        System.out.print("ssfgfhjiojd!!!!"+request.getParameter("inputCheckCode"));
+//        System.out.print(request.getSession().getAttribute("checkCode"));
+
+        if (request.getParameter("inputCheckCode").equals(request.getSession().getAttribute("a"))) {
+            String userEmail = user.getUserEmail();
+            String userPassword = user.getUserPassword();
+            int a = userService.changePassword(userEmail,userPassword);
+            System.out.println(a);
+            String b = a + "";
+            result.put("meg",b);
+            return result;
+        }
+        else{
+            result.put("meg", "验证码错误");
+            return result;
+        }
+    }
+
 
     @RequestMapping(value = "/user/{userId}")
     public String getUser(@PathVariable Long userId, ModelMap map,
@@ -106,11 +112,11 @@ public class UserController
         return userService.checkEmail(email);//返回值10表示已有此email,15表示无此email
     }
 
-    @RequestMapping(value = "doChangeEmail",method = RequestMethod.POST)
+    @RequestMapping(value = "/user/doChangeEmail",method = RequestMethod.POST)
     @ResponseBody
     public int doChangeEmail(HttpServletRequest request, HttpServletResponse response){
 
-        return userService.doChangeEmail(request.getParameter("oldEmail"), request.getParameter("oldCheckCod"),(String) request.getSession().getAttribute("oldEmailCheckCode"),
+        return userService.doChangeEmail(request.getParameter("oldEmail"), request.getParameter("oldCheckCode"),(String) request.getSession().getAttribute("oldEmailCheckCode"),
                 request.getParameter("newEmail"), request.getParameter("newCheckCode"),(String)request.getSession().getAttribute("newEmailCheckCode"));
     }
 

@@ -17,8 +17,11 @@
 <div>用户名：<input type="text" id="user_email"></div>
 <div>密码：<input type="text" id="user_pwd"></div>
 <div><input type="button" value="Log" id="login"></div></form>
+
 <a href="index">back</a>
+<a href="userChangePassword">忘记密码</a>
 <script>
+    var count = 0;
     $(function () {
         $("#login").on("click", function () {
             if ($("#login").hasClass("Logging")) {
@@ -39,9 +42,6 @@
                 return;
             }
 
-
-
-
             var userPassword = $("#user_pwd").val();
             if (userPassword.trim() == null) {
                 alert("User password is empty!");
@@ -57,21 +57,30 @@
                     "userPassword": userPassword
 
                 },
+
                 success:function (user) {
+
+                    $("#login").removeClass("Logging");
+                    $("#login").val("Log");
                     if (user ==100) {
-                        //window.location.href = "/test";
                         alert("用户名错误");
-                    } else if(user==150){
-                        alert("密码错误");
                     }
-                    else{
+                    if(user == 150){
+                        alert("密码错误,已输错" + (count + 1)+"次");
+                        ++count;
+                        if(count == 3){
+                            alert("错误次数太多,请重新设置密码");
+                            window.location.href = "/userChangePassword";
+                            count = 0;
+                        }
+                    }
+                    if(user == 200){
                         alert("成功");
                         window.location.href = "/loginIndex";
                     }
                 },
                  error:function () {
-                     $("#login").removeClass("Logging");
-                     $("#login").val("Log");
+
                      alert("未响应");
                  }
 

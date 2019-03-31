@@ -15,6 +15,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
 
+
+    /*
+    * @判断用户是否存在，以及密码是否正确
+    * */
     @Override
     public int checkLogin(User user){
 
@@ -22,28 +26,31 @@ public class UserServiceImpl implements UserService {
             if (userDao.tOrfUser(user.getUserEmail(),user.getUserPassword())!=null) {
                 return 200;//欢迎登陆
             }
-            return 150;//密码错误
-        }
+            else {
 
+                return 150;//密码错误
+            }
+        }
         else
             return 100;//用户名不存在
-
     }
-
-
-
-
-
-
-//    @Override
-//    public boolean isPwd(String userpassword) {
-//        if(userpassword == #{password})
-//        return false;
-//    }
 
     @Override
     public User getUser(Long userId)throws Exception{
         return userDao.getUser(userId);
+    }
+
+//    @Override
+//    public String getUserName(String userEmail) {
+//        return userDao.getUserName(userEmail);
+//    }
+
+    @Override
+    public int changePassword(String userEmail, String userPassword) throws Exception {
+        if(userDao.changePassword(userEmail, userPassword) > 0 )
+            return userDao.changePassword(userEmail,userPassword);
+        else
+            return 0;
     }
 
     @Override
@@ -79,14 +86,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int doChangeEmail(String oldEmail, String oldCheckCod, String oldEmailCheckCode, String newEmail, String newCheckCode, String newEmailCheckCode) {
-        if(oldCheckCod.equals(oldEmailCheckCode)!=true|| newCheckCode.equals(newEmailCheckCode)!=true)
+    public int doChangeEmail(String oldEmail, String oldCheckCode, String oldEmailCheckCode, String newEmail, String newCheckCode, String newEmailCheckCode) {
+        if(oldCheckCode.equals(oldEmailCheckCode)!=true|| newCheckCode.equals(newEmailCheckCode)!=true)
             return 100;
         else if (checkEmail(oldEmail)==15)
             return 150;
-        else if(checkEmail(oldEmail)==10)
+        else if(checkEmail(newEmail)==10)
             return 200;
-        else if(oldCheckCod.equals(oldEmailCheckCode)&&newCheckCode.equals(newEmailCheckCode)&&checkEmail(oldEmail)==15&&checkEmail(oldEmail)==10){
+        else if(oldCheckCode.equals(oldEmailCheckCode)&&newCheckCode.equals(newEmailCheckCode)&&checkEmail(oldEmail)==10&&checkEmail(newEmail)==15){
             userDao.changeEmail(oldEmail,newEmail);
             return 250;
         }

@@ -27,6 +27,10 @@ public interface UserDao {
     User tOrfUser(@Param("userEmail")String userEmail,@Param("userPassword")String userPassword);
     User tOrfUserName(@Param("userEmail")String userEmail);
     String getUserName(@Param("userEmail") String userEmail);
+    /*
+    @修改密码
+     */
+    int changePassword(@Param("userEmail")String userEmail, @Param("userPassword")String userPassword);
 
 
     User getUser(@Param("userId")Long userId)throws Exception;

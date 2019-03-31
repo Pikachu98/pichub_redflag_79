@@ -29,10 +29,10 @@ public class MailController {
         request.getSession().setAttribute(request.getParameter("key"),checkCode);
         try {
             mailService.sendSimpleMail(email, "注册验证码", message);
-            return "1";
         }catch (Exception e){
-            return null;
+            return "ERROR";
         }
+        return checkCode;
     }
 
 /*---------------------

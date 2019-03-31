@@ -20,6 +20,7 @@ import java.util.List;
 public class IndexController {
     @Autowired
     UserService userService;
+    @Autowired
     PictureService pictureService;
 
     @RequestMapping("/index")
@@ -41,9 +42,12 @@ public class IndexController {
 
     @RequestMapping(value = "/picturelist",method = RequestMethod.POST)
     @ResponseBody
-    public List<Picture> picturelist(HttpServletRequest request){
+    public List<Picture> picturelist(HttpServletRequest request) throws Exception{
 
         List<Picture> picList = pictureService.getHotPicture();
+        System.out.println("到了controller控制层了");
+//        for(int i = 0; i < picList.size(); i++)
+//            System.out.println(picList.get(i).getPicName());
         return pictureService.getHotPicture();
     }
 }
