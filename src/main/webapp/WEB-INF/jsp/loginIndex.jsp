@@ -22,18 +22,14 @@ $(window.onload=function() {
     $.ajax({
         type: "POST",
         url: "/picturelist",
-        date: {
+        data: {
             "1": "123",
         },
     success:function (picList) {
             alert("shoudaoxiangying");
         alert(picList);
 
-<%--<c:choose>--%>
-<%--<c:forEach items ="${picList}" var="list" >--%>
-    <%--<div>${items.picName}</div>--%>
-<%--</c:forEach>--%>
-<%--</c:choose>--%>
+
     },
     error:function () {
         alert("错误");
@@ -41,14 +37,6 @@ $(window.onload=function() {
     })
 })
 </script>
-<%--<c:forEach items ="${picList}" var="list" >
-    <div>${items.picName}</div>
-</c:forEach>--%>
-<c:choose>
-    <c:forEach items ="${picList}" var="list" >
-        <div>${items.picName}</div>
-    </c:forEach>
-</c:choose>
 
 </body>
 </html>

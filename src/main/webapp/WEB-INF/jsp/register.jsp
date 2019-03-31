@@ -17,6 +17,7 @@
     <div class="int">
         <label for="password1">密码：</label>
         <input type="password" id="password1" class="required" />
+
     </div>
     <div class="int">
         <label for="password2">确认密码：</label>
@@ -32,8 +33,8 @@
         <button id="sendCheckCode" type="button" class="layui-btn layui-btn-normal">获取验证码</button>
     </div>
     <%--<div class="int">--%>
-        <%--<label for="email">邮箱：</label>--%>
-        <%--<input type="text" id="email" class="required" />--%>
+    <%--<label for="email">邮箱：</label>--%>
+    <%--<input type="text" id="email" class="required" />--%>
     <%--</div>--%>
     <div class="int">
         <label for="phone">手机：</label>
@@ -50,6 +51,7 @@
 
     layui.use("form",function () {
         var form = layui.form;
+
         var $ = layui.$;
 
         $("#sendCheckCode").click(function () {
@@ -66,7 +68,6 @@
             $.ajax({
                 url:"/getCheckCode?email="+email,
                 type:"get",
-
                 success:function (text) {
                     if (text != null && text != ""){
                         layer.close(index);
@@ -197,32 +198,7 @@
                     alert(result.meg);
                     // window.location.href = "index";
                 }
-                    /*success:function (text) {
-                        if ("ok" == text){
-                            layer.alert("注册成功",function () {
-                                window.location.href = "index.html";
-                            });
-                        }else{
-                            layer.alert("注册失败");
-                        }
-                    }*/
-            });
-            // } else{
-            //     layer.msg("验证码输入错误");
-            // }
-        /*    $.ajax({
-                type:"POST",
-                dataType:"json",
-                url: "/user/doRegister",
-                data: {
-                    "userName":userName,
-                    "userPassword": $("#password1").val(),
-                    "userEmail": $("#email").val(),
-                    "userPhone": $("#phone").val()
-                },
-                success: function (result) {
-                    window.location.href = "index";
-                }*/
+
         })
     })
     // })

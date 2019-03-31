@@ -14,5 +14,5 @@ public interface PictureDao {
     Picture getPicture(@Param("pictureId") long pictureId) throws Exception;
     int insertPicture(Picture picture)throws Exception;
 
-    List<Picture> getHotPicture();
+    List<Picture> getHotPicture() throws Exception;
 }

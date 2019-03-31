@@ -15,6 +15,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
 
+
+    /*
+    * @判断用户是否存在，以及密码是否正确
+    * */
     @Override
     public int checkLogin(User user){
 
@@ -22,28 +26,31 @@ public class UserServiceImpl implements UserService {
             if (userDao.tOrfUser(user.getUserEmail(),user.getUserPassword())!=null) {
                 return 200;//欢迎登陆
             }
-            return 150;//密码错误
-        }
+            else {
 
+                return 150;//密码错误
+            }
+        }
         else
             return 100;//用户名不存在
-
     }
-
-
-
-
-
-
-//    @Override
-//    public boolean isPwd(String userpassword) {
-//        if(userpassword == #{password})
-//        return false;
-//    }
 
     @Override
     public User getUser(Long userId)throws Exception{
         return userDao.getUser(userId);
+    }
+
+//    @Override
+//    public String getUserName(String userEmail) {
+//        return userDao.getUserName(userEmail);
+//    }
+
+    @Override
+    public int changePassword(String userEmail, String userPassword) throws Exception {
+        if(userDao.changePassword(userEmail, userPassword) > 0 )
+            return userDao.changePassword(userEmail,userPassword);
+        else
+            return 0;
     }
 
     @Override
