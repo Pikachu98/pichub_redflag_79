@@ -101,6 +101,17 @@ public class UserController
         return "index";
     }
 
+    @RequestMapping(value = "/user/personalPage")
+    public String personalPage(HttpServletRequest request, HttpServletResponse response){
+        return "user/personalPage";
+    }
+
+    @RequestMapping(value = "/user/personalCenter")
+    public String personalCenter(ModelMap map,HttpServletRequest request, HttpServletResponse response){
+        map.put("u",userService.getAvatarPath(26));
+        return "user/personalCenter";
+    }
+
     @RequestMapping(value = "/user/changeEmail")
     public String getUser(HttpServletRequest request, HttpServletResponse response){
         return "user/changeEmail";
@@ -118,6 +129,14 @@ public class UserController
 
         return userService.doChangeEmail(request.getParameter("oldEmail"), request.getParameter("oldCheckCode"),(String) request.getSession().getAttribute("oldEmailCheckCode"),
                 request.getParameter("newEmail"), request.getParameter("newCheckCode"),(String)request.getSession().getAttribute("newEmailCheckCode"));
+    }
+
+    @RequestMapping(value = "/user/doChangeAvatar",method = RequestMethod.POST)
+    @ResponseBody
+    public String getAvatarPath(HttpServletRequest request){
+        System.out.println(userService.GenerateImage(request.getParameter("avatar")));
+        long userId=26;
+        return "OK";
     }
 
 }
