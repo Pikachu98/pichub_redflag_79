@@ -106,11 +106,11 @@ public class UserController
         return userService.checkEmail(email);//返回值10表示已有此email,15表示无此email
     }
 
-    @RequestMapping(value = "doChangeEmail",method = RequestMethod.POST)
+    @RequestMapping(value = "/user/doChangeEmail",method = RequestMethod.POST)
     @ResponseBody
     public int doChangeEmail(HttpServletRequest request, HttpServletResponse response){
 
-        return userService.doChangeEmail(request.getParameter("oldEmail"), request.getParameter("oldCheckCod"),(String) request.getSession().getAttribute("oldEmailCheckCode"),
+        return userService.doChangeEmail(request.getParameter("oldEmail"), request.getParameter("oldCheckCode"),(String) request.getSession().getAttribute("oldEmailCheckCode"),
                 request.getParameter("newEmail"), request.getParameter("newCheckCode"),(String)request.getSession().getAttribute("newEmailCheckCode"));
     }
 

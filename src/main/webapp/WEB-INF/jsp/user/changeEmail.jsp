@@ -54,7 +54,7 @@
         $("#sendNewCheckCode").on("click",(function () {
             if ($("#new_Email").val()!=""){
                 $.ajax({
-                    url:"/doCheckEmail/"+$("#old_Email").val(),
+                    url:"/doCheckEmail/"+$("#new_Email").val(),
                     type:"get",
                     success:function (result) {
                         if (result==15){
@@ -104,7 +104,8 @@
                     else if(result==200){
                         alert("新邮箱已被绑定");
                     }else if(result==250){
-                        alert("修改绑定邮箱成功");
+                        alert("修改绑定邮箱成功,请重新登录");
+                        window.location.href="/login";
                     }
                     else
                         alert("未知错误请重试");

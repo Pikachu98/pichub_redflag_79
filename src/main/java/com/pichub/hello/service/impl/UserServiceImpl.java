@@ -79,14 +79,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int doChangeEmail(String oldEmail, String oldCheckCod, String oldEmailCheckCode, String newEmail, String newCheckCode, String newEmailCheckCode) {
-        if(oldCheckCod.equals(oldEmailCheckCode)!=true|| newCheckCode.equals(newEmailCheckCode)!=true)
+    public int doChangeEmail(String oldEmail, String oldCheckCode, String oldEmailCheckCode, String newEmail, String newCheckCode, String newEmailCheckCode) {
+        if(oldCheckCode.equals(oldEmailCheckCode)!=true|| newCheckCode.equals(newEmailCheckCode)!=true)
             return 100;
         else if (checkEmail(oldEmail)==15)
             return 150;
-        else if(checkEmail(oldEmail)==10)
+        else if(checkEmail(newEmail)==10)
             return 200;
-        else if(oldCheckCod.equals(oldEmailCheckCode)&&newCheckCode.equals(newEmailCheckCode)&&checkEmail(oldEmail)==15&&checkEmail(oldEmail)==10){
+        else if(oldCheckCode.equals(oldEmailCheckCode)&&newCheckCode.equals(newEmailCheckCode)&&checkEmail(oldEmail)==10&&checkEmail(newEmail)==15){
             userDao.changeEmail(oldEmail,newEmail);
             return 250;
         }
