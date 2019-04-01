@@ -31,7 +31,7 @@
         values (#{pictureId},#{score},#{keyword});
     </insert>
 
-    <select id="getPictureOriginPath"resultType="java.lang.String">
+    <select id="getPictureOriginPath" resultType="java.lang.String">
         select pi from picture where pic_id =
     </select>
 
