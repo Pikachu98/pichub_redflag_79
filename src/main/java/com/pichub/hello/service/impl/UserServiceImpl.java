@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import sun.misc.BASE64Decoder;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.List;
@@ -23,19 +24,22 @@ public class UserServiceImpl implements UserService {
     * @判断用户是否存在，以及密码是否正确
     * */
     @Override
-    public int checkLogin(User user){
-
-        if(userDao.tOrfUserName(user.getUserEmail())!=null){
-            if (userDao.tOrfUser(user.getUserEmail(),user.getUserPassword())!=null) {
+    public int checkLogin(User user, HttpServletRequest request){
+        String inputPsw = user.getUserPassword();
+        User trueUser = userDao.tOrfUserName(user.getUserEmail());
+        if(trueUser !=null){
+            if (inputPsw.equals(trueUser.getUserPassword())) {
+                request.getSession().setAttribute("userName", trueUser.getUserName());
+                request.getSession().setAttribute("userId", trueUser.getUserId());
                 return 200;//欢迎登陆
             }
             else {
-
                 return 150;//密码错误
             }
         }
         else
             return 100;//用户名不存在
+
     }
 
     @Override
@@ -102,6 +106,26 @@ public class UserServiceImpl implements UserService {
         }
         else
             return 0;
+    }
+
+    @Override
+    public boolean checkUserName(String userName) throws Exception {
+        List<User> userList = userDao.existByUserName(userName);
+        //用户名已存在是true
+        if(userList.size() > 0)
+                return true;
+        else
+            return false;
+    }
+
+    @Override
+    public boolean checkEmailExist(String email) throws Exception {
+        List<User> emailList = userDao.existByEmail(email);
+        //邮箱已存在是true
+        if(emailList.size() > 0)
+            return true;
+        else
+            return false;
     }
 
     public void changeAvatar(long userId, String avatarPath)throws Exception

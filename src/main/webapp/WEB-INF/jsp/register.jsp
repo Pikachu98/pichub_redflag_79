@@ -5,8 +5,10 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>jQueryStudy</title>
     <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
     <script src="layui/layui.js"></script>
     <link href="css/register.css" rel="stylesheet">
+    <script src="js/jquery-validation-1.19.0/dist/localization/messages_zh.js"></script>
 </head>
 <body>
 <form>
@@ -17,7 +19,6 @@
     <div class="int">
         <label for="password1">密码：</label>
         <input type="password" id="password1" class="required" />
-
     </div>
     <div class="int">
         <label for="password2">确认密码：</label>
@@ -32,10 +33,6 @@
         <input id="checkCode" type="text" name="checkCode" class="layui-input" lay-verify="required"/>
         <button id="sendCheckCode" type="button" class="layui-btn layui-btn-normal">获取验证码</button>
     </div>
-    <%--<div class="int">--%>
-    <%--<label for="email">邮箱：</label>--%>
-    <%--<input type="text" id="email" class="required" />--%>
-    <%--</div>--%>
     <div class="int">
         <label for="phone">手机：</label>
         <input type="text" id="phone" />
@@ -51,7 +48,6 @@
 
     layui.use("form",function () {
         var form = layui.form;
-
         var $ = layui.$;
 
         $("#sendCheckCode").click(function () {
@@ -68,11 +64,11 @@
             $.ajax({
                 url:"/getCheckCode?email="+email,
                 type:"get",
+
                 success:function (text) {
                     if (text != null && text != ""){
                         layer.close(index);
                         layer.msg("已发送");
-                        // checkCode = text;
                         countDown();
                     } else{
                         layer.alert("获取失败，请重新获取")
@@ -114,6 +110,7 @@
         $("form :input").blur(function(){
             var $parent = $(this).parent();
             $parent.find(".msg").remove(); //删除以前的提醒元素（find()：查找匹配元素集中元素的所有匹配元素）
+
             //验证姓名
             if($(this).is("#userName")){
                 var nameVal = $.trim(this.value); //原生js去空格方式：this.replace(/(^\s*)|(\s*$)/g, "")
@@ -198,7 +195,32 @@
                     alert(result.meg);
                     // window.location.href = "index";
                 }
-
+                    /*success:function (text) {
+                        if ("ok" == text){
+                            layer.alert("注册成功",function () {
+                                window.location.href = "index.html";
+                            });
+                        }else{
+                            layer.alert("注册失败");
+                        }
+                    }*/
+            });
+            // } else{
+            //     layer.msg("验证码输入错误");
+            // }
+        /*    $.ajax({
+                type:"POST",
+                dataType:"json",
+                url: "/user/doRegister",
+                data: {
+                    "userName":userName,
+                    "userPassword": $("#password1").val(),
+                    "userEmail": $("#email").val(),
+                    "userPhone": $("#phone").val()
+                },
+                success: function (result) {
+                    window.location.href = "index";
+                }*/
         })
     })
     // })

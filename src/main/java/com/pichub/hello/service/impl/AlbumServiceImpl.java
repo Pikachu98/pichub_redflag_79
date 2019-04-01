@@ -32,4 +32,11 @@ public class AlbumServiceImpl implements AlbumService {
     public Album deleteAlbum() {
         return null;
     }
+
+    @Override
+    public int createAlbum(Album album) {
+        //成功新建一个相册
+        int count = albumDao.createAlbum(album);
+        return count;
+    }
 }
