@@ -25,10 +25,14 @@
     <select id="checkMaxPictureTagId">
         select MAX(pic_id) from pic_tag
     </select>
-    
+
     <insert id="insertTag">
         insert into pic_tag
         values (#{pictureId},#{score},#{keyword});
     </insert>
+
+    <select id="getPictureOriginPath"resultType="java.lang.String">
+        select pi from picture where pic_id =
+    </select>
 
 </mapper>

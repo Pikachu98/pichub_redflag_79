@@ -11,7 +11,9 @@ public interface UserDao {
 
     //关注用户功能
     boolean focusUser(Integer userId1,Integer userId2) throws Exception;
+    //取消关注
     boolean delFocus(Integer userId1,Integer userId2) throws Exception;
+    //查看关注
     int checkFocus(Integer userId1,Integer userId2) throws Exception;
     List showMyFocus(Integer userId) throws Exception;
     List showFocusMe(Integer userId) throws Exception;
@@ -21,8 +23,8 @@ public interface UserDao {
 
     int insertUser(@Param("user") User user)throws Exception;
     boolean existsByPhone(String phone)throws Exception;
-
-    boolean existsByEmail(String email);
+    List<User> existByUserName(@Param("userName")String userName);
+    List<User> existByEmail(@Param("email")String email);
 
     User tOrfUser(@Param("userEmail")String userEmail,@Param("userPassword")String userPassword);
     User tOrfUserName(@Param("userEmail")String userEmail);

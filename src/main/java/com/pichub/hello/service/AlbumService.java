@@ -10,4 +10,5 @@ public interface AlbumService {
     List<Album> listAlbum();
     Album createAlbum();
     Album deleteAlbum();
+    int createAlbum(Album album);
 }

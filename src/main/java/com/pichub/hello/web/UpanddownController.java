@@ -230,7 +230,7 @@ public class UpanddownController {
 
     private String real2realative(String realPath)
     {
-        return realPath.substring(realPath.indexOf("main"));
+        return "main/" + realPath.substring(realPath.indexOf(File.separator));
     }
 
 

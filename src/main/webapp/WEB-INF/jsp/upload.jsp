@@ -18,6 +18,9 @@
     <!--<div>story :<input type="text" name="story"></div>-->
     <div><input type="submit" id="do"></div>
 </form>
+<form action="" method="post">
+    <div><input type="button" class="layui-btn"></div>
+</form>
 <script>
 
 </script>

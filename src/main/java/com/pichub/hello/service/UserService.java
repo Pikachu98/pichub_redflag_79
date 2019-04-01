@@ -2,11 +2,13 @@ package com.pichub.hello.service;
 
 import com.pichub.hello.bo.User;
 
+import javax.servlet.http.HttpServletRequest;
+
 public interface UserService {
 
 
 
-    int checkLogin(User user);
+    int checkLogin(User user, HttpServletRequest request);
     User getUser(Long userId)throws Exception;
     int changePassword(String userEmail, String userPassword) throws Exception;
 
@@ -18,6 +20,9 @@ public interface UserService {
     boolean insertBelike(Long userId, long pictureId)throws Exception;
 
     String getUserName(String userEmail);
+    boolean checkUserName(String userName) throws Exception;
+    boolean checkEmailExist(String email) throws Exception;
+
     int checkEmail(String email);
     int doChangeEmail(String oldEmail, String oldCheckCod, String oldEmailCheckCode, String newEmail, String newCheckCode, String newEmailCheckCode);
     String getAvatarPath(long userId);
