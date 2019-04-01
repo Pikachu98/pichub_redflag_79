@@ -18,4 +18,17 @@
         values (#{picName},#{uploadTime},#{delState},#{picStory},#{userId},#{picPath},#{picThumbnailPath},#{picSize})
     </insert>
 
+    <select id="checkMaxPictureId">
+        select MAX(pic_id) from picture
+    </select>
+
+    <select id="checkMaxPictureTagId">
+        select MAX(pic_id) from pic_tag
+    </select>
+    
+    <insert id="insertTag">
+        insert into pic_tag
+        values (#{pictureId},#{score},#{keyword});
+    </insert>
+
 </mapper>

@@ -15,4 +15,8 @@ public interface PictureDao {
     int insertPicture(Picture picture)throws Exception;
 
     List<Picture> getHotPicture() throws Exception;
+    long checkMaxPictureId();
+    long checkMaxPictureTagId();
+    void insertTag(@Param("pictureId") long pictureId,@Param("score") double score,@Param("keyword") String keyword);
+
 }

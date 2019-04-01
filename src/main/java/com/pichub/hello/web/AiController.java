@@ -1,6 +1,7 @@
 package com.pichub.hello.web;
 
 import com.pichub.hello.service.BaiDuAiService;
+import com.pichub.hello.service.PictureService;
 import com.pichub.hello.service.ReadJsonService;
 import com.pichub.hello.service.TecentAiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class AiController {
     ReadJsonService readJsonService;
 
 
+
     @RequestMapping(value = "/ai")
     @ResponseBody
     public String abc(){
@@ -26,7 +28,7 @@ public class AiController {
         //baiduAiService.getAuth("nTEvGCU4s8QboxwAYHr0DEjG","mzpshf9qwpeBiCvV75ylmtrtHLU0QH0f");
         //baiduAiService.TongYongWuTi();
         try {
-            readJsonService.getBaiDuJson(baiduAiService.TongYongWuTi());
+            //readJsonService.getBaiDuJson(baiduAiService.TongYongWuTi());
             readJsonService.getTecentJson(tecentAiService.jianHuang());
             return "腾讯ai为为为为为为为为为为："+tecentAiService.jianHuang();
             //return "百度ai为为为为为为为为为为："+baiduAiService.TongYongWuTi();
