@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -122,7 +123,7 @@ public class BaiduAiServiceImpl implements BaiDuAiService {
             String url = "https://aip.baidubce.com/rest/2.0/image-classify/v2/advanced_general";
             try {
                 // 本地文件路径
-                String filePath = picturePath;
+                String filePath = "E:\\IdeaProjects\\hello\\src\\"+picturePath;//绝对路径，视自身情况而定
                 byte[] imgData = FileUtil.readFileByBytes(filePath);
                 String imgStr = Base64Util.encode(imgData);
                 String imgParam = URLEncoder.encode(imgStr, "UTF-8");
@@ -132,7 +133,12 @@ public class BaiduAiServiceImpl implements BaiDuAiService {
                 String result = HttpUtil.post(url, accessToken, param);
                 //System.out.println(result);
                 return result;
-            } catch (Exception e) {
+            } catch (FileNotFoundException e) {
+                System.out.println("没有此路径:E:\\IdeaProjects\\hello\\src\\"+picturePath);
+                //e.printStackTrace();
+                return null;
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
             return null;
@@ -141,10 +147,10 @@ public class BaiduAiServiceImpl implements BaiDuAiService {
     @Override
     public void doTag() throws Exception{
         while(true){
-            long MaxPictureTagId=pictureDao.checkMaxPictureTagId();
-            long MaxPictureId=pictureDao.checkMaxPictureId();
+            int MaxPictureTagId=pictureDao.checkMaxPictureTagId();
+            int MaxPictureId=pictureDao.checkMaxPictureId();
             if(MaxPictureTagId<MaxPictureId){
-                for (long i=MaxPictureTagId;i<MaxPictureId;i++){
+                for (int i=MaxPictureTagId;i<MaxPictureId;i++){
                     if(pictureDao.getPicture(i).getPicThumbnailPath()!=null){
                         //将路径放入百度接口识别//将识别结果写入数据库
                         readJsonService.getBaiDuJson(pictureDao.getPicture(i).getPicId(),TongYongWuTi(pictureDao.getPicture(i).getPicThumbnailPath()));

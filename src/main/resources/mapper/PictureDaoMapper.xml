@@ -18,11 +18,11 @@
         values (#{picName},#{uploadTime},#{delState},#{picStory},#{userId},#{picPath},#{picThumbnailPath},#{picSize})
     </insert>
 
-    <select id="checkMaxPictureId">
+    <select id="checkMaxPictureId" resultType="int">
         select MAX(pic_id) from picture
     </select>
 
-    <select id="checkMaxPictureTagId">
+    <select id="checkMaxPictureTagId" resultType="int">
         select MAX(pic_id) from pic_tag
     </select>
 

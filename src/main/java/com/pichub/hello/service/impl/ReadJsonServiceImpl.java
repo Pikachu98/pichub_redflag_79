@@ -16,17 +16,21 @@ public class ReadJsonServiceImpl implements ReadJsonService {
     PictureDao pictureDao;
 
     @Override
-    public String getBaiDuJson(long pictureId,String result) {
-        JSONObject jsonObjName = new JSONObject(result);
-        int result_num=(int)jsonObjName.get("result_num");
-        JSONArray true_result=(JSONArray)jsonObjName.get("result");
-        for(int i=0;i<result_num;i++){
-            JSONObject jsonObject_trueresult=true_result.getJSONObject(i);
-            Double score=(Double)jsonObject_trueresult.get("score");
-            //String root=(String)jsonObject_trueresult.get("root");
-            String keyword=(String)jsonObject_trueresult.get("keyword");
-            pictureDao.insertTag(pictureId,score,keyword);
-            System.out.println(score+keyword);//得到的值
+    public String getBaiDuJson(int pictureId,String result) {
+        if (result==null)
+            return null;
+        else {
+            JSONObject jsonObjName = new JSONObject(result);
+            int result_num=(int)jsonObjName.get("result_num");
+            JSONArray true_result=(JSONArray)jsonObjName.get("result");
+            for(int i=0;i<result_num;i++){
+                JSONObject jsonObject_trueresult=true_result.getJSONObject(i);
+                Double score=(Double)jsonObject_trueresult.get("score");
+                //String root=(String)jsonObject_trueresult.get("root");
+                String keyword=(String)jsonObject_trueresult.get("keyword");
+                pictureDao.insertTag(pictureId,score,keyword);
+                //System.out.println(score+keyword);//得到的值
+            }
         }
         return null;
     }
