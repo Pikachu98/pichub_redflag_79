@@ -19,7 +19,11 @@
     </insert>
 
     <select id="getPictureOriginPath"resultType="java.lang.String">
-        select pi from picture where pic_id =
+        select pic_path from picture where pic_id =#{pictureId}
+    </select>
+
+    <select id="getPictureThumbnailPath" resultType="java.lang.String">
+        select pic_thumbnail_path from picture where pic_id=#{pictureId}
     </select>
 
 </mapper>
