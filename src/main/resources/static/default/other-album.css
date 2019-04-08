@@ -1,0 +1,26 @@
+.other-root {
+    width: 1522px;
+    margin: 0 auto;
+    margin-top: 27px;
+    height: 914.52px;
+}
+
+.other-album {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.album-cover{
+    background-color: #ffffff;
+    padding: 10px;
+    border-color: #707070;
+    -webkit-box-shadow: #666 0px 0px 10px;
+   -moz-box-shadow: #666 0px 0px 10px;
+   box-shadow: #666 0px 0px 5px;
+}
+.cover{
+    border-color: #707070;
+}
+.cover-item{
+    margin-top:20px;
+}

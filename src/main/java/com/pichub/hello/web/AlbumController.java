@@ -24,4 +24,9 @@ public class AlbumController {
         return "album";
     }
 
+    @RequestMapping("/myAlbum")
+    public String myAlbum(){ return "myalbum";}
+
+
+
 }

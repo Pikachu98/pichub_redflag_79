@@ -1,0 +1,99 @@
+/* 子轴与主轴自动对齐 */
+.view-list {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+}
+
+.view-cover{
+    border-color: #E93232;
+}
+
+.view-list .list-item {
+    margin: 0;
+}
+
+.view-l, .description{
+    margin-left: 14px;
+    float: left;
+}
+.view-l{
+    color: #333333;
+}
+.description{
+    color: #666666;
+    margin-top: 14px;
+    height: 21.5px;
+}
+.view-r{
+    margin-right: 17px;
+    float: right;
+}
+
+.photo-list {
+    width: 1573px;
+    margin: 0 auto;
+}
+
+.photo-list .list-item {}
+
+.photo-list .view {
+    width: 301px;
+    padding-bottom: 6px; 
+    border-radius: 4px;
+    border-color: #dddddd;
+    /* 添加边界阴影 */
+    -webkit-box-shadow: #666 0px 0px 10px;
+   -moz-box-shadow: #666 0px 0px 10px;
+   box-shadow: #666 0px 0px 5px;
+   background: #ffffff;
+   margin-bottom: 21px;
+}
+
+.photo-list .view-other {
+    line-height: 60px;
+}
+
+.photo-list img {
+    vertical-align: middle;
+}
+
+.photo-list .user-name {
+    vertical-align: middle;
+}
+
+.focus-msg{
+    color: #999999;
+    margin-left: 12px;
+    margin-top: 5.5px;
+}
+.focus-num{
+    display: inline-block;
+    margin-left: 8px;  
+}
+.root{
+    width: 1670px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding-left: 48px;
+}
+.photo-list{
+    display: flex;
+    flex-direction: column;
+    float: top;
+}
+
+.btn-focus{
+    display: inline-block;
+    height: 28px;
+    color: #EC414D;
+    border: 1px solid #EC414D;
+    border-radius: 4px;
+    padding: 0 12px;
+    line-height: 27px;
+}
+.btn-focus:hover{
+    border-color: #dddddd;
+    background-color: #dddddd;
+}

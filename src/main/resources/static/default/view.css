@@ -1,0 +1,184 @@
+/* layout help */
+
+/* * {
+    outline: 1px solid red;
+} */
+
+.view-lr {}
+
+.view-lr::after {
+    content: ' ';
+    display: block;
+    clear: both;
+}
+
+.header-l {
+    float: left;
+    margin-left: 50px;
+}
+
+.logo {
+    margin-top: 4px;
+}
+
+.header-r {
+    float: right;
+    margin-top: 5px;
+    margin-right: 20px;
+}
+
+/* element */
+
+.icon {
+    display: inline-block;
+    vertical-align: middle;
+    font-style: normal;
+    /* background-image: url("images/sprite.png"); */
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+/* 使用雪碧图方式设置图标 */
+
+/* .icon-search{
+    background-position: 0 0;
+    width: 24px;
+    height: 24px;
+} */
+
+/* 直接使用图片 */
+
+/* .icon-search{
+    background-image: url("images/icon_search.png");
+} */
+
+.icon-search {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -10px;
+}
+
+.btn, .btn-login {
+    display: inline-block;
+    padding: 0 1.5em;
+    height: 40px;
+    line-height: 39px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #ffffff;
+    border: 1px solid #EC414D;
+    background-color: #EC414D;
+}
+
+.btn:hover {
+    border-color: #E81A2F;
+    background-color: #E81A2F;
+}
+
+/* .btn,.link{
+    -webkit-transition: all .3s;
+    -moz-transition:all .3s;
+    -ms-transition:all .3s;
+    -otransition:all .3s;
+    transition: all .3s
+} */
+
+.btn-login {
+    border-color: transparent;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.btn-login:hover {
+    border-color: #dddddd;
+    color: #dddddd;
+}
+
+#footer {
+    height: 70px;
+    background-color: #333333;
+    text-align: center;
+    color: #999999;
+    line-height: 70px;
+    margin-top: 50px;
+}
+
+/*登陆悬浮窗CSS*/
+
+#loginWindow {
+    display: none;
+    position: fixed;
+    border: 1px solid #dddddd;
+    background-color: white;
+    z-index: 2;
+    overflow: auto;
+    _position: absolute;
+    /* hack for IE6 */
+    top: 50%;
+    left: 50%;
+    margin: -235px 0 0 -238px;
+    /* 注意,201表示高度的一半,480也是按自己需要自己调整*/
+    width: 525px;
+    height: 471px;
+    padding: 1px;
+}
+
+#choiceWindow {
+    display: none;
+    position: fixed;
+    border: 1px solid #dddddd;
+    background-color: white;
+    z-index: 2;
+    overflow: auto;
+    _position: absolute;
+    /* hack for IE6 */
+    top: 50%;
+    left: 50%;
+    margin: -310px 0 0 -274px;
+    /* 注意,201表示高度的一半,480也是按自己需要自己调整*/
+    width: 525px;
+    height: 611px;
+    padding: 1px;
+}
+#resetWindow {
+    display: none;
+    position: fixed;
+    border: 1px solid #dddddd;
+    background-color: white;
+    z-index: 2;
+    overflow: auto;
+    _position: absolute;
+    /* hack for IE6 */
+    top: 50%;
+    left: 50%;
+    margin: -310px 0 0 -238px;
+    /* 注意,201表示高度的一半,480也是按自己需要自己调整*/
+    width: 525px;
+    height: 410px;
+    padding: 1px;
+}
+
+.backGround {
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 1100px;
+    background-color: black;
+    z-index: 1;
+    -moz-opacity: 0.8;
+    opacity: .80;
+    filter: alpha(opacity=88);
+}
+
+.x {
+    color: #000000;
+}
+
+.x:hover {
+    cursor: pointer;
+    color: rgb(55, 198, 192);
+}

@@ -26,7 +26,7 @@
                 <!-- <div class="view-title"></div> -->
                 <div class="view-other view-lr">
                     <div class="view-l">
-                        <a><img src="D:\pichub\src\main\resources\static\cat-10.png" alt="头像"></a>
+                        <a><img src="static\111.jpg" alt="头像"></a>
                         <span class="user-name">Username</span>
                     </div>
                     <div class="view-r">
