@@ -1,0 +1,38 @@
+/* base layout */
+
+.header .layout {
+    padding: 0;
+}
+
+.footer .layout {
+    padding: 0;
+}
+
+.layout {
+    min-width: 1000px;
+    padding: 50px 0px;
+}
+
+.l-content {
+    margin: 0 auto;
+    height: 47px;
+}
+.index-btn{
+    padding-top:59.1px; 
+}
+
+.l-header {
+    text-align: center;
+}
+
+.l-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #44495f;
+}
+
+.l-title-en {
+    font-size: 20px;
+    font-weight: lighter;
+    color: #44495f;
+}
