@@ -1,11 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: msi
-  Date: 2019/3/16
-  Time: 15:19
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,27 +10,47 @@
 <body>
 <h1>这是index登陆主页</h1>
 <p>userName:${p}</p>
-<script>
-
-$(window.onload=function() {
-    $.ajax({
-        type: "POST",
-        url: "/picturelist",
-        data: {
-            "1": "123",
-        },
-    success:function (picList) {
-            alert("shoudaoxiangying");
-        alert(picList);
+<br/>
+<br/>
 
 
-    },
-    error:function () {
-        alert("错误");
-    }
-    })
-})
-</script>
+<c:forEach items="${picsList}" var="var">
+    <img src="/show/${var}"  width="301px"/>
+</c:forEach>
+
+
+<ul class="view-list photo-list">
+    <li class="list-item">
+        <div class="view">
+            <div class="view-intro">
+                <!-- <div class="view-title"></div> -->
+                <div class="view-other view-lr">
+                    <div class="view-l">
+                        <a><img src="D:\pichub\src\main\resources\static\cat-10.png" alt="头像"></a>
+                        <span class="user-name">Username</span>
+                    </div>
+                    <div class="view-r">
+                        <a href="javascript:void(0)" class="btn-focus">关注</a>
+                    </div>
+                </div>
+            </div>
+            <div class="view-cover">
+                <img src="static/cat-10.png" alt="photo-1">
+            </div>
+            <div class="description">
+                <p>森林鹿</p>
+            </div>
+            <div>
+                <img src="img/line.png" alt="我是一条分割线">
+            </div>
+            <div class="focus-msg">
+                <a><img src="img/heart.png" alt="我是一颗心"></a>
+                <span class="focus-num">218人喜欢</span>
+            </div>
+        </div>
+    </li>
+</ul>
+
 
 </body>
 </html>

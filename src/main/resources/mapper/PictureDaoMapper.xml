@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pichub.hello.dao.PictureDao">
 
-    <select id="getPicture" resultType="com.pichub.hello.bo.Picture" parameterType="Long">
-        select * from picture where pic_id=#{pictureId}
+    <select id="getPicture" resultType="com.pichub.hello.bo.Picture" parameterType="int">
+        select * from picture where pic_id=#{picId}
     </select>
 
 <!--获取热门图片-->
@@ -13,13 +13,14 @@
         select * from picture where pic_id IN (select pic_id from belike group by pic_id having COUNT(*)>1 ORDER BY COUNT(*) DESC) order by instr(pic_id,pic_path);
     </select>
 
+
     <insert id="insertPicture" parameterType="com.pichub.hello.bo.Picture">
         insert into picture (pic_name,upload_time,del_state,pic_story,user_id,pic_path,pic_thumbnail_path,pic_size)
         values (#{picName},#{uploadTime},#{delState},#{picStory},#{userId},#{picPath},#{picThumbnailPath},#{picSize})
     </insert>
 
-    <select id="getPictureOriginPath"resultType="java.lang.String">
-        select pi from picture where pic_id =
+    <select id="getPictureOriginPath" resultType="java.lang.String">
+        select pi from picture where pic_id =1
     </select>
 
 </mapper>

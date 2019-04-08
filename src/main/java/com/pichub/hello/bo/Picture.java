@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by root on 19-3-16.
  */
 public class Picture {
-    private long picId;
+    private int picId;
     private String picName;
     private Date uploadTime;
     private int delState;
@@ -16,9 +16,9 @@ public class Picture {
     private String picThumbnailPath;
     private long picSize;
 
-    public long getPicId(){return picId;}
+    public int getPicId(){return picId;}
 
-    public void setPicId(long picId){this.picId = picId;}
+    public void setPicId(int picId){this.picId = picId;}
 
     public String getPicName(){return picName;}
 

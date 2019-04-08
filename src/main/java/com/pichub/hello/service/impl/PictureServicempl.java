@@ -25,15 +25,11 @@ public class PictureServicempl implements PictureService{
     @Autowired
     PictureDao pictureDao;
 
-    public Picture getPicture(long pictureId)throws Exception{
-        return pictureDao.getPicture(pictureId);
+    public Picture getPicture(int picId)throws Exception{
+        return pictureDao.getPicture(picId);
     }
 
     public List<Picture> getHotPicture() throws Exception{
-        List<Picture> l1 = pictureDao.getHotPicture();
-        System.out.println("我在service层这里");
-        for(int i = 0; i < l1.size(); i++)
-            System.out.println(l1.get(i).getPicName());
         return pictureDao.getHotPicture();
     }
 

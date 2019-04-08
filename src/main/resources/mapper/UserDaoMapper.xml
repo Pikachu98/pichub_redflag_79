@@ -7,11 +7,11 @@
 
     <!-- 根据用户名和密码查询 -->
     <select id="tOrfUser" resultType="com.pichub.hello.bo.User">
-        select * from user_table where (user_email=#{userEmail} or user_phone=#{userEmail}) and user_password=#{userPassword}
+        select * from user_table where (user_email=#{userEmail} or user_phone=#{userEmail} or user_name=#{userEmail}) and user_password=#{userPassword}
     </select>
 
     <select id="tOrfUserName" resultType="com.pichub.hello.bo.User">
-        select * from user_table where (user_email=#{userEmail} or user_phone=#{userEmail})
+        select * from user_table where (user_email=#{userEmail} or user_phone=#{userEmail} or user_name=#{userEmail})
     </select>
     <!--将用户名返回到主页上，并添加到session里-->
     <select id="getUserName" resultType="String">

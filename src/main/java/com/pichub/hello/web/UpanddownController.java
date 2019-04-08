@@ -230,11 +230,13 @@ public class UpanddownController {
 
     private String real2realative(String realPath)
     {
-        return "main/" + realPath.substring(realPath.indexOf(File.separator));
+        String temp = realPath.substring(realPath.indexOf("main"));
+        return "main/" + temp.substring(temp.indexOf(File.separator) + 1
+        );
     }
 
 
-    private String  conversion(String realPath)
+    private String conversion(String realPath)
     {
         File input = new File(realPath);
         String outputFilePath = realPath.substring(0,realPath.lastIndexOf(".")) + ".jpg";
