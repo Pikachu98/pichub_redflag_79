@@ -55,11 +55,8 @@
                 data: {
                     "userEmail": userEmail,
                     "userPassword": userPassword
-
                 },
-
                 success:function (user) {
-
                     $("#login").removeClass("Logging");
                     $("#login").val("Log");
                     if (user ==100) {

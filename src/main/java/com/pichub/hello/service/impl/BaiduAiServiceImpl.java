@@ -4,11 +4,15 @@ package com.pichub.hello.service.impl;
 import com.baidu.aip.util.Base64Util;
 import com.pichub.hello.bo.FileUtil;
 import com.pichub.hello.bo.HttpUtil;
+import com.pichub.hello.dao.PictureDao;
 import com.pichub.hello.service.BaiDuAiService;
+import com.pichub.hello.service.ReadJsonService;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -19,9 +23,13 @@ import java.util.Map;
 @Service("baiDuAiService")
 
 public class BaiduAiServiceImpl implements BaiDuAiService {
+    @Autowired
+    PictureDao pictureDao;
+    @Autowired
+    ReadJsonService readJsonService;
 
     //图片地址
-    public String filePath="D:/123.jpg";
+    //public String filePath="D:/123.jpg";
 
     //设置APPID/AK/SK
     public static final String APP_ID = "15830897";
@@ -101,7 +109,7 @@ public class BaiduAiServiceImpl implements BaiDuAiService {
     }
 
     @Override
-    public String TongYongWuTi() {
+    public String TongYongWuTi(String picturePath) {
         /**
          * 重要提示代码中所需工具类
          * FileUtil,Base64Util,HttpUtil,GsonUtils请从
@@ -115,7 +123,7 @@ public class BaiduAiServiceImpl implements BaiDuAiService {
             String url = "https://aip.baidubce.com/rest/2.0/image-classify/v2/advanced_general";
             try {
                 // 本地文件路径
-                //String filePath = "";
+                String filePath = "E:\\IdeaProjects\\hello\\src\\"+picturePath;//绝对路径，视自身情况而定
                 byte[] imgData = FileUtil.readFileByBytes(filePath);
                 String imgStr = Base64Util.encode(imgData);
                 String imgParam = URLEncoder.encode(imgStr, "UTF-8");
@@ -125,9 +133,31 @@ public class BaiduAiServiceImpl implements BaiDuAiService {
                 String result = HttpUtil.post(url, accessToken, param);
                 //System.out.println(result);
                 return result;
-            } catch (Exception e) {
+            } catch (FileNotFoundException e) {
+                System.out.println("没有此路径:E:\\IdeaProjects\\hello\\src\\"+picturePath);
+                //e.printStackTrace();
+                return null;
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
             return null;
+    }
+
+    @Override
+    public void doTag() throws Exception{
+        while(true){
+            int MaxPictureTagId=pictureDao.checkMaxPictureTagId();
+            int MaxPictureId=pictureDao.checkMaxPictureId();
+            if(MaxPictureTagId<MaxPictureId){
+                for (int i=MaxPictureTagId;i<MaxPictureId;i++){
+                    if(pictureDao.getPicture(i).getPicThumbnailPath()!=null){
+                        //将路径放入百度接口识别//将识别结果写入数据库
+                        readJsonService.getBaiDuJson(pictureDao.getPicture(i).getPicId(),TongYongWuTi(pictureDao.getPicture(i).getPicThumbnailPath()));
+                    }
+                }
+            }
+            //进行一段时间的休眠
+        }
     }
 }
