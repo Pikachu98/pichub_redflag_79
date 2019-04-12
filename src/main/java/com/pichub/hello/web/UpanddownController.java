@@ -40,7 +40,7 @@ public class UpanddownController {
     UserService userService;
 
     @RequestMapping(value = "/uploadFile" ,method = RequestMethod.POST)
-    public String uploadFile(@RequestParam(value="file") MultipartFile file, @RequestParam(value = "story")String story,
+    public String uploadFile(@RequestParam(value="file") MultipartFile file, //@RequestParam(value = "story")String story,
                              @RequestParam(value = "userId") long userId, HttpServletRequest request, HttpServletResponse response)
     {
         if(file == null && file.getSize() > 0)
@@ -118,8 +118,8 @@ public class UpanddownController {
         picture.setPicName(newOriginiName);
         picture.setUploadTime(new Date());
         picture.setDelState(1);
-        picture.setPicStory(story);
-        picture.setUserId(userId);
+        picture.setPicStory(null);           ///////////////////////////////////////////
+        picture.setUserId(1);                //////////////////////////////////////////
         picture.setPicPath(real2realative(finalOriginPath));
         picture.setPicThumbnailPath(real2realative(finalThumbnailPath));
         picture.setPicSize(file.getSize());

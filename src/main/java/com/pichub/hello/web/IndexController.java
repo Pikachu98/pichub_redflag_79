@@ -78,7 +78,7 @@ public class IndexController {
         try {
             OutputStream outputStream = response.getOutputStream();
             String path = pictureService.getPicture(picId).getPicName();
-            path =  "D:\\pichub\\src\\main\\resources\\originPictures\\" + path ;
+            path =  getParent(request.getServletContext().getRealPath("/")) + "/resources/originPictures/"+path ;
             File file = new File(path);
             InputStream inputStream = new FileInputStream(file);
             byte[] buffer = new byte[1024];

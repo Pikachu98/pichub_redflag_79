@@ -201,7 +201,7 @@
 
                 </div>
                 <!--上传悬浮窗-->
-                <div id="uploadWindow">
+                <form id="uploadWindow" action="/uploadFile" enctype="multipart/form-data" method="post" >
                     <div style="float: right">
                         <label class="x" style="margin-top:2px;margin-left: -169%;font-size: 25px;">-</label>
                     </div>
@@ -216,15 +216,24 @@
                         </select>
                     </div>
                     <div class="choosed">
-                        <a class="btn-choose-pic"><img src="img/pic.png"
-                                style="vertical-align:middle;height: 25px;padding-bottom: 5px;">选择照片</a>
+                        <!--<a class="btn-choose-pic">--><!--<img src="img/pic.png"
+                                style="vertical-align:middle;height: 25px;padding-bottom: 5px;">选择照片-->
+                        <label for="upload" class="btn-choose-pic">
+                            <img src="img/pic.png" style="vertical-align:middle;height: 25px;padding-bottom: 5px;">选择照片</label>
+                            <input type="file" name="file" id="upload" style="display: none;">
+                            <!--</a>-->
                     </div>
                     <div class="upload-footer">
-                        <a href="javascript:void(0)" class="btn-start-upload">开始上传</a>
+                        <label for="btnSubmit"bbb>
+                            <a href="javascript:void(0)" class="btn-start-upload">开始上传</a>
+                        </label>
+                        <input type="submit" name="do" id="btnSubmit" style="display: none;">
+
+
                         <a href="javascript:void(0)" class="btn-add">继续添加</a>
                         <span class="continue">共5张照片（上传过程中请不要删除原始照片）</span>
                     </div>
-                </div>
+                </form>
                 <div class="backGround"></div>
                 <!--上传窗口-->
                 <!--创建相册悬浮窗-->
