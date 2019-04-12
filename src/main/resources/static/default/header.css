@@ -50,7 +50,7 @@
 }
 
 .layout-banner {
-    background: url("images/banner.png") 0 0 no-repeat transparent;
+    background: url("/images/banner.png") 0 0 no-repeat transparent;
     height: 600px;
     text-align: center;
     padding-top: 134.2px;

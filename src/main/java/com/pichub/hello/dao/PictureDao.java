@@ -18,6 +18,8 @@ public interface PictureDao {
     String getPictureThumbnailPath(long pictureId)throws Exception;
 
     List<Picture> getHotPicture() throws Exception;
+    List<Integer> getLike() throws Exception;
+    List<Integer> getHotPicId() throws Exception;
 
     String getPicturePathByPhotoId(@Param("photoId") int photoId);
 }

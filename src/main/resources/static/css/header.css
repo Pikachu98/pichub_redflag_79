@@ -11,6 +11,7 @@
     color: #ffffff;
     padding: 10px 0;
     background-color: #333333;
+    z-index:1;
 }
 
 .header .view-r {
@@ -50,7 +51,7 @@
 }
 
 .layout-banner {
-    background: url("images/banner.png") 0 0 no-repeat transparent;
+    background: url("../default/images/banner.png") 0 0 no-repeat transparent;
     height: 600px;
     text-align: center;
     padding-top: 134.2px;

@@ -3,6 +3,11 @@
 /* * {
     outline: 1px solid red;
 } */
+#masonry{
+    position:absolute;
+    margin:0 auto;
+}
+
 
 .view-lr {}
 

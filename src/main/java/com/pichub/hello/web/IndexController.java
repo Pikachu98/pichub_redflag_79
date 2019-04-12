@@ -52,15 +52,20 @@ public class IndexController {
     @RequestMapping( "/getHotPicList")
    // @ResponseBody
     public String getHotList(ModelMap model) throws Exception{
-        List<Picture> picList = pictureService.getHotPicture();
-        ArrayList<Integer> list = new ArrayList<>();
-       // int[] picIdArray = new int[picList.size()];
-        for(int i = 0; i < picList.size(); i++) {
-            list.add(picList.get(i).getPicId());
-            System.out.println(list.get(i) + "看这看这");
-            //picIdArray[i] = picList.get(i).getPicId();
+        // List<Picture> picList = pictureService.getHotPicture();
+        List<Picture> picList = new ArrayList<Picture>();
+        List<User> users = new ArrayList<User>();
+        List<Integer> hotPicIds = pictureService.getHotPicId();
+
+        for(int i = 0; i < hotPicIds.size(); i++){
+            picList.add(pictureService.getPicture(hotPicIds.get(i)));
+            users.add(userService.getUser(picList.get(i).getUserId()));
         }
-        model.put("picsList",list);
+
+        List<Integer> likes = pictureService.getLike();
+        model.put("picsList",picList);
+        model.put("likeCount",likes);
+        model.put("users",users);
         return "loginIndex";
     }
 
@@ -68,17 +73,12 @@ public class IndexController {
     @RequestMapping(value = "/show/{picId}",method = RequestMethod.GET)
     public void show(@PathVariable int picId, String pathName, HttpServletRequest request, HttpServletResponse response)throws Exception
     {
-//        List<Picture> picList = pictureService.getHotPicture();
-//        List<String> pathList = new ArrayList<String>();
-//        for(int i = 0; i < picList.size(); i++){
-//            pathList.add(picList.get(i).getPicThumbnailPath());
-//        }
         response.reset();
         response.setContentType("image/jpeg");
         try {
             OutputStream outputStream = response.getOutputStream();
             String path = pictureService.getPicture(picId).getPicName();
-            path =  getParent(request.getServletContext().getRealPath("/")) + "resources/originPictures/" + path ;
+            path =  "D:\\pichub\\src\\main\\resources\\originPictures\\" + path ;
             File file = new File(path);
             InputStream inputStream = new FileInputStream(file);
             byte[] buffer = new byte[1024];

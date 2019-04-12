@@ -13,4 +13,8 @@ public interface PictureService {
     String getExif();//获取图片exif信息
     int insertPicture(Picture picture)throws Exception;
     List<Picture> getHotPicture() throws Exception;
+    List<Integer> getLike() throws Exception;
+    List<Integer> getHotPicId() throws Exception;
+
+
 }

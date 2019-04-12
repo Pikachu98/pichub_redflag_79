@@ -110,6 +110,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUser(long userId) throws Exception {
+        return userDao.getUser(userId);
+    }
+
+    @Override
     public String getAvatarPath(long userId) {
         if(userDao.getUser(userId).getAvatarPath()==null||userDao.getUser(userId).getAvatarPath()=="")
             return "/111.jpg";

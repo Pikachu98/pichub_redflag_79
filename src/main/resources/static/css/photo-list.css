@@ -1,6 +1,6 @@
 /* 子轴与主轴自动对齐 */
 .view-list {
-    display: flex;
+    /*display: flex;*/
     flex-wrap: wrap;
     /* justify-content: space-between; */
 }
@@ -26,12 +26,13 @@
     height: 21.5px;
 }
 .view-r{
+    margin-top:17px;
     margin-right: 17px;
     float: right;
 }
 
 .photo-list {
-    width: 1573px;
+    width: 80%;
     margin: 0 auto;
 }
 

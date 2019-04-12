@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +32,19 @@ public class PictureServicempl implements PictureService{
 
     public List<Picture> getHotPicture() throws Exception{
         return pictureDao.getHotPicture();
+    }
+
+    @Override
+    public List<Integer> getLike() throws Exception {
+        return pictureDao.getLike();
+    }
+
+    @Override
+    public List<Integer> getHotPicId() throws Exception {
+        List<Integer> lala = pictureDao.getHotPicId();
+        for(int i =0; i<lala.size();i++)
+            System.out.println(lala.get(i) + "我在这呢看这里看着了");
+        return pictureDao.getHotPicId();
     }
 
     public int insertPicture(Picture picture)throws Exception{
