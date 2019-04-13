@@ -2,11 +2,13 @@ package com.pichub.hello.service;
 
 import com.pichub.hello.bo.User;
 
+import javax.servlet.http.HttpServletRequest;
+
 public interface UserService {
 
 
 
-    int checkLogin(User user);
+    int checkLogin(User user, HttpServletRequest request);
     User getUser(Long userId)throws Exception;
     int changePassword(String userEmail, String userPassword) throws Exception;
 

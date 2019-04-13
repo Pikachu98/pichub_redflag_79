@@ -1,5 +1,7 @@
 package com.pichub.hello.bo;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 public class User {
@@ -119,5 +121,9 @@ public class User {
 
     public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
+    }
+
+    public static User getCurrentUser(HttpServletRequest request){
+        return (User)request.getSession().getAttribute("user");
     }
 }

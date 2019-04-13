@@ -49,7 +49,7 @@ public class IndexController {
 //        return "loginIndex";
 //    }
 
-    @RequestMapping( "/getHotPicList")
+    @RequestMapping( "/")
    // @ResponseBody
     public String getHotList(ModelMap model) throws Exception{
         // List<Picture> picList = pictureService.getHotPicture();
