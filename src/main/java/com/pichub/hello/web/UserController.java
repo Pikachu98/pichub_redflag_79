@@ -56,10 +56,7 @@ public class UserController
     @RequestMapping(value="/doLogin",method = RequestMethod.GET)
     @ResponseBody
     public int doLogin(User user, HttpServletRequest request, HttpServletResponse response){
-        if (userService.checkLogin(user)==200)
-            request.getSession().setAttribute("userName",userService.getUserName(user.getUserEmail()));
-
-        return userService.checkLogin(user);
+        return userService.checkLogin(user, request);
     }
 
 /*
