@@ -13,5 +13,9 @@
 <body>
 跳转成功啦！
 successfully log in!
+<script>
+    document.write("<img src='D:/pichub/src/main/resources/static/thumbnail/26cc1b53907a4f5bb2be610c6a5feb5f.jpg'/>");
+</script>
+
 </body>
 </html>

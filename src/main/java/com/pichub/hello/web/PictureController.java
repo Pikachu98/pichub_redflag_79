@@ -20,13 +20,13 @@ public class PictureController {
     @Autowired
     PictureService pictureService;
 
-    @RequestMapping(value = "/picture/{pictureId}")
-    public String pictureDetail(@PathVariable long pictureId, ModelMap model,
+    @RequestMapping(value = "/picture/{picId}")
+    public String pictureDetail(@PathVariable int picId, ModelMap model,
                                 HttpServletRequest request, HttpServletResponse response)throws Exception{
-        Picture picture = pictureService.getPicture(pictureId);
+        Picture picture = pictureService.getPicture(picId);
         model.put("p", picture);
 
-        return "picture";
+        return "photo/show";
     }
 
     @RequestMapping(value = "/upload")

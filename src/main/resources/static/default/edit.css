@@ -1,0 +1,59 @@
+.hr{
+    margin-top: 20px;
+    height:3px;
+    margin-left: 100px;
+    width: 500px;
+    background-image: linear-gradient(90deg, #F79533 0%, #F37055 15%, #EF4E7B 30%, #A166AB 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
+}
+.edit{
+    margin-left: 400px;
+    margin-right: 200px;
+    background-color: #ffffff;
+    color: #666666;
+    height: 914.52px;
+}
+.lbl{
+    display: inline-block;
+    margin-left: 178px;
+    margin-top: 33px;
+    margin-right: 35px;
+}
+.no-avator{
+    padding-top: 48px;
+}
+.name-now{
+    border-style: none;
+    width: 318.3px;
+    height: 40px;
+    line-height: 40px;
+}
+.pic-ava{
+    vertical-align: middle;
+}
+
+.account{
+    margin-left: 116px;
+}
+.QQ{
+    margin-left: 64px;
+}
+.acc{
+    margin-top: 27px;
+}
+.gender-choice{
+    padding-right: 30px;
+}
+
+.btn-save {
+    display: inline-block;
+    padding: 0 1.5em;
+    height: 40px;
+    line-height: 39px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #ffffff;
+    border: 1px solid #EC414D;
+    background-color: #EC414D;
+    margin-left: 284px;
+    margin-top: 98px;
+}

@@ -12,15 +12,20 @@
     <script src="/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-<form id="uploadForm" action="/uploadAvatar" enctype="multipart/form-data" method="post">
-    <div><input type="file" name="avatar"></div>
+<div>upload file</div>
+<form id="uploadFileForm" action="/uploadFile" enctype="multipart/form-data" method="post">
+    <div><input type="file" name="file"></div>
     <div>user id :<input type="text" name="userId"></div>
-    <!--<div>story :<input type="text" name="story"></div>-->
-    <div><input type="submit" id="do"></div>
+    <div>story :<input type="text" name="story"></div>
+    <div><input type="submit" id="fileDo"></div>
 </form>
-<form action="" method="post">
-    <div><input type="button" class="layui-btn"></div>
+<div>upload avatar</div>
+<form id="uploadAvatarForm" action="/uploadAvatar" enctype="multipart/form-data" method="post">
+    <div><input type="file" name="avatar"></div>
+    <div>user id : <input type="text" name="userId"></div>
+    <div><input type="submit" id="avatarDo"></div>
 </form>
+
 <script>
 
 </script>

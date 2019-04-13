@@ -1,0 +1,141 @@
+
+.item{
+    height: 40px;
+    width: 400px;
+    line-height: 40px;
+    color: #999999;
+    margin-top: 10px;
+    margin-left: 60px;
+}
+
+.item-text{
+    width: 400px;
+    height: 40px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    border-radius: 4px;
+    color: #999999;
+    padding: 7px;
+}
+.item-check{
+    width:200px;
+    float: left;
+}
+
+.item-file{
+    float: left;
+    height: 30px;
+    margin-left: 10px;
+    font-size: 14px;
+    padding: 6px 0px;
+}
+
+input.error{
+    border: 1px solid #E6594E;
+}
+
+input.highlight{
+    border: 1px solid #7abd54;
+}
+
+label.error{
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    text-align: left;
+    margin-left: 5px;
+    padding-left: 35px;
+    color: red;
+    background: url('../image/error.png') no-repeat left center;
+}
+
+label.tip{
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    text-align: left;
+    margin-left: 5px;
+    padding-left: 35px;
+    color: #aaa;
+    background: url('../image/tip.png') no-repeat left center;
+    padding-left: 35px;
+}
+
+label.valid{
+    background: url('../image/valid.png') no-repeat left center;
+}
+.btn-change{
+    font-size: 24px;
+    color: #333333;
+    margin-top: 8px;
+}
+
+.log-he{
+    padding-right: 33px;
+}
+.item-name{
+    margin-top: 29px;
+}
+/* input::-webkit-input-placeholder{
+    margin-left: 7px;
+} */
+
+.check-btn{
+    margin-left: 10px;
+    display: inline-block;
+    width: 190px;
+    height: 40px;
+    background-color: #999999;
+    color: #ffffff;
+    border-radius: 4px;
+}
+
+.law{
+    color: #666666;
+    height: 16px;
+    line-height: 16px;
+}
+.law-check{
+    margin-top:20px;
+    text-align: left;
+    margin-left: 61px;
+    padding-right: 10px;
+}
+
+.btn-sub{
+    margin-top: 20px;
+    width: 400px;
+    height: 45px;
+    background-color: #EC414D;
+    border-radius: 4px;
+    border-style: none;
+    color: #ffffff;
+    font-size: 18px;
+}
+.btn-sub:hover{
+    background-color: #E81A2F;
+    color: #666666;
+}
+.o-way{
+    margin-top: 30px;
+}
+.QQ{
+    margin-top: 21px;
+}
+
+.radio-btn{
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    color: #ffffff;
+    vertical-align: middle;
+}
+.reset-pass{
+    margin-left: 261px;
+    color:#EC414D;
+}
+.btn-use{
+    font-weight: bold;
+    color: #E81A2F;
+}
