@@ -11,7 +11,7 @@ public class User {
     private String userPassword;
     private Date createTime;
     private char userGender;
-    private String userSubscription;
+    private String userDescription;
     private String avatarPath;
     private Long userCapacity;
     private Long usedCapacity;
@@ -67,12 +67,12 @@ public class User {
 //        this.userGender = userGender;
 //    }
 
-    public String getUserSubscription() {
-        return userSubscription;
+    public String getUserDescription() {
+        return userDescription;
     }
 
-    public void setUserSubscription(String userSubscription) {
-        this.userSubscription = userSubscription;
+    public void setUserDescription(String userDescription) {
+        this.userDescription = userDescription;
     }
 
     public String getAvatarPath() {

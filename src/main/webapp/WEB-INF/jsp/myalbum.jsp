@@ -65,8 +65,8 @@
                             <!-- <i class="icon icon-search"></i> -->
                             <img src="img/icon_search.png" alt="search" class="icon-search">
                         </span>
-                <img src="showT/2" alt="我的头像" class="user">
-                <span class="user">Crush</span>
+                <img src="showT/${sessionScope.get("user").userId}" alt="我的头像" class="user">
+                <span class="user">${sessionScope.get("user").userName}</span>
                 <img src="img/icon-dropdown.png" class="user">
             </div>
         </div>
@@ -76,21 +76,21 @@
     <section class="detail">
         <div>
             <div class="detail-l">
-                <div class="other-avator"><img src="showA/2" alt="我是头像">
+                <div class="other-avator"><img src="showA/${sessionScope.get("user").userId}" alt="我是头像">
                 </div>
 
                 <div class="other-note">
-                    <div><span class="other-note-title">南巷清风</span>
+                    <div><span class="other-note-title">${sessionScope.get("user").userName}</span>
                     </div>
-                    <div class="other-note-decription">一个男人要走多少路，才能称之为男人。</div>
+                    <div class="other-note-decription">${sessionScope.get("user").userDescription}</div>
                     <div class="other-focus">
                         <div class="fans">
-                            <div class="number">178</div>
+                            <div class="number">${FocusMe}</div>
                             <div class="ch">粉丝</div>
                         </div>
                         <div class="focus-person">
                             <div class="v-line"><img src="img/line-vertical.png"></div>
-                            <div class="number">125</div>
+                            <div class="number">${MyFocus}</div>
                             <div class="ch">关注</div>
                         </div>
                     </div>
@@ -231,7 +231,7 @@
                 <!--</a>-->
             </div>
             <div class="upload-footer">
-                <label for="btnSubmit"bbb>
+                <label for="btnSubmit">
                     <a href="javascript:void(0)" class="btn-start-upload">开始上传</a>
                 </label>
                 <input type="submit" name="do" id="btnSubmit" style="display: none;">

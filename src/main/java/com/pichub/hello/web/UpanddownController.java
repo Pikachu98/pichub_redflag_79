@@ -50,8 +50,8 @@ public class UpanddownController {
         }
 
         //insert origin picture
-        //User user = (User) request.getSession().getAttribute("User");
-        //long userId = user.getUserId();
+        User user = User.getCurrentUser(request);
+        long userId = user.getUserId();
         String fileName = file.getOriginalFilename();
         String exName = fileName.substring(fileName.lastIndexOf(".") + 1 );
         String newOriginiName = UUID.randomUUID().toString().replaceAll("-","") + "." + exName;
@@ -122,7 +122,7 @@ public class UpanddownController {
         picture.setUploadTime(new Date());
         picture.setDelState(1);
         picture.setPicStory(null);           ///////////////////////////////////////////
-        picture.setUserId(1);                //////////////////////////////////////////
+        picture.setUserId(userId);
         picture.setPicPath(real2realative(finalOriginPath));
         picture.setPicThumbnailPath(real2realative(finalThumbnailPath));
         picture.setPicSize(file.getSize());
@@ -141,7 +141,7 @@ public class UpanddownController {
 
 
     @RequestMapping(value = "/uploadAvatar",method = RequestMethod.POST)
-    public String uploadAvatar(@Param("avatar") MultipartFile avatar,@Param("userId")long userId,
+    public String uploadAvatar(@Param("avatar") MultipartFile avatar,/*@Param("userId")long userId,*/
                                HttpServletRequest request, HttpServletResponse response)
     {
         if(avatar == null && avatar.getSize() > 0)
@@ -149,6 +149,9 @@ public class UpanddownController {
             return "{" + false + "}";
         }
 
+
+        User user = User.getCurrentUser(request);
+        long userId = user.getUserId();
 
         String avatarName = avatar.getOriginalFilename();
         String exName = avatarName.substring(avatarName.lastIndexOf(".") + 1 );

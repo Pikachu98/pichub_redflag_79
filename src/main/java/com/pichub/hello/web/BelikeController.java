@@ -1,5 +1,6 @@
 package com.pichub.hello.web;
 
+import com.pichub.hello.bo.User;
 import com.pichub.hello.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,15 +26,16 @@ public class BelikeController {
 
     @RequestMapping(value = "/belike/check")
     @ResponseBody
-    public String checkBelike(long userId, long pictureId)throws Exception
+    public String checkBelike(long pictureId, HttpServletRequest request)throws Exception
     {
-        return "{" + userService.belikeCheck(userId,pictureId) + "}";
+        return "{" + userService.belikeCheck(User.getCurrentUser(request).getUserId(),pictureId) + "}";
     }
 
     @RequestMapping(value = "/belike/reverseState")
     @ResponseBody
-    public String reverseState(long userId, long pictureId,HttpServletRequest request, HttpServletResponse response)throws Exception
+    public String reverseState(long pictureId,HttpServletRequest request, HttpServletResponse response)throws Exception
     {
+        long userId = User.getCurrentUser(request).getUserId();
 
         if (userService.belikeCheck(userId,pictureId))
         {
