@@ -1,5 +1,6 @@
 package com.pichub.hello.web;
 
+import com.pichub.hello.bo.User;
 import com.pichub.hello.service.PictureService;
 import com.pichub.hello.bo.Picture;
 import com.pichub.hello.service.UserService;
@@ -41,7 +42,7 @@ public class UpanddownController {
 
     @RequestMapping(value = "/uploadFile" ,method = RequestMethod.POST)
     public String uploadFile(@RequestParam(value="file") MultipartFile file, //@RequestParam(value = "story")String story,
-                             @RequestParam(value = "userId") long userId, HttpServletRequest request, HttpServletResponse response)
+                             /*@RequestParam(value = "userId") long userId,*/ HttpServletRequest request, HttpServletResponse response)
     {
         if(file == null && file.getSize() > 0)
         {
@@ -49,6 +50,8 @@ public class UpanddownController {
         }
 
         //insert origin picture
+        //User user = (User) request.getSession().getAttribute("User");
+        //long userId = user.getUserId();
         String fileName = file.getOriginalFilename();
         String exName = fileName.substring(fileName.lastIndexOf(".") + 1 );
         String newOriginiName = UUID.randomUUID().toString().replaceAll("-","") + "." + exName;
@@ -146,6 +149,7 @@ public class UpanddownController {
             return "{" + false + "}";
         }
 
+
         String avatarName = avatar.getOriginalFilename();
         String exName = avatarName.substring(avatarName.lastIndexOf(".") + 1 );
         String dirName = String.valueOf(userId);
@@ -181,9 +185,18 @@ public class UpanddownController {
             }
         }
 
+
+
         try {// make square avatar
-            Thumbnails.of(avatarPath + "/origin." + exName).size(150,150).keepAspectRatio(false)
-                      .toFile(avatarPath + "/" + "square." +exName);
+            Thumbnails.of(avatarPath + "/origin." + exName).size(150,150).keepAspectRatio(false).outputFormat("jpg")
+                      .toFile(avatarPath + "/" + "square.jpg");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {// make thumbnail avatar
+            Thumbnails.of(avatarPath + "/origin." + exName).size(40,40).keepAspectRatio(false).outputFormat("jpg")
+                    .toFile(avatarPath + "/" + "thumbnail.jpg");
         } catch (IOException e) {
             e.printStackTrace();
         }

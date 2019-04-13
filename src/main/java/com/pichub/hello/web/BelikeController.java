@@ -32,7 +32,7 @@ public class BelikeController {
 
     @RequestMapping(value = "/belike/reverseState")
     @ResponseBody
-    public String reverseState(long userId, long pictureId)throws Exception
+    public String reverseState(long userId, long pictureId,HttpServletRequest request, HttpServletResponse response)throws Exception
     {
 
         if (userService.belikeCheck(userId,pictureId))
