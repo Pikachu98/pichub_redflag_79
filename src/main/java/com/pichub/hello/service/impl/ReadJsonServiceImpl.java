@@ -1,10 +1,8 @@
 package com.pichub.hello.service.impl;
 
-import com.pichub.hello.dao.PictureDao;
 import com.pichub.hello.service.ReadJsonService;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -12,25 +10,17 @@ import java.io.IOException;
 
 @Service("readJsonService")
 public class ReadJsonServiceImpl implements ReadJsonService {
-    @Autowired
-    PictureDao pictureDao;
-
     @Override
-    public String getBaiDuJson(int pictureId,String result) {
-        if (result==null)
-            return null;
-        else {
-            JSONObject jsonObjName = new JSONObject(result);
-            int result_num=(int)jsonObjName.get("result_num");
-            JSONArray true_result=(JSONArray)jsonObjName.get("result");
-            for(int i=0;i<result_num;i++){
-                JSONObject jsonObject_trueresult=true_result.getJSONObject(i);
-                Double score=(Double)jsonObject_trueresult.get("score");
-                //String root=(String)jsonObject_trueresult.get("root");
-                String keyword=(String)jsonObject_trueresult.get("keyword");
-                pictureDao.insertTag(pictureId,score,keyword);
-                //System.out.println(score+keyword);//得到的值
-            }
+    public String getBaiDuJson(String result) {
+        JSONObject jsonObjName = new JSONObject(result);
+        int result_num=(int)jsonObjName.get("result_num");
+        JSONArray true_result=(JSONArray)jsonObjName.get("result");
+        for(int i=0;i<result_num;i++){
+            JSONObject jsonObject_trueresult=true_result.getJSONObject(i);
+            Double score=(Double)jsonObject_trueresult.get("score");
+            String root=(String)jsonObject_trueresult.get("root");
+            String keyword=(String)jsonObject_trueresult.get("keyword");
+            System.out.println(score+root+keyword);//得到的值
         }
         return null;
     }

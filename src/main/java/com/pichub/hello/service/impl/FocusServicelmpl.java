@@ -1,5 +1,8 @@
 package com.pichub.hello.service.impl;
 
+import com.pichub.hello.bo.Album;
+import com.pichub.hello.bo.Picture;
+import com.pichub.hello.bo.User;
 import com.pichub.hello.dao.UserDao;
 import com.pichub.hello.service.FocusService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,22 +27,22 @@ public class FocusServicelmpl implements FocusService {
     }
 
     @Override
-    public List showMyFocus(Integer userId) throws Exception {
+    public List<User> showMyFocus(Integer userId) throws Exception {
         return userDao.showMyFocus(userId);
     }
 
     @Override
-    public List showFocusMe(Integer userId) throws Exception {
+    public List<User> showFocusMe(Integer userId) throws Exception {
         return userDao.showFocusMe(userId);
     }
 
     @Override
-    public List showMyLike(Integer userId) throws Exception {
+    public List<Picture> showMyLike(Integer userId) throws Exception {
         return userDao.showMyLike(userId);
     }
 
     @Override
-    public List showMyAlbum(Integer userId) throws Exception {
+    public List<Album> showMyAlbum(Integer userId) throws Exception {
         return userDao.showMyAlbum(userId);
     }
 

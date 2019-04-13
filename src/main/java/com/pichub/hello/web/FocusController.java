@@ -1,5 +1,6 @@
 package com.pichub.hello.web;
 
+import com.pichub.hello.bo.User;
 import com.pichub.hello.service.FocusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -92,7 +93,39 @@ public class FocusController {
     {
         Map<String,Object> result = new HashMap<String,Object>();
         int userIdNow = 2;
-        List myFocus = focusService.showMyFocus(userIdNow);
+
+        String p = request.getParameter("page");
+        int page;
+        try {
+            //当前页数
+            page = Integer.valueOf(p);
+        } catch (NumberFormatException e) {
+            page = 1;
+        }
+        List<User> myFocus = focusService.showMyFocus(userIdNow);
+        //用户总数
+        int totalUser = myFocus.size();
+        //每页显示数量
+        int userPerPage = 10;
+        //总页数
+        int totalPages = totalUser % userPerPage == 0 ? totalUser / userPerPage : totalUser / userPerPage + 1;
+        //本页起始用户序号
+        int beginIndex = (page-1)*userPerPage;
+        //本页末尾用户序号的下一个
+        int endIndex = beginIndex + userPerPage;
+
+        if(endIndex>totalUser)
+            endIndex=totalUser;
+
+        request.setAttribute("totalUsers",totalUser);
+        request.setAttribute("usersPerPage",userPerPage);
+        request.setAttribute("totalPages",totalPages);
+        request.setAttribute("beginIndex",beginIndex);
+        request.setAttribute("endIndex",endIndex);
+        request.setAttribute("page",page);
+        request.setAttribute("users",myFocus);
+        request.getRequestDispatcher("list.jsp").forward(request, response);
+
         result.put("MyFocus",myFocus);
         return result;
     }
