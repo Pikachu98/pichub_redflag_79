@@ -13,7 +13,7 @@
                             <!-- <i class="icon icon-search"></i> -->
                             <img src="/img/icon_search.png" alt="search" class="icon-search">
                         </span>
-                    <img id="header-avatar" src="showT/${sessionScope.get("user").userId}" alt="我的头像" class="user">
+                    <a href="/myAlbum"><img id="header-avatar" src="showT/${sessionScope.get("user").userId}" alt="我的头像" class="user"></a>
                     <span class="user">${sessionScope.get("user").userName}</span>
                     <img src="/img/icon-dropdown.png" class="user">
                 </div>

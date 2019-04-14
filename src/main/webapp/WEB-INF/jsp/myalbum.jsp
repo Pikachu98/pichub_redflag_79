@@ -126,81 +126,12 @@
 
         <div class="my-root">
             <ul class="my-album">
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-18.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-19.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-20.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-21.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-22.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-23.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-24.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-25.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-26.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-27.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-28.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-29.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-30.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-31.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-32.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
+                <c:forEach items="${picsList}" var="var" varStatus="cou"><!--一个循环元素一个包装-->
+                    <li class="cover-item my-cover-item">
+                        <div class="album-cover">
+                            <img src="/img/pho-18.png" alt="photo-1" class="cover">
+                        </div>
+                    </li>
             </ul>
             <div class="choose-page">
                 <a href="javascript:void(0)" class="choose-btn">上一页</a>
@@ -228,7 +159,7 @@
                 <!--<a class="btn-choose-pic">--><!--<img src="img/pic.png"
                                 style="vertical-align:middle;height: 25px;padding-bottom: 5px;">选择照片-->
                 <label for="upload" class="btn-choose-pic">
-                    <img src="img/pic.png" style="vertical-align:middle;height: 25px;padding-bottom: 5px;">选择照片</label>
+                    <img src="/img/pic.png" style="vertical-align:middle;height: 25px;padding-bottom: 5px;">选择照片</label>
                 <input type="file" name="file" id="upload" style="display: none;">
                 <!--</a>-->
             </div>
