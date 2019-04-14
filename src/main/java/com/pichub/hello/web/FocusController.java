@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -93,6 +94,18 @@ public class FocusController {
     {
         Map<String,Object> result = new HashMap<String,Object>();
         int userIdNow = 2;
+        List myFocus = focusService.showMyFocus(userIdNow);
+        result.put("MyFocus",myFocus);
+        return result;
+    }
+
+    @RequestMapping(value="/list")
+    public String showMyFocus(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+            throws Exception
+    {
+        int userIdNow = 2;
+        List<User> myFocus = focusService.showMyFocus(userIdNow);
+        model.put("MyFocus",myFocus);
 
         String p = request.getParameter("page");
         int page;
@@ -102,37 +115,32 @@ public class FocusController {
         } catch (NumberFormatException e) {
             page = 1;
         }
-        List<User> myFocus = focusService.showMyFocus(userIdNow);
         //用户总数
-        int totalUser = myFocus.size();
-        //每页显示数量
-        int userPerPage = 10;
+        int totalUsers = myFocus.size();
+        //每页用户数
+        int usersPerPage = 10;
         //总页数
-        int totalPages = totalUser % userPerPage == 0 ? totalUser / userPerPage : totalUser / userPerPage + 1;
+        int totalPages = totalUsers % usersPerPage == 0 ? totalUsers / usersPerPage : totalUsers / usersPerPage + 1;
         //本页起始用户序号
-        int beginIndex = (page-1)*userPerPage;
+        int beginIndex = (page - 1) * usersPerPage;
         //本页末尾用户序号的下一个
-        int endIndex = beginIndex + userPerPage;
-
-        if(endIndex>totalUser)
-            endIndex=totalUser;
-
-        request.setAttribute("totalUsers",totalUser);
-        request.setAttribute("usersPerPage",userPerPage);
-        request.setAttribute("totalPages",totalPages);
-        request.setAttribute("beginIndex",beginIndex);
-        request.setAttribute("endIndex",endIndex);
-        request.setAttribute("page",page);
-        request.setAttribute("users",myFocus);
-        request.getRequestDispatcher("list.jsp").forward(request, response);
-
-        result.put("MyFocus",myFocus);
-        return result;
+        int endIndex = beginIndex + usersPerPage;
+        if (endIndex > totalUsers)
+            endIndex = totalUsers;
+        request.setAttribute("totalUsers", totalUsers);
+        request.setAttribute("usersPerPage", usersPerPage);
+        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("beginIndex", beginIndex);
+        request.setAttribute("endIndex", endIndex);
+        request.setAttribute("page", page);
+        request.setAttribute("users", myFocus);
+        return "myfans";
     }
+
 
     @RequestMapping(value="/user/doShowFocusMe")
     @ResponseBody
-    public Map<String,Object> doShowFocusMe(boolean loginState/*@SessionAttribute(value = "userId") long userIdNow*/, ModelMap model, HttpServletRequest request, HttpServletResponse response)
+    public Map<String,Object> doShowFocusMe(ModelMap model, HttpServletRequest request, HttpServletResponse response)
             throws Exception
     {
         Map<String,Object> result = new HashMap<String,Object>();

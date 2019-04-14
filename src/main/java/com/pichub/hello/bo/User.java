@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 public class User {
-    private Long userId;
+    private int userId;
     private String userName;
     private String userEmail;
     private String userPassword;
@@ -22,11 +22,11 @@ public class User {
     private String qqNum;
     private String userPhone;
 
-    public Long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

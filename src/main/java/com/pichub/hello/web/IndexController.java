@@ -5,20 +5,15 @@ import com.pichub.hello.bo.User;
 import com.pichub.hello.dao.PictureDao;
 import com.pichub.hello.service.PictureService;
 import com.pichub.hello.service.UserService;
-import jdk.nashorn.internal.ir.RuntimeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.WriteListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
