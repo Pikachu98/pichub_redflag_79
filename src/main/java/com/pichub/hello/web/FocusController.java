@@ -2,6 +2,7 @@ package com.pichub.hello.web;
 
 import com.pichub.hello.bo.User;
 import com.pichub.hello.service.FocusService;
+import com.pichub.hello.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,6 +19,8 @@ import java.util.Map;
 public class FocusController {
     @Autowired
     private FocusService focusService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value="/user/changeFocus")
     public String focusSave(ModelMap model, HttpServletRequest request, HttpServletResponse response)
@@ -94,7 +97,7 @@ public class FocusController {
     {
         Map<String,Object> result = new HashMap<String,Object>();
         int userIdNow = 2;
-        List myFocus = focusService.showMyFocus(userIdNow);
+        List<Integer> myFocus = focusService.showMyFocus(userIdNow);
         result.put("MyFocus",myFocus);
         return result;
     }
@@ -104,8 +107,14 @@ public class FocusController {
             throws Exception
     {
         int userIdNow = 2;
-        List<User> myFocus = focusService.showMyFocus(userIdNow);
+        List<Integer> myFocus = focusService.showMyFocus(userIdNow);
         model.put("MyFocus",myFocus);
+
+        List<User> myFocusList = new ArrayList<>();
+
+        for (int i:myFocus){
+            myFocusList.add(userService.getUser(i));
+        }
 
         String p = request.getParameter("page");
         int page;
@@ -133,7 +142,7 @@ public class FocusController {
         request.setAttribute("beginIndex", beginIndex);
         request.setAttribute("endIndex", endIndex);
         request.setAttribute("page", page);
-        request.setAttribute("users", myFocus);
+        request.setAttribute("users", myFocusList);
         return "myfocus";
     }
 

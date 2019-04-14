@@ -5,6 +5,7 @@ import com.pichub.hello.bo.Picture;
 import com.pichub.hello.bo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.List;
 
@@ -17,10 +18,10 @@ public interface UserDao {
     boolean delFocus(Integer userId1,Integer userId2) throws Exception;
     //查看关注
     int checkFocus(Integer userId1,Integer userId2) throws Exception;
-    List<User> showMyFocus(Integer userId) throws Exception;
-    List<User> showFocusMe(Integer userId) throws Exception;
-    List<Picture> showMyLike(Integer userId) throws Exception;
-    List<Album> showMyAlbum(Integer userId) throws Exception;
+    List<Integer> showMyFocus(Integer userId) throws Exception;
+    List<Integer> showFocusMe(Integer userId) throws Exception;
+    List<Integer> showMyLike(Integer userId) throws Exception;
+    List<Integer> showMyAlbum(Integer userId) throws Exception;
     boolean changeUsername(Integer userId, String userName) throws Exception;
 
     int insertUser(@Param("user") User user)throws Exception;

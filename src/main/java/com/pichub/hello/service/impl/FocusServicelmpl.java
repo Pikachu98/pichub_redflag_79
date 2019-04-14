@@ -27,22 +27,22 @@ public class FocusServicelmpl implements FocusService {
     }
 
     @Override
-    public List<User> showMyFocus(Integer userId) throws Exception {
+    public List<Integer> showMyFocus(Integer userId) throws Exception {
         return userDao.showMyFocus(userId);
     }
 
     @Override
-    public List<User> showFocusMe(Integer userId) throws Exception {
+    public List<Integer> showFocusMe(Integer userId) throws Exception {
         return userDao.showFocusMe(userId);
     }
 
     @Override
-    public List<Picture> showMyLike(Integer userId) throws Exception {
+    public List<Integer> showMyLike(Integer userId) throws Exception {
         return userDao.showMyLike(userId);
     }
 
     @Override
-    public List<Album> showMyAlbum(Integer userId) throws Exception {
+    public List<Integer> showMyAlbum(Integer userId) throws Exception {
         return userDao.showMyAlbum(userId);
     }
 
