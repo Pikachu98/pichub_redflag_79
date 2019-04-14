@@ -21,3 +21,8 @@ html, body {
     color: #333333;
     background-color: #f4f4f4;
 }
+
+#resetTitle{
+    position: relative;
+    left:20px;
+}

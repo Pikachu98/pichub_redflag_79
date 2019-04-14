@@ -27,10 +27,10 @@ public class DoTagService implements ApplicationRunner {
     }
     public void doTag() throws Exception{
         while(true){
-            long MaxPictureTagId=pictureDao.checkMaxPictureTagId();
-            long MaxPictureId=pictureDao.checkMaxPictureId();
+            int MaxPictureTagId=pictureDao.checkMaxPictureTagId();
+            int MaxPictureId=pictureDao.checkMaxPictureId();
             if(MaxPictureTagId<MaxPictureId){
-                for (long i=MaxPictureTagId+1;i<=MaxPictureId;i++){//此处似乎会出现重复打标签的问题-ysh
+                for (int i=MaxPictureTagId+1;i<=MaxPictureId;i++){//此处似乎会出现重复打标签的问题-ysh
                     if (pictureDao.getPicture(i)!=null) {
                         if(pictureDao.getPicture(i).getPicThumbnailPath()!=null){
                             //将路径放入百度接口识别//将识别结果写入数据库

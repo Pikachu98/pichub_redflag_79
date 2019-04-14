@@ -49,7 +49,7 @@ public class IndexController {
 //        return "loginIndex";
 //    }
 
-    @RequestMapping( "/getHotPicList")
+    @RequestMapping( "/")
    // @ResponseBody
     public String getHotList(ModelMap model) throws Exception{
         // List<Picture> picList = pictureService.getHotPicture();
@@ -75,12 +75,35 @@ public class IndexController {
     {
         response.reset();
         response.setContentType("image/jpeg");
+        String path = pictureService.getPicture(picId).getPicName();
+        path =  getParent(request.getServletContext().getRealPath("/")) + "/resources/originPictures/"+path ;
+        outputFile(path,response);
+    }
+
+    @RequestMapping(value = "/showA/{userId}")
+    public void showA(@PathVariable int userId,HttpServletRequest request, HttpServletResponse response)throws Exception
+    {
+        response.reset();
+        response.setContentType("image/jpeg");
+        String path =  getParent(request.getServletContext().getRealPath("/")) + "/resources/static/avatar/" + String.valueOf(userId) +"/square.jpg";
+        outputFile(path,response);
+    }
+
+    @RequestMapping(value = "/showT/{userId}")
+    public void showT(@PathVariable int userId,HttpServletRequest request, HttpServletResponse response)throws Exception
+    {
+        response.reset();
+        response.setContentType("image/jpeg");
+        String path =  getParent(request.getServletContext().getRealPath("/")) + "/resources/static/avatar/" + String.valueOf(userId) +"/thumbnail.jpg";
+        outputFile(path,response);
+    }
+
+    private void outputFile(String path, HttpServletResponse response)
+    {
         try {
-            OutputStream outputStream = response.getOutputStream();
-            String path = pictureService.getPicture(picId).getPicName();
-            path =  getParent(request.getServletContext().getRealPath("/")) + "/resources/originPictures/"+path ;
             File file = new File(path);
             InputStream inputStream = new FileInputStream(file);
+            OutputStream outputStream = response.getOutputStream();
             byte[] buffer = new byte[1024];
             int len = 0;
             while((len = inputStream.read(buffer)) > 0)

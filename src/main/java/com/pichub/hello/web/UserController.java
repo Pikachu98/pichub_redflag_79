@@ -95,9 +95,6 @@ public class UserController
     @ResponseBody
     public Map<String,Object> doReset(User user, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception{
         Map<String, Object> result = new HashMap<String, Object>();
-//        System.out.print("ssfgfhjiojd!!!!"+request.getParameter("inputCheckCode"));
-//        System.out.print(request.getSession().getAttribute("checkCode"));
-
         if (request.getParameter("inputCheckCode").equals(request.getSession().getAttribute("a"))) {
             String userEmail = user.getUserEmail();
             String userPassword = user.getUserPassword();
