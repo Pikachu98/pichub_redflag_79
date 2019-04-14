@@ -18,18 +18,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value = "/album")
 public class AlbumController {
     @Autowired
     AlbumService albumService;
     @Autowired
     FocusService focusService;
-
-    @RequestMapping(value="/")
-    public String album(HttpServletRequest request, HttpServletResponse response){
-        return "album";
-    }
-
 
     @RequestMapping("/create")
     @ResponseBody
