@@ -7,10 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,60 +89,99 @@ public class FocusController {
 
     @RequestMapping(value="/user/doShowMyFocus")
     @ResponseBody
-    public Map<String,Object> doShowMyFocus(HttpServletRequest request, HttpServletResponse response)
+    public Map<String,Object> doShowMyFocus(boolean loginState/*@SessionAttribute(value = "userId") long userIdNow*/, ModelMap model, HttpServletRequest request, HttpServletResponse response)
             throws Exception
     {
         Map<String,Object> result = new HashMap<String,Object>();
-        int userId = User.getCurrentUser(request).getUserId().intValue();
-        List myFocus = focusService.showMyFocus(userId);
+        int userIdNow = 2;
+        List myFocus = focusService.showMyFocus(userIdNow);
         result.put("MyFocus",myFocus);
         return result;
     }
 
+    @RequestMapping(value="/list")
+    public String showMyFocus(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+            throws Exception
+    {
+        int userIdNow = 2;
+        List<User> myFocus = focusService.showMyFocus(userIdNow);
+        model.put("MyFocus",myFocus);
+
+        String p = request.getParameter("page");
+        int page;
+        try {
+            //当前页数
+            page = Integer.valueOf(p);
+        } catch (NumberFormatException e) {
+            page = 1;
+        }
+        //用户总数
+        int totalUsers = myFocus.size();
+        //每页用户数
+        int usersPerPage = 10;
+        //总页数
+        int totalPages = totalUsers % usersPerPage == 0 ? totalUsers / usersPerPage : totalUsers / usersPerPage + 1;
+        //本页起始用户序号
+        int beginIndex = (page - 1) * usersPerPage;
+        //本页末尾用户序号的下一个
+        int endIndex = beginIndex + usersPerPage;
+        if (endIndex > totalUsers)
+            endIndex = totalUsers;
+        request.setAttribute("totalUsers", totalUsers);
+        request.setAttribute("usersPerPage", usersPerPage);
+        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("beginIndex", beginIndex);
+        request.setAttribute("endIndex", endIndex);
+        request.setAttribute("page", page);
+        request.setAttribute("users", myFocus);
+        return "myfans";
+    }
+
+
     @RequestMapping(value="/user/doShowFocusMe")
     @ResponseBody
-    public Map<String,Object> doShowFocusMe(HttpServletRequest request, HttpServletResponse response)
+    public Map<String,Object> doShowFocusMe(ModelMap model, HttpServletRequest request, HttpServletResponse response)
             throws Exception
     {
         Map<String,Object> result = new HashMap<String,Object>();
-        int userId = User.getCurrentUser(request).getUserId().intValue();
-        List focusMe = focusService.showFocusMe(userId);
+        int userIdNow = 2;
+        List focusMe = focusService.showFocusMe(userIdNow);
         result.put("FocusMe",focusMe);
         return result;
     }
 
     @RequestMapping(value="/user/doShowMyLike")
     @ResponseBody
-    public Map<String,Object> doShowMyLike(HttpServletRequest request, HttpServletResponse response)
+    public Map<String,Object> doShowMyLike(boolean loginState/*@SessionAttribute(value = "userId") long userIdNow*/, ModelMap model, HttpServletRequest request, HttpServletResponse response)
             throws Exception
     {
         Map<String,Object> result = new HashMap<String,Object>();
-        int userId = User.getCurrentUser(request).getUserId().intValue();
-        List MyLike = focusService.showMyLike(userId);
+        int userIdNow = 2;
+        List MyLike = focusService.showMyLike(userIdNow);
         result.put("MyLike",MyLike);
         return result;
     }
 
     @RequestMapping(value="/user/doShowMyAlbum")
     @ResponseBody
-    public Map<String,Object> doShowMyAlbum(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+    public Map<String,Object> doShowMyAlbum(boolean loginState/*@SessionAttribute(value = "userId") long userIdNow*/, ModelMap model, HttpServletRequest request, HttpServletResponse response)
             throws Exception
     {
         Map<String,Object> result = new HashMap<String,Object>();
-        int userId = User.getCurrentUser(request).getUserId().intValue();
-        List MyAlbum = focusService.showMyAlbum(userId);
+        int userIdNow = 1;
+        List MyAlbum = focusService.showMyAlbum(userIdNow);
         result.put("MyAlbum",MyAlbum);
         return result;
     }
 
     @RequestMapping(value="/user/doChangeUserName")
     @ResponseBody
-    public Map<String,Object> doChangeUserName(String newUsername, ModelMap model, HttpServletRequest request, HttpServletResponse response)
+    public Map<String,Object> doChangeUserName(boolean loginState/*@SessionAttribute(value = "userId") long userIdNow*/,String newUsername, ModelMap model, HttpServletRequest request, HttpServletResponse response)
             throws Exception
     {
         Map<String,Object> result = new HashMap<String,Object>();
-        int userId = User.getCurrentUser(request).getUserId().intValue();
-        boolean changeName = focusService.changeUsername(userId,newUsername);
+        int userIdNow = 1;
+        boolean changeName = focusService.changeUsername(userIdNow,newUsername);
         result.put("changeName",changeName);
         return result;
     }

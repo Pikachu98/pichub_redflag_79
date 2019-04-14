@@ -56,8 +56,8 @@ public class AlbumController {
     {
         model.put("MyFocus",focusService.showMyFocus(User.getCurrentUser(request).getUserId().intValue()).size());
         model.put("FocusMe",focusService.showFocusMe(User.getCurrentUser(request).getUserId().intValue()).size());
-
         return "myalbum";
+
     }
 
 

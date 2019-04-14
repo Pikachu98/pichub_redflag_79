@@ -29,7 +29,7 @@ public class ReadJsonServiceImpl implements ReadJsonService {
                 //String root=(String)jsonObject_trueresult.get("root");
                 String keyword=(String)jsonObject_trueresult.get("keyword");
                 pictureDao.insertTag(pictureId,score,keyword);
-                //System.out.println(score+keyword);//得到的值
+                System.out.println(score+keyword);//得到的值
             }
         }
         return null;
