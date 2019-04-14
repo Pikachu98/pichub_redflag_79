@@ -18,17 +18,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value = "/album")
 public class AlbumController {
     @Autowired
     AlbumService albumService;
     @Autowired
     FocusService focusService;
-
-    @RequestMapping(value="/")
-    public String album(HttpServletRequest request, HttpServletResponse response){
-        return "album";
-    }
 
 
     @RequestMapping("/create")
@@ -63,8 +57,8 @@ public class AlbumController {
     {
         model.put("MyFocus",focusService.showMyFocus(User.getCurrentUser(request).getUserId().intValue()).size());
         model.put("FocusMe",focusService.showFocusMe(User.getCurrentUser(request).getUserId().intValue()).size());
-
         return "myalbum";
+
     }
 
 
