@@ -76,7 +76,7 @@
                     }
                     if(user == 200){
                         alert("成功");
-                        window.location.href = "/loginIndex";
+                        window.location.href = "/";
                     }
                 },
                  error:function () {
