@@ -47,14 +47,12 @@
         values (#{pictureId},#{score},#{keyword});
     </insert>
 
-<!--    <select id="getPictureOriginPath" resultType="java.lang.String">
-        select pic_id from picture where pic_id =1
 
-    </select>-->
 
     <select id="getPictureThumbnailPath" resultType="java.lang.String">
         select pic_thumbnail_path from picture where pic_id=#{pictureId}
     </select>
+
 
 
 </mapper>
