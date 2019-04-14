@@ -76,6 +76,7 @@ public class UserServiceImpl implements UserService {
         int flag = userDao.belikeCheck(userId, pictureId);
         if(flag > 0)    return true;
         else return false;
+
     }
 
     public boolean deleteBelike(Long  userId, long pictureId)throws Exception{
