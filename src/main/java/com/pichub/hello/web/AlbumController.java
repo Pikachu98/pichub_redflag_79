@@ -25,6 +25,7 @@ public class AlbumController {
     @Autowired
     FocusService focusService;
 
+
     @RequestMapping("/create")
     @ResponseBody
     public Map<String,Object> createAlbum(Album album, HttpServletRequest request, HttpServletResponse response) {

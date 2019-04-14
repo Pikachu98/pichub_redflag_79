@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -51,6 +52,7 @@
                 that.img.init(op);
 
             },
+
             img : {
                 init : function(n){
 
@@ -108,6 +110,68 @@
             anim:false,
             selectorName:".hot_pics"
         });
+    </script>
+    <script>
+        $(function () {
+            $(".btn-focus").on("click",function () {
+                var focusId = $(this).parents(".view-other").find("#user-id").attr("user_id");
+                if($(this).val() == "已关注")
+                {
+                    $(this).val("关注");
+                }
+                else
+                {
+                    $(this).val("已关注");
+                    alert($(this).val());
+                }
+
+                $.ajax({
+                    type: "Get",
+                    url: "/user/doInsertFocus",
+                    dataType: "json",
+                    data:{
+                        "userId1": focusId
+                    },
+                    success:function (result) {
+
+                    }
+                })
+            })
+        })
+    </script>
+    <script>
+        $(function () {
+            $(".heart").on("click",function () {
+                var likeId = $(this).parents(".view").find(".view-cover").find(".hot_pics").attr("pic_id");
+                var count = $(this).parents(".focus-msg").find(".focus-num").attr("count");
+                if($(this).attr("src") == "img/i-2.png")
+                {
+                    $(this).attr("src","img/i-2-1.png");
+                    $(this).parents(".focus-msg").find(".focus-num").attr("count",++count);
+                    $(this).parents(".focus-msg").find(".focus-num").text(count + "人喜欢");
+
+                }
+                else 
+                {
+                    $(this).attr("src","img/i-2.png");
+                    $(this).parents(".focus-msg").find(".focus-num").attr("count",--count);
+                    $(this).parents(".focus-msg").find(".focus-num").text(count + "人喜欢");
+                }
+                
+                $.ajax({
+                    type: "Get",
+                    url: "/belike/reverseState",
+                    dataType: "json",
+                    data: {
+                        "pictureId": likeId
+                    },
+                    success:function (result) {
+                        
+                    }
+                })
+                
+            })
+        })
     </script>
 </head>
 
@@ -244,18 +308,23 @@
                     <div class="view-l"><!--头像 photo-list和description一起-->
                         <a><img src="img/avator-1.png" alt="头像"></a>
                         <span class="user-name">${users[cou.count-1].userName}</span>
+                        <span id="user-id" user_id="${users[cou.count-1].userId}" style="opacity: 0">${users[cou.count-1].userId}</span>
                     </div>
                     <div class="view-r"><!--关注，见photo-list-->
-                        <a href="javascript:void(0)" class="btn-focus">关注</a>
-
+                        <c:if test="${focusList[cou.count-1] == 0}">
+                            <input type="button" class="btn-focus" value="关注">
+                        </c:if>
+                        <c:if test="${focusList[cou.count-1] == 1}">
+                            <input type="button" class="btn-focus" value="已关注">
+                        </c:if>
                     </div><!--关注-->
                 </div><!--头像+关注-->
                 <div class="view-cover"><!--图片的显示，见phot-list:设置了个边框颜色？？？-->
                     <c:if test="${cou.count <4}">
-                    <img class="hot_pics" src="show/${var.picId}" alt="photo-1" width="301px">
+                    <img class="hot_pics" src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">
                     </c:if>
                     <c:if test="${cou.count >=4}">
-                    <img class="hot_pics" src="img/whiteboard.png" data-src="show/${var.picId}" alt="photo-1" width="301px">
+                    <img class="hot_pics" src="img/whiteboard.png" data-src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">
                     </c:if>
 
                 </div>
@@ -266,8 +335,13 @@
                     <img src="img/line.png" alt="我是一条分割线">
                 </div>
                 <div class="focus-msg"><!--喜欢，见photo-list-->
-                    <a><img src="img/heart.png" alt="我是一颗心"></a>
-                    <span class="focus-num">${likeCount[cou.count-1]}人喜欢</span>
+                    <c:if test="${belikeList[cou.count-1] == 0}">
+                        <a><img class="heart" src="img/i-2.png" alt="我是一颗black心"></a>
+                    </c:if>
+                    <c:if test="${belikeList[cou.count-1] == 1}">
+                        <a><img class="heart" src="img/i-2-1.png" alt="我是一颗red心"></a>
+                    </c:if>
+                    <span class="focus-num" count="${likeCount[cou.count-1]}">${likeCount[cou.count-1]}人喜欢</span>
                 </div>
             </div><!--这里是一整套的包装-->
 

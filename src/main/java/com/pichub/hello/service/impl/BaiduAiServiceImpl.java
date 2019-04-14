@@ -119,29 +119,29 @@ public class BaiduAiServiceImpl implements BaiDuAiService {
          * https://ai.baidu.com/file/470B3ACCA3FE43788B5A963BF0B625F3
          * 下载
          */
-        // 请求url
-        String url = "https://aip.baidubce.com/rest/2.0/image-classify/v2/advanced_general";
-        try {
-            // 本地文件路径
-            String filePath = "E:\\IdeaProjects\\hello\\src"+picturePath;//绝对路径，视自身情况而定
-            byte[] imgData = FileUtil.readFileByBytes(filePath);
-            String imgStr = Base64Util.encode(imgData);
-            String imgParam = URLEncoder.encode(imgStr, "UTF-8");
-            String param = "image=" + imgParam;
-            // 注意这里仅为了简化编码每一次请求都去获取access_token，线上环境access_token有过期时间， 客户端可自行缓存，过期后重新获取。
-            String accessToken = "24.22bad803c294655d3a1f958545a5444f.2592000.1555945601.282335-15830897";
-            String result = HttpUtil.post(url, accessToken, param);
-            //System.out.println(result);
-            return result;
-        } catch (FileNotFoundException e) {
-            System.out.println("没有此路径:E:\\\\IdeaProjects\\\\hello\\\\src"+picturePath);
-            //e.printStackTrace();
+            // 请求url
+            String url = "https://aip.baidubce.com/rest/2.0/image-classify/v2/advanced_general";
+            try {
+                // 本地文件路径
+                String filePath = "E:\\IdeaProjects\\hello\\src\\"+picturePath;//绝对路径，视自身情况而定
+                byte[] imgData = FileUtil.readFileByBytes(filePath);
+                String imgStr = Base64Util.encode(imgData);
+                String imgParam = URLEncoder.encode(imgStr, "UTF-8");
+                String param = "image=" + imgParam;
+                // 注意这里仅为了简化编码每一次请求都去获取access_token，线上环境access_token有过期时间， 客户端可自行缓存，过期后重新获取。
+                String accessToken = "24.22bad803c294655d3a1f958545a5444f.2592000.1555945601.282335-15830897";
+                String result = HttpUtil.post(url, accessToken, param);
+                //System.out.println(result);
+                return result;
+            } catch (FileNotFoundException e) {
+                System.out.println("没有此路径:E:\\IdeaProjects\\hello\\src\\"+picturePath);
+                //e.printStackTrace();
+                return null;
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
             return null;
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     @Override

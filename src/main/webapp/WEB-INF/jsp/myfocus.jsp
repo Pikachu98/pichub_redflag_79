@@ -11,6 +11,8 @@
 <html lang="en">
 
 <script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/bootstrap-paginator.js"></script>
 
 <head>
     <meta charset="UTF-8">
@@ -30,11 +32,13 @@
     <link rel="stylesheet" href="default/userlist.css">
 
     <link rel="stylesheet" href="css/load.css">
-
+    <link rel="stylesheet" href="css/bootstrap.css" >
 
 
     <script src="js/bootstrap3.0.3.min.js"></script>
     <script src="js/bootstrap-paginator.js"></script>
+
+
     <script type="text/javascript">
         function load() {
             var a = setTimeout("loading.style.transition='opacity 0.3s'", 0)
@@ -111,9 +115,9 @@
                                                                  class="icon-my">我的相册</a></div>
             <div class="sidebar-btn"><a href="mylike.html"><img src="img/i-2.png"
                                                                 class="icon-my">我喜欢的</a></div>
-            <div class="focus-now"><a href="myfans.html"><img src="img/i-3-1.png"
+            <div class="sidebar-btn"><a href="myfans.html"><img src="img/i-3.png"
                                                               class="icon-my">我的粉丝</a></div>
-            <div class="sidebar-btn"><a href="myfocus.html"><img src="img/i-4.png"
+            <div class="focus-now"><a href="myfocus.html"><img src="img/i-4-1.png"
                                                                  class="icon-my">我关注的</a></div>
             <div class="sidebar-btn"><a href="editPersonal.html"><img src="img/i-5.png"
                                                                       class="icon-my">修改个人资料</a></div>
@@ -129,31 +133,53 @@
                 <c:set var="endIndex" value="${requestScope.endIndex}"/>
                 <c:set var="page" value="${requestScope.page}"/>
                 <c:set var="currentPageUsers" value="${requestScope.users.subList(beginIndex,endIndex)}"/>
-                <p>用户总数:${totalUsers}</p>
-                <p>每页用户数:${usersPerPage}</p>
-                <p>总页数:${totalPages}</p>
-                <p>当前页:${page}</p>
+                <span>用户总数:${totalUsers}</span>
+                <span>每页用户数:${usersPerPage}</span>
+                <span>总页数:${totalPages}</span>
+                <span>当前页:${page}</span>
 
-                <table class="table table-hover table-responsive table-striped table-bordered">
-                    <thead>
-                    <tr>
-                        <td>用户编号</td>
-                        <td>姓名</td>
-                        <td>密码</td>
-                        <td>生日</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="user" items="${currentPageUsers}">
-                        <tr>
-                            <td>${user.userId}</td>
-                            <td>${user.userName}</td>
-                            <td>${user.userPassword}</td>
-                            <td>${user.createTime}</td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
+                <%--<table class="table table-hover table-responsive table-striped table-bordered">--%>
+                    <%--<thead>--%>
+                    <%--<tr>--%>
+                        <%--<td>用户编号</td>--%>
+                        <%--<td>姓名</td>--%>
+                        <%--<td>密码</td>--%>
+                        <%--<td>创建日期</td>--%>
+                    <%--</tr>--%>
+                    <%--</thead>--%>
+                    <%--<tbody>--%>
+                    <%--<c:forEach var="user" items="${currentPageUsers}">--%>
+                        <%--<tr>--%>
+                            <%--<td>${user.userId}</td>--%>
+                            <%--<td>${user.userName}</td>--%>
+                            <%--<td>${user.userPassword}</td>--%>
+                            <%--<td>${user.createTime}</td>--%>
+                        <%--</tr>--%>
+                    <%--</c:forEach>--%>
+                    <%--</tbody>--%>
+                <%--</table>--%>
+
+
+                    <ul class="my-fan">
+                        <c:forEach var="user" items="${currentPageUsers}">
+                        <li class="user-item">
+                            <div class="user-cover">
+                                <img src="img/cat-1.png" alt="photo-1">
+                            </div>
+                            <div class="userName">
+                                ${user.userId}
+                            </div>
+                            <div class="h-line">
+                                <img src="img/h-line.png">
+                            </div>
+                            <div class="grey">
+                                135粉丝
+                            </div>
+                            <div class="btn-foc"><a href="javascript:void(0)">关注</a></div>
+                        </li>
+                        </c:forEach>
+                    </ul>
+
 
                 <hr>
 
@@ -179,12 +205,6 @@
 
             </div>
 
-            <div class="choose-page fan-footer">
-                <a href="javascript:void(0)" class="choose-btn">上一页</a>
-                <span class="page-now">1/20</span>
-                <a href="javascript:void(0)" class="choose-btn">下一页</a>
-            </div>
-
         </div>
     </section>
 
@@ -197,9 +217,12 @@
     </section>
 </footer>
 
-<script type="text/javascript">
-
-</script>
+<div style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 0.5;">
+    <canvas></canvas>
+</div>
+<!-- 鼠标跟随特效 -->
+<script src="js/stopExecutionOnTimeout.js"></script>
+<script src="js/canvas.js"></script>
 </body>
 
 </html>
