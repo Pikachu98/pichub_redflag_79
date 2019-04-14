@@ -32,6 +32,7 @@
 
     <select id="getPictureOriginPath" resultType="java.lang.String">
         select pic_path from picture where pic_id =#{pictureId}
+    </select>
 
     <select id="checkMaxPictureId" resultType="int">
         select MAX(pic_id) from picture
@@ -46,24 +47,14 @@
         values (#{pictureId},#{score},#{keyword});
     </insert>
 
-    <select id="getPictureOriginPath" resultType="java.lang.String">
+<!--    <select id="getPictureOriginPath" resultType="java.lang.String">
         select pic_id from picture where pic_id =1
 
-    </select>
+    </select>-->
 
     <select id="getPictureThumbnailPath" resultType="java.lang.String">
         select pic_thumbnail_path from picture where pic_id=#{pictureId}
-    <select id="checkMaxPictureId" resultType="int">
-        select MAX(pic_id) from picture
     </select>
 
-    <select id="checkMaxPictureTagId" resultType="int">
-        select MAX(pic_id) from pic_tag
-    </select>
-
-    <insert id="insertTag">
-        insert into pic_tag
-        values (#{pictureId},#{score},#{keyword});
-    </insert>
 
 </mapper>
