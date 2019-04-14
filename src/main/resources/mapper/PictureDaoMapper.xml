@@ -18,8 +18,26 @@
         values (#{picName},#{uploadTime},#{delState},#{picStory},#{userId},#{picPath},#{picThumbnailPath},#{picSize})
     </insert>
 
+<<<<<<< HEAD
     <select id="getPictureOriginPath" resultType="java.lang.String">
         select pic_path from picture where pic_id =#{pictureId}
+=======
+    <select id="checkMaxPictureId" resultType="int">
+        select MAX(pic_id) from picture
+    </select>
+
+    <select id="checkMaxPictureTagId" resultType="int">
+        select MAX(pic_id) from pic_tag
+    </select>
+
+    <insert id="insertTag">
+        insert into pic_tag
+        values (#{pictureId},#{score},#{keyword});
+    </insert>
+
+    <select id="getPictureOriginPath" resultType="java.lang.String">
+        select pi from picture where pic_id =
+>>>>>>> 537b6159c2ce1af9e4e073ee49a085360fd6dfb0
     </select>
 
     <select id="getPictureThumbnailPath" resultType="java.lang.String">

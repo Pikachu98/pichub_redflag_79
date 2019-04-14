@@ -29,8 +29,15 @@ public class UserServiceImpl implements UserService {
         User trueUser = userDao.tOrfUserName(user.getUserEmail());
         if(trueUser !=null){
             if (inputPsw.equals(trueUser.getUserPassword())) {
+<<<<<<< HEAD
                 request.getSession().setAttribute("userName", trueUser.getUserName());
                 request.getSession().setAttribute("userId", trueUser.getUserId());
+=======
+//                request.getSession().setAttribute("userName", trueUser.getUserName());
+//                request.getSession().setAttribute("userId", trueUser.getUserId());
+                request.getSession().setAttribute("user", trueUser);
+
+>>>>>>> 537b6159c2ce1af9e4e073ee49a085360fd6dfb0
                 return 200;//欢迎登陆
             }
             else {
