@@ -1,5 +1,6 @@
 package com.pichub.hello.web;
 
+import com.pichub.hello.bo.User;
 import com.pichub.hello.service.PictureService;
 import com.pichub.hello.bo.Picture;
 import com.pichub.hello.service.UserService;
@@ -40,8 +41,8 @@ public class UpanddownController {
     UserService userService;
 
     @RequestMapping(value = "/uploadFile" ,method = RequestMethod.POST)
-    public String uploadFile(@RequestParam(value="file") MultipartFile file, @RequestParam(value = "story")String story,
-                             @RequestParam(value = "userId") long userId, HttpServletRequest request, HttpServletResponse response)
+    public String uploadFile(@RequestParam(value="file") MultipartFile file, //@RequestParam(value = "story")String story,
+                             /*@RequestParam(value = "userId") long userId,*/ HttpServletRequest request, HttpServletResponse response)
     {
         if(file == null && file.getSize() > 0)
         {
@@ -49,6 +50,8 @@ public class UpanddownController {
         }
 
         //insert origin picture
+        User user = User.getCurrentUser(request);
+        long userId = user.getUserId();
         String fileName = file.getOriginalFilename();
         String exName = fileName.substring(fileName.lastIndexOf(".") + 1 );
         String newOriginiName = UUID.randomUUID().toString().replaceAll("-","") + "." + exName;
@@ -118,7 +121,7 @@ public class UpanddownController {
         picture.setPicName(newOriginiName);
         picture.setUploadTime(new Date());
         picture.setDelState(1);
-        picture.setPicStory(story);
+        picture.setPicStory(null);           ///////////////////////////////////////////
         picture.setUserId(userId);
         picture.setPicPath(real2realative(finalOriginPath));
         picture.setPicThumbnailPath(real2realative(finalThumbnailPath));
@@ -138,13 +141,17 @@ public class UpanddownController {
 
 
     @RequestMapping(value = "/uploadAvatar",method = RequestMethod.POST)
-    public String uploadAvatar(@Param("avatar") MultipartFile avatar,@Param("userId")long userId,
+    public String uploadAvatar(@Param("avatar") MultipartFile avatar,/*@Param("userId")long userId,*/
                                HttpServletRequest request, HttpServletResponse response)
     {
         if(avatar == null && avatar.getSize() > 0)
         {
             return "{" + false + "}";
         }
+
+
+        User user = User.getCurrentUser(request);
+        long userId = user.getUserId();
 
         String avatarName = avatar.getOriginalFilename();
         String exName = avatarName.substring(avatarName.lastIndexOf(".") + 1 );
@@ -181,9 +188,18 @@ public class UpanddownController {
             }
         }
 
+
+
         try {// make square avatar
-            Thumbnails.of(avatarPath + "/origin." + exName).size(150,150).keepAspectRatio(false)
-                      .toFile(avatarPath + "/" + "square." +exName);
+            Thumbnails.of(avatarPath + "/origin." + exName).size(150,150).keepAspectRatio(false).outputFormat("jpg")
+                      .toFile(avatarPath + "/" + "square.jpg");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {// make thumbnail avatar
+            Thumbnails.of(avatarPath + "/origin." + exName).size(40,40).keepAspectRatio(false).outputFormat("jpg")
+                    .toFile(avatarPath + "/" + "thumbnail.jpg");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -231,11 +247,14 @@ public class UpanddownController {
     private String real2realative(String realPath)
     {
         String temp = realPath.substring(realPath.indexOf("main"));
-        return "main/" + temp.substring(temp.indexOf(File.separator));
+
+        return "main/" + temp.substring(temp.indexOf(File.separator) + 1
+        );
+
     }
 
 
-    private String  conversion(String realPath)
+    private String conversion(String realPath)
     {
         File input = new File(realPath);
         String outputFilePath = realPath.substring(0,realPath.lastIndexOf(".")) + ".jpg";

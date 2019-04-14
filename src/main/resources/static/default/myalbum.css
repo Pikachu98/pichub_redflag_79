@@ -1,0 +1,259 @@
+.sidebar{
+    margin-left: 200px;
+    background-color: #ffffff;
+    width: 200px;
+    height: 914.53px;
+    float: left;
+    border-color: #dddddd;
+    border-style: none solid none none;
+}
+.toolsbar{
+    margin-top: 20px;
+    width: 1319px;
+    height: 50px;
+    background-color: #F9FAFA;
+    margin-left: 385px;
+    line-height: 50px;
+}
+.my-root{
+    margin-left: 400px;
+    margin-top: 8px;
+    width: 1303px;
+    background-color: #ffffff;
+    border-color: #dddddd;
+}
+.my-cover-item{
+    height: 240px;
+}
+.my-footer{
+    margin-top: 115px;
+}
+.my-album{
+    margin-left: 18px;
+    width: 1272px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-color: #dddddd;
+}
+.myalbum-btn1{
+    margin-left: 28px;
+    display: inline-block;
+    height: 28px;
+    color: #ffffff;
+    border: 1px solid #E81A2F;
+    border-radius: 4px;
+    padding: 0 12px;
+    line-height: 27px;
+    background-color: #EC414D;
+}
+.myalbum-btn2{
+    margin-left: 20px;
+}
+.myalbum-btn3{
+    margin-left: 912px;
+}
+.icon-edit{
+    display: inline-block;
+    vertical-align: middle;
+    padding-bottom:3px; 
+}
+.sidebar-btn{
+    margin: 0 auto;
+    height: 45px;
+    color: #666666;
+}
+.sidebar-btn:hover{
+    border-color: #dddddd;
+    background-color: #dddddd;
+}
+.sidebar-btn a{
+    line-height: 45px;
+    color: #333333;
+}
+.focus-now{
+    color: #E81A2F;
+    line-height: 45px;
+}
+.focus-now:hover{
+    border-color: #dddddd;
+    background-color: #dddddd;
+}
+.icon-my{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 15px;
+    padding-right: 17px;
+}
+
+.choose-page{
+    margin-top: 32px;
+    margin-left: 547px;
+    padding-bottom: 18.5px;
+    color: #333333
+}
+.choose-btn{
+    height: 26px;
+    line-height: 26px;
+    border: #dddddd;
+    border-style: solid;
+    border-width:1px;
+    border-radius: 2px;
+    padding: 3px 19px;
+}
+.page-now{
+    padding: 0 12.5px;
+}
+
+#uploadWindow {
+    display: none;
+    position: fixed;
+    border: 1px solid #dddddd;
+    background-color: white;
+    z-index: 2;
+    overflow: auto;
+    _position: absolute;
+    /* hack for IE6 */
+    top: 50%;
+    left: 50%;
+    margin: -346px 0 0 -589px;
+    /* 注意,201表示高度的一半,480也是按自己需要自己调整*/
+    width: 1200px;
+    height: 700px;
+    padding: 1px;
+}
+.uploadPic{
+    height: 50px;
+    background-color: #F8F8F8;
+    padding-top: 4px;
+}
+.uploadP{
+    padding: 16px 0 15px 11px;
+}
+.uploadPath{
+    padding: 16px 9.2px 15px 0;
+    margin-left: 395.8px;
+}
+.upload-album{
+    padding: 10px 240px 10px 0;
+    letter-spacing: 2px;
+}
+.btn-choose-pic{
+    display: inline-block;
+    padding: 0 1.5em;
+    height: 40px;
+    line-height: 39px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #ffffff;
+    border: 1px solid #EC414D;
+    background-color: #EC414D;
+    margin-left: 522px;
+    margin-top: 278px;
+}
+
+.choosed{
+    height: 580px;
+}
+.btn-start-upload
+{
+    display: inline-block;
+    padding: 10px 48px 10px 48px;
+    height: 40px;
+    line-height: 19px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #ffffff;
+    border: 1px solid #EC414D;
+    background-color: #EC414D;
+}
+.btn-add{
+    display: inline-block;
+    padding: 10px 48px 10px 48px;
+    height: 40px;
+    line-height: 19px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333333;
+    border: 1px solid #999999;
+    background-color: #ffffff;
+    margin-left: 33.5px;
+}
+.upload-footer{
+    padding-top: 20px;
+    padding-left: 30px;
+    background-color: #F8F8F8;
+}
+.continue{
+    margin-left: 45.2px;
+}
+
+#createWindow {
+    display: none;
+    position: fixed;
+    border: 1px solid #dddddd;
+    background-color: white;
+    z-index: 2;
+    overflow: auto;
+    _position: absolute;
+    /* hack for IE6 */
+    top: 50%;
+    left: 50%;
+    margin: -187px 0 0 -248px;
+    /* 注意,201表示高度的一半,480也是按自己需要自己调整*/
+    width: 480px;
+    height: 308px;
+    padding: 1px;
+}
+.create-album-name
+{
+    width: 288px;
+    height: 24px;
+    line-height: 24px;
+    border-color: 1px solid #DDDDDD;
+    color: #333333;
+    padding-left: 10px;
+
+}
+.create-title{
+    display: inline-block;
+    padding:12px 0px 12px 11px;
+}
+.about-album{
+    margin-top: 34px;
+    margin-left: 40px;
+}
+.album-des{
+    margin-left: 40px;
+    margin-top: 20px;
+}
+.create-description{
+    width: 280px;
+    height: 72px;
+    vertical-align: top;
+}
+.album-authority{
+    margin-left: 67.3px;
+    margin-top: 19px;
+}
+.create-footer{
+    margin-top: 22px;
+    background-color: #F8F8F8;
+    height: 40px;
+    padding-top: 13px;
+}
+.btn-confirm{
+    padding:3px 9.5px 3px 9.5px;
+    background-color: #EC414D;
+    border: 0.5px solid #E81A2F;
+    border-radius: 4px;
+    margin-left: 354.3px;
+    color: #ffffff;
+}
+.btn-cancel{
+    padding:3px 9.5px 3px 9.5px;
+    border: 0.5px solid #999999;
+    border-radius: 4px;
+    margin-left: 10px;
+    color: #333333;
+}

@@ -32,7 +32,7 @@ public class Picture {
 
     public void setDelState(int delState){this.delState = delState;}
 
-    public String getStory(){return picStory;}
+    public String getPicStory(){return picStory;}
 
     public void setPicStory(String picStory){this.picStory = picStory;}
 

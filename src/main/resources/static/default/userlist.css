@@ -1,0 +1,45 @@
+.user-item{
+    padding:0 10px;
+    margin-top: 20px;
+}
+.userName{
+    font-weight: bold;
+    margin-top: 8px;
+    padding: 0 104px;
+}
+.grey{
+    color: #999999;
+    margin-top: 20.5px;
+    width: 235px;
+    text-align: center;
+}
+.user-cover{
+    margin-top: 23px;
+    padding: 0 68px;
+}
+.h-line{
+    margin-left: 60.5px;
+    margin-top: 43.5px;
+}
+.btn-foc{
+    margin-top: 32px;
+    padding: 0 9px;
+    width: 235px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    background-color: #E3E3E3;
+    border-color: #707070;
+    color: #ffffff;
+}
+.my-fan{
+    margin-left: 8px;
+    width: 1295px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-color: #dddddd;
+}
+.fan-footer{
+    margin-top:190px;
+}

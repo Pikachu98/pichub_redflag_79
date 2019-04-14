@@ -21,23 +21,21 @@ public class UserServiceImpl implements UserService {
 
 
     /*
-    * @判断用户是否存在，以及密码是否正确
-    * */
+     * @判断用户是否存在，以及密码是否正确
+     * */
     @Override
     public int checkLogin(User user, HttpServletRequest request){
         String inputPsw = user.getUserPassword();
         User trueUser = userDao.tOrfUserName(user.getUserEmail());
         if(trueUser !=null){
             if (inputPsw.equals(trueUser.getUserPassword())) {
-<<<<<<< HEAD
                 request.getSession().setAttribute("userName", trueUser.getUserName());
                 request.getSession().setAttribute("userId", trueUser.getUserId());
-=======
+
 //                request.getSession().setAttribute("userName", trueUser.getUserName());
 //                request.getSession().setAttribute("userId", trueUser.getUserId());
                 request.getSession().setAttribute("user", trueUser);
 
->>>>>>> 537b6159c2ce1af9e4e073ee49a085360fd6dfb0
                 return 200;//欢迎登陆
             }
             else {
@@ -48,6 +46,7 @@ public class UserServiceImpl implements UserService {
             return 100;//用户名不存在
 
     }
+
 
     @Override
     public User getUser(Long userId)throws Exception{
@@ -138,6 +137,11 @@ public class UserServiceImpl implements UserService {
     public void changeAvatar(long userId, String avatarPath)throws Exception
     {
         userDao.changeAvatarPath(userId,avatarPath);
+    }
+
+    @Override
+    public User getUser(long userId) throws Exception {
+        return userDao.getUser(userId);
     }
 
     @Override

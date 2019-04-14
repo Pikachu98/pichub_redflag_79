@@ -28,4 +28,6 @@ public interface UserService {
     String getAvatarPath(long userId);
     boolean GenerateImage(String imgStr);
     void changeAvatar(long userId, String avatarPath)throws Exception;
+
+    User getUser(long userId) throws Exception;
 }
