@@ -3,6 +3,7 @@ package com.pichub.hello.dao;
 import com.pichub.hello.bo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.List;
 
