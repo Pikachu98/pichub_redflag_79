@@ -134,7 +134,7 @@ public class FocusController {
         request.setAttribute("endIndex", endIndex);
         request.setAttribute("page", page);
         request.setAttribute("users", myFocus);
-        return "myfans";
+        return "myfocus";
     }
 
 
