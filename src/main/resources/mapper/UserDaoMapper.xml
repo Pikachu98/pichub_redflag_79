@@ -38,19 +38,19 @@
         select count(*) from follower where user_id = #{userId1} and use_user_id = #{userId2}
     </select>
 
-    <select id="showMyFocus" resultType="com.pichub.hello.bo.User" parameterType="java.lang.Integer">
+    <select id="showMyFocus" resultType="com.pichub.hello.bo.User" parameterType="int">
         select * from follower where user_id = #{userId}
     </select>
 
-    <select id="showFocusMe" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    <select id="showFocusMe" resultType="com.pichub.hello.bo.User" parameterType="int">
         select * from follower where use_user_id = #{userId}
     </select>
 
-    <select id="showMyLike" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    <select id="showMyLike" resultType="com.pichub.hello.bo.Picture" parameterType="int">
         select * from belike where user_id = #{userId}
     </select>
 
-    <select id="showMyAlbum" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    <select id="showMyAlbum" resultType="com.pichub.hello.bo.Album" parameterType="int">
         select * from album where user_id = #{userId}
     </select>
 
