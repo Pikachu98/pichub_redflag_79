@@ -4,7 +4,7 @@
     width: 400px;
     line-height: 40px;
     color: #999999;
-    margin-top: 33px;
+    margin-top: 10px;
     margin-left: 60px;
 }
 
@@ -44,10 +44,9 @@ label.error{
     font-size: 14px;
     text-align: left;
     margin-left: 5px;
-    /*padding-left: 35px;*/
-    float: left;
+    padding-left: 35px;
     color: red;
-    /*background: url('../images/error.png') no-repeat left center;*/
+    background: url('/default/image/error.png') no-repeat left center;
 }
 
 label.tip{
@@ -59,12 +58,12 @@ label.tip{
     margin-left: 5px;
     padding-left: 35px;
     color: #aaa;
-    /*background: url('../image/tip.png') no-repeat left center;*/
+    background: url('/default/image/tip.png') no-repeat left center;
     padding-left: 35px;
 }
 
 label.valid{
-    /*background: url('../image/valid.png') no-repeat left center;*/
+    background: url('/default/image/valid.png') no-repeat left center;
 }
 .btn-change{
     font-size: 24px;

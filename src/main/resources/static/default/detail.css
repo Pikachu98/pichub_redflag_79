@@ -1,0 +1,27 @@
+.l{
+    position: absolute;
+    width: 50%;
+    height:100%;
+    /* background-color: rgb(204, 194, 194); */
+    text-align: center;
+}
+
+.r{
+    position: absolute;
+    margin-left: 50%;
+    width: 50%;
+    height: 100%;
+    /* background-color: #F4F4F4; */
+}
+.l img{
+    margin-top: 33%;
+}
+.text{
+    margin-left: 70px;
+    margin-top:20px;
+    font-size: 18px;
+    font-weight: 300;
+}
+.first{
+    margin-top: 320px;
+}
