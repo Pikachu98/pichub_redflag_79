@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: msi
@@ -68,7 +69,11 @@
 <div class="r">
     <div class="text first">Picture Name</div>
     <div class="text">description:</div>
-    <div class="text">Tag:</div>
+    <div class="text">Tag:
+        <c:forEach  items="${picTag}" var="tag" >
+            ${tag};
+        </c:forEach>
+    </div>
 </div>
 
 
