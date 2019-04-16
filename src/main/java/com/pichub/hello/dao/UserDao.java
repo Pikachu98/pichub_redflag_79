@@ -16,10 +16,10 @@ public interface UserDao {
     boolean delFocus(@Param("userId1") Integer userId1,@Param("userId2") Integer userId2) throws Exception;
     //查看关注
     int checkFocus(@Param("userId1") Integer userId1,@Param("userId2") Integer userId2) throws Exception;
-    List showMyFocus(@Param("userId") Integer userId) throws Exception;
-    List showFocusMe(@Param("userId")Integer userId) throws Exception;
-    List showMyLike(@Param("userId")Integer userId) throws Exception;
-    List showMyAlbum(@Param("userId")Integer userId) throws Exception;
+    List<Integer> showMyFocus(@Param("userId") Integer userId) throws Exception;
+    List<Integer> showFocusMe(@Param("userId")Integer userId) throws Exception;
+    List<Integer> showMyLike(@Param("userId")Integer userId) throws Exception;
+    List<Integer> showMyAlbum(@Param("userId")Integer userId) throws Exception;
     boolean changeUsername(@Param("userId")Integer userId, @Param("userName") String userName) throws Exception;
 
     int insertUser(@Param("user") User user)throws Exception;

@@ -115,10 +115,10 @@
                                                                  class="icon-my">我的相册</a></div>
             <div class="sidebar-btn"><a href="mylike.html"><img src="img/i-2.png"
                                                                 class="icon-my">我喜欢的</a></div>
-            <div class="sidebar-btn"><a href="myfans.html"><img src="img/i-3.png"
-                                                              class="icon-my">我的粉丝</a></div>
-            <div class="focus-now"><a href="myfocus.html"><img src="img/i-4-1.png"
-                                                                 class="icon-my">我关注的</a></div>
+            <div class="focus-now"><a href="myfans.html"><img src="img/i-3-1.png"
+                                                                class="icon-my">我的粉丝</a></div>
+            <div class="sidebar-btn"><a href="myfocus.html"><img src="img/i-4.png"
+                                                               class="icon-my">我关注的</a></div>
             <div class="sidebar-btn"><a href="editPersonal.html"><img src="img/i-5.png"
                                                                       class="icon-my">修改个人资料</a></div>
         </div>
@@ -139,29 +139,29 @@
                 <%--<span>当前页:${page}</span>--%>
 
                 <%--<table class="table table-hover table-responsive table-striped table-bordered">--%>
-                    <%--<thead>--%>
-                    <%--<tr>--%>
-                        <%--<td>用户编号</td>--%>
-                        <%--<td>姓名</td>--%>
-                        <%--<td>密码</td>--%>
-                        <%--<td>创建日期</td>--%>
-                    <%--</tr>--%>
-                    <%--</thead>--%>
-                    <%--<tbody>--%>
-                    <%--<c:forEach var="user" items="${currentPageUsers}">--%>
-                        <%--<tr>--%>
-                            <%--<td>${user.userId}</td>--%>
-                            <%--<td>${user.userName}</td>--%>
-                            <%--<td>${user.userPassword}</td>--%>
-                            <%--<td>${user.createTime}</td>--%>
-                        <%--</tr>--%>
-                    <%--</c:forEach>--%>
-                    <%--</tbody>--%>
+                <%--<thead>--%>
+                <%--<tr>--%>
+                <%--<td>用户编号</td>--%>
+                <%--<td>姓名</td>--%>
+                <%--<td>密码</td>--%>
+                <%--<td>创建日期</td>--%>
+                <%--</tr>--%>
+                <%--</thead>--%>
+                <%--<tbody>--%>
+                <%--<c:forEach var="user" items="${currentPageUsers}">--%>
+                <%--<tr>--%>
+                <%--<td>${user.userId}</td>--%>
+                <%--<td>${user.userName}</td>--%>
+                <%--<td>${user.userPassword}</td>--%>
+                <%--<td>${user.createTime}</td>--%>
+                <%--</tr>--%>
+                <%--</c:forEach>--%>
+                <%--</tbody>--%>
                 <%--</table>--%>
 
 
-                    <ul class="my-fan">
-                        <c:forEach var="user" items="${currentPageUsers}" varStatus="cou">
+                <ul class="my-fan">
+                    <c:forEach var="user" items="${currentPageUsers}" varStatus="cou">
                         <li class="user-item">
                             <div class="user-cover">
 
@@ -169,7 +169,7 @@
 
                             </div>
                             <div class="userName">
-                                ${user.userName}
+                                    ${user.userName}
                             </div>
                             <div class="h-line">
                                 <img src="img/h-line.png">
@@ -179,8 +179,8 @@
                             </div>
                             <div class="btn-foc"><a href="javascript:void(0)">关注</a></div>
                         </li>
-                        </c:forEach>
-                    </ul>
+                    </c:forEach>
+                </ul>
 
 
                 <hr>
@@ -188,19 +188,19 @@
                 <div class="text-center">
                     <nav>
                         <ul class="pagination">
-                            <li><a href="<c:url value="/listFocus?page=1"/>">首页</a></li>
-                            <li><a href="<c:url value="/listFocus?page=${page-1>1?page-1:1}"/>">&laquo;</a></li>
+                            <li><a href="<c:url value="/listFans?page=1"/>">首页</a></li>
+                            <li><a href="<c:url value="/listFans?page=${page-1>1?page-1:1}"/>">&laquo;</a></li>
 
                             <c:forEach begin="1" end="${totalPages}" varStatus="loop">
                                 <c:set var="active" value="${loop.index==page?'active':''}"/>
                                 <li class="${active}"><a
-                                        href="<c:url value="/listFocus?page=${loop.index}"/>">${loop.index}</a>
+                                        href="<c:url value="/listFans?page=${loop.index}"/>">${loop.index}</a>
                                 </li>
                             </c:forEach>
                             <li>
-                                <a href="<c:url value="/listFocus?page=${page+1<totalPages?page+1:totalPages}"/>">&raquo;</a>
+                                <a href="<c:url value="/listFans?page=${page+1<totalPages?page+1:totalPages}"/>">&raquo;</a>
                             </li>
-                            <li><a href="<c:url value="/listFocus?page=${totalPages}"/>">尾页</a></li>
+                            <li><a href="<c:url value="/listFans?page=${totalPages}"/>">尾页</a></li>
                         </ul>
                     </nav>
                 </div>
