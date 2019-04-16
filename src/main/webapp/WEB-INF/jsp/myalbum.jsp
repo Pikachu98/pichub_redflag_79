@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: root
@@ -128,10 +129,12 @@
             <ul class="my-album">
                 <c:forEach items="${listAlbum}" var="list" ><!--一个循环元素一个包装-->
                     <li class="cover-item my-cover-item">
-                        <div class="album-cover">
-                            <img src="/img/pho-18.png" alt="photo-1" class="cover">
-                                <a href="#">${list.albumName}</a>
-                        </div>
+                        <a href="#">
+                            <div class="album-cover">
+                                <img src="/img/pho-18.png" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
+                            </div>
+                            <div>${list.albumName}</div><%--相册名字--%>
+                        </a>
                     </li>
                 </c:forEach>
             </ul>

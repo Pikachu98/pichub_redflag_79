@@ -27,10 +27,10 @@
     <script src="/default/layui/layui.js"></script>
 
     <!-- 鼠标跟随特效 -->
-    <script src="js/stopExecutionOnTimeout.js"></script>
+    <script src="/js/stopExecutionOnTimeout.js"></script>
     <!-- <script src="theme/default/js/jquery-3.3.1.min.js"></script> -->
 
-    <link rel="stylesheet" href="css/load.css">
+    <link rel="stylesheet" href="/css/load.css">
 
     <!-- <script src="theme/default/js/register.js"></script> -->
 
@@ -63,7 +63,7 @@
 </div>
 
 <div class="l">
-    <img src="img/pho-14.png">
+    <img src="/img/pho-14.png">
 
 </div>
 <div class="r">
@@ -93,8 +93,8 @@
     <canvas></canvas>
 </div>
 <!-- 鼠标跟随特效 -->
-<script src="js/stopExecutionOnTimeout.js"></script>
-<script src="js/canvas.js"></script>
+<script src="/js/stopExecutionOnTimeout.js"></script>
+<script src="/js/canvas.js"></script>
 
 </body>
 
