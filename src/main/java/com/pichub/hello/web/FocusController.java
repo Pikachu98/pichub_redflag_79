@@ -116,7 +116,7 @@ public class FocusController {
     }
 
 
-    @RequestMapping(value="/listFocus")
+    @RequestMapping(value="/list")
     public String showMyFocus(ModelMap model, HttpServletRequest request, HttpServletResponse response)
             throws Exception
     {

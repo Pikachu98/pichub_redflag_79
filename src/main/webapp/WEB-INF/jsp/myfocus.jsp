@@ -188,19 +188,19 @@
                 <div class="text-center">
                     <nav>
                         <ul class="pagination">
-                            <li><a href="<c:url value="/listFocus?page=1"/>">首页</a></li>
-                            <li><a href="<c:url value="/listFocus?page=${page-1>1?page-1:1}"/>">&laquo;</a></li>
+                            <li><a href="<c:url value="/list?page=1"/>">首页</a></li>
+                            <li><a href="<c:url value="/list?page=${page-1>1?page-1:1}"/>">&laquo;</a></li>
 
                             <c:forEach begin="1" end="${totalPages}" varStatus="loop">
                                 <c:set var="active" value="${loop.index==page?'active':''}"/>
                                 <li class="${active}"><a
-                                        href="<c:url value="/listFocus?page=${loop.index}"/>">${loop.index}</a>
+                                        href="<c:url value="/list?page=${loop.index}"/>">${loop.index}</a>
                                 </li>
                             </c:forEach>
                             <li>
-                                <a href="<c:url value="/listFocus?page=${page+1<totalPages?page+1:totalPages}"/>">&raquo;</a>
+                                <a href="<c:url value="/list?page=${page+1<totalPages?page+1:totalPages}"/>">&raquo;</a>
                             </li>
-                            <li><a href="<c:url value="/listFocus?page=${totalPages}"/>">尾页</a></li>
+                            <li><a href="<c:url value="/list?page=${totalPages}"/>">尾页</a></li>
                         </ul>
                     </nav>
                 </div>
