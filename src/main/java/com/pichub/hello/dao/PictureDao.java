@@ -26,4 +26,5 @@ public interface PictureDao {
     List<Integer> getHotPicId() throws Exception;
 
    /* String getPicturePathByPhotoId(@Param("photoId") int photoId);*/
+    List<String> getTag(int picId);
 }

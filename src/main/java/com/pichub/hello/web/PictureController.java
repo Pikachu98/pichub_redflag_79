@@ -51,5 +51,8 @@ public class PictureController {
         return null;
     }
 
-
+    @RequestMapping(value = "/picture-detail")
+    public String pictureDetail(){
+        return "picture-detail";
+    }
 }

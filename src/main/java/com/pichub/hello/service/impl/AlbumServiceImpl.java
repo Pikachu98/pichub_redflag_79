@@ -24,8 +24,8 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public List<Album> listAlbum() {
-        return null;
+    public List<Album> listAlbum(long userId) {
+        return albumDao.listAlbum(userId);
     }
 
     @Override

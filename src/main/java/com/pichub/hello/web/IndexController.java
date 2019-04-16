@@ -3,17 +3,24 @@ package com.pichub.hello.web;
 import com.pichub.hello.bo.Picture;
 import com.pichub.hello.bo.User;
 import com.pichub.hello.dao.PictureDao;
+import com.pichub.hello.service.FocusService;
 import com.pichub.hello.service.PictureService;
 import com.pichub.hello.service.UserService;
+import jdk.nashorn.internal.ir.RuntimeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.jws.soap.SOAPBinding;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.WriteListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +30,8 @@ public class IndexController {
     UserService userService;
     @Autowired
     PictureService pictureService;
+    @Autowired
+    FocusService focusService;
 
     @Resource
     private PictureDao pictureDao;
@@ -46,21 +55,54 @@ public class IndexController {
 
     @RequestMapping( "/")
    // @ResponseBody
-    public String getHotList(ModelMap model) throws Exception{
+    public String getHotList(ModelMap model, HttpServletRequest request) throws Exception{
         // List<Picture> picList = pictureService.getHotPicture();
         List<Picture> picList = new ArrayList<Picture>();
         List<User> users = new ArrayList<User>();
         List<Integer> hotPicIds = pictureService.getHotPicId();
+        List<Integer> focusList = new ArrayList<Integer>();
+        List<Integer> belikeList = new ArrayList<Integer>();
+        User user = User.getCurrentUser(request);
 
-        for(int i = 0; i < hotPicIds.size(); i++){
-            picList.add(pictureService.getPicture(hotPicIds.get(i)));
-            users.add(userService.getUser(picList.get(i).getUserId()));
+        picList.clear();
+        users.clear();
+        focusList.clear();
+        belikeList.clear();
+        if(user != null)
+        {
+            for(int i = 0; i < hotPicIds.size(); i++){
+                picList.add(pictureService.getPicture(hotPicIds.get(i)));
+                users.add(userService.getUser(picList.get(i).getUserId()));
+                int t = focusService.checkFocus(user.getUserId().intValue(),
+                        users.get(i).getUserId().intValue());
+                focusList.add(t);
+                if(userService.belikeCheck(user.getUserId(),hotPicIds.get(i)))
+                {
+                    belikeList.add(1);
+                }
+                else
+                {
+                    belikeList.add(0);
+                }
+            }
         }
+        else
+        {
+            for(int i = 0; i < hotPicIds.size(); i++){
+                picList.add(pictureService.getPicture(hotPicIds.get(i)));
+                users.add(userService.getUser(picList.get(i).getUserId()));
+                focusList.add(0);
+                belikeList.add(0);
+            }
+        }
+
 
         List<Integer> likes = pictureService.getLike();
         model.put("picsList",picList);
         model.put("likeCount",likes);
         model.put("users",users);
+        model.put("focusList",focusList);
+        model.put("belikeList",belikeList);
         return "loginIndex";
     }
 

@@ -6,24 +6,24 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html lang="en">
-
+<html>
 <head>
     <meta charset="UTF-8">
     <title>myalbum</title>
-    <link rel="stylesheet" href="default/reset.css">
-    <link rel="stylesheet" href="default/view.css">
-    <link rel="stylesheet" href="default/base-layout.css">
-    <link rel="stylesheet" href="default/header.css">
-    <link rel="stylesheet" href="default/photo-list.css">
+    <link rel="stylesheet" href="/default/reset.css">
+    <link rel="stylesheet" href="/default/view.css">
+    <link rel="stylesheet" href="/default/base-layout.css">
+    <link rel="stylesheet" href="/default/header.css">
+    <link rel="stylesheet" href="/default/photo-list.css">
 
-    <link rel="stylesheet" href="default/other-header.css">
-    <link rel="stylesheet" href="default/other-album.css">
+    <link rel="stylesheet" href="/default/other-header.css">
+    <link rel="stylesheet" href="/default/other-album.css">
 
-    <link rel="stylesheet" href="default/myalbum.css">
-    <link rel="stylesheet" href="default/edit.css">
+    <link rel="stylesheet" href="/default/myalbum.css">
+    <link rel="stylesheet" href="/default/edit.css">
 
-    <script src="default/js/jquery-3.3.1.js"></script>
+    <script src="/default/js/jquery-3.3.1.js"></script>
+    <script src="/js/album.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -102,15 +102,15 @@
     </section>
     <section>
         <div class="sidebar">
-            <div class="focus-now"><a href="javascript:void(0)"><img src="img/i-1-1.png"
+            <div class="focus-now"><a href="javascript:void(0)"><img src="/img/i-1-1.png"
                                                                      class="icon-my">我的相册</a></div>
-            <div class="sidebar-btn"><a href="javascript:void(0)"><img src="img/i-2.png"
+            <div class="sidebar-btn"><a href="javascript:void(0)"><img src="/img/i-2.png"
                                                                        class="icon-my">我喜欢的</a></div>
-            <div class="sidebar-btn"><a href="javascript:void(0)"><img src="img/i-3.png"
+            <div class="sidebar-btn"><a href="javascript:void(0)"><img src="/img/i-3.png"
                                                                        class="icon-my">我的粉丝</a></div>
-            <div class="sidebar-btn"><a href="javascript:void(0)"><img src="img/i-4.png"
+            <div class="sidebar-btn"><a href="javascript:void(0)"><img src="/img/i-4.png"
                                                                        class="icon-my">我关注的</a></div>
-            <div class="sidebar-btn"><a href="javascript:void(0)"><img src="img/i-5.png"
+            <div class="sidebar-btn"><a href="javascript:void(0)"><img src="/img/i-5.png"
                                                                        class="icon-my">修改个人资料</a></div>
         </div>
 
@@ -119,19 +119,21 @@
             <a href="javascript:void(0)" class="btn-focus myalbum-btn2" id="btn-create">创建相册</a>
             <a href="javascript:void(0)" class="btn-focus myalbum-btn2">展示设置</a>
             <a href="javascript:void(0)" class="myalbum-btn3">
-                <img src="img/edit.png" class="icon-edit">
+                <img src="/img/edit.png" class="icon-edit">
                 <span>编辑</span>
             </a>
         </div>
 
         <div class="my-root">
             <ul class="my-album">
-                <c:forEach items="${picsList}" var="var" varStatus="cou"><!--一个循环元素一个包装-->
+                <c:forEach items="${listAlbum}" var="list" ><!--一个循环元素一个包装-->
                     <li class="cover-item my-cover-item">
                         <div class="album-cover">
                             <img src="/img/pho-18.png" alt="photo-1" class="cover">
+                                <a href="#">${list.albumName}</a>
                         </div>
                     </li>
+                </c:forEach>
             </ul>
             <div class="choose-page">
                 <a href="javascript:void(0)" class="choose-btn">上一页</a>
@@ -150,9 +152,9 @@
                 <span class="uploadP">上传照片</span>
                 <span class="uploadPath">上传到</span>
                 <select class="upload-album">
-                    <option>相册一</option>
-                    <option>相册二</option>
-                    <option>相册三</option>
+                    <c:forEach items="${listAlbum}" var="list">
+                    <option>${list.albumName}</option>
+                    </c:forEach>
                 </select>
             </div>
             <div class="choosed">
