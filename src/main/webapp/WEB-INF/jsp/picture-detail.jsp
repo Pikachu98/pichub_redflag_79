@@ -71,7 +71,7 @@
     <div class="text">description:</div>
     <div class="text">Tag:
         <c:forEach  items="${picTag}" var="tag" >
-            ${tag};
+            ${tag}
         </c:forEach>
     </div>
 </div>
