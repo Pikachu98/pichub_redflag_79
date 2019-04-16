@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>This Ablum</title>
+    <title>Pictures in the Album</title>
     <link rel="stylesheet" href="theme/default/reset.css">
     <link rel="stylesheet" href="theme/default/view.css">
     <link rel="stylesheet" href="theme/default/base-layout.css">
@@ -33,6 +33,7 @@
     </script>
 
     <script type="text/javascript">
+        //点击上传相片，出现悬浮窗
         $(document).ready(function () {
             $("#btn-upload").click(function () {
                 $("#uploadWindow").slideDown(300);
@@ -41,18 +42,6 @@
 
             $(".x").click(function () {
                 $("#uploadWindow").slideUp(300);
-                $(".backGround").hide();
-            })
-        });
-
-        $(document).ready(function () {
-            $("#btn-create").click(function () {
-                $("#createWindow").slideDown(300);
-                $(".backGround").show();
-            });
-
-            $(".x").click(function () {
-                $("#createWindow").slideUp(300);
                 $(".backGround").hide();
             })
         });
@@ -71,44 +60,28 @@
         </div>
     </div>
 </div>
-<header id="header" class="header">
-    <section class="layout">
-        <div class="l-content view-lr">
-            <div class="header-l">
-                <a href="pic-index.html"><img src="img/logo.png" class="logo"></a>
-            </div>
-            <div class="user-r">
-                        <span class="search-box login-search">
-                            <input type="text" class="input-search">
-                            <!-- <i class="icon icon-search"></i> -->
-                            <img src="img/icon_search.png" alt="search" class="icon-search">
-                        </span>
-                <img src="img/avator.png" alt="我的头像" class="user">
-                <span class="user">Askiran</span>
-                <img src="img/icon-dropdown.png" class="user">
-            </div>
-        </div>
-    </section>
-</header>
+
+<%@include file="header.jsp"%>
+
 <main id="main" class="main">
     <section class="detail">
         <div>
             <div class="detail-l">
-                <div class="other-avator"><img src="img/other-avator.png" alt="我是头像">
+                <div class="other-avator"><img src="showT/${sessionScope.get("user").userId}" alt="我是头像">
                 </div>
 
                 <div class="other-note">
                     <div><span class="other-note-title">南巷清风</span>
                     </div>
-                    <div class="other-note-decription">一个男人要走多少路，才能称之为男人。</div>
+                    <div class="other-note-decription">${sessionScope.get("user").userDescription}</div>
                     <div class="other-focus">
                         <div class="fans">
-                            <div class="number">178</div>
+                            <div class="number">${FocusMe}</div>
                             <div class="ch">粉丝</div>
                         </div>
                         <div class="focus-person">
                             <div class="v-line"><img src="img/line-vertical.png"></div>
-                            <div class="number">125</div>
+                            <div class="number">${MyFocus}</div>
                             <div class="ch">关注</div>
                         </div>
                     </div>
@@ -118,15 +91,15 @@
     </section>
     <section>
         <div class="sidebar">
-            <div class="focus-now"><a href="myalbum.html"><img src="img/i-1-1.png"
+            <div class="focus-now"><a href="/myalbum"><img src="img/i-1-1.png"
                                                                class="icon-my">我的相册</a></div>
-            <div class="sidebar-btn"><a href="mylike.html"><img src="img/i-2.png"
+            <div class="sidebar-btn"><a href="/mylike"><img src="img/i-2.png"
                                                                 class="icon-my">我喜欢的</a></div>
-            <div class="sidebar-btn"><a href="myfans.html"><img src="img/i-3.png"
+            <div class="sidebar-btn"><a href="/myfans"><img src="img/i-3.png"
                                                                 class="icon-my">我的粉丝</a></div>
-            <div class="sidebar-btn"><a href="myfocus.html"><img src="img/i-4.png"
+            <div class="sidebar-btn"><a href="/myfocus"><img src="img/i-4.png"
                                                                  class="icon-my">我关注的</a></div>
-            <div class="sidebar-btn"><a href="editPersonal.html"><img src="img/i-5.png"
+            <div class="sidebar-btn"><a href="/editPersonal"><img src="img/i-5.png"
                                                                       class="icon-my">修改个人资料</a></div>
         </div>
 
@@ -142,81 +115,13 @@
 
         <div class="my-root">
             <ul class="my-album">
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-18.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-19.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-20.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-21.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-22.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-23.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-24.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-25.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-26.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-27.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-28.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-29.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-30.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-31.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
-                <li class="cover-item my-cover-item">
-                    <div class="album-cover">
-                        <img src="img/pho-32.png" alt="photo-1" class="cover">
-                    </div>
-                </li>
+                <c:forEach items="${picsList}" var="var" varStatus="cou">
+                    <li class="cover-item my-cover-item">
+                        <div class="album-cover">
+                            <img class="cover" src="show/${var.picId}" alt="photo-1" width="301px">
+                        </div>
+                    </li>
+                </c:forEach>
             </ul>
             <div class="choose-page">
                 <a href="javascript:void(0)" class="choose-btn">上一页</a>

@@ -1,6 +1,7 @@
 package com.pichub.hello.web;
 
 import com.pichub.hello.bo.Album;
+import com.pichub.hello.bo.Picture;
 import com.pichub.hello.bo.User;
 import com.pichub.hello.service.AlbumService;
 import com.pichub.hello.service.FocusService;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -60,6 +63,13 @@ public class AlbumController {
 
     }
 
+    @RequestMapping(value = "/albumContent/{albumId}",method = RequestMethod.POST)
+    public String getAlbumContent(@PathVariable("albumId") Long albumId, String pathName, ModelMap model, HttpServletRequest request, HttpServletResponse response)throws Exception
+    {
+        List<Picture> picList = albumService.getPictures(albumId);
+        model.put("picsList",picList);
+        return "myPic";
+    }
 
 
 }

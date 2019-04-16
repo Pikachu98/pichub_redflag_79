@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 /**
  * Created by root on 19-3-16.
  */
@@ -19,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 public class PictureController {
     @Autowired
     PictureService pictureService;
+
 
     @RequestMapping(value = "/picture/{picId}")
     public String pictureDetail(@PathVariable int picId, ModelMap model,
@@ -50,4 +50,6 @@ public class PictureController {
         pictureService.getExif();
         return null;
     }
+
+
 }

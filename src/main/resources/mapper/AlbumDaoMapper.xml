@@ -4,12 +4,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pichub.hello.dao.AlbumDao">
 
+    <!--用album_id得到album对象-->
     <select id="getAlbum" resultType="com.pichub.hello.bo.Album" parameterType="Long">
         select * from album where album_id=#{album_id}
     </select>
 
+    <!--用albumName和userID创建相册-->
     <insert id="createAlbum" useGeneratedKeys="true" keyProperty="userId" keyColumn="album_id" parameterType="com.pichub.hello.bo.Album">
         insert into album (album_name, user_id) values (#{album.albumName},#{album.userId})
     </insert>
+
+    <!--得到相册内的相片id-->
+    <select id="getPictures" resultType="java.lang.Integer" parameterType="Long">
+        select pic_id from album_picture where album_id=#{album_id}
+    </select>
 
 </mapper>

@@ -250,6 +250,7 @@
 
                     </div><!--关注-->
                 </div><!--头像+关注-->
+
                 <div class="view-cover"><!--图片的显示，见phot-list:设置了个边框颜色？？？-->
                     <c:if test="${cou.count <4}">
                     <img class="hot_pics" src="show/${var.picId}" alt="photo-1" width="301px">

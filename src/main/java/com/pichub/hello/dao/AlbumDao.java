@@ -1,6 +1,7 @@
 package com.pichub.hello.dao;
 
 import com.pichub.hello.bo.Album;
+import com.pichub.hello.bo.Picture;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,4 +20,7 @@ public interface AlbumDao {
 
     //删除相册
     Album deleteAlbum(@Param("album_id") Long album_id);
+
+    //得到相册内的相片id
+    List<Integer> getPictures(@Param("album_id") Long albumId);
 }
