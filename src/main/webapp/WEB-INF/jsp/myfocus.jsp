@@ -87,21 +87,21 @@
     <section class="detail">
         <div>
             <div class="detail-l">
-                <div class="other-avator"><img src="img/other-avator.png" alt="我是头像">
+                <div class="other-avator"><img src="showA/${sessionScope.get("user").userId}" alt="我是头像">
                 </div>
 
                 <div class="other-note">
-                    <div><span class="other-note-title">南巷清风</span>
+                    <div><span class="other-note-title">${sessionScope.get("user").userName}</span>
                     </div>
-                    <div class="other-note-decription">一个男人要走多少路，才能称之为男人。</div>
+                    <div class="other-note-decription">${sessionScope.get("user").userDescription}</div>
                     <div class="other-focus">
                         <div class="fans">
-                            <div class="number">178</div>
+                            <div class="number">${FocusMe}</div>
                             <div class="ch">粉丝</div>
                         </div>
                         <div class="focus-person">
                             <div class="v-line"><img src="img/line-vertical.png"></div>
-                            <div class="number">125</div>
+                            <div class="number">${MyFocus}</div>
                             <div class="ch">关注</div>
                         </div>
                     </div>
@@ -164,16 +164,16 @@
                         <c:forEach var="user" items="${currentPageUsers}">
                         <li class="user-item">
                             <div class="user-cover">
-                                <img src="img/cat-1.png" alt="photo-1">
+                                <img src="showA/${sessionScope.get("user").userId}" alt="photo-1">
                             </div>
                             <div class="userName">
-                                ${user.userId}
+                                ${user.userName}
                             </div>
                             <div class="h-line">
                                 <img src="img/h-line.png">
                             </div>
                             <div class="grey">
-                                135粉丝
+                                    ${FocusMe}粉丝
                             </div>
                             <div class="btn-foc"><a href="javascript:void(0)">关注</a></div>
                         </li>
