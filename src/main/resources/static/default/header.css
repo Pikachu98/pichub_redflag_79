@@ -34,7 +34,7 @@
     background-color: #ffffff;
 }
 /* .search-box:hover .icon-search, .search-box:focus .icon-search{
-
+    
 } */
 
 .search-box .input-search {
@@ -45,18 +45,17 @@
     background-color: transparent;
     font-size: 16px;
 }
-
 .input-search{
     height: 40px;
 }
 
-.layout-banner {
+/* .layout-banner {
     background: url("images/banner.png") 0 0 no-repeat transparent;
     height: 600px;
     text-align: center;
     padding-top: 134.2px;
     color: #ffffff;
-}
+} */
 
 .layout-banner p {
     width: 520px;;
@@ -66,76 +65,4 @@
 
 .b-title {
     font-size: 30px;
-}
-.user-r{
-    float: right;
-    margin-top: 5px;
-    height: 42px;
-    margin-right: 20px;
-}
-
-#header-avatar{
-    border-radius: 50%;
-}
-
-.user{
-    vertical-align: middle;
-    padding-left: 14px;
-}
-
-.login-search{
-    margin-right: 61.3px;
-}
-.detail{
-    margin-left: 193px;
-    width: 1520px;
-    margin-top: 115px;
-}
-.other-avator{
-    float: left;
-    margin-left: 19px;
-}
-.other-focus-btn{
-    margin-left: 1148px;
-    font-size: 16px;
-
-}
-.other-note{
-    padding-top:41px;
-    background: url("images/rang.png") no-repeat 0 41px;
-    height: 221px;
-}
-.other-note-title{
-    display: inline-block;
-    font-size: 24px;
-    font-weight: bold;
-    margin-left: 14px;
-    margin-top: 15px;
-}
-.other-note-decription
-{
-    display: inline-block;
-    margin-left: 14px;
-    margin-top: 10px;
-}
-.other-focus{
-    margin-top: 45px;
-    margin-left: 45px;
-    color: #666666;
-}
-.fans{
-    float: left;
-}
-.v-line{
-    float: left;
-    margin-left: 21.5px;
-    margin-right: 22.5px;
-}
-.ch{
-    font-size: 13px;
-}
-.number{
-    font-size: 16px;
-}
-.focus-person{
 }

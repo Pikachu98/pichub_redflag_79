@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -24,9 +25,10 @@ public class AlbumController {
     @Autowired
     FocusService focusService;
 
+
     @RequestMapping("/create")
     @ResponseBody
-    public Map<String,Object> createAlbum(Album album, HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public Map<String,Object> createAlbum(Album album, HttpServletRequest request, HttpServletResponse response) {
         Long userId = (Long) request.getSession().getAttribute("userId");
         album.setUserId(userId);
         int count =albumService.createAlbum(album);
@@ -56,10 +58,10 @@ public class AlbumController {
     {
         model.put("MyFocus",focusService.showMyFocus(User.getCurrentUser(request).getUserId().intValue()).size());
         model.put("FocusMe",focusService.showFocusMe(User.getCurrentUser(request).getUserId().intValue()).size());
+        model.put("listAlbum",albumService.listAlbum(User.getCurrentUser(request).getUserId()));
         return "myalbum";
 
     }
-
 
 
 }

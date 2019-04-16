@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AlbumService {
     Album getAlbum(Long albumId) throws Exception;
-    List<Album> listAlbum();
+    List<Album> listAlbum(long userId);
     Album createAlbum();
     Album deleteAlbum();
     int createAlbum(Album album);

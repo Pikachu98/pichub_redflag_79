@@ -1,6 +1,6 @@
 .sidebar{
     margin-left: 200px;
-    /*background-color: #ffffff;*/
+    /* background-color: #ffffff; */
     width: 200px;
     height: 914.53px;
     float: left;
@@ -11,7 +11,7 @@
     margin-top: 20px;
     width: 1319px;
     height: 50px;
-    background-color: #F9FAFA;
+    /* background-color: #F9FAFA; */
     margin-left: 385px;
     line-height: 50px;
 }
@@ -19,7 +19,7 @@
     margin-left: 400px;
     margin-top: 8px;
     width: 1303px;
-    /*background-color: #ffffff;*/
+    /* background-color: #ffffff; */
     border-color: #dddddd;
 }
 .my-cover-item{
@@ -110,7 +110,7 @@
     position: fixed;
     border: 1px solid #dddddd;
     background-color: white;
-    z-index: 2;
+    z-index: 30;
     overflow: auto;
     _position: absolute;
     /* hack for IE6 */
@@ -193,7 +193,7 @@
     position: fixed;
     border: 1px solid #dddddd;
     background-color: white;
-    z-index: 2;
+    z-index: 30;
     overflow: auto;
     _position: absolute;
     /* hack for IE6 */

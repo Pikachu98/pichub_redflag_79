@@ -33,17 +33,18 @@ public class BelikeController {
 
     @RequestMapping(value = "/belike/reverseState")
     @ResponseBody
-    public String reverseState(long pictureId,HttpServletRequest request, HttpServletResponse response)throws Exception
+    public String reverseState(String pictureId,HttpServletRequest request, HttpServletResponse response)throws Exception
     {
         long userId = User.getCurrentUser(request).getUserId();
+        long picId = Long.parseLong(pictureId);
 
-        if (userService.belikeCheck(userId,pictureId))
+        if (userService.belikeCheck(userId,picId))
         {
-            return "{" + userService.deleteBelike(userId,pictureId) + "}";
+            return "{" + userService.deleteBelike(userId,picId) + "}";
         }
         else
         {
-            return "{" + userService.insertBelike(userId,pictureId) + "}";
+            return "{" + userService.insertBelike(userId,picId) + "}";
         }
     }
 

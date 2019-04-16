@@ -12,4 +12,8 @@
         insert into album (album_name, user_id) values (#{album.albumName},#{album.userId})
     </insert>
 
+    <select id="listAlbum" resultType="com.pichub.hello.bo.Album">
+        select * from album where user_id=#{user_id}
+    </select>
+
 </mapper>

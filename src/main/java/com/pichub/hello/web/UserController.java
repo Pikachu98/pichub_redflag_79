@@ -44,7 +44,7 @@ public class UserController
 
     @RequestMapping(value="/user/checkUserNameExist")
     @ResponseBody
-    public boolean checkUserNameExist(String userName, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public boolean checkUserNameExist(String userName, ModelMap model, HttpServletRequest request, HttpServletResponse response){
         try {
             if (userService.checkUserName(userName)) {
                     return false;
@@ -59,7 +59,7 @@ public class UserController
 
     @RequestMapping(value="/user/checkEmailExist")
     @ResponseBody
-    public boolean checkEmailExist(String email, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public boolean checkEmailExist(String email, ModelMap model, HttpServletRequest request, HttpServletResponse response){
         try {
             if (userService.checkEmailExist(email)) {
                 return false;
@@ -72,10 +72,10 @@ public class UserController
         }
     }
 
-    @RequestMapping(value="/login")
+/*    @RequestMapping(value="/login")
     public String login(HttpServletRequest request, HttpServletResponse response){
         return "login";
-    }
+    }*/
 
     @RequestMapping(value="/doLogin",method = RequestMethod.GET)
     @ResponseBody

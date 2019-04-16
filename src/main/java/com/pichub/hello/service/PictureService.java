@@ -1,6 +1,7 @@
 package com.pichub.hello.service;
 
 import com.pichub.hello.bo.Picture;
+import org.springframework.ui.ModelMap;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ public interface PictureService {
     List<Picture> getHotPicture() throws Exception;
     List<Integer> getLike() throws Exception;
     List<Integer> getHotPicId() throws Exception;
+    ModelMap getTag(List<Integer> picId);
 
 
 }
