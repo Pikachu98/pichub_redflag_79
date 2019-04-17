@@ -96,7 +96,7 @@ public class PictureServicempl implements PictureService{
     public ModelMap getTag(List<Integer> picId) {
         ModelMap tag=null;
         for (int i=0;i<picId.size();i++){
-            tag.put("picId.get(i)",pictureDao.getTag(picId.get(i)));
+            tag.put("picId="+i,pictureDao.getTag(picId.get(i)));
         }
         return tag;
     }

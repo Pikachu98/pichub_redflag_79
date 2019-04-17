@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: msi
@@ -26,10 +27,10 @@
     <script src="/default/layui/layui.js"></script>
 
     <!-- 鼠标跟随特效 -->
-    <script src="js/stopExecutionOnTimeout.js"></script>
+    <script src="/js/stopExecutionOnTimeout.js"></script>
     <!-- <script src="theme/default/js/jquery-3.3.1.min.js"></script> -->
 
-    <link rel="stylesheet" href="css/load.css">
+    <link rel="stylesheet" href="/css/load.css">
 
     <!-- <script src="theme/default/js/register.js"></script> -->
 
@@ -62,13 +63,17 @@
 </div>
 
 <div class="l">
-    <img src="img/pho-14.png">
+    <img src="/img/pho-14.png">
 
 </div>
 <div class="r">
     <div class="text first">Picture Name</div>
     <div class="text">description:</div>
-    <div class="text">Tag:</div>
+    <div class="text">Tag:
+        <c:forEach  items="${picTag}" var="tag" >
+            ${tag}
+        </c:forEach>
+    </div>
 </div>
 
 
@@ -88,8 +93,8 @@
     <canvas></canvas>
 </div>
 <!-- 鼠标跟随特效 -->
-<script src="js/stopExecutionOnTimeout.js"></script>
-<script src="js/canvas.js"></script>
+<script src="/js/stopExecutionOnTimeout.js"></script>
+<script src="/js/canvas.js"></script>
 
 </body>
 

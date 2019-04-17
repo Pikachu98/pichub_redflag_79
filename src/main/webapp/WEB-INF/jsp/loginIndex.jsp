@@ -327,8 +327,17 @@
                     <c:if test="${cou.count >=4}">
                     <img class="hot_pics" src="img/whiteboard.png" data-src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">
                     </c:if>
+                <a href="/picture-detail/${var.picId}">
+                    <div class="view-cover"><!--图片的显示，见phot-list:设置了个边框颜色？？？-->
+                        <c:if test="${cou.count <4}">
+                        <img class="hot_pics" src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">
+                        </c:if>
+                        <c:if test="${cou.count >=4}">
+                        <img class="hot_pics" src="img/whiteboard.png" data-src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">
+                        </c:if>
 
-                </div>
+                    </div>
+                </a>
                 <div class="description"><!--故事，见photo-list-->
                     <p>${var.picStory}</p>
                 </div>
