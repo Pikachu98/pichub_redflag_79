@@ -25,6 +25,7 @@ public class PictureController {
     @Autowired
     PictureDao pictureDao;
 
+
     @RequestMapping(value = "/picture/{picId}")
     public String pictureDetail(@PathVariable int picId, ModelMap model,
                                 HttpServletRequest request, HttpServletResponse response)throws Exception{
