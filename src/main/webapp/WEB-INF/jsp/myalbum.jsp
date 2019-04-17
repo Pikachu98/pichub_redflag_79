@@ -180,26 +180,26 @@
             </div>
         </form>
         <div class="backGround"></div>
-        <!--上传窗口-->
-        <!--创建相册悬浮窗-->
-        <div id="createWindow">
-            <div style="float: right">
-                <label class="x" style="margin-top:2px;margin-left: -169%;font-size: 25px;">-</label>
-            </div>
+            <!--上传窗口-->
+            <!--创建相册悬浮窗-->
+            <div id="createWindow">
+                <div style="float: right">
+                    <label class="x" style="margin-top:2px;margin-left: -169%;font-size: 25px;">-</label>
+                </div>
 
-            <div style="background-color:#F8F8F8">
-                <span class="create-title">创建相册</span>
-            </div>
-            <div class="about-album">
-                <span class="lbl-create1">相册名称：</span>
-                <input type="text" class="create-album-name">
-                <span>0/30</span>
-            </div>
-            <div class="album-des">
-                <span>相册描述：</span>
-                <textarea class="create-description"></textarea>
-                <span>0/2000</span>
-            </div>
+                <div style="background-color:#F8F8F8">
+                    <span class="create-title">创建相册</span>
+                </div>
+                <div class="about-album">
+                    <span class="lbl-create1">相册名称：</span>
+                    <input type="text" class="create-album-name">
+                    <span>0/30</span>
+                </div>
+                <div class="album-des">
+                    <span>相册描述：</span>
+                    <textarea class="create-description"></textarea>
+                    <span>0/2000</span>
+                </div>
             <div class="album-authority">
                 <span>权限：</span>
                 <select class="create-album-name">
