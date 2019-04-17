@@ -16,14 +16,12 @@
 }
 .user-cover{
     margin-top: 23px;
-    padding: 0 68px;
 }
 .h-line{
     text-align: center;
     margin-top: 43.5px;
 }
 .btn-foc{
-    margin-top: 32px;
     padding: 0 9px;
     width: 235px;
     height: 32px;
@@ -32,6 +30,7 @@
     background-color: #E3E3E3;
     border-color: #707070;
     color: #ffffff;
+    margin: 32px auto 0;
 }
 .my-fan{
     margin-left: 8px;

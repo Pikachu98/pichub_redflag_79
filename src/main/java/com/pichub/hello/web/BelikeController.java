@@ -28,7 +28,7 @@ public class BelikeController {
     @ResponseBody
     public String checkBelike(long pictureId, HttpServletRequest request)throws Exception
     {
-        return "{" + userService.belikeCheck(User.getCurrentUser(request).getUserId().longValue(),pictureId) + "}";
+        return "{" + userService.belikeCheck(User.getCurrentUser(request).getUserId(),pictureId) + "}";
     }
 
     @RequestMapping(value = "/belike/reverseState")

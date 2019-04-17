@@ -76,7 +76,7 @@ public class IndexController {
                 int t = focusService.checkFocus(user.getUserId().intValue(),
                         users.get(i).getUserId().intValue());
                 focusList.add(t);
-                if(userService.belikeCheck(user.getUserId().longValue(),hotPicIds.get(i)))
+                if(userService.belikeCheck(user.getUserId(),hotPicIds.get(i)))
                 {
                     belikeList.add(1);
                 }
