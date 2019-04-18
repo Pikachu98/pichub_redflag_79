@@ -74,10 +74,10 @@ public class AlbumController {
 
     @RequestMapping(value = "/myAlbum/listPicture",method = RequestMethod.POST)
     @ResponseBody
-    public int listPicture(ModelMap model,HttpServletRequest request,long albumId){
+    public List<Picture> listPicture(ModelMap model, HttpServletRequest request, long albumId){
         albumId = Long.parseLong(request.getParameter("albumId"));
         model.put("listPicture",albumService.getPictures(albumId));//albumService.getPictures(albumId)方法需要检查调试
-        return 1;
+        return albumService.getPictures(albumId);
     }
 
     @RequestMapping(value = "/albumContent/{albumId}",method = RequestMethod.POST)

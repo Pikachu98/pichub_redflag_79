@@ -127,11 +127,9 @@
 
         <div class="my-root">
             <ul class="my-album">
-
                         <c:forEach items="${listAlbum}" var="list" ><!--一个循环元素一个包装-->
-                            <li class="cover-item my-cover-item">
-                                <div class="aaa">
-                                    <div class="listAlbum">
+                <div class="listAlbum"><li class="cover-item my-cover-item">
+
 
                                 <a href="javascript:void(0);" onclick="a(${list.albumId})">
                                     <div class="album-cover">
@@ -139,46 +137,55 @@
                                     </div>
                                     <div>${list.albumName}</div><%--相册名字--%>
                                 </a>
-                                    </div>
-                                </div>
 
-                            </li>
+
+                            </li>    </div>
                         </c:forEach>
 
-                        <script>
-                                function a(albumId) {
-                                    $.ajax({
-                                        type: "post",
-                                        url: "/myAlbum/listPicture",
-                                        data:{"albumId":albumId}
-                                        ,
-                                        success: function (result) {
-                                            $(".listAlbum").remove();
 
-                                            var listPicture='        <div class="listAlbum">\n' +
-                                                '                        <c:forEach items="${listPicture}" var="list" ><!--一个循环元素一个包装-->\n' +
-                                                '                                <a href="javascript:void(0);" onclick="a(${list.pic_id})">\n' +
-                                                '                                    <div class="album-cover">\n' +
-                                                '                                        <img src="${list.pic_thumbnail_path}" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>\n' +
-                                                '                                    </div>\n' +
-                                                '                                    <div>${list.pic_name}</div><%--相册名字--%>\n' +
-                                                '                                </a>\n' +
-                                                '                        </c:forEach>\n' +
-                                                '                    </div>'
-                                            $(".aaa").append(listPicture);
-                                            //放置listpic
-                                        },
-                                        error: function () {
-                                            alert("未响应请刷新页面重试！")
-                                        }
-                                    })
-                                }
-
-                        </script>
 
 
 
             </ul>
+            <script>
+                function a(albumId) {
+                    $.ajax({
+                        type: "post",
+                        url: "/myAlbum/listPicture",
+                        data:{"albumId":albumId}
+                        ,
+                        success: function (result) {
+                          $(".listAlbum").remove();
+
+                            $.each(result,function(n,value) {
+                                var trs = "";
+                                trs += "<div class='listPicture'> " +
+                                "<a href='#' >" +
+                                "<div class='album-cover'>" +
+                                "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='200' width='200'><%--相册封面图片--%> "+
+                                    "</div>" +
+                                    +"<div>"+value.picName+"</div><%--相册名字--%> "+
+                                "  </a> " +
+                                "</div>";
+
+ /*                               trs += " < tr > <td > " + value.picPath +" < /td> <td>"
+                                    + value.picName +"</td > </tr>";*/
+                                var tbody = "";
+                                tbody += trs;
+                                $(".my-album").append(tbody);
+                            });
+
+                            /*alert("加载相册内照片完成");*/
+                            //放置listpic
+                        },
+                        error: function () {
+                            alert("未响应请刷新页面重试！")
+                        }
+                    })
+                }
+
+            </script>
+
             <div class="choose-page">
                 <a href="javascript:void(0)" class="choose-btn">上一页</a>
                 <span class="page-now">1/20</span>
