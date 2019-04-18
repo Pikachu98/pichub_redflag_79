@@ -1,36 +1,28 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: msi
-  Date: 2019/4/15
-  Time: 16:45
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>热门广场</title>
-    <link rel="stylesheet" href="/default/reset.css">
-    <link rel="stylesheet" href="/default/view.css">
-    <link rel="stylesheet" href="/default/base-layout.css">
-    <link rel="stylesheet" href="/default/header.css">
-    <link rel="stylesheet" href="/default/photo-list.css">
+    <title>图片详情</title>
+    <link rel="stylesheet" href="default/reset.css">
+    <link rel="stylesheet" href="default/view.css">
+    <link rel="stylesheet" href="default/base-layout.css">
+    <link rel="stylesheet" href="default/header.css">
+    <link rel="stylesheet" href="default/photo-list.css">
 
-    <link rel="stylesheet" href="/default/detail.css">
+    <link rel="stylesheet" href="default/detail.css">
 
-    <link href="/default/register.css" rel="stylesheet">
-    <script src="/default/js/jquery-3.3.1.js"></script>
-    <script src="/default/js/jquery.validate.min.js"></script>
-    <script src="/default/js/jquery.validate.extend.js"></script>
-    <script src="/default/layui/layui.js"></script>
+    <link href="default/register.css" rel="stylesheet">
+    <script src="default/js/jquery-3.3.1.js"></script>
+    <script src="default/js/jquery.validate.min.js"></script>
+    <script src="default/js/jquery.validate.extend.js"></script>
+    <script src="default/layui/layui.js"></script>
 
     <!-- 鼠标跟随特效 -->
-    <script src="/js/stopExecutionOnTimeout.js"></script>
+    <script src="js/stopExecutionOnTimeout.js"></script>
     <!-- <script src="theme/default/js/jquery-3.3.1.min.js"></script> -->
 
-    <link rel="stylesheet" href="/css/load.css">
+    <link rel="stylesheet" href="css/load.css">
 
     <!-- <script src="theme/default/js/register.js"></script> -->
 
@@ -63,16 +55,23 @@
 </div>
 
 <div class="l">
-    <img src="/img/pho-14.png">
+    <img src="img/pic-14.jpg">
 
 </div>
 <div class="r">
-    <div class="text first">Picture Name</div>
-    <div class="text">description:</div>
-    <div class="text">Tag:
-        <c:forEach  items="${picTag}" var="tag" >
-            ${tag}
-        </c:forEach>
+    <div style="padding-top:10px;margin-left: 93%;"><a href="javascript:void(0)" ><img src="img/i-close.png"></img></a></div>
+
+    <div class="text first">Picture Name：驯龙高手</div>
+    <div class="text">description：There were dragons, when I was a boy.</div>
+    <div class="text">Tags：
+        <a href="javascript:void(0)" class="tag">movie</a>
+        <a href="javascript:void(0)" class="tag">animation</a>
+        <a href="javascript:void(0)" class="tag">dragon</a>
+    </div>
+    <div class="text">
+        <a href="javascript:void(0)"><img src="img/heart.png"></img></a>
+        <a href="javascript:void(0)" style="margin-left: 20px;"><img src="img/i-download.png"></img></a>
+
     </div>
 </div>
 
@@ -93,8 +92,8 @@
     <canvas></canvas>
 </div>
 <!-- 鼠标跟随特效 -->
-<script src="/js/stopExecutionOnTimeout.js"></script>
-<script src="/js/canvas.js"></script>
+<script src="js/stopExecutionOnTimeout.js"></script>
+<script src="js/canvas.js"></script>
 
 </body>
 
