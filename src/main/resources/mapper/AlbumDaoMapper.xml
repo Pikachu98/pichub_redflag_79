@@ -14,7 +14,7 @@
 
     <!--得到相册内的相片id-->
     <select id="getPictures" resultType="java.lang.Integer" parameterType="Long">
-        select pic_id from album_picture where album_id=#{album_id}
+        select pic_id from album_picture where album_id=#{albumId}
     </select>
 
     <select id="listAlbum" resultType="com.pichub.hello.bo.Album">
