@@ -21,18 +21,14 @@ public class UserController
 
     @RequestMapping(value="/register", method = RequestMethod.GET)
     public String register(HttpServletRequest request, HttpServletResponse response){
-
-        return "register";
+        return "register2";
     }
 
     @RequestMapping(value="/user/doRegister")
     @ResponseBody
-    public Map<String,Object> doRegister(User user, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Map<String,Object> doRegister(User user, HttpServletRequest request) throws Exception {
         Map<String, Object> result = new HashMap<String, Object>();
-        System.out.print(request.getParameter("inputCheckCode"));
-        System.out.print(request.getSession().getAttribute("checkCode"));
-
-        if (request.getParameter("inputCheckCode").equals(request.getSession().getAttribute("checkCode"))) {
+        if (request.getParameter("inputCheckCode").equals(request.getSession().getAttribute("checkCodeData"))) {
 
             int count = userService.insertUser(user);
             result.put("meg", "创建成功");
@@ -46,9 +42,37 @@ public class UserController
 
     }
 
+    @RequestMapping(value="/user/checkUserNameExist")
+    @ResponseBody
+    public boolean checkUserNameExist(String userName, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        try {
+            if (userService.checkUserName(userName)) {
+                    return false;
+            } else {
+                    return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return true;
+        }
+    }
+
+    @RequestMapping(value="/user/checkEmailExist")
+    @ResponseBody
+    public boolean checkEmailExist(String email, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        try {
+            if (userService.checkEmailExist(email)) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return true;
+        }
+    }
 
     @RequestMapping(value="/login")
-
     public String login(HttpServletRequest request, HttpServletResponse response){
         return "login";
     }
@@ -71,9 +95,6 @@ public class UserController
     @ResponseBody
     public Map<String,Object> doReset(User user, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception{
         Map<String, Object> result = new HashMap<String, Object>();
-//        System.out.print("ssfgfhjiojd!!!!"+request.getParameter("inputCheckCode"));
-//        System.out.print(request.getSession().getAttribute("checkCode"));
-
         if (request.getParameter("inputCheckCode").equals(request.getSession().getAttribute("a"))) {
             String userEmail = user.getUserEmail();
             String userPassword = user.getUserPassword();

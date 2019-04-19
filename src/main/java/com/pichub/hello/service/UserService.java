@@ -20,6 +20,9 @@ public interface UserService {
     boolean insertBelike(Long userId, long pictureId)throws Exception;
 
     String getUserName(String userEmail);
+    boolean checkUserName(String userName) throws Exception;
+    boolean checkEmailExist(String email) throws Exception;
+
     int checkEmail(String email);
     int doChangeEmail(String oldEmail, String oldCheckCod, String oldEmailCheckCode, String newEmail, String newCheckCode, String newEmailCheckCode);
     String getAvatarPath(long userId);

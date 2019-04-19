@@ -29,6 +29,9 @@ public class UserServiceImpl implements UserService {
         User trueUser = userDao.tOrfUserName(user.getUserEmail());
         if(trueUser !=null){
             if (inputPsw.equals(trueUser.getUserPassword())) {
+                request.getSession().setAttribute("userName", trueUser.getUserName());
+                request.getSession().setAttribute("userId", trueUser.getUserId());
+
 //                request.getSession().setAttribute("userName", trueUser.getUserName());
 //                request.getSession().setAttribute("userId", trueUser.getUserId());
                 request.getSession().setAttribute("user", trueUser);
@@ -73,6 +76,7 @@ public class UserServiceImpl implements UserService {
         int flag = userDao.belikeCheck(userId, pictureId);
         if(flag > 0)    return true;
         else return false;
+
     }
 
     public boolean deleteBelike(Long  userId, long pictureId)throws Exception{
@@ -109,6 +113,26 @@ public class UserServiceImpl implements UserService {
         }
         else
             return 0;
+    }
+
+    @Override
+    public boolean checkUserName(String userName) throws Exception {
+        List<User> userList = userDao.existByUserName(userName);
+        //用户名已存在是true
+        if(userList.size() > 0)
+                return true;
+        else
+            return false;
+    }
+
+    @Override
+    public boolean checkEmailExist(String email) throws Exception {
+        List<User> emailList = userDao.existByEmail(email);
+        //邮箱已存在是true
+        if(emailList.size() > 0)
+            return true;
+        else
+            return false;
     }
 
     public void changeAvatar(long userId, String avatarPath)throws Exception
