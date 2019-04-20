@@ -306,7 +306,7 @@
 
                 <div class="view-other view-lr"><!--把头像和关注放在一起，见photo-list(line-height:60px)-->
                     <div class="view-l"><!--头像 photo-list和description一起-->
-                        <a><img src="/showT${users[cou.count-1].userId}" alt="头像"></a>
+                        <a><img src="/showT/${users[cou.count-1].userId}" alt="头像"></a>
                         <span class="user-name">${users[cou.count-1].userName}</span>
                         <span id="user-id" user_id="${users[cou.count-1].userId}" style="opacity: 0">${users[cou.count-1].userId}</span>
                     </div>

@@ -197,6 +197,13 @@ public class UpanddownController {
             e.printStackTrace();
         }
 
+        try {// make avatar in page
+            Thumbnails.of(avatarPath + "/origin." + exName).size(100, 100).keepAspectRatio(false).outputFormat("jpg")
+                    .toFile(avatarPath + "/page.jpg");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
         try {// make thumbnail avatar
             Thumbnails.of(avatarPath + "/origin." + exName).size(40,40).keepAspectRatio(false).outputFormat("jpg")
                     .toFile(avatarPath + "/" + "thumbnail.jpg");
