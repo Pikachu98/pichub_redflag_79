@@ -78,7 +78,7 @@
                 <div class="other-note">
                     <div><span class="other-note-title">${sessionScope.get("user").userName}</span>
                     </div>
-                    <div class="other-note-decription">${sessionScope.get("user").userDescription}</div>
+                    <div class="other-note-decription">${sessionScope.get("user").userDescription}&nbsp;</div>
                     <div class="other-focus">
                         <div class="fans">
                             <div class="number">${FocusMe}</div>
