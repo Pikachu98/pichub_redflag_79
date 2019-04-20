@@ -29,4 +29,12 @@
         select * from album where user_id=#{user_id}
     </select>
 
+    <update id="changeName" >
+        update album set album_name=#{albumName} where album_id=#{albumId}
+    </update>
+
+    <update id="changeTumbnailPath">
+        update album set cover_thumbnail_path=#{path} where album_id=#{albumId}
+    </update>
+
 </mapper>

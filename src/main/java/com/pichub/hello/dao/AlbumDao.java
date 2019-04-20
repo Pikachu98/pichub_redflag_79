@@ -26,5 +26,7 @@ public interface AlbumDao {
 
     //得到相册内的相片id
     List<Integer> getPictures(@Param("albumId") Long albumId);
+    int changeName(@Param("albumId") long albumId, @Param("albumName") String albumName)throws Exception;
+    int changeThumbnailPath(@Param("albumId") long albumId, @Param("Path") String path)throws Exception;
 
 }
