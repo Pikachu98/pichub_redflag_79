@@ -56,7 +56,6 @@
 
 <div class="l">
     <img src="img/pic-14.jpg">
-
 </div>
 <div class="r">
     <div style="padding-top:10px;margin-left: 93%;"><a href="javascript:void(0)" ><img src="img/i-close.png"></img></a></div>

@@ -131,6 +131,7 @@ public class FocusController {
             fansList.add(focusService.showFocusMe(i).size());
         }
         model.put("fansList",fansList);
+        model.put("USERS",myFocusList);
 
         String p = request.getParameter("page");
         int page;
@@ -210,6 +211,8 @@ public class FocusController {
         request.setAttribute("page", page);
         request.setAttribute("users", myFansList);
 
+
+        model.put("USERS",myFansList);
         model.put("MyFocus",focusService.showMyFocus(User.getCurrentUser(request).getUserId().intValue()).size());
         model.put("FocusMe",focusService.showFocusMe(User.getCurrentUser(request).getUserId().intValue()).size());
 

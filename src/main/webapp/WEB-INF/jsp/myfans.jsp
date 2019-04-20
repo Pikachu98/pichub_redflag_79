@@ -159,7 +159,7 @@
                         <li class="user-item">
                             <div class="user-cover">
 
-                                <img src="showA/${sessionScope.get("user").userId}" alt="avator"><!---->
+                                <img src="showC/${USERS[cou.count-1].userId}" alt="avator" onerror="javascript:this.src='img/cat-1.png'"><!---->
 
                             </div>
                             <div class="userName">
