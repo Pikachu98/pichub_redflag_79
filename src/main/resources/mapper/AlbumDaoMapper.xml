@@ -12,4 +12,12 @@
         insert into album (album_name, user_id) values (#{album.albumName},#{album.userId})
     </insert>
 
+    <select id="getMyAlbumList" resultType="com.pichub.hello.bo.Album">
+        select * from album where user_id=#{userId}
+    </select>
+
+    <insert id="insertAlbumAndPicture">
+        insert into album_picture (album_id, pic_id) values (#{albumId},#{picId})
+    </insert>
+
 </mapper>

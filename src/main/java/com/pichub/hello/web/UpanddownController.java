@@ -1,6 +1,7 @@
 package com.pichub.hello.web;
 
 import com.pichub.hello.bo.User;
+import com.pichub.hello.service.AlbumService;
 import com.pichub.hello.service.PictureService;
 import com.pichub.hello.bo.Picture;
 import com.pichub.hello.service.UserService;
@@ -34,9 +35,13 @@ public class UpanddownController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    AlbumService albumService;
+
     @RequestMapping(value = "/uploadFile" ,method = RequestMethod.POST)
     public String uploadFile(@RequestParam(value="file") MultipartFile file, //@RequestParam(value = "story")String story,
-                             /*@RequestParam(value = "userId") long userId,*/ HttpServletRequest request, HttpServletResponse response)
+                             /*@RequestParam(value = "userId") long userId,*/ @RequestParam(value = "album") long albumId,
+                             HttpServletRequest request, HttpServletResponse response)
     {
         if(file == null && file.getSize() > 0)
         {
@@ -120,21 +125,24 @@ public class UpanddownController {
         picture.setPicPath(real2realative(finalOriginPath));
         picture.setPicThumbnailPath(real2realative(finalThumbnailPath));
         picture.setPicSize(file.getSize());
+
         try {
             pictureService.insertPicture(picture);
+            int picId = pictureService.getPictureId(picture.getPicName());
+            albumService.insertAlbumAndPicture(picId,albumId);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
 
-
-        return "{" + "true" + "}";
+        return "myalbum";
 
     }
 
 
 
     @RequestMapping(value = "/uploadAvatar",method = RequestMethod.POST)
+    @ResponseBody
     public String uploadAvatar(@Param("avatar") MultipartFile avatar,@Param("userId")long userId,
                                HttpServletRequest request, HttpServletResponse response)
     {
@@ -216,6 +224,7 @@ public class UpanddownController {
     }
 
     @RequestMapping("download/{picId}")
+    @ResponseBody
     public void download(@PathVariable int picId, HttpServletResponse response, HttpServletRequest request)throws Exception
     {
         Picture p = pictureService.getPicture(picId);

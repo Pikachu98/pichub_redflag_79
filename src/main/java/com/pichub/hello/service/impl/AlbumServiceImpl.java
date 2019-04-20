@@ -39,4 +39,22 @@ public class AlbumServiceImpl implements AlbumService {
         int count = albumDao.createAlbum(album);
         return count;
     }
+
+    public List<Album> getMyAlbumList(long userId)throws Exception
+    {
+        return albumDao.getMyAlbumList(userId);
+    }
+
+    public boolean insertAlbumAndPicture(long picId, long albumId)throws Exception
+    {
+        if(albumDao.insertAlbumAndPicture(picId,albumId) > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }

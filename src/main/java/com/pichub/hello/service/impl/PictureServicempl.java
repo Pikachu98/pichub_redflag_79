@@ -90,4 +90,9 @@ public class PictureServicempl implements PictureService{
         }
         return null;
     }
+
+    public int getPictureId(String picName)throws Exception
+    {
+        return pictureDao.getPictureId(picName);
+    }
 }
