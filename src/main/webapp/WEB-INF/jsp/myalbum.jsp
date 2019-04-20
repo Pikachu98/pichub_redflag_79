@@ -118,7 +118,7 @@
                                                                        class="icon-my">我的粉丝</a></div>
             <div class="sidebar-btn"><a href="/list"><img src="/img/i-4.png"
                                                                        class="icon-my">我关注的</a></div>
-            <div class="sidebar-btn"><a href="javascript:void(0)"><img src="/img/i-5.png"
+            <div class="sidebar-btn"><a href="/editPersonal"><img src="/img/i-5.png"
                                                                        class="icon-my">修改个人资料</a></div>
         </div>
 
