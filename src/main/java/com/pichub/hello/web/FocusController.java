@@ -120,7 +120,7 @@ public class FocusController {
     public String showMyFocus(ModelMap model, HttpServletRequest request, HttpServletResponse response)
             throws Exception
     {
-        int userIdNow = 2;
+        int userIdNow = User.getCurrentUser(request).getUserId().intValue();
         List<Integer> myFocus = focusService.showMyFocus(userIdNow);
 
         List<User> myFocusList = new ArrayList<>();
@@ -171,7 +171,7 @@ public class FocusController {
     public String showMyFans(ModelMap model, HttpServletRequest request, HttpServletResponse response)
             throws Exception
     {
-        int userIdNow = 2;
+        int userIdNow = User.getCurrentUser(request).getUserId().intValue();
         List<Integer> myFans = focusService.showFocusMe(userIdNow);
 
         List<User> myFansList = new ArrayList<>();
@@ -217,6 +217,52 @@ public class FocusController {
         model.put("FocusMe",focusService.showFocusMe(User.getCurrentUser(request).getUserId().intValue()).size());
 
         return "myfans";
+    }
+
+
+
+    @RequestMapping(value="/listmyLike")
+    public String showMylike(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+            throws Exception
+    {
+        int userIdNow = User.getCurrentUser(request).getUserId().intValue();
+        List<Integer> myLikeList = focusService.showMyLike(userIdNow);
+
+
+        model.put("myikelist",myLikeList);
+
+        String p = request.getParameter("page");
+        int page;
+        try {
+            //当前页数
+            page = Integer.valueOf(p);
+        } catch (NumberFormatException e) {
+            page = 1;
+        }
+        //用户总数
+        int totalUsers = myLikeList.size();
+        //每页用户数
+        int usersPerPage = 10;
+        //总页数
+        int totalPages = totalUsers % usersPerPage == 0 ? totalUsers / usersPerPage : totalUsers / usersPerPage + 1;
+        //本页起始用户序号
+        int beginIndex = (page - 1) * usersPerPage;
+        //本页末尾用户序号的下一个
+        int endIndex = beginIndex + usersPerPage;
+        if (endIndex > totalUsers)
+            endIndex = totalUsers;
+        request.setAttribute("totalUsers", totalUsers);
+        request.setAttribute("usersPerPage", usersPerPage);
+        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("beginIndex", beginIndex);
+        request.setAttribute("endIndex", endIndex);
+        request.setAttribute("page", page);
+        request.setAttribute("photos", myLikeList);
+
+        model.put("MyFocus",focusService.showMyFocus(User.getCurrentUser(request).getUserId().intValue()).size());
+        model.put("FocusMe",focusService.showFocusMe(User.getCurrentUser(request).getUserId().intValue()).size());
+
+        return "mylike";
     }
 
 
