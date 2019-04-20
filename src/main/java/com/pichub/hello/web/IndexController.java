@@ -106,6 +106,24 @@ public class IndexController {
         return "loginIndex";
     }
 
+    @RequestMapping(value="/album-pics/{userId}",method = RequestMethod.GET)
+    public String showOtherAlbum(@PathVariable int userId, HttpServletRequest request, HttpServletResponse response, ModelMap model)throws Exception{
+        List<Integer> albumPics = pictureService.getAlbumPics(userId);
+        model.put("albumPics", albumPics);
+        User user = userService.getUser(userId);
+
+        model.put("user",user);
+
+        model.put("user_id",userId);
+
+        model.put("MyFocus",focusService.showMyFocus(userId).size());
+
+        model.put("FocusMe",focusService.showFocusMe(userId).size());
+
+        return "otherAlbum";
+    }
+
+
 
     @RequestMapping(value = "/show/{picId}",method = RequestMethod.GET)
     public void show(@PathVariable int picId, String pathName, HttpServletRequest request, HttpServletResponse response)throws Exception

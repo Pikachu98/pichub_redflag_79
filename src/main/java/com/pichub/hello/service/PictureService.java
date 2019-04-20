@@ -20,6 +20,6 @@ public interface PictureService {
     int getPictureId(String picName)throws Exception;
     ModelMap getTag(List<Integer> picId);
 
-
+    List<Integer> getAlbumPics(int userId) throws Exception;
 
 }
