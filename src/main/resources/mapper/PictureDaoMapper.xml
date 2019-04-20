@@ -52,6 +52,10 @@
     <select id="getPictureThumbnailPath" resultType="java.lang.String">
         select pic_thumbnail_path from picture where pic_id=#{pictureId}
     </select>
+    
+    <select id="getPictureId" resultType="java.lang.Integer">
+        select pic_id from picture where pic_name=#{picName}
+    </select>
 
     <select id="getTag" resultType="String">
         select tag_keyword from pic_tag where pic_id=#{picId}

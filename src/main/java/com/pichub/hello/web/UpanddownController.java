@@ -1,6 +1,7 @@
 package com.pichub.hello.web;
 
 import com.pichub.hello.bo.User;
+import com.pichub.hello.service.AlbumService;
 import com.pichub.hello.service.PictureService;
 import com.pichub.hello.bo.Picture;
 import com.pichub.hello.service.UserService;
@@ -12,10 +13,7 @@ import net.coobird.thumbnailator.Thumbnails;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -23,10 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.UUID;
 import java.util.Date;
 /**
@@ -40,9 +35,13 @@ public class UpanddownController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    AlbumService albumService;
+
     @RequestMapping(value = "/uploadFile" ,method = RequestMethod.POST)
     public String uploadFile(@RequestParam(value="file") MultipartFile file, //@RequestParam(value = "story")String story,
-                             /*@RequestParam(value = "userId") long userId,*/ HttpServletRequest request, HttpServletResponse response)
+                             /*@RequestParam(value = "userId") long userId,*/ @RequestParam(value = "album") long albumId,
+                             HttpServletRequest request, HttpServletResponse response)
     {
         if(file == null && file.getSize() > 0)
         {
@@ -126,15 +125,17 @@ public class UpanddownController {
         picture.setPicPath(real2realative(finalOriginPath));
         picture.setPicThumbnailPath(real2realative(finalThumbnailPath));
         picture.setPicSize(file.getSize());
+
         try {
             pictureService.insertPicture(picture);
+            int picId = pictureService.getPictureId(picture.getPicName());
+            albumService.insertAlbumAndPicture(picId,albumId);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
 
-
-        return "{" + "true" + "}";
+        return "myalbum";
 
     }
 
@@ -197,6 +198,13 @@ public class UpanddownController {
             e.printStackTrace();
         }
 
+        try {// make avatar in page
+            Thumbnails.of(avatarPath + "/origin." + exName).size(100, 100).keepAspectRatio(false).outputFormat("jpg")
+                    .toFile(avatarPath + "/page.jpg");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
         try {// make thumbnail avatar
             Thumbnails.of(avatarPath + "/origin." + exName).size(40,40).keepAspectRatio(false).outputFormat("jpg")
                     .toFile(avatarPath + "/" + "thumbnail.jpg");
@@ -214,6 +222,30 @@ public class UpanddownController {
         return "{" + true + "}";
     }
 
+    @RequestMapping("download/{picId}")
+    @ResponseBody
+    public void download(@PathVariable int picId, HttpServletResponse response, HttpServletRequest request)throws Exception
+    {
+        Picture p = pictureService.getPicture(picId);
+        String picName = p.getPicName();
+        String path = getParent(request.getServletContext().getRealPath("/"))
+                + "resources/originPictures/" + picName;
+        long picUserId = p.getUserId();
+        long userId = User.getCurrentUser(request).getUserId();
+        if(userId == picUserId)
+        {
+            File f = new File(path);
+            BufferedInputStream br = new BufferedInputStream(new FileInputStream(f));
+            byte[] buf = new byte[1024];
+            int len = 0;
+            response.reset();
+            response.setHeader("Content-Disposition", "attachment; filename=" + f.getName());
+            OutputStream out = response.getOutputStream();
+            while ((len = br.read(buf)) > 0) out.write(buf, 0, len);
+            br.close();
+            out.close();
+        }
+    }
 
 
     private void handleDpi(File file, int xDensity, int yDensity) {//change Dpi

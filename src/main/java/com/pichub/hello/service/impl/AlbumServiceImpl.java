@@ -50,6 +50,24 @@ public class AlbumServiceImpl implements AlbumService {
         return count;
     }
 
+    public List<Album> getMyAlbumList(long userId)throws Exception
+    {
+        return albumDao.getMyAlbumList(userId);
+    }
+
+    public boolean insertAlbumAndPicture(long picId, long albumId)throws Exception
+    {
+        if(albumDao.insertAlbumAndPicture(picId,albumId) > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
     @Override
     public List<Picture> getPictures(Long albumId) {
         List<Picture> pics = new ArrayList<Picture>();

@@ -60,6 +60,7 @@ public class PictureController {
     @RequestMapping(value = "/picture-detail/{picId}")
     public String pictureDetail(@PathVariable int picId,ModelMap model){
         model.put("picTag",pictureDao.getTag(picId));
+        model.put("picId",picId);
         return "picture-detail";
     }
 }
