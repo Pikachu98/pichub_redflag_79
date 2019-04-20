@@ -118,7 +118,7 @@
                                                                        class="icon-my">我的粉丝</a></div>
             <div class="sidebar-btn"><a href="/list"><img src="/img/i-4.png"
                                                                        class="icon-my">我关注的</a></div>
-            <div class="sidebar-btn"><a href="javascript:void(0)"><img src="/img/i-5.png"
+            <div class="sidebar-btn"><a href="/editPersonal"><img src="/img/i-5.png"
                                                                        class="icon-my">修改个人资料</a></div>
         </div>
 
@@ -180,9 +180,9 @@
                                   trs += "<div class='listPicture'> " +
                                       "<a href='#' >" +
                                       "<div class='album-cover'>" +
-                                      "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='200' width='200'><%--相册封面图片--%> "+
+                                      "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='150' width='250'><%--相册封面图片--%> "+
                                       "</div>" +
-                                      +"<div>"+value.picName+"</div><%--相册名字--%> "+
+                                      <%-- +"<div>"+value.picName+"</div><%--相册名字--%>
                                       "  </a> " +
                                       "</div>";
 
