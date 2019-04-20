@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <c:if test="${not empty user}">
     <header id="header" class="header">
         <section class="layout">
@@ -17,7 +19,15 @@
                         <img id="header-avatar" src="showT/${sessionScope.get("user").userId}" alt="我的头像" class="user">
                     </a>
                     <span class="user">${sessionScope.get("user").userName}</span>
-                    <img src="/img/icon-dropdown.png" class="user">
+                    <%--下拉列表--%>
+                    <img src="/img/icon-dropdown.png" class="user" id="dropDown">
+                        <ul id="dropDownlist">
+                            <a href="/myAlbum" target="_blank"><li>我的相册</li></a>
+                            <a href="/myfocus" target="_blank"><li>我关注的</li></a>
+                            <a href="/myfans" target="_blank"><li>我的粉丝</li></a>
+                            <a href="" target="_blank"><li>我喜欢的</li></a>
+                            <li id="signout">退出账号</li>
+                        </ul>
                 </div>
             </div>
         </section>
