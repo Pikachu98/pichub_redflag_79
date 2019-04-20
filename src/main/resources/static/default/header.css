@@ -11,6 +11,7 @@
     color: #ffffff;
     padding: 10px 0;
     background-color: #333333;
+    z-index:100;
 }
 
 .header .view-r {
@@ -34,7 +35,7 @@
     background-color: #ffffff;
 }
 /* .search-box:hover .icon-search, .search-box:focus .icon-search{
-
+    
 } */
 
 .search-box .input-search {
@@ -45,12 +46,11 @@
     background-color: transparent;
     font-size: 16px;
 }
-
 .input-search{
     height: 40px;
 }
 
-.layout-banner {
+ .layout-banner {
     background: url("images/banner.png") 0 0 no-repeat transparent;
     height: 600px;
     text-align: center;
@@ -67,15 +67,12 @@
 .b-title {
     font-size: 30px;
 }
+
 .user-r{
     float: right;
     margin-top: 5px;
     height: 42px;
     margin-right: 20px;
-}
-
-#header-avatar{
-    border-radius: 50%;
 }
 
 .user{

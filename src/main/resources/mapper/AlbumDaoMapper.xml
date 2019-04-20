@@ -20,5 +20,13 @@
         insert into album_picture (album_id, pic_id) values (#{albumId},#{picId})
     </insert>
 
+    <!--得到相册内的相片id-->
+    <select id="getPictures" resultType="java.lang.Integer" parameterType="Long">
+        select pic_id from album_picture where album_id=#{albumId}
+    </select>
+
+    <select id="listAlbum" resultType="com.pichub.hello.bo.Album">
+        select * from album where user_id=#{user_id}
+    </select>
 
 </mapper>

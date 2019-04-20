@@ -57,6 +57,10 @@
         select pic_id from picture where pic_name=#{picName}
     </select>
 
+    <select id="getTag" resultType="String">
+        select tag_keyword from pic_tag where pic_id=#{picId}
+    </select>
+
 
 
 </mapper>

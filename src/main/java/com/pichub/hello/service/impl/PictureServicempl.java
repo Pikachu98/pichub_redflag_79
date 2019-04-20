@@ -11,6 +11,7 @@ import com.pichub.hello.service.PictureService;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
 
 import java.io.File;
 import java.io.IOException;
@@ -91,8 +92,17 @@ public class PictureServicempl implements PictureService{
         return null;
     }
 
-    public int getPictureId(String picName)throws Exception
-    {
+
+    public int getPictureId(String picName)throws Exception {
         return pictureDao.getPictureId(picName);
+    }
+
+    @Override
+    public ModelMap getTag(List<Integer> picId) {
+        ModelMap tag=null;
+        for (int i=0;i<picId.size();i++){
+            tag.put("picId="+i,pictureDao.getTag(picId.get(i)));
+        }
+        return tag;
     }
 }

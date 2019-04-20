@@ -49,7 +49,7 @@ $(function () {
                     }
                 }
                 if(user == 200){
-                    alert("成功");
+                    // alert("成功");
                     window.location.href = "/";
                 }
             },

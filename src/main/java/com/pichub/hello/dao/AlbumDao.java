@@ -1,6 +1,7 @@
 package com.pichub.hello.dao;
 
 import com.pichub.hello.bo.Album;
+import com.pichub.hello.bo.Picture;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,4 +23,8 @@ public interface AlbumDao {
 
     List<Album> getMyAlbumList(@Param("userId") long userId)throws Exception;
     int insertAlbumAndPicture(@Param("picId")long picId, @Param("albumId")long albumId)throws Exception;
+
+    //得到相册内的相片id
+    List<Integer> getPictures(@Param("albumId") Long albumId);
+
 }

@@ -35,95 +35,28 @@
             });
         });
     </script>
-    <script type="text/javascript">
-        var lazyload = {
-            /*对页面变量初始化*/
-            init : function(opt){
-                var that = this,
-                    op = {
-                        anim: true,
-                        extend_height:0,
-                        selectorName:"img", /*假文件名*/
-                        realSrcAtr:"data-src"/*真文件名*/
-                    };
-                // 合并对象，已有的{anim:true}+用户自定义对象。也就是op = op + opt
-                $.extend(op,opt);
-                // 调用lazyload.img.init(op)函数
-                that.img.init(op);
 
-            },
-
-            img : {
-                init : function(n){
-
-                    var that = this,
-                        selectorName = n.selectorName,
-                        realSrcAtr = n.realSrcAtr,
-                        anim = n.anim;
-
-
-                    // 要加载的图片是不是在指定窗口内
-                    function inViewport( el ) {
-                        // 当前窗口的顶部
-                        var top = window.pageYOffset,
-                            // 当前窗口的底部
-                            btm = window.pageYOffset + window.innerHeight,
-                            // 元素所在整体页面内的y轴位置
-                            elTop = $(el).offset().top;
-                        // 判断元素，是否在当前窗口，或者当前窗口延伸400像素内
-                        return elTop >= top && elTop - n.extend_height <= btm;
-                    }
-
-                    // 滚动事件里判断，加载图片
-                    $(window).on('scroll', function() {
-                        $(selectorName).each(function(index,node) {
-                            var $this = $(this);
-
-                            if(!$this.attr(realSrcAtr) || !inViewport(this)){
-                                return;
-                            }
-
-                            act($this);
-
-                        })
-                    }).trigger('scroll');
-
-                    // 展示图片
-                    function act(_self){
-                        // 已经加载过了，则中断后续代码
-                        if (_self.attr('lazyImgLoaded')) return;
-                        var img = new Image(),
-                            original = _self.attr('data-src');
-                        // 图片请求完成后的事件，把data-src指定的图片，放到src里面，浏览器显示
-                        img.onload = function() {
-                            _self.attr('src', original);
-                            anim && _self.css({ opacity: .8 }).animate({ opacity: 1 }, 280);
-                        };/*opacity:不透明度*/
-                        // 当你设置img.src的时候，浏览器就在发送图片请求了
-                        original && (img.src = original);
-                        _self.attr('lazyImgLoaded', true);
-                    }
-                }
-            }
-        };
-        lazyload.init({
-            anim:false,
-            selectorName:".hot_pics"
-        });
-    </script>
     <script>
         $(function () {
             $(".btn-focus").on("click",function () {
                 var focusId = $(this).parents(".view-other").find("#user-id").attr("user_id");
-                if($(this).val() == "已关注")
-                {
-                    $(this).val("关注");
+                var loginUser = $(this).parents(".view-other").find(".view-r").attr("butn_id");
+                if(loginUser != ""){
+                    if($(this).val() == "已关注")
+                    {
+                        $(this).val("关注");
+                    }
+                    else
+                    {
+                        $(this).val("已关注");
+                        // alert($(this).val());
+                    }
                 }
-                else
-                {
-                    $(this).val("已关注");
-                    alert($(this).val());
+
+                else{
+                    alert("请先登录");
                 }
+
 
                 $.ajax({
                     type: "Get",
@@ -310,7 +243,7 @@
                         <span class="user-name">${users[cou.count-1].userName}</span>
                         <span id="user-id" user_id="${users[cou.count-1].userId}" style="opacity: 0">${users[cou.count-1].userId}</span>
                     </div>
-                    <div class="view-r"><!--关注，见photo-list-->
+                    <div class="view-r" butn_id="${sessionScope.get("user").userName}"><!--关注，见photo-list-->
                         <c:if test="${focusList[cou.count-1] == 0}">
                             <input type="button" class="btn-focus" value="关注">
                         </c:if>
@@ -319,15 +252,19 @@
                         </c:if>
                     </div><!--关注-->
                 </div><!--头像+关注-->
-                <div class="view-cover"><!--图片的显示，见phot-list:设置了个边框颜色？？？-->
-                    <c:if test="${cou.count <4}">
-                    <img class="hot_pics" src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">
-                    </c:if>
-                    <c:if test="${cou.count >=4}">
-                    <img class="hot_pics" src="img/whiteboard.png" data-src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">
-                    </c:if>
 
-                </div>
+                <%--<div class="view-cover"><!--图片的显示，见phot-list:设置了个边框颜色？？？-->--%>
+
+                    <%--<img class="hot_pics" src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">--%>
+
+
+                    <div class="view-cover"><!--图片的显示，见photo-list:设置了个边框颜色？？？-->
+                        <a href="/picture-detail/${var.picId}">
+                        <img class="hot_pics" src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">
+                        </a>
+                    </div>
+
+
                 <div class="description"><!--故事，见photo-list-->
                     <p>${var.picStory}</p>
                 </div>
