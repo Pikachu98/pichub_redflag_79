@@ -57,11 +57,11 @@
 </div>
 
 <div class="l">
-    <img src="/img/pic-14.jpg">
+    <img src="/show/${picId}">
 
 </div>
 <div class="r">
-    <div style="padding-top:10px;margin-left: 93%;"><a href="javascript:void(0)" ><img src="/img/i-close.png"></img></a></div>
+    <div style="padding-top:10px;margin-left: 93%;"><a href="javascript:void(0)" ><img src="img/i-close.png"></img></a></div>
 
     <div class="text first">Picture Name：驯龙高手</div>
     <div class="text">description：There were dragons, when I was a boy.</div>
