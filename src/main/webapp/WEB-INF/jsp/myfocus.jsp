@@ -78,6 +78,7 @@
                         </span>
                 <img src="showT/${sessionScope.get("user").userId}" alt="我的头像" class="user">
                 <span class="user">${sessionScope.get("user").userName}</span>
+
                 <img src="img/icon-dropdown.png" class="user">
             </div>
         </div>
@@ -93,7 +94,7 @@
                 <div class="other-note">
                     <div><span class="other-note-title">${sessionScope.get("user").userName}</span>
                     </div>
-                    <div class="other-note-decription">${sessionScope.get("user").userDescription}</div>
+                    <div class="other-note-decription">${sessionScope.get("user").userDescription}&nbsp;</div>
                     <div class="other-focus">
                         <div class="fans">
                             <div class="number">${FocusMe}</div>
@@ -164,7 +165,7 @@
                         <c:forEach var="user" items="${currentPageUsers}" varStatus="cou">
                         <li class="user-item">
                             <div class="user-cover">
-                                <img src="showC/${USERS[cou.count-1].userId}" alt="avator" onerror="javascript:this.src='img/cat-1.png'"><!---->
+                                <img src="showC/${USERS[cou.count-1].userId}" alt="avator" onerror="javascript:this.src='/img/cat-1.png'"><!---->
 
                             </div>
                             <div class="userName">

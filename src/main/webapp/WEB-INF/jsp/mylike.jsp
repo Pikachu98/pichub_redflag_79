@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--
   Created by IntelliJ IDEA.
   User: Horizon
@@ -16,8 +18,6 @@
 
 <head>
 
-
-
     <meta charset="UTF-8">
     <title>mylike</title>
     <link rel="stylesheet" href="/default/reset.css">
@@ -32,7 +32,11 @@
     <link rel="stylesheet" href="/default/myalbum.css">
     <link rel="stylesheet" href="/default/mylike.css">
 
-    <link rel="stylesheet" href="css/load.css">
+    <link rel="stylesheet" href="/css/load.css">
+    <link rel="stylesheet" href="css/bootstrap.css" >
+
+    <script src="js/bootstrap3.0.3.min.js"></script>
+    <script src="js/bootstrap-paginator.js"></script>
 
     <script type="text/javascript">
         function load() {
@@ -69,11 +73,11 @@
                         <span class="search-box login-search">
                             <input type="text" class="input-search">
                             <!-- <i class="icon icon-search"></i> -->
-                            <img src="img/icon_search.png" alt="search" class="icon-search">
+                            <img src="/img/icon_search.png" alt="search" class="icon-search">
                         </span>
                 <img src="showT/${sessionScope.get("user").userId}" alt="我的头像" class="user">
                 <span class="user">${sessionScope.get("user").userName}</span>
-                <img src="img/icon-dropdown.png" class="user">
+                <img src="/img/icon-dropdown.png" class="user">
             </div>
         </div>
     </section>
@@ -82,20 +86,20 @@
     <section class="detail">
         <div>
             <div class="detail-l">
-                <div class="other-avator"><img src="showA/${sessionScope.get("user").userId}" alt="我是头像">
+                <div class="other-avator"><img src="/showA/${sessionScope.get("user").userId}" alt="我是头像">
                 </div>
 
                 <div class="other-note">
                     <div><span class="other-note-title">${sessionScope.get("user").userName}</span>
                     </div>
-                    <div class="other-note-decription">${sessionScope.get("user").userDescription}</div>
+                    <div class="other-note-decription">${sessionScope.get("user").userDescription}&nbsp;</div>
                     <div class="other-focus">
                         <div class="fans">
                             <div class="number">${FocusMe}</div>
                             <div class="ch">粉丝</div>
                         </div>
                         <div class="focus-person">
-                            <div class="v-line"><img src="img/line-vertical.png"></div>
+                            <div class="v-line"><img src="/img/line-vertical.png"></div>
                             <div class="number">${MyFocus}</div>
                             <div class="ch">关注</div>
                         </div>
@@ -108,9 +112,9 @@
         <div class="sidebar">
             <div class="sidebar-btn"><a href="/myAlbum"><img src="img/i-1.png"
                                                              class="icon-my">我的相册</a></div>
-            <div class="sidebar-btn"><a href="mylike.html"><img src="img/i-2.png"
+            <div class="focus-now"><a href="mylike.html"><img src="img/i-2-1.png"
                                                                 class="icon-my">我喜欢的</a></div>
-            <div class="focus-now"><a href="/listFans"><img src="img/i-3-1.png"
+            <div class="sidebar-btn"><a href="/listFans"><img src="img/i-3.png"
                                                             class="icon-my">我的粉丝</a></div>
             <div class="sidebar-btn"><a href="/list"><img src="img/i-4.png"
                                                           class="icon-my">我关注的</a></div>
@@ -119,6 +123,7 @@
         </div>
 
         <div class="my-root">
+            <div class="container">
 
             <c:set var="totalUsers" value="${requestScope.totalUsers}"/>
             <c:set var="usersPerPage" value="${requestScope.usersPerPage}"/>
@@ -131,7 +136,7 @@
             <ul class="my-album">
                 <c:forEach var="photo" items="${currentPageUsers}" varStatus="cou">
                 <li class="cover-item my-cover-item">
-                    <div class="album-cover">
+                    <div class="album-cover" style="width:216px;height:216px;overflow: hidden;">
                         <img src="show/${photo}" alt="photo" class="cover">
                     </div>
                 </li>
@@ -159,7 +164,7 @@
                     </ul>
                 </nav>
             </div>
-
+            </div>
         </div>
     </section>
 
@@ -167,7 +172,7 @@
 <footer class="footer" id="footer">
     <section class="layout">
         <div class="l-content my-footer">
-            Copyright ©红旗中学版权所有
+            Copyright ©红旗中学 &nbsp;&nbsp;ICP备案号：<a href="http://www.miibeian.gov.cn" target="_blank" >苏ICP备19014708号</a>
         </div>
     </section>
 </footer>
