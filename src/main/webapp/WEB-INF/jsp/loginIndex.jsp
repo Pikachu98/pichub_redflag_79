@@ -12,17 +12,17 @@
     <link rel="stylesheet" href="/default/header.css">
     <link rel="stylesheet" href="/default/photo-list.css">
     <link rel="stylesheet" href="/default/register.css">
-    <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/jquery.validate.extend.js"></script>
-    <script src="layui/layui.js"></script>
-    <script src="js/register.js"></script>
+    <script src="/js/jquery-3.3.1.js"></script>
+    <script src="/js/jquery.validate.min.js"></script>
+    <script src="/js/jquery.validate.extend.js"></script>
+    <script src="/layui/layui.js"></script>
+    <script src="/js/register.js"></script>
     <!--瀑布流-->
-    <script src="js/jquery.masonry.min.js"></script>
-    <script src="js/register.js"></script>
-    <script src="js/windowsUpDown.js"></script>
-    <script src="js/changePsw.js"></script>
-    <script src="js/login.js"></script>
+    <script src="/js/jquery.masonry.min.js"></script>
+    <script src="/js/register.js"></script>
+    <script src="/js/windowsUpDown.js"></script>
+    <script src="/js/changePsw.js"></script>
+    <script src="/js/login.js"></script>
 
    <script>
         $(document).ready(function(){
