@@ -115,10 +115,11 @@
 
         <div class="my-root">
             <ul class="my-album">
-                <c:forEach items="${picsList}" var="var" varStatus="cou">
+                <c:forEach items="${listPicture}" var="var" varStatus="cou">
                     <li class="cover-item my-cover-item">
                         <div class="album-cover">
                             <img class="cover" src="show/${var.picId}" alt="photo-1" width="301px">
+                        <div>${var.picName}</div>
                         </div>
                     </li>
                 </c:forEach>

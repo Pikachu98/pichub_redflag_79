@@ -22,5 +22,5 @@ public interface AlbumDao {
     Album deleteAlbum(@Param("album_id") Long album_id);
 
     //得到相册内的相片id
-    List<Integer> getPictures(@Param("album_id") Long albumId);
+    List<Integer> getPictures(@Param("albumId") Long albumId);
 }
