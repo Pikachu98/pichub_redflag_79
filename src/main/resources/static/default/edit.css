@@ -28,6 +28,7 @@
     line-height: 40px;
 }
 .pic-ava{
+    border-radius: 50%;
     vertical-align: middle;
 }
 

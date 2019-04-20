@@ -167,6 +167,14 @@
 #resetTitle{
     padding-left: 27px;
 }
+
+#dropDownlist{
+    display: none;
+    position: relative;
+    left: 170px;
+}
+
+
 /*登陆悬浮窗CSS*/
 #registerWindow {
     display: none;

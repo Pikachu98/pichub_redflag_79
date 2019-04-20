@@ -52,7 +52,7 @@ $(document).ready(function () {
     })
 });
 
-//登录弹窗内注册按钮
+//注冊弹窗内登录按钮
 $(document).ready(function () {
     $("#btn-login").click(function () {
         $("#loginWindow").slideDown(300);
@@ -64,4 +64,16 @@ $(document).ready(function () {
         $("#loginWindow").slideUp(300);
         $(".backGround").hide();
     })
+});
+
+//个人中心下拉列表
+$(document).ready(function () {
+    $("#dropDown").click(function () {
+        var node = $("#dropDownlist");
+        if(node.is(':hidden')){　　//如果node是隐藏的则显示node元素，否则隐藏
+            node.show();
+        }else{
+            node.hide();
+        }
+    });
 });

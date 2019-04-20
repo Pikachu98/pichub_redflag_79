@@ -1,26 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 
 <head>
     <meta charset="UTF-8">
     <title>修改个人资料</title>
-    <link rel="stylesheet" href="theme/default/reset.css">
-    <link rel="stylesheet" href="theme/default/view.css">
-    <link rel="stylesheet" href="theme/default/base-layout.css">
-    <link rel="stylesheet" href="theme/default/header.css">
-    <link rel="stylesheet" href="theme/default/photo-list.css">
+    <script src="/js/jquery-3.3.1.js"></script>
+    <script src="/js/focus.js"></script>
+    <link rel="stylesheet" href="/default/reset.css">
+    <link rel="stylesheet" href="/default/view.css">
+    <link rel="stylesheet" href="/default/base-layout.css">
+    <link rel="stylesheet" href="/default/header.css">
+    <link rel="stylesheet" href="/default/photo-list.css">
 
-    <link rel="stylesheet" href="theme/default/other-header.css">
-    <link rel="stylesheet" href="theme/default/other-album.css">
+    <link rel="stylesheet" href="/default/other-header.css">
+    <link rel="stylesheet" href="/default/other-album.css">
 
-    <link rel="stylesheet" href="theme/default/myalbum.css">
-    <link rel="stylesheet" href="theme/default/mylike.css">
+    <link rel="stylesheet" href="/default/myalbum.css">
+    <link rel="stylesheet" href="/default/mylike.css">
 
-    <link rel="stylesheet" href="theme/default/userlist.css">
+    <link rel="stylesheet" href="/default/userlist.css">
 
-    <link rel="stylesheet" href="css/load.css">
+    <link rel="stylesheet" href="/css/load.css">
 
-    <link rel="stylesheet" href="theme/default/edit.css">
+    <link rel="stylesheet" href="/default/edit.css">
     <script type="text/javascript">
         function load() {
             var a = setTimeout("loading.style.transition='opacity 0.3s'", 0)
@@ -50,17 +53,17 @@
     <section class="layout">
         <div class="l-content view-lr">
             <div class="header-l">
-                <a href="pic-index.html"><img src="img/logo.png" class="logo"></a>
+                <a href="pic-index.html"><img src="/img/logo.png" class="logo"></a>
             </div>
             <div class="user-r">
                         <span class="search-box login-search">
                             <input type="text" class="input-search">
                             <!-- <i class="icon icon-search"></i> -->
-                            <img src="img/icon_search.png" alt="search" class="icon-search">
+                            <img src="/img/icon_search.png" alt="search" class="icon-search">
                         </span>
-                <img src="img/avator.png" alt="我的头像" class="user">
+                <img src="/avatar/${userId}/thumbnail.jpg" alt="我的头像" class="user">
                 <span class="user">Crush</span>
-                <img src="img/icon-dropdown.png" class="user">
+                <img src="/img/icon-dropdown.png" class="user">
             </div>
         </div>
     </section>
@@ -69,21 +72,21 @@
     <section class="detail">
         <div>
             <div class="detail-l">
-                <div class="other-avator"><img src="img/other-avator.png" alt="我是头像">
+                <div class="other-avator"><img src="showA/${sessionScope.get("user").userId}" alt="我是头像">
                 </div>
 
                 <div class="other-note">
-                    <div><span class="other-note-title">南巷清风</span>
+                    <div><span class="other-note-title">${sessionScope.get("user").userName}</span>
                     </div>
-                    <div class="other-note-decription">一个男人要走多少路，才能称之为男人。</div>
+                    <div class="other-note-decription">${sessionScope.get("user").userDescription}&nbsp;</div>
                     <div class="other-focus">
                         <div class="fans">
-                            <div class="number">178</div>
+                            <div class="number">${FocusMe}</div>
                             <div class="ch">粉丝</div>
                         </div>
                         <div class="focus-person">
                             <div class="v-line"><img src="img/line-vertical.png"></div>
-                            <div class="number">125</div>
+                            <div class="number">${MyFocus}</div>
                             <div class="ch">关注</div>
                         </div>
                     </div>
@@ -93,27 +96,27 @@
     </section>
     <section class="myL">
         <div class="sidebar">
-            <div class="sidebar-btn"><a href="myalbum.html"><img src="img/i-1.png"
+            <div class="sidebar-btn"><a href="/myAlbum"><img src="/img/i-1.png"
                                                                  class="icon-my">我的相册</a></div>
-            <div class="sidebar-btn"><a href="mylike.html"><img src="img/i-2.png"
+            <div class="sidebar-btn"><a href="mylike.html"><img src="/img/i-2.png"
                                                                 class="icon-my">我喜欢的</a></div>
-            <div class="sidebar-btn"><a href="myfans.html"><img src="img/i-3.png"
+            <div class="sidebar-btn"><a href="/listFans"><img src="/img/i-3.png"
                                                                 class="icon-my">我的粉丝</a></div>
-            <div class="sidebar-btn"><a href="myfocus.html"><img src="img/i-4.png"
+            <div class="sidebar-btn"><a href="/list"><img src="/img/i-4.png"
                                                                  class="icon-my">我关注的</a></div>
-            <div class="focus-now"><a href="editPersonal.html"><img src="img/i-5-1.png"
+            <div class="focus-now"><a href="/editPersonal"><img src="/img/i-5-1.png"
                                                                     class="icon-my">修改个人资料</a></div>
         </div>
         <div class="edit">
             <div class="no-avator">
                 <span class="lbl">头像</span>
-                <img src="img/no-avator.png" class="pic-ava">
+                <img src="/avatar/${userId}/square.jpg"  class="pic-ava" >
             </div>
-            <hr class="hr" />
+            <hr class="hr"/>
             <div>
                 <span class="lbl">昵称</span>
-                <input type="text" class="name-now" placeholder="我是现在的用户名">
-                <a href="javascript:void(0)" style="color:#2EBDE6">修改</a>
+                <input type="text" class="name-now" placeholder="${userName}" id="newUserName">
+                <a href="javascript:void(0)" style="color:#2EBDE6" id="btnChangeName">修改</a>
             </div>
             <div>
                 <span class="lbl">性别</span>
@@ -123,12 +126,12 @@
             </div>
             <div>
                 <span class="lbl">QQ</span>
-                <input type="text" placeholder="1531881520" class="name-now">
+                <input type="text" placeholder="${userQQ}" class="name-now">
                 <a href="javascript:void(0)" style="color:#2EBDE6">绑定</a>
             </div>
             <div>
                 <span class="lbl">邮箱</span>
-                <input type="email" placeholder="请输入邮箱" class="name-now">
+                <input type="email" placeholder="${userEmail}" class="name-now">
             </div>
             <div>
                 <span class="lbl">签名</span>
@@ -150,7 +153,7 @@
 <footer class="footer" id="footer">
     <section class="layout">
         <div class="l-content my-footer">
-            Copyright ©红旗中学版权所有
+            Copyright ©红旗中学 &nbsp;&nbsp;ICP备案号：<a href="http://www.miibeian.gov.cn" target="_blank" >苏ICP备19014708号</a>
         </div>
     </section>
 </footer>
@@ -158,8 +161,8 @@
     <canvas></canvas>
 </div>
 <!-- 鼠标跟随特效 -->
-<script src="js/stopExecutionOnTimeout.js"></script>
-<script src="js/canvas.js"></script>
+<script src="/js/stopExecutionOnTimeout.js"></script>
+<script src="/js/canvas.js"></script>
 </body>
 
 </html>
