@@ -180,9 +180,9 @@
                                   trs += "<div class='listPicture'> " +
                                       "<a href='#' >" +
                                       "<div class='album-cover'>" +
-                                      "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='200' width='200'><%--相册封面图片--%> "+
+                                      "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='150' width='250'><%--相册封面图片--%> "+
                                       "</div>" +
-                                      +"<div>"+value.picName+"</div><%--相册名字--%> "+
+                                      <%-- +"<div>"+value.picName+"</div><%--相册名字--%>
                                       "  </a> " +
                                       "</div>";
 
