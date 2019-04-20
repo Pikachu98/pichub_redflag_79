@@ -285,7 +285,7 @@
 <footer class="footer" id="footer">
     <section class="layout">
         <div class="l-content my-footer">
-            Copyright ©红旗中学版权所有
+            Copyright ©红旗中学 &nbsp;&nbsp;ICP备案号：<a href="http://www.miibeian.gov.cn" target="_blank" >苏ICP备19014708号</a>
         </div>
     </section>
 </footer>

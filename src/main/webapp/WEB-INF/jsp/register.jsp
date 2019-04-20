@@ -4,11 +4,11 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>jQueryStudy</title>
-    <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="layui/layui.js"></script>
-    <link href="css/register.css" rel="stylesheet">
-    <script src="js/jquery-validation-1.19.0/dist/localization/messages_zh.js"></script>
+    <script src="/js/jquery-3.3.1.js"></script>
+    <script src="/js/jquery.validate.min.js"></script>
+    <script src="/layui/layui.js"></script>
+    <link href="/css/register.css" rel="stylesheet">
+    <script src="/js/jquery-validation-1.19.0/dist/localization/messages_zh.js"></script>
 </head>
 <body>
 <form>
