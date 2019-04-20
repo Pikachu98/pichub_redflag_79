@@ -12,10 +12,7 @@ import net.coobird.thumbnailator.Thumbnails;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -23,10 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.UUID;
 import java.util.Date;
 /**
@@ -221,6 +215,29 @@ public class UpanddownController {
         return "{" + true + "}";
     }
 
+    @RequestMapping("download/{picId}")
+    public void download(@PathVariable int picId, HttpServletResponse response, HttpServletRequest request)throws Exception
+    {
+        Picture p = pictureService.getPicture(picId);
+        String picName = p.getPicName();
+        String path = getParent(request.getServletContext().getRealPath("/"))
+                + "resources/originPictures/" + picName;
+        long picUserId = p.getUserId();
+        long userId = User.getCurrentUser(request).getUserId();
+        if(userId == picUserId)
+        {
+            File f = new File(path);
+            BufferedInputStream br = new BufferedInputStream(new FileInputStream(f));
+            byte[] buf = new byte[1024];
+            int len = 0;
+            response.reset();
+            response.setHeader("Content-Disposition", "attachment; filename=" + f.getName());
+            OutputStream out = response.getOutputStream();
+            while ((len = br.read(buf)) > 0) out.write(buf, 0, len);
+            br.close();
+            out.close();
+        }
+    }
 
 
     private void handleDpi(File file, int xDensity, int yDensity) {//change Dpi
