@@ -57,8 +57,12 @@ public class AlbumController {
     @RequestMapping("/myAlbum")
     public String myAlbum(ModelMap model,HttpServletRequest request)throws Exception
     {
+        List<Album> myAlbumList = albumService.getMyAlbumList(User.getCurrentUser(request).getUserId());
         model.put("MyFocus",focusService.showMyFocus(User.getCurrentUser(request).getUserId().intValue()).size());
         model.put("FocusMe",focusService.showFocusMe(User.getCurrentUser(request).getUserId().intValue()).size());
+
+        model.put("albumList",myAlbumList);
+
         listAlbum(model,request);
         return "myalbum";
 

@@ -13,6 +13,11 @@ public interface AlbumService {
     Album deleteAlbum();
     int createAlbum(Album album);
 
+    public List<Album> getMyAlbumList(long userId)throws Exception;
+    boolean insertAlbumAndPicture(long picId, long albumId)throws Exception;
+
+
 
     List<Picture> getPictures(Long albumId);
+
 }

@@ -92,6 +92,11 @@ public class PictureServicempl implements PictureService{
         return null;
     }
 
+
+    public int getPictureId(String picName)throws Exception {
+        return pictureDao.getPictureId(picName);
+    }
+
     @Override
     public ModelMap getTag(List<Integer> picId) {
         ModelMap tag=null;
