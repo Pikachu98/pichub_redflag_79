@@ -27,7 +27,6 @@ public class AlbumController {
     @Autowired
     FocusService focusService;
 
-
     @RequestMapping("/create")
     @ResponseBody
     public Map<String,Object> createAlbum(Album album, HttpServletRequest request, HttpServletResponse response) {
@@ -58,11 +57,32 @@ public class AlbumController {
     @RequestMapping("/myAlbum")
     public String myAlbum(ModelMap model,HttpServletRequest request)throws Exception
     {
+        List<Album> myAlbumList = albumService.getMyAlbumList(User.getCurrentUser(request).getUserId());
         model.put("MyFocus",focusService.showMyFocus(User.getCurrentUser(request).getUserId().intValue()).size());
         model.put("FocusMe",focusService.showFocusMe(User.getCurrentUser(request).getUserId().intValue()).size());
-        model.put("listAlbum",albumService.listAlbum(User.getCurrentUser(request).getUserId()));
+
+        model.put("albumList",myAlbumList);
+
+        listAlbum(model,request);
         return "myalbum";
 
+    }
+
+    @RequestMapping(value = "/myAlbum/listAlbum",method = RequestMethod.POST)
+    @ResponseBody
+    public int listAlbum(ModelMap model,HttpServletRequest request){
+        model.put("listAlbum",albumService.listAlbum(User.getCurrentUser(request).getUserId()));
+        return 1;
+    }
+
+    @RequestMapping(value = "/myAlbum/listPicture",method = RequestMethod.POST)
+    @ResponseBody
+    public List<Picture> listPicture(ModelMap model, HttpServletRequest request, long albumId){
+        albumId = Long.parseLong(request.getParameter("albumId"));
+        model.put("listPicture",albumService.getPictures(albumId));//albumService.getPictures(albumId)方法需要检查调试
+        if (albumService.getPictures(albumId)==null)
+            return null;
+        return albumService.getPictures(albumId);
     }
 
     @RequestMapping(value = "/albumContent/{albumId}",method = RequestMethod.POST)

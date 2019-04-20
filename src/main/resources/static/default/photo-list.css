@@ -28,6 +28,7 @@
 .view-r{
     margin-right: 17px;
     float: right;
+    margin-top: 17px;
 }
 
 .photo-list {
@@ -93,8 +94,9 @@
     border-radius: 4px;
     padding: 0 12px;
     line-height: 27px;
+    background-color: white;
 }
 .btn-focus:hover{
-    border-color: #dddddd;
+    /*border-color: #dddddd;*/
     background-color: #dddddd;
 }

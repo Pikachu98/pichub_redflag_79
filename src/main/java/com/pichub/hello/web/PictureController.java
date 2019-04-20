@@ -58,10 +58,9 @@ public class PictureController {
     }
 
     @RequestMapping(value = "/picture-detail/{picId}")
-    public String pictureDetail(@PathVariable int picId,ModelMap model) throws Exception {
-//        model.put("picTag",pictureDao.getTag(picId));
-        model.put("pic_name",pictureDao.getPicture(picId).getPicName());
-        model.put("pic_story",pictureDao.getPicture(picId).getPicStory());
+    public String pictureDetail(@PathVariable int picId,ModelMap model){
+        model.put("picTag",pictureDao.getTag(picId));
+        model.put("picId",picId);
         return "picture-detail";
     }
 }

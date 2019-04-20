@@ -1,17 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: msi
-  Date: 2019/4/15
-  Time: 16:45
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>热门广场</title>
+    <title>图片详情</title>
     <link rel="stylesheet" href="/default/reset.css">
     <link rel="stylesheet" href="/default/view.css">
     <link rel="stylesheet" href="/default/base-layout.css">
@@ -36,7 +30,6 @@
 
 
 
-    <!-- <script src="theme/default/js/register.js"></script> -->
     <script type="text/javascript">
         function load() {
             var a= setTimeout("loading.style.transition='opacity 0.3s'",0)
@@ -51,45 +44,58 @@
 </head>
 
 <body onload="load()" style="background:none;">
-    <!-- 页面加载动画 -->
-    <div id="loading">
-        <div id="loading-center">
-            <div id="loading-center-absolute">
-                <div class="object" id="object_four"></div>
-                <div class="object" id="object_three"></div>
-                <div class="object" id="object_two"></div>
-                <div class="object" id="object_one"></div>
-            </div>
+<!-- 页面加载动画 -->
+<div id="loading">
+    <div id="loading-center">
+        <div id="loading-center-absolute">
+            <div class="object" id="object_four"></div>
+            <div class="object" id="object_three"></div>
+            <div class="object" id="object_two"></div>
+            <div class="object" id="object_one"></div>
         </div>
     </div>
+</div>
 
-    <div class="l">
-        <img src="/img/pho-14.png">
+<div class="l">
+    <img src="/show/${picId}">
+
+</div>
+<div class="r">
+    <div style="padding-top:10px;margin-left: 93%;"><a href="javascript:void(0)" ><img src="img/i-close.png"></img></a></div>
+
+    <div class="text first">Picture Name：驯龙高手</div>
+    <div class="text">description：There were dragons, when I was a boy.</div>
+    <div class="text">Tags：
+        <c:forEach  items="${picTag}" var="tag" >
+            <a href="javascript:void(0)" class="tag">${tag}</a>
+        </c:forEach>
     </div>
+    <div class="text">
+        <a href="javascript:void(0)"><img src="/img/heart.png"></img></a>
+        <a href="javascript:void(0)" style="margin-left: 20px;"><img src="/img/i-download.png"></img></a>
 
-    <div class="r">
-        <div style="padding-top:10px;margin-left: 93%;"><a href="javascript:void(0)" ><img src="img/i-close.png"></img></a></div>
-
-        <div class="text first">Picture Name：${pic_name}</div>
-        <div class="text">description：${pic_story}</div>
-        <div class="text"   >Tags：
-            <c:forEach  items="${picTag}" var="tag" >
-                <a href="javascript:void(0)" class="tag">${tag}</a>
-            </c:forEach>
-        </div>
-
-        <div class="text">
-            <a href="javascript:void(0)"><img src="img/heart.png"></a>
-            <a href="javascript:void(0)" style="margin-left: 20px;"><img src="img/i-download.png"></a>
-        </div>
     </div>
+</div>
 
-    <div style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 0.5;">
-        <canvas></canvas>
-    </div>
-    <!-- 鼠标跟随特效 -->
-    <script src="/js/stopExecutionOnTimeout.js"></script>
-    <script src="/js/canvas.js"></script>
+
+</section>
+<!-- A样式通用 -->
+<section class="layout layout-main">
+    <!-- <div class="root"></div> -->
+
+    <!-- <div class="l-header">
+        <div class="l-title">当前最热门</div>
+        <div class="l-title-en">HOT PICTURES</div>
+    </div> -->
+
+</section>
+</main>
+<div style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 0.5;">
+    <canvas></canvas>
+</div>
+<!-- 鼠标跟随特效 -->
+<script src="/js/stopExecutionOnTimeout.js"></script>
+<script src="/js/canvas.js"></script>
 
 </body>
 

@@ -76,7 +76,7 @@ public class IndexController {
                 int t = focusService.checkFocus(user.getUserId().intValue(),
                         users.get(i).getUserId().intValue());
                 focusList.add(t);
-                if(userService.belikeCheck(user.getUserId().longValue(),hotPicIds.get(i)))
+                if(userService.belikeCheck(user.getUserId(),hotPicIds.get(i)))
                 {
                     belikeList.add(1);
                 }
@@ -123,6 +123,15 @@ public class IndexController {
         response.reset();
         response.setContentType("image/jpeg");
         String path =  getParent(request.getServletContext().getRealPath("/")) + "/resources/static/avatar/" + String.valueOf(userId) +"/square.jpg";
+        outputFile(path,response);
+    }
+
+    @RequestMapping(value = "/showC/{userId}")
+    public void showC(@PathVariable int userId, HttpServletRequest request, HttpServletResponse response)throws Exception
+    {
+        response.reset();
+        response.setContentType("image/jpeg");
+        String path = getParent(request.getServletContext().getRealPath("/")) + "/resources/static/avatar/" + String.valueOf(userId) + "/page.jpg";
         outputFile(path,response);
     }
 
