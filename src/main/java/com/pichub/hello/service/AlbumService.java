@@ -11,4 +11,6 @@ public interface AlbumService {
     Album createAlbum();
     Album deleteAlbum();
     int createAlbum(Album album);
+    public List<Album> getMyAlbumList(long userId)throws Exception;
+    boolean insertAlbumAndPicture(long picId, long albumId)throws Exception;
 }

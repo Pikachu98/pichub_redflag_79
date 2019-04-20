@@ -19,4 +19,7 @@ public interface AlbumDao {
 
     //删除相册
     Album deleteAlbum(@Param("album_id") Long album_id);
+
+    List<Album> getMyAlbumList(@Param("userId") long userId)throws Exception;
+    int insertAlbumAndPicture(@Param("picId")long picId, @Param("albumId")long albumId)throws Exception;
 }

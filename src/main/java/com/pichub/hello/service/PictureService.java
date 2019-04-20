@@ -15,6 +15,6 @@ public interface PictureService {
     List<Picture> getHotPicture() throws Exception;
     List<Integer> getLike() throws Exception;
     List<Integer> getHotPicId() throws Exception;
-
+    int getPictureId(String picName)throws Exception;
 
 }
