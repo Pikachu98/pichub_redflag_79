@@ -27,7 +27,6 @@ public class AlbumController {
     @Autowired
     FocusService focusService;
 
-
     @RequestMapping("/create")
     @ResponseBody
     public Map<String,Object> createAlbum(Album album, HttpServletRequest request, HttpServletResponse response) {
@@ -77,6 +76,8 @@ public class AlbumController {
     public List<Picture> listPicture(ModelMap model, HttpServletRequest request, long albumId){
         albumId = Long.parseLong(request.getParameter("albumId"));
         model.put("listPicture",albumService.getPictures(albumId));//albumService.getPictures(albumId)方法需要检查调试
+        if (albumService.getPictures(albumId)==null)
+            return null;
         return albumService.getPictures(albumId);
     }
 

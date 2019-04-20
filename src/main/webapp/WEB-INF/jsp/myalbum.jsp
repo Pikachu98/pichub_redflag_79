@@ -103,7 +103,7 @@
     </section>
     <section>
         <div class="sidebar">
-            <div class="focus-now"><a href="javascript:void(0)"><img src="/img/i-1-1.png"
+            <div class="focus-now"><a href="/myAlbum"><img src="/img/i-1-1.png"
                                                                      class="icon-my">我的相册</a></div>
             <div class="sidebar-btn"><a href="javascript:void(0)"><img src="/img/i-2.png"
                                                                        class="icon-my">我喜欢的</a></div>
@@ -155,25 +155,37 @@
                         data:{"albumId":albumId}
                         ,
                         success: function (result) {
-                          $(".listAlbum").remove();
+                          var valu=result;
+                          if(valu.toString()==""){
+                              alert("此相册下没有图片");
+                              var trs="<div class='listPicture'> " +
+                                  "<a href='#' >" +
+                                  "<div class='album-cover'>" +
+                                      "此相册下没有图片"+
+                                  "</div>" +
+                                  "  </a> " +
+                                  "</div>";
+                              //$(".my-album").append(trs);
+                          }else {
+                              $.each(result,function(n,value) {
+                                  $(".listAlbum").remove();
+                                  var trs = "";
+                                  trs += "<div class='listPicture'> " +
+                                      "<a href='#' >" +
+                                      "<div class='album-cover'>" +
+                                      "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='200' width='200'><%--相册封面图片--%> "+
+                                      "</div>" +
+                                      +"<div>"+value.picName+"</div><%--相册名字--%> "+
+                                      "  </a> " +
+                                      "</div>";
 
-                            $.each(result,function(n,value) {
-                                var trs = "";
-                                trs += "<div class='listPicture'> " +
-                                "<a href='#' >" +
-                                "<div class='album-cover'>" +
-                                "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='200' width='200'><%--相册封面图片--%> "+
-                                    "</div>" +
-                                    +"<div>"+value.picName+"</div><%--相册名字--%> "+
-                                "  </a> " +
-                                "</div>";
-
- /*                               trs += " < tr > <td > " + value.picPath +" < /td> <td>"
-                                    + value.picName +"</td > </tr>";*/
-                                var tbody = "";
-                                tbody += trs;
-                                $(".my-album").append(tbody);
-                            });
+                                  /*                               trs += " < tr > <td > " + value.picPath +" < /td> <td>"
+                                                                     + value.picName +"</td > </tr>";*/
+                                  var tbody = "";
+                                  tbody += trs;
+                                  $(".my-album").append(tbody);
+                              });
+                          }
 
                             /*alert("加载相册内照片完成");*/
                             //放置listpic

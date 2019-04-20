@@ -54,6 +54,9 @@ public class AlbumServiceImpl implements AlbumService {
     public List<Picture> getPictures(Long albumId) {
         List<Picture> pics = new ArrayList<Picture>();
         List<Integer> picIds = albumDao.getPictures(albumId);
+        if(picIds.size()==0){
+            return null;
+        }
         for (int i = 0; i < picIds.size(); i++){
             try {
                 pics.add(pictureService.getPicture(picIds.get(i)));
