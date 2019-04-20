@@ -5,7 +5,7 @@
         <section class="layout">
             <div class="l-content view-lr">
                 <div class="header-l">
-                    <a href="myalbum.jsp"><img src="/img/logo.png" class="logo"></a>
+                    <img src="/img/logo.png" class="logo">
                 </div>
                 <div class="user-r">
                         <span class="search-box login-search">

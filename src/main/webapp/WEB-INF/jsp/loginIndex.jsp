@@ -12,17 +12,17 @@
     <link rel="stylesheet" href="/default/header.css">
     <link rel="stylesheet" href="/default/photo-list.css">
     <link rel="stylesheet" href="/default/register.css">
-    <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/jquery.validate.extend.js"></script>
-    <script src="layui/layui.js"></script>
-    <script src="js/register.js"></script>
+    <script src="/js/jquery-3.3.1.js"></script>
+    <script src="/js/jquery.validate.min.js"></script>
+    <script src="/js/jquery.validate.extend.js"></script>
+    <script src="/layui/layui.js"></script>
+    <script src="/js/register.js"></script>
     <!--瀑布流-->
-    <script src="js/jquery.masonry.min.js"></script>
-    <script src="js/register.js"></script>
-    <script src="js/windowsUpDown.js"></script>
-    <script src="js/changePsw.js"></script>
-    <script src="js/login.js"></script>
+    <script src="/js/jquery.masonry.min.js"></script>
+    <script src="/js/register.js"></script>
+    <script src="/js/windowsUpDown.js"></script>
+    <script src="/js/changePsw.js"></script>
+    <script src="/js/login.js"></script>
 
    <script>
         $(document).ready(function(){
@@ -40,15 +40,23 @@
         $(function () {
             $(".btn-focus").on("click",function () {
                 var focusId = $(this).parents(".view-other").find("#user-id").attr("user_id");
-                if($(this).val() == "已关注")
-                {
-                    $(this).val("关注");
+                var loginUser = $(this).parents(".view-other").find(".view-r").attr("butn_id");
+                if(loginUser != ""){
+                    if($(this).val() == "已关注")
+                    {
+                        $(this).val("关注");
+                    }
+                    else
+                    {
+                        $(this).val("已关注");
+                        // alert($(this).val());
+                    }
                 }
-                else
-                {
-                    $(this).val("已关注");
-                    alert($(this).val());
+
+                else{
+                    alert("请先登录");
                 }
+
 
                 $.ajax({
                     type: "Get",
@@ -231,11 +239,11 @@
 
                 <div class="view-other view-lr"><!--把头像和关注放在一起，见photo-list(line-height:60px)-->
                     <div class="view-l"><!--头像 photo-list和description一起-->
-                        <a><img src="img/avator-1.png" alt="头像"></a>
+                        <a><img src="/showT/${users[cou.count-1].userId}" alt="头像"></a>
                         <span class="user-name">${users[cou.count-1].userName}</span>
                         <span id="user-id" user_id="${users[cou.count-1].userId}" style="opacity: 0">${users[cou.count-1].userId}</span>
                     </div>
-                    <div class="view-r"><!--关注，见photo-list-->
+                    <div class="view-r" butn_id="${sessionScope.get("user").userName}"><!--关注，见photo-list-->
                         <c:if test="${focusList[cou.count-1] == 0}">
                             <input type="button" class="btn-focus" value="关注">
                         </c:if>
@@ -250,7 +258,7 @@
                     <%--<img class="hot_pics" src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">--%>
 
 
-                    <div class="view-cover"><!--图片的显示，见phot-list:设置了个边框颜色？？？-->
+                    <div class="view-cover"><!--图片的显示，见photo-list:设置了个边框颜色？？？-->
                         <a href="/picture-detail/${var.picId}">
                         <img class="hot_pics" src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">
                         </a>

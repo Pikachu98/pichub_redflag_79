@@ -53,6 +53,13 @@
 
         
     </script>
+    <script type="text/javascript">
+        function select() {
+            var index = $("#album-list option:selected");
+            var getAlbumId = index.attr("var");
+            $("#album-id").attr("value",getAlbumId);
+        }
+    </script>
 </head>
 
 <body>
@@ -214,9 +221,10 @@
             <div class="uploadPic">
                 <span class="uploadP">上传照片</span>
                 <span class="uploadPath">上传到</span>
-                <select class="upload-album">
-                    <c:forEach items="${listAlbum}" var="list">
-                    <option>${list.albumName}</option>
+                <select class="upload-album" id = "album-list" onchange="select()">
+                    <option>请选择相册</option>
+                    <c:forEach items="${albumList}" var="var">
+                        <option var="${var.albumId}">${var.albumName}</option>
                     </c:forEach>
                 </select>
             </div>
@@ -226,15 +234,12 @@
                 <label for="upload" class="btn-choose-pic">
                     <img src="/img/pic.png" style="vertical-align:middle;height: 25px;padding-bottom: 5px;">选择照片</label>
                 <input type="file" name="file" id="upload" style="display: none;">
+                <input type="text" name="album" id="album-id" value="" style="display: none">
                 <!--</a>-->
             </div>
             <div class="upload-footer">
-                <label for="btnSubmit">
-                    <a href="javascript:void(0)" class="btn-start-upload">开始上传</a>
-                </label>
-                <input type="submit" name="do" id="btnSubmit" style="display: none;">
-
-
+                <%--<a href="javascript:void(0)" class="btn-start-upload">开始上传</a>--%>
+                <input type="submit" class="btn-start-upload" value="开始上传">
                 <a href="javascript:void(0)" class="btn-add">继续添加</a>
                 <span class="continue">共5张照片（上传过程中请不要删除原始照片）</span>
             </div>
@@ -280,7 +285,7 @@
 <footer class="footer" id="footer">
     <section class="layout">
         <div class="l-content my-footer">
-            Copyright ©红旗中学版权所有
+            Copyright ©红旗中学 &nbsp;&nbsp;ICP备案号：<a href="http://www.miibeian.gov.cn" target="_blank" >苏ICP备19014708号</a>
         </div>
     </section>
 </footer>

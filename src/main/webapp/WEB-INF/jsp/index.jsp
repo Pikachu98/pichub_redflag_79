@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<%--<html lang="en">--%>
 
 <head>
     <meta charset="UTF-8">
@@ -20,7 +19,7 @@
     <script src="/js/changePsw.js"></script>
     <script src="/js/login.js"></script>
     <!--瀑布流-->
-    <script src="js/jquery.masonry.min.js"></script>
+    <script src="/js/jquery.masonry.min.js"></script>
     <script src="/js/waterfall.js"></script>
     <!-- <script src="theme/default/js/jquery-3.3.1.min.js"></script> -->
     <%--<script src="css/theme/default/js/jquery.register.js"></script>--%>

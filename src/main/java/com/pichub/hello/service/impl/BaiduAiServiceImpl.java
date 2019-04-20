@@ -124,8 +124,9 @@ public class BaiduAiServiceImpl implements BaiDuAiService {
             String url = "https://aip.baidubce.com/rest/2.0/image-classify/v2/advanced_general";
             try {
                 // 本地文件路径
-                String path=Class.class.getClass().getResource("/").getPath();
-                String filePath = path+picturePath;
+                //String path=Class.class.getClass().getResource("/").getPath();
+                String path=System.getProperty("user.dir");
+                String filePath = path+"\\src\\"+picturePath;
                 //String filePath = "E:\\IdeaProjects\\hello\\src\\"+picturePath;//绝对路径，视自身情况而定
                 byte[] imgData = FileUtil.readFileByBytes(filePath);
                 String imgStr = Base64Util.encode(imgData);
@@ -137,7 +138,7 @@ public class BaiduAiServiceImpl implements BaiDuAiService {
                 //System.out.println(result);
                 return result;
             } catch (FileNotFoundException e) {
-                System.out.println("没有此路径:E:\\IdeaProjects\\hello\\src\\"+picturePath);
+                System.out.println("Dotag操作-IO异常或没有此路径:"+picturePath);
                 //e.printStackTrace();
                 return null;
             }

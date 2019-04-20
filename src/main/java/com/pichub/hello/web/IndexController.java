@@ -126,6 +126,15 @@ public class IndexController {
         outputFile(path,response);
     }
 
+    @RequestMapping(value = "/showC/{userId}")
+    public void showC(@PathVariable int userId, HttpServletRequest request, HttpServletResponse response)throws Exception
+    {
+        response.reset();
+        response.setContentType("image/jpeg");
+        String path = getParent(request.getServletContext().getRealPath("/")) + "/resources/static/avatar/" + String.valueOf(userId) + "/page.jpg";
+        outputFile(path,response);
+    }
+
     @RequestMapping(value = "/showT/{userId}")
     public void showT(@PathVariable int userId,HttpServletRequest request, HttpServletResponse response)throws Exception
     {
