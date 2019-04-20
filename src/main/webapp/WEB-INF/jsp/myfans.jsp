@@ -62,7 +62,7 @@
     <section class="layout">
         <div class="l-content view-lr">
             <div class="header-l">
-                <a href="pic-index.html"><img src="img/logo.png" class="logo"></a>
+                <a href="/"><img src="img/logo.png" class="logo"></a>
             </div>
             <div class="user-r">
                         <span class="search-box login-search">
@@ -107,7 +107,7 @@
         <div class="sidebar">
             <div class="sidebar-btn"><a href="/myAlbum"><img src="img/i-1.png"
                                                                  class="icon-my">我的相册</a></div>
-            <div class="sidebar-btn"><a href="mylike.html"><img src="img/i-2.png"
+            <div class="sidebar-btn"><a href="/listmyLike"><img src="img/i-2.png"
                                                                 class="icon-my">我喜欢的</a></div>
             <div class="focus-now"><a href="/listFans"><img src="img/i-3-1.png"
                                                                 class="icon-my">我的粉丝</a></div>
