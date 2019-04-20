@@ -61,6 +61,12 @@ public class PictureController {
     public String pictureDetail(@PathVariable int picId,ModelMap model){
         model.put("picTag",pictureDao.getTag(picId));
         model.put("picId",picId);
+        try {
+            Picture p = pictureService.getPicture(picId);
+            model.put("picture",p);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "picture-detail";
     }
 }

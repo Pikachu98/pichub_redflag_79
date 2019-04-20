@@ -128,7 +128,7 @@
             <a href="javascript:void(0)" class="btn-focus myalbum-btn2">展示设置</a>
             <a href="javascript:void(0)" class="myalbum-btn3">
                 <img src="/img/edit.png" class="icon-edit">
-                <span>编辑</span>
+                <%--<span>编辑</span>--%>
             </a>
         </div>
 
@@ -181,8 +181,8 @@
                                       "<a href='#' >" +
                                       "<div class='album-cover'>" +
                                       "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='200' width='200'><%--相册封面图片--%> "+
-                                      "</div>" +
-                                      +"<div>"+value.picName+"</div><%--相册名字--%> "+
+                                      "</div>"
+                                      +"<a href= "+"/downloadO/"+value.picId +" style='margin-left: 20px;'><img src='/img/i-download.png'></img></a>"+
                                       "  </a> " +
                                       "</div>";
 

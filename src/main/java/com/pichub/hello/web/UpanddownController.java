@@ -11,6 +11,7 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import net.coobird.thumbnailator.Thumbnailator;
 import net.coobird.thumbnailator.Thumbnails;
 import org.apache.ibatis.annotations.Param;
+import org.apache.jasper.tagplugins.jstl.core.Out;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,9 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.UUID;
 import java.util.Date;
+
+import static java.lang.System.out;
+
 /**
  * Created by root on 19-3-24.
  */
@@ -222,9 +226,9 @@ public class UpanddownController {
         return "{" + true + "}";
     }
 
-    @RequestMapping("download/{picId}")
+    @RequestMapping("downloadO/{picId}")
     @ResponseBody
-    public void download(@PathVariable int picId, HttpServletResponse response, HttpServletRequest request)throws Exception
+    public void downloadO(@PathVariable int picId, HttpServletResponse response, HttpServletRequest request)throws Exception
     {
         Picture p = pictureService.getPicture(picId);
         String picName = p.getPicName();
@@ -245,6 +249,27 @@ public class UpanddownController {
             br.close();
             out.close();
         }
+    }
+
+    @RequestMapping("downloadT/{picId}")
+    @ResponseBody
+    public void downloadT(@PathVariable int picId, HttpServletRequest request, HttpServletResponse response)throws Exception
+    {
+        Picture p = pictureService.getPicture(picId);
+        String picName = p.getPicThumbnailPath().substring(p.getPicThumbnailPath().lastIndexOf("/") + 1);
+        String path = getParent(request.getServletContext().getRealPath("/"))
+                + "resources/static/thumbnail/" + picName;
+        File f = new File(path);
+        BufferedInputStream br = new BufferedInputStream(new FileInputStream(f));
+        byte[] buf = new byte[1024];
+        int len = 0;
+        response.reset();
+        response.setHeader("Content-Disposition", "attachment; filename=" + f.getName());
+        OutputStream out = response.getOutputStream();
+        while ((len = br.read(buf)) > 0) out.write(buf, 0, len);
+        br.close();
+        out.close();
+
     }
 
 
