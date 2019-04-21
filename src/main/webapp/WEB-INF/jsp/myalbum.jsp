@@ -137,7 +137,7 @@
         <div class="sidebar">
             <div class="focus-now"><a href="/myAlbum"><img src="/img/i-1-1.png"
                                                                      class="icon-my">我的相册</a></div>
-            <div class="sidebar-btn"><a href="javascript:void(0)"><img src="/img/i-2.png"
+            <div class="sidebar-btn"><a href="/listmyLike"><img src="/img/i-2.png"
                                                                        class="icon-my">我喜欢的</a></div>
             <div class="sidebar-btn"><a href="/listFans"><img src="/img/i-3.png"
                                                                        class="icon-my">我的粉丝</a></div>
