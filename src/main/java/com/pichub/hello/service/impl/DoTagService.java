@@ -22,7 +22,7 @@ public class DoTagService implements ApplicationRunner {
         while(true) {
             this.doTag();
             //System.out.println("自动执行");
-            Thread.sleep(10000);
+            //Thread.sleep(600000);
         }
     }
     public void doTag() throws Exception{
@@ -41,8 +41,8 @@ public class DoTagService implements ApplicationRunner {
                 }
             }
             //进行一段时间的休眠
-            System.out.println("图片ai打标签功能进入休眠》》》》》》》》稍后会自动运行");
-            Thread.sleep(100000);
+            System.out.println("图片ai打标签功能进入休眠状态》》》》》》》》10分钟会自动运行一次");
+            Thread.sleep(600000);
         }
     }
 }

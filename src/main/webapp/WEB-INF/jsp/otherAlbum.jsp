@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/default/other-album.css">
 
     <link rel="stylesheet" href="/css/load.css">
+    <script src="/js/jquery-3.3.1.min.js"></script>
 
     <script type="text/javascript">
         function load() {
@@ -154,19 +155,19 @@
 
                 <c:forEach items="${albumPics}" var="var" varStatus="cou">
 
-                    <c:if test="${cou.count ==1 && (cou.count-1) %2==0}">
+                    <c:if test="${cou.count ==1 && (cou.count-1) %6==0}">
                     <tr>
                     </c:if>
-                            <td>
-                                <c:if test="${cou.count <= 2}">
+                            <td id="pics_td">
+                                <c:if test="${cou.count <= 6}">
                                     <img class="hot_pics" src="/show/${var}"  alt="photo-1" width="216px" height="216px">
                                 </c:if>
-                                <c:if test="${cou.count > 2}">
+                                <c:if test="${cou.count > 6}">
                                     <img class="hot_pics" src="/img/whiteboard.png" data-src="/show/${var}"  alt="photo-1" width="216px" height="216px">
                                 </c:if>
 
                             </td>
-                    <c:if test="${cou.count%2==0}">
+                    <c:if test="${cou.count%6==0}">
                     <tr>
                     </c:if>
                 </c:forEach>
