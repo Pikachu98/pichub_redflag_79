@@ -105,4 +105,11 @@ public class PictureServicempl implements PictureService{
         }
         return tag;
     }
+
+    @Override
+    public List<Integer> getAlbumPics(int userId) throws Exception {
+        return pictureDao.getAlbumPics(userId);
+    }
+
+
 }

@@ -58,7 +58,7 @@ public class PictureController {
     }
 
     @RequestMapping(value = "/picture-detail/{picId}")
-    public String pictureDetail(@PathVariable int picId,ModelMap model){
+    public String pictureDetail(@PathVariable int picId,ModelMap model) throws Exception{
         model.put("picTag",pictureDao.getTag(picId));
         model.put("picId",picId);
         try {

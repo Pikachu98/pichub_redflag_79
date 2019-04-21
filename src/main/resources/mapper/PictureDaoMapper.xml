@@ -61,6 +61,10 @@
         select tag_keyword from pic_tag where pic_id=#{picId}
     </select>
 
+    <!--这里参数类型其实应该是Lang-->
+    <select id="getAlbumPics" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT pic_id FROM picture WHERE user_id = #{userId};
+    </select>
 
 
 </mapper>

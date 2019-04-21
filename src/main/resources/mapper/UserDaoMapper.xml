@@ -54,8 +54,6 @@
 
     <select id="showMyLike" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select pic_id from belike where user_id = #{userId}
-
-
     </select>
 
     <select id="showMyAlbum" resultType="java.lang.Integer" parameterType="java.lang.Integer">

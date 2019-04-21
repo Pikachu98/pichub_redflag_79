@@ -47,7 +47,7 @@ public class AlbumController {
     }
 
 
-    @RequestMapping("/{albumId}")
+    @RequestMapping("/getAlbum/{albumId}")
     @ResponseBody
     public String getAlbum(@PathVariable Long albumId, ModelMap model,
                            HttpServletRequest request, HttpServletResponse response) throws Exception{

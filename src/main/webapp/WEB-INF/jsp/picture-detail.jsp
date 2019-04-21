@@ -40,6 +40,13 @@
             //当透明度为0的时候，隐藏掉它
         }
     </script>
+    <script type="text/javascript">
+        $(function() {
+            $("#picture").click(function () {
+                window.history.back();
+            });
+        });
+    </script>
 
 
 </head>
@@ -62,8 +69,7 @@
 
 </div>
 <div class="r">
-    <div style="padding-top:10px;margin-left: 93%;"><a href="javascript:void(0)" ><img src="img/i-close.png"></img></a></div>
-
+    <div style="padding-top:10px;margin-left: 93%;"><a href="javascript:void(0)" ><img src="/img/i-close.png"  id="picture"></img></a></div>
     <div class="text first">Picture Name：${picture.picName}</div>
     <div class="text">${picture.picStory}</div>
     <div class="text">Tags：
