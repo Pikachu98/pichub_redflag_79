@@ -1,9 +1,3 @@
-.hot_pics{
-    margin-right:20px;
-    margin-bottom:20px;
-}
-
-
 
 .sidebar{
     margin-left: 200px;
@@ -153,6 +147,12 @@
     visibility:hidden;
 }
 
+.hot_pics{
+    margin-right:20px;
+    margin-bottom:20px;
+}
+
+
 .btn-choose-pic{
     display: inline-block;
     padding: 0 1.5em;
@@ -272,4 +272,23 @@
     border-radius: 4px;
     margin-left: 10px;
     color: #333333;
+}
+
+#renameWindow{
+    display: none;
+    position: fixed;
+    border: 1px solid #dddddd;
+    background-color: white;
+    z-index: 30;
+    overflow: auto;
+    _position: absolute;
+    /* hack for IE6 */
+    top: 50%;
+    left: 50%;
+    margin: -235px 0 0 -269px;
+    /* 注意,201表示高度的一半,480也是按自己需要自己调整*/
+    width: 525px;
+    height: 471px;
+    padding: 1px;
+    text-align: center;
 }
