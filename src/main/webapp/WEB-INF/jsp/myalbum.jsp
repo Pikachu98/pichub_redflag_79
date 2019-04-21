@@ -58,6 +58,8 @@
             var index = $("#album-list option:selected");
             var getAlbumId = index.attr("var");
             $("#album-id").attr("value",getAlbumId);
+            $(".btn-start-upload").css("visibility","visible");
+            $("#point-out").css("visibility","hidden");
         }
     </script>
 </head>
@@ -178,7 +180,7 @@
                                   $(".listAlbum").remove();
                                   var trs = "";
                                   trs += "<div class='listPicture'> " +
-                                      "<a href="+"/show/"+value.picId+" >" +
+                                      "<a href="+"/picture-detail/"+value.picId+" >" +
                                       "<div class='album-cover'>" +
                                       "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='200' width='200'><%--相册封面图片--%> "+
                                       "</div>"
@@ -239,9 +241,10 @@
             </div>
             <div class="upload-footer">
                 <%--<a href="javascript:void(0)" class="btn-start-upload">开始上传</a>--%>
-                <input type="submit" class="btn-start-upload" value="开始上传">
+                <input type="submit" class="btn-start-upload" style="visibility: hidden" value="开始上传">
+                    <label id="point-out" style="visibility: visible">请选择相册</label>
                 <a href="javascript:void(0)" class="btn-add">继续添加</a>
-                <span class="continue">共5张照片（上传过程中请不要删除原始照片）</span>
+                <span class="continue">共1张照片（上传过程中请不要删除原始照片）</span>
             </div>
         </form>
         <div class="backGround"></div>
