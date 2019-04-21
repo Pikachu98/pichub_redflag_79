@@ -162,12 +162,6 @@
                                     </div>
                                     <div>${list.albumName}</div><%--相册名字--%>
                                 </a>
-                        <a href="javascript:void(0);" onclick="a(${list.albumId})">
-                            <div class="album-cover">
-                                <img src="/img/pho-18.png" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
-                            </div>
-                            <div>${list.albumName}</div><%--相册名字--%>
-                        </a>
                         <div class="btn-group" style="position: absolute;right:1px;top:21px;">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="height: 5px;">
                                 <span class="caret"></span>
@@ -211,7 +205,7 @@
                                   $(".listAlbum").remove();
                                   var trs = "";
                                   trs += "<div class='listPicture' style='display:relative;'> " +
-                                      "<a href='#' >" +
+                                      "<a href="+"/picture-detail/"+value.picId+" >" +
                                       "<div class='album-cover'>" +
                                       "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='150' width='250'><%--相册封面图片--%> "+
                                       "</div>" +

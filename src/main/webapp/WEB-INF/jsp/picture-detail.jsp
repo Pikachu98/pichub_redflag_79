@@ -79,7 +79,7 @@
     </div>
     <div class="text">
         <%--<a href="javascript:void(0)"><img src="/img/heart.png"></img></a>--%>
-        <a href="/downloadT/${picture.picId}" style="margin-left: 20px;"><img src="/img/i-download.png"></img></a>
+        <a href="/downloadO/${picture.picId}" style="margin-left: 20px;"><img src="/img/i-download.png"></img></a>
 
     </div>
 </div>
