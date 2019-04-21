@@ -62,7 +62,7 @@
                             <img src="/img/icon_search.png" alt="search" class="icon-search">
                         </span>
                 <img src="/avatar/${userId}/thumbnail.jpg" alt="我的头像" class="user">
-                <span class="user">Crush</span>
+                <span class="user">${sessionScope.get("user").userName}</span>
                 <img src="/img/icon-dropdown.png" class="user">
             </div>
         </div>
