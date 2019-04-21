@@ -179,6 +179,11 @@
     color: whitesmoke;
 }
 
+.dropDownLi:hover{
+    background-color: #b1a1a2;
+    color: #292424;
+}
+
 .dropDownLi{
     padding: 4px;
     border-style: solid;
@@ -193,11 +198,6 @@
 
 #signout{
     border-bottom-color:#4e4d4dde;
-}
-
-li:hover{
-    background-color: #b1a1a2;
-    color: #292424;
 }
 
 
