@@ -238,9 +238,13 @@
 
   /* 图片悬浮放大效果 */
 li img:hover{
-    -webkit-transform: scale(.9);
+    -webkit-transform: scale(.97);
     -webkit-transition: 1s;
   }
+a img:hover{
+    -webkit-transform: scale(.97);
+    -webkit-transition: 1s;
+}
 
   .check-btn:hover{
     color: #f1f1f1;
