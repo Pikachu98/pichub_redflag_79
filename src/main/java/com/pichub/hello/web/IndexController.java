@@ -112,6 +112,7 @@ public class IndexController {
         model.put("albumPics", albumPics);
         User user = userService.getUser(userId);
 
+        model.put("checkFocus",focusService.checkFocus(User.getCurrentUser(request).getUserId().intValue(),userId));
         model.put("user",user);
 
         model.put("user_id",userId);

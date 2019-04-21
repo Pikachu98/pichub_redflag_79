@@ -47,7 +47,7 @@
                             <img src="/img/icon_search.png" alt="search" class="icon-search">
                         </span>
                     <a href="/myAlbum" target="_blank">
-                        <img style="border-radius: 50%" id="header-avatar" src="showT/${sessionScope.get("user").userId}" alt="我的头像" class="user">
+                        <img style="border-radius: 50%" id="header-avatar" src="/showT/${sessionScope.get("user").userId}" alt="我的头像" class="user">
                     </a>
                     <span class="user">${sessionScope.get("user").userName}</span>
                     <%--下拉列表--%>
