@@ -165,8 +165,7 @@
                         <c:forEach var="user" items="${currentPageUsers}" varStatus="cou">
                         <li class="user-item">
                             <div class="user-cover">
-                                <img src="showC/${usesr.userId}" alt="avator" onerror="javascript:this.src='/img/cat-1.png'"><!---->
-
+                                <img src="/showC/${user.userId}" alt="avator" onerror="javascript:this.src='/img/cat-1.png'"><!---->
                             </div>
                             <div class="userName">
                                 ${user.userName}

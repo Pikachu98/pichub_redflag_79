@@ -156,17 +156,17 @@ public class UpanddownController {
 
 
     @RequestMapping(value = "/uploadAvatar",method = RequestMethod.POST)
-    public String uploadAvatar(@Param("avatar") MultipartFile avatar,@Param("userId")long userId,
+    public void uploadAvatar(@Param("avatar") MultipartFile avatar,/*@Param("userId")long userId,*/
                                HttpServletRequest request, HttpServletResponse response)
     {
         if(avatar == null && avatar.getSize() > 0)
         {
-            return "{" + false + "}";
+            return ;
         }
 
 
         User user = User.getCurrentUser(request);
-        //long userId = user.getUserId();
+        long userId = user.getUserId();
 
         String avatarName = avatar.getOriginalFilename();
         String exName = avatarName.substring(avatarName.lastIndexOf(".") + 1 );
@@ -233,7 +233,11 @@ public class UpanddownController {
         }
 
 
-        return "{" + true + "}";
+        try {
+            response.sendRedirect("editPersonal");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @RequestMapping("downloadO/{picId}")
