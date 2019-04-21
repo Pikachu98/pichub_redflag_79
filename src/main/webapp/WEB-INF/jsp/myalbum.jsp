@@ -178,7 +178,7 @@
                                   $(".listAlbum").remove();
                                   var trs = "";
                                   trs += "<div class='listPicture'> " +
-                                      "<a href='#' >" +
+                                      "<a href="+"/show/"+value.picId+" >" +
                                       "<div class='album-cover'>" +
                                       "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='200' width='200'><%--相册封面图片--%> "+
                                       "</div>"

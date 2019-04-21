@@ -69,4 +69,16 @@ public class PictureController {
         }
         return "picture-detail";
     }
+
+    @RequestMapping("/deletePicture")
+    public void deletePicture(int picId, HttpServletRequest request, HttpServletResponse response)throws Exception
+    {
+        pictureService.deletePicture(picId);
+    }
+
+    @RequestMapping("/changeStory")
+    public void changeStory(int picId, String story, HttpServletResponse response, HttpServletRequest request)throws Exception
+    {
+        pictureService.changeStory(picId,story);
+    }
 }

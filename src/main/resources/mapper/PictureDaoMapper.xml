@@ -67,4 +67,11 @@
     </select>
 
 
+    <delete id="deletePicture">
+        delete from picture where pic_id=#{pictureId}
+    </delete>
+
+    <update id="changeStory">
+        update picture set pic_story=#{pictureStory} where pic_id=#{pictureId}
+    </update>
 </mapper>
