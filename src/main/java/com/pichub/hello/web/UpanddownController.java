@@ -136,7 +136,6 @@ public class UpanddownController {
 
 
         return "myalbum";
-
     }
 
 

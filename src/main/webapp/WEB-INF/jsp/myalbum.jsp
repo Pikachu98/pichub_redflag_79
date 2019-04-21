@@ -77,7 +77,6 @@
                         </span>
                 <img src="showT/${sessionScope.get("user").userId}" alt="我的头像" class="user">
                 <span class="user">${sessionScope.get("user").userName}</span>
-                <img src="img/icon-dropdown.png" class="user">
             </div>
         </div>
     </section>
@@ -86,7 +85,7 @@
     <section class="detail">
         <div>
             <div class="detail-l">
-                <div class="other-avator"><img src="showA/${sessionScope.get("user").userId}" alt="我是头像">
+                <div class="other-avator"><img style="border-radius:50%" src="showA/${sessionScope.get("user").userId}" alt="我是头像">
                 </div>
 
                 <div class="other-note">
@@ -148,11 +147,6 @@
 
                             </li>    </div>
                         </c:forEach>
-
-
-
-
-
             </ul>
             <script>
                 function a(albumId) {
