@@ -101,23 +101,24 @@
         </div>
     </section>
     <section>
-        <table>
+        <div class="other-root">
+            <table>
 
-            <c:forEach items="${albumPics}" var="var" varStatus="cou">
+                <c:forEach items="${albumPics}" var="var" varStatus="cou">
 
-                <c:if test="${cou.count ==1 && (cou.count-1) %2==0}">
-                <tr>
-                </c:if>
-                        <td>
-                            <p>${cou.count}</p>
-                            <img class="hot_pics" src="/show/${var}"  alt="photo-1" width="216px" height="216px">
-                        </td>
-                <c:if test="${cou.count%2==0}">
-                <tr>
-                </c:if>
-            </c:forEach>
+                    <c:if test="${cou.count ==1 && (cou.count-1) %6==0}">
+                    <tr>
+                    </c:if>
+                            <td>
+                                <img class="hot_pics" src="/show/${var}"  alt="photo-1" width="216px" height="216px">
+                            </td>
+                    <c:if test="${cou.count%6==0}">
+                    <tr>
+                    </c:if>
+                </c:forEach>
 
-        </table>
+            </table>
+        </div>
     </section>
 
 </main>

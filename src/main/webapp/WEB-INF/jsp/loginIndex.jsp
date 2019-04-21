@@ -18,6 +18,9 @@
     <script src="/layui/layui.js"></script>
     <script src="/js/register.js"></script>
     <!--瀑布流-->
+
+
+
     <script src="/js/jquery.masonry.min.js"></script>
     <script src="/js/register.js"></script>
     <script src="/js/windowsUpDown.js"></script>
