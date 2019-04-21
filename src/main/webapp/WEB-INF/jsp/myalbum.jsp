@@ -127,19 +127,19 @@
             <a href="javascript:void(0)" class="btn-focus myalbum-btn2">展示设置</a>
             <a href="javascript:void(0)" class="myalbum-btn3">
                 <img src="/img/edit.png" class="icon-edit">
-                <span>编辑</span>
+                <%--<span>编辑</span>--%>
             </a>
         </div>
 
         <div class="my-root">
             <ul class="my-album">
-                        <c:forEach items="${listAlbum}" var="list" ><!--一个循环元素一个包装-->
+                        <c:forEach items="${listAlbum}" var="list" varStatus="cou" ><!--一个循环元素一个包装-->
                 <div class="listAlbum"><li class="cover-item my-cover-item">
 
 
                                 <a href="javascript:void(0);" onclick="a(${list.albumId})">
                                     <div class="album-cover">
-                                        <img src="/img/pho-18.png" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
+                                        <img src="show/${coverIds[cou.count-1]}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
                                     </div>
                                     <div>${list.albumName}</div><%--相册名字--%>
                                 </a>
@@ -172,11 +172,11 @@
                                   $(".listAlbum").remove();
                                   var trs = "";
                                   trs += "<div class='listPicture'> " +
-                                      "<a href='#' >" +
+                                      "<a href="+"/show/"+value.picId+" >" +
                                       "<div class='album-cover'>" +
-                                      "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='150' width='250'><%--相册封面图片--%> "+
-                                      "</div>" +
-                                      <%-- +"<div>"+value.picName+"</div><%--相册名字--%>
+                                      "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='200' width='200'><%--相册封面图片--%> "+
+                                      "</div>"
+                                      +"<a href= "+"/downloadO/"+value.picId +" style='margin-left: 20px;'><img src='/img/i-download.png'></img></a>"+
                                       "  </a> " +
                                       "</div>";
 

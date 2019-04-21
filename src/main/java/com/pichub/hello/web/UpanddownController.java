@@ -11,6 +11,7 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import net.coobird.thumbnailator.Thumbnailator;
 import net.coobird.thumbnailator.Thumbnails;
 import org.apache.ibatis.annotations.Param;
+import org.apache.jasper.tagplugins.jstl.core.Out;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,9 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.UUID;
 import java.util.Date;
+
+import static java.lang.System.out;
+
 /**
  * Created by root on 19-3-24.
  */
@@ -39,13 +43,13 @@ public class UpanddownController {
     AlbumService albumService;
 
     @RequestMapping(value = "/uploadFile" ,method = RequestMethod.POST)
-    public String uploadFile(@RequestParam(value="file") MultipartFile file, //@RequestParam(value = "story")String story,
+    public void uploadFile(@RequestParam(value="file") MultipartFile file, //@RequestParam(value = "story")String story,
                              /*@RequestParam(value = "userId") long userId,*/ @RequestParam(value = "album") long albumId,
                              HttpServletRequest request, HttpServletResponse response)
     {
         if(file == null && file.getSize() > 0)
         {
-            return "{" + "false" + "}";
+            return /*"{" + "false" + "}"*/;
         }
 
         //insert origin picture
@@ -55,7 +59,7 @@ public class UpanddownController {
         String exName = fileName.substring(fileName.lastIndexOf(".") + 1 );
         String newOriginiName = UUID.randomUUID().toString().replaceAll("-","") + "." + exName;
         String originPicturePath = getParent(request.getServletContext().getRealPath("/"))
-                             + "resources/originPictures/";
+                             + "resources"+File.separator+"originPictures"+File.separator;
 
         String finalOriginPath = originPicturePath +newOriginiName;
         FileOutputStream fos = null;//upload origin picture
@@ -74,12 +78,17 @@ public class UpanddownController {
                 }
             }
         }
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
         //insert thumbnail picture
         String newThumbnailName = UUID.randomUUID().toString().replaceAll("-","") + "." + exName;
         String thumbnailPath = getParent(request.getServletContext().getRealPath("/"))
-                              + "resources/static/thumbnail/";
+                              + "resources"+File.separator+"static"+File.separator+"thumbnail"+File.separator;
         String finalThumbnailPath = thumbnailPath + newThumbnailName;
         fos = null;
         try{
@@ -134,8 +143,14 @@ public class UpanddownController {
             e.printStackTrace();
         }
 
+        try {
+            response.sendRedirect("myAlbum");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        return "myalbum";
+        return /*"myalbum"*/;
+
     }
 
 
@@ -157,7 +172,7 @@ public class UpanddownController {
         String exName = avatarName.substring(avatarName.lastIndexOf(".") + 1 );
         String dirName = String.valueOf(userId);
         String avatarPath = getParent(request.getServletContext().getRealPath("/"))
-                + "resources/static/avatar/" + dirName;
+                + "resources"+File.separator+"static"+File.separator+"avatar"+File.separator + dirName;
         File file = new File(avatarPath);
 
         if(!file.exists())
@@ -170,7 +185,7 @@ public class UpanddownController {
 
         FileOutputStream fos = null;
         try {//save origin avatar
-            fos = new FileOutputStream(avatarPath + "/origin." + exName);
+            fos = new FileOutputStream(avatarPath + File.separator+"origin." + exName);
             fos.write(avatar.getBytes());
 
         }catch (IOException e)
@@ -191,21 +206,21 @@ public class UpanddownController {
 
 
         try {// make square avatar
-            Thumbnails.of(avatarPath + "/origin." + exName).size(150,150).keepAspectRatio(false).outputFormat("jpg")
+            Thumbnails.of(avatarPath + File.separator+"origin." + exName).size(150,150).keepAspectRatio(false).outputFormat("jpg")
                       .toFile(avatarPath + "/" + "square.jpg");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         try {// make avatar in page
-            Thumbnails.of(avatarPath + "/origin." + exName).size(100, 100).keepAspectRatio(false).outputFormat("jpg")
+            Thumbnails.of(avatarPath + File.separator+"origin." + exName).size(100, 100).keepAspectRatio(false).outputFormat("jpg")
                     .toFile(avatarPath + "/page.jpg");
         }catch (IOException e){
             e.printStackTrace();
         }
 
         try {// make thumbnail avatar
-            Thumbnails.of(avatarPath + "/origin." + exName).size(40,40).keepAspectRatio(false).outputFormat("jpg")
+            Thumbnails.of(avatarPath + File.separator+"origin." + exName).size(40,40).keepAspectRatio(false).outputFormat("jpg")
                     .toFile(avatarPath + "/" + "thumbnail.jpg");
         } catch (IOException e) {
             e.printStackTrace();
@@ -221,14 +236,14 @@ public class UpanddownController {
         return "{" + true + "}";
     }
 
-    @RequestMapping("download/{picId}")
+    @RequestMapping("downloadO/{picId}")
     @ResponseBody
-    public void download(@PathVariable int picId, HttpServletResponse response, HttpServletRequest request)throws Exception
+    public void downloadO(@PathVariable int picId, HttpServletResponse response, HttpServletRequest request)throws Exception
     {
         Picture p = pictureService.getPicture(picId);
         String picName = p.getPicName();
         String path = getParent(request.getServletContext().getRealPath("/"))
-                + "resources/originPictures/" + picName;
+                + "resources"+File.separator+"originPictures"+File.separator + picName;
         long picUserId = p.getUserId();
         long userId = User.getCurrentUser(request).getUserId();
         if(userId == picUserId)
@@ -244,6 +259,27 @@ public class UpanddownController {
             br.close();
             out.close();
         }
+    }
+
+    @RequestMapping("downloadT/{picId}")
+    @ResponseBody
+    public void downloadT(@PathVariable int picId, HttpServletRequest request, HttpServletResponse response)throws Exception
+    {
+        Picture p = pictureService.getPicture(picId);
+        String picName = p.getPicThumbnailPath().substring(p.getPicThumbnailPath().lastIndexOf("/") + 1);
+        String path = getParent(request.getServletContext().getRealPath("/"))
+                + "resources"+File.separator+"static"+File.separator+"thumbnail"+File.separator + picName;
+        File f = new File(path);
+        BufferedInputStream br = new BufferedInputStream(new FileInputStream(f));
+        byte[] buf = new byte[1024];
+        int len = 0;
+        response.reset();
+        response.setHeader("Content-Disposition", "attachment; filename=" + f.getName());
+        OutputStream out = response.getOutputStream();
+        while ((len = br.read(buf)) > 0) out.write(buf, 0, len);
+        br.close();
+        out.close();
+
     }
 
 
