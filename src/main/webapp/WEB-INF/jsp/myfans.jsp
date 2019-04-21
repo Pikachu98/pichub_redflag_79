@@ -62,7 +62,7 @@
     <section class="layout">
         <div class="l-content view-lr">
             <div class="header-l">
-                <a href="pic-index.html"><img src="img/logo.png" class="logo"></a>
+                <a href="/"><img src="img/logo.png" class="logo"></a>
             </div>
             <div class="user-r">
                         <span class="search-box login-search">
@@ -87,7 +87,7 @@
                 <div class="other-note">
                     <div><span class="other-note-title">${sessionScope.get("user").userName}</span>
                     </div>
-                    <div class="other-note-decription">${sessionScope.get("user").userDescription}</div>
+                    <div class="other-note-decription">${sessionScope.get("user").userDescription}&nbsp;</div>
                     <div class="other-focus">
                         <div class="fans">
                             <div class="number">${FocusMe}</div>
@@ -105,13 +105,13 @@
     </section>
     <section class="myL">
         <div class="sidebar">
-            <div class="sidebar-btn"><a href="myalbum.html"><img src="img/i-1.png"
+            <div class="sidebar-btn"><a href="/myAlbum"><img src="img/i-1.png"
                                                                  class="icon-my">我的相册</a></div>
-            <div class="sidebar-btn"><a href="mylike.html"><img src="img/i-2.png"
+            <div class="sidebar-btn"><a href="/listmyLike"><img src="img/i-2.png"
                                                                 class="icon-my">我喜欢的</a></div>
-            <div class="focus-now"><a href="myfans.html"><img src="img/i-3-1.png"
+            <div class="focus-now"><a href="/listFans"><img src="img/i-3-1.png"
                                                                 class="icon-my">我的粉丝</a></div>
-            <div class="sidebar-btn"><a href="myfocus.html"><img src="img/i-4.png"
+            <div class="sidebar-btn"><a href="/list"><img src="img/i-4.png"
                                                                class="icon-my">我关注的</a></div>
             <div class="sidebar-btn"><a href="editPersonal.html"><img src="img/i-5.png"
                                                                       class="icon-my">修改个人资料</a></div>

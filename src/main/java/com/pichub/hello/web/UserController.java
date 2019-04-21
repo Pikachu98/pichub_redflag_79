@@ -1,6 +1,7 @@
 package com.pichub.hello.web;
 
 import com.pichub.hello.bo.User;
+import com.pichub.hello.service.FocusService;
 import com.pichub.hello.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class UserController
 {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private FocusService focusService;
 
     @RequestMapping(value="/register", method = RequestMethod.GET)
     public String register(HttpServletRequest request, HttpServletResponse response){
@@ -155,6 +159,28 @@ public class UserController
         System.out.println(userService.GenerateImage(request.getParameter("avatar")));
         long userId=26;
         return "OK";
+    }
+
+    @RequestMapping(value = "/editPersonal")
+    public  String editPersonal(ModelMap model,HttpServletRequest request){
+        model.put("userId",User.getCurrentUser(request).getUserId());
+        model.put("userName",User.getCurrentUser(request).getUserName());
+        model.put("userDescription",User.getCurrentUser(request).getUserDescription());
+        model.put("userQQ",User.getCurrentUser(request).getQqNum());
+        model.put("userEmail",User.getCurrentUser(request).getUserEmail());
+
+
+        try {
+            model.put("MyFocus",focusService.showMyFocus(User.getCurrentUser(request).getUserId().intValue()).size());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            model.put("FocusMe",focusService.showFocusMe(User.getCurrentUser(request).getUserId().intValue()).size());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "editPersonal";
     }
 
 }

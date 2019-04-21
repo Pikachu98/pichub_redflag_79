@@ -650,6 +650,7 @@
         }
     };
 
+
     $.fn.bootstrapPaginator.Constructor = BootstrapPaginator;
 
 

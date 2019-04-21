@@ -1,49 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Focus</title>
 
-    <script src="/js/jquery-3.3.1.min.js"></script>
-    <script type="text/css">
-
-    </script>
-</head>
-<body>
-<table align="center">
-    <tr>
-        <td><input type="button" value="关注/取消" id="btnFocus"></td>
-        <td>当前用户ID：</td>
-        <td><input type="text" value="userId1" id="userId1"></td>
-    </tr>
-    <tr>
-        <td><input type="button" value="我的关注" id="btnMyFocus"></td>
-        <td>关注用户ID：</td>
-        <td><input type="text" value="userId2" id="userId2"></td>
-    </tr>
-    <tr>
-        <td><input type="button" value="我的粉丝" id="btnFocusMe"></td>
-        <td>我的粉丝ID：</td>
-        <td><input type="text" value="userId3" id="userId3"></td>
-    </tr>
-    <tr>
-        <td><input type="button" value="我喜欢的" id="btnMyLike"></td>
-        <td>我喜欢的图片ID：</td>
-        <td><input type="text" value="userId4" id="userId4"></td>
-    </tr>
-    <tr>
-        <td><input type="button" value="我de相册" id="btnMyAlbum"></td>
-        <td>我的相册ID：</td>
-        <td><input type="text" value="userId5" id="userId5"></td>
-    </tr>
-    <tr>
-        <td><input type="button" value="改变昵称" id="btnChangeName"></td>
-        <td>新的昵称：</td>
-        <td><input type="text" value="userId6" id="userId6"></td>
-    </tr>
-</table>
-
-<script>
     $(function (){
         $("#btnFocus").on("click",function () {
 
@@ -182,8 +137,3 @@
             })
         })
     })
-</script>
-<div></div>
-
-</body>
-</html>

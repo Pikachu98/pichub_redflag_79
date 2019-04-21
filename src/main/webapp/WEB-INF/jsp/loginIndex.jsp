@@ -112,7 +112,9 @@
 </head>
 
 <body>
+
 <%@include file="header.jsp"%>
+
 <main id="main" class="main">
     <section class="layout layout-banner">
         <!--注册悬浮窗-->
