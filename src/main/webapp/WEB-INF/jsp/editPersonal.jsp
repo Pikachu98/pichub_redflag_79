@@ -49,30 +49,14 @@
         </div>
     </div>
 </div>
-<header id="header" class="header">
-    <section class="layout">
-        <div class="l-content view-lr">
-            <div class="header-l">
-                <a href=""><img src="/img/logo.png" class="logo"></a>
-            </div>
-            <div class="user-r">
-                        <span class="search-box login-search">
-                            <input type="text" class="input-search">
-                            <!-- <i class="icon icon-search"></i> -->
-                            <img src="/img/icon_search.png" alt="search" class="icon-search">
-                        </span>
-                <img src="/avatar/${userId}/thumbnail.jpg" alt="我的头像" class="user">
-                <span class="user">${sessionScope.get("user").userName}</span>
-                <img src="/img/icon-dropdown.png" class="user">
-            </div>
-        </div>
-    </section>
-</header>
+
+<%@include file="header.jsp"%>
+
 <main id="main" class="main">
     <section class="detail">
         <div>
             <div class="detail-l">
-                <div class="other-avator"><img src="showA/${sessionScope.get("user").userId}" alt="我是头像">
+                <div class="other-avator"><img src="showA/${sessionScope.get("user").userId}" alt="我是头像" style="border-radius:50%">
                 </div>
 
                 <div class="other-note">

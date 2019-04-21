@@ -92,24 +92,7 @@
 </head>
 
 <body>
-<header id="header" class="header">
-    <section class="layout">
-        <div class="l-content view-lr">
-            <div class="header-l">
-                <img src="img/logo.png" class="logo">
-            </div>
-            <div class="user-r">
-                        <span class="search-box login-search">
-                            <input type="text" class="input-search">
-                            <!-- <i class="icon icon-search"></i> -->
-                            <img src="img/icon_search.png" alt="search" class="icon-search">
-                        </span>
-                <img src="showT/${sessionScope.get("user").userId}" alt="我的头像" class="user">
-                <span class="user">${sessionScope.get("user").userName}</span>
-            </div>
-        </div>
-    </section>
-</header>
+<%@include file="header.jsp"%>
 <main id="main" class="main">
     <section class="detail">
         <div>

@@ -115,28 +115,10 @@
         </div>
     </div>
 </div>
-<header id="header" class="header">
-    <section class="layout">
-        <div class="l-content view-lr">
-            <div class="header-l">
-                <a href="pic-index.html"><img src="/img/logo.png" class="logo"></a>
-            </div>
-            <div class="user-r">
-                        <span class="search-box login-search">
-                            <input type="text" class="input-search">
 
-                            <img src="/img/icon_search.png" alt="search" class="icon-search">
-                        </span>
-                <a href="myalbum.html"><img src="/showT/${user_id}" alt="我的头像" class="user"></a>
-                <span class="user">Askiran</span>
-                <img src="/img/icon-dropdown.png" class="user">
-            </div>
-        </div>
-    </section>
-</header>
+<%@include file="header.jsp"%>
+
 <!--header用King的---->
-
-
 <main id="main" class="main">
 
     <section class="detail">
