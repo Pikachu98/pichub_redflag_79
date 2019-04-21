@@ -125,7 +125,7 @@
     <section class="detail">
         <div>
             <div class="detail-l">
-                <div class="other-avator"><img src="/showA/${user_id}" alt="我是头像">
+                <div class="other-avator"><img  style="border-radius: 50%;" src="/showA/${user_id}" alt="我是头像">
                 </div>
 
                 <div class="other-note">
@@ -152,23 +152,24 @@
     <section>
         <div class="other-root">
             <table>
-
                 <c:forEach items="${albumPics}" var="var" varStatus="cou">
-
                     <c:if test="${cou.count ==1 && (cou.count-1) %6==0}">
                     <tr>
                     </c:if>
                             <td id="pics_td">
-                                <c:if test="${cou.count <= 6}">
-                                    <img class="hot_pics" src="/show/${var}"  alt="photo-1" width="216px" height="216px">
+                                <c:if test="${cou.count <= 18}">
+                                    <a href="/picture-detail/${var}">
+                                        <img class="hot_pics" src="/show/${var}"  alt="photo-1" width="216px" height="216px">
+                                    </a>
                                 </c:if>
-                                <c:if test="${cou.count > 6}">
-                                    <img class="hot_pics" src="/img/whiteboard.png" data-src="/show/${var}"  alt="photo-1" width="216px" height="216px">
+                                <c:if test="${cou.count > 18}">
+                                    <a href="/picture-detail/${var}">
+                                        <img class="hot_pics" src="/img/whiteboard.png" data-src="/show/${var}"  alt="photo-1" width="216px" height="216px">
+                                    </a>
                                 </c:if>
-
                             </td>
                     <c:if test="${cou.count%6==0}">
-                    <tr>
+                    </tr>
                     </c:if>
                 </c:forEach>
 
