@@ -78,6 +78,7 @@
 .user{
     vertical-align: middle;
     padding-left: 14px;
+    border-radius: 50%;
 }
 
 .login-search{

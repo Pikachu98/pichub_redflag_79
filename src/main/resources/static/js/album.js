@@ -10,7 +10,7 @@ $(document).ready(function(){//点击悬浮窗右上角的X按钮，关闭悬浮
             $(".backGround").hide();
         })
 
-        //点击悬浮窗中的取消按钮，关闭悬浮窗
+        //点击确定按钮创建相册
         $(".btn-confirm").click(function(){
             $("#createWindow").slideUp(300);
             $(".backGround").hide();
@@ -27,6 +27,7 @@ $(document).ready(function(){//点击悬浮窗右上角的X按钮，关闭悬浮
                 },
                 success: function (result) {
                     alert(result.msg);
+                    window.location.href = "/myAlbum";
                 }
             });
         })

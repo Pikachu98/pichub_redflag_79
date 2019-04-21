@@ -1,6 +1,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script>
+    // 注销登录
+    $(function(){
+        $("#signout").click(function(){
+            $.ajax({
+                url: "/signout",
+                type: "get",
+                success: function () {
+                    alert("您已退出");
+                    window.location.href = "/";
+                },
+                error:function () {
+                    alert("出錯了！");
+                }
+            });
+        })
+    });
 
+</script>
 
 <c:if test="${not empty user}">
     <header id="header" class="header">
@@ -22,11 +40,11 @@
                     <%--下拉列表--%>
                     <img src="/img/icon-dropdown.png" class="user" id="dropDown">
                         <ul id="dropDownlist">
-                            <a href="/myAlbum" target="_blank"><li>我的相册</li></a>
-                            <a href="/myfocus" target="_blank"><li>我关注的</li></a>
-                            <a href="/myfans" target="_blank"><li>我的粉丝</li></a>
-                            <a href="" target="_blank"><li>我喜欢的</li></a>
-                            <li id="signout">退出账号</li>
+                            <a href="/myAlbum" target="_blank"><li class="dropDownLi">我的相册</li></a>
+                            <a href="/list" target="_blank"><li class="dropDownLi">我关注的</li></a>
+                            <a href="/listFans" target="_blank"><li class="dropDownLi">我的粉丝</li></a>
+                            <a href="/listmyLike" target="_blank"><li class="dropDownLi">我喜欢的</li></a>
+                            <a href="javascript:void(0)"><li id="signout" class="dropDownLi">退出账号</li></a>
                         </ul>
                 </div>
             </div>
