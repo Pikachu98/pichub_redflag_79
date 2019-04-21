@@ -121,6 +121,7 @@
                 <c:forEach var="photo" items="${currentPageUsers}" varStatus="cou">
                 <li class="cover-item my-cover-item">
                     <div class="album-cover" style="width:216px;height:216px;overflow: hidden;">
+
                         <img src="show/${photo}" alt="photo" class="cover">
                     </div>
                 </li>

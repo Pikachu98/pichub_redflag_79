@@ -35,6 +35,29 @@
         }
 
     </script>
+    <script type="text/javascript">
+        function previewFile() {
+            var preview = document.querySelector("#avatar");
+            var file    = document.querySelector('input[type=file]').files[0];
+            var reader  = new FileReader();
+
+            var picvisi = document.getElementById("avatar");
+            picvisi.style.visibility="visible";
+
+            // $(".btn-choose-pic").visibility=hidden;
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            }
+
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+    </script>
 </head>
 
 <body onload="load()">
@@ -91,46 +114,51 @@
             <div class="focus-now"><a href="/editPersonal"><img src="/img/i-5-1.png"
                                                                     class="icon-my">修改个人资料</a></div>
         </div>
-        <div class="edit">
-            <div class="no-avator">
-                <span class="lbl">头像</span>
-                <img src="/avatar/${userId}/square.jpg"  class="pic-ava" >
-            </div>
-            <hr class="hr"/>
-            <div>
-                <span class="lbl">昵称</span>
-                <input type="text" class="name-now" placeholder="${userName}" id="newUserName">
-                <a href="javascript:void(0)" style="color:#2EBDE6" id="btnChangeName">修改</a>
-            </div>
-            <div>
-                <span class="lbl">性别</span>
-                <input type="radio" name="gender"><span class="gender-choice">男</span>
-                <input type="radio" name="gender"><span class="gender-choice">女</span>
-                <input type="radio" name="gender"><span class="gender-choice">保密</span>
-            </div>
-            <div>
-                <span class="lbl">QQ</span>
-                <input type="text" placeholder="${userQQ}" class="name-now">
-                <a href="javascript:void(0)" style="color:#2EBDE6">绑定</a>
-            </div>
-            <div>
-                <span class="lbl">邮箱</span>
-                <input type="email" placeholder="${userEmail}" class="name-now">
-            </div>
-            <div>
-                <span class="lbl">签名</span>
-                <input type="text" class="name-now intro" placeholder="不超过20字">
-            </div>
+            <div class="edit">
+                <form id="updateWindow" action="/uploadAvatar" enctype="multipart/form-data" method="post">
+                    <div class="no-avator">
+                        <span class="lbl">头像</span>
+                        <img src="/showA/${userId}" height="150px" id="avatar" class="pic-ava" >
+                        <label for="upload"  id="label_sele" style="color: #2EBDE6">选择照片</label>
+                        <input type="file" name="avatar" id="upload" onchange="previewFile()" style="display: none;">
+                    </div>
+                    <hr class="hr"/>
+                    <div>
+                        <span class="lbl">昵称</span>
+                        <input type="text" class="name-now" placeholder="${userName}" id="newUserName">
+                        <a href="javascript:void(0)" style="color:#2EBDE6" id="btnChangeName">修改</a>
+                    </div>
+                    <div>
+                        <span class="lbl">性别</span>
+                        <input type="radio" name="gender"><span class="gender-choice">男</span>
+                        <input type="radio" name="gender"><span class="gender-choice">女</span>
+                        <input type="radio" name="gender"><span class="gender-choice">保密</span>
+                    </div>
+                    <div>
+                        <span class="lbl">QQ</span>
+                        <input type="text" placeholder="${userQQ}" class="name-now">
+                        <a href="javascript:void(0)" style="color:#2EBDE6">绑定</a>
+                    </div>
+                    <div>
+                        <span class="lbl">邮箱</span>
+                        <input type="email" placeholder="${userEmail}" class="name-now">
+                    </div>
+                    <div>
+                        <span class="lbl">签名</span>
+                        <input type="text" class="name-now intro" placeholder="不超过20字">
+                    </div>
 
-            <div class="acc">
-                <span class="account">关联社交账号</span>
-                <img src="img/QQ.png" class="pic-ava QQ">
+                    <div class="acc">
+                        <span class="account">关联社交账号</span>
+                        <img src="img/QQ.png" class="pic-ava QQ">
+                    </div>
+                    <hr class="hr" />
+                    <div class="btn-save">
+                        <%--<a href="javascript:void(0)">保存设置</a>--%>
+                        <input type="submit" value="保存设置">
+                    </div>
+                </form>
             </div>
-            <hr class="hr" />
-            <div class="btn-save">
-                <a href="javascript:void(0)">保存设置</a>
-            </div>
-        </div>
     </section>
 
 </main>
