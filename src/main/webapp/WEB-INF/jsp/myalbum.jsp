@@ -9,8 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-
-
     <meta charset="UTF-8">
     <title>myalbum</title>
     <link rel="stylesheet" href="/default/reset.css">
@@ -58,9 +56,6 @@
             })
         });
 
-
-
-
         
     </script>
     <script type="text/javascript">
@@ -68,35 +63,48 @@
             var index = $("#album-list option:selected");
             var getAlbumId = index.attr("var");
             $("#album-id").attr("value",getAlbumId);
+            $(".btn-start-upload").css("visibility","visible");
+            $("#point-out").css("visibility","hidden");
         }
     </script>
+
+    <script type="text/javascript">
+        function previewFile() {
+            var preview = document.querySelector("#test");
+            var file    = document.querySelector('input[type=file]').files[0];
+            var reader  = new FileReader();
+            var visi = document.getElementById("label_sele");
+            visi.style.visibility="hidden";
+            visi.style.marginLeft=-135;
+            visi.style.marginTop=0;
+
+            var picvisi = document.getElementById("test");
+            picvisi.style.visibility="visible";
+
+            // $(".btn-choose-pic").visibility=hidden;
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            }
+
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+    </script>
+
 </head>
 
 <body>
-<header id="header" class="header">
-    <section class="layout">
-        <div class="l-content view-lr">
-            <div class="header-l">
-                <img src="img/logo.png" class="logo">
-            </div>
-            <div class="user-r">
-                        <span class="search-box login-search">
-                            <input type="text" class="input-search">
-                            <!-- <i class="icon icon-search"></i> -->
-                            <img src="img/icon_search.png" alt="search" class="icon-search">
-                        </span>
-                <img src="showT/${sessionScope.get("user").userId}" alt="我的头像" class="user">
-                <span class="user">${sessionScope.get("user").userName}</span>
-                <img src="img/icon-dropdown.png" class="user">
-            </div>
-        </div>
-    </section>
-</header>
+<%@include file="header.jsp"%>
 <main id="main" class="main">
     <section class="detail">
         <div>
             <div class="detail-l">
-                <div class="other-avator"><img src="showA/${sessionScope.get("user").userId}" alt="我是头像">
+                <div class="other-avator"><img style="border-radius:50%" src="showA/${sessionScope.get("user").userId}" alt="我是头像">
                 </div>
 
                 <div class="other-note">
@@ -138,16 +146,22 @@
             <a href="javascript:void(0)" class="btn-focus myalbum-btn2">展示设置</a>
             <a href="javascript:void(0)" class="myalbum-btn3">
                 <img src="/img/edit.png" class="icon-edit">
-                <span>编辑</span>
+                <%--<span>编辑</span>--%>
             </a>
         </div>
 
         <div class="my-root">
             <ul class="my-album">
-                        <c:forEach items="${listAlbum}" var="list" ><!--一个循环元素一个包装-->
-                <div class="listAlbum" style="position: relative;">
-                    <li class="cover-item my-cover-item">
+                        <c:forEach items="${listAlbum}" var="list" varStatus="cou" ><!--一个循环元素一个包装-->
+                <div class="listAlbum"><li class="cover-item my-cover-item">
 
+
+                                <a href="javascript:void(0);" onclick="a(${list.albumId})">
+                                    <div class="album-cover">
+                                        <img src="show/${coverIds[cou.count-1]}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
+                                    </div>
+                                    <div>${list.albumName}</div><%--相册名字--%>
+                                </a>
                         <a href="javascript:void(0);" onclick="a(${list.albumId})">
                             <div class="album-cover">
                                 <img src="/img/pho-18.png" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
@@ -261,17 +275,19 @@
             <div class="choosed">
                 <!--<a class="btn-choose-pic">--><!--<img src="img/pic.png"
                                 style="vertical-align:middle;height: 25px;padding-bottom: 5px;">选择照片-->
-                <label for="upload" class="btn-choose-pic">
+                <label for="upload" class="btn-choose-pic" id="label_sele">
                     <img src="/img/pic.png" style="vertical-align:middle;height: 25px;padding-bottom: 5px;">选择照片</label>
-                <input type="file" name="file" id="upload" style="display: none;">
+                <input type="file" name="file" id="upload" onchange="previewFile()" style="display: none;">
+                <img src="" height="200px" id="test" alt="Image preview...">
                 <input type="text" name="album" id="album-id" value="" style="display: none">
                 <!--</a>-->
             </div>
             <div class="upload-footer">
                 <%--<a href="javascript:void(0)" class="btn-start-upload">开始上传</a>--%>
-                <input type="submit" class="btn-start-upload" value="开始上传">
+                <input type="submit" class="btn-start-upload" style="visibility: hidden" value="开始上传">
+                    <label id="point-out" style="visibility: visible">请选择相册</label>
                 <a href="javascript:void(0)" class="btn-add">继续添加</a>
-                <span class="continue">共5张照片（上传过程中请不要删除原始照片）</span>
+                <span class="continue">共1张照片（上传过程中请不要删除原始照片）</span>
             </div>
         </form>
         <div class="backGround"></div>
@@ -295,13 +311,13 @@
                     <textarea class="create-description"></textarea>
                     <span>0/2000</span>
                 </div>
-            <div class="album-authority">
-                <span>权限：</span>
-                <select class="create-album-name">
-                    <option value="">仅自己查看</option>
-                    <option value="">公开</option>
-                </select>
-            </div>
+            <%--<div class="album-authority">--%>
+                <%--<span>权限：</span>--%>
+                <%--<select class="create-album-name">--%>
+                    <%--<option value="">仅自己查看</option>--%>
+                    <%--<option value="">公开</option>--%>
+                <%--</select>--%>
+            <%--</div>--%>
             <div class="create-footer">
                 <a href="javascript:void(0)" class="btn-confirm">确认</a>
                 <a href="javascript:void(0)" class="btn-cancel">取消</a>
@@ -319,7 +335,6 @@
         </div>
     </section>
 </footer>
-
 </body>
 
 </html>

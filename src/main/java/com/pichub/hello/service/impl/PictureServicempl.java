@@ -105,4 +105,21 @@ public class PictureServicempl implements PictureService{
         }
         return tag;
     }
+
+    @Override
+    public List<Integer> getAlbumPics(int userId) throws Exception {
+        return pictureDao.getAlbumPics(userId);
+    }
+
+    public void deletePicture(int pictureId)throws Exception
+    {
+        pictureDao.deletePicture(pictureId);
+    }
+
+    public void changeStory(int pictureId, String story)throws Exception
+    {
+        pictureDao.changeStory(pictureId, story);
+    }
+
+
 }

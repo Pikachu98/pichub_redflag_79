@@ -40,6 +40,14 @@
             //当透明度为0的时候，隐藏掉它
         }
     </script>
+    <script type="text/javascript">
+        $(function() {
+            $("#picture").click(function () {
+                window.history.back();
+            });
+        });
+    </script>
+
 
 </head>
 
@@ -61,18 +69,17 @@
 
 </div>
 <div class="r">
-    <div style="padding-top:10px;margin-left: 93%;"><a href="javascript:void(0)" ><img src="img/i-close.png"></img></a></div>
-
-    <div class="text first">Picture Name：驯龙高手</div>
-    <div class="text">description：There were dragons, when I was a boy.</div>
+    <div style="padding-top:10px;margin-left: 93%;"><a href="javascript:void(0)" ><img src="/img/i-close.png"  id="picture"></img></a></div>
+    <div class="text first">Picture Name：${picture.picName}</div>
+    <div class="text">${picture.picStory}</div>
     <div class="text">Tags：
         <c:forEach  items="${picTag}" var="tag" >
             <a href="javascript:void(0)" class="tag">${tag}</a>
         </c:forEach>
     </div>
     <div class="text">
-        <a href="javascript:void(0)"><img src="/img/heart.png"></img></a>
-        <a href="javascript:void(0)" style="margin-left: 20px;"><img src="/img/i-download.png"></img></a>
+        <%--<a href="javascript:void(0)"><img src="/img/heart.png"></img></a>--%>
+        <a href="/downloadT/${picture.picId}" style="margin-left: 20px;"><img src="/img/i-download.png"></img></a>
 
     </div>
 </div>

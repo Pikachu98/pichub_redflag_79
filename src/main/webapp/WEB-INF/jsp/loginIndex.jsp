@@ -18,6 +18,9 @@
     <script src="/layui/layui.js"></script>
     <script src="/js/register.js"></script>
     <!--瀑布流-->
+
+
+
     <script src="/js/jquery.masonry.min.js"></script>
     <script src="/js/register.js"></script>
     <script src="/js/windowsUpDown.js"></script>
@@ -77,14 +80,15 @@
             $(".heart").on("click",function () {
                 var likeId = $(this).parents(".view").find(".view-cover").find(".hot_pics").attr("pic_id");
                 var count = $(this).parents(".focus-msg").find(".focus-num").attr("count");
-                if($(this).attr("src") == "img/i-2.png")
+
+                if($(this).attr("src").indexOf("img/i-2.png")>=0)
                 {
                     $(this).attr("src","img/i-2-1.png");
                     $(this).parents(".focus-msg").find(".focus-num").attr("count",++count);
                     $(this).parents(".focus-msg").find(".focus-num").text(count + "人喜欢");
 
                 }
-                else 
+                else
                 {
                     $(this).attr("src","img/i-2.png");
                     $(this).parents(".focus-msg").find(".focus-num").attr("count",--count);
@@ -240,11 +244,13 @@
             <div class="view">   <!--这里设置了边框格式-->
 
                 <div class="view-other view-lr"><!--把头像和关注放在一起，见photo-list(line-height:60px)-->
+
                     <div class="view-l"><!--头像 photo-list和description一起-->
-                        <a><img src="/showT/${users[cou.count-1].userId}" alt="头像"></a>
+                        <a href="/album-pics/${users[cou.count-1].userId}"><img src="/showT/${users[cou.count-1].userId}" alt="头像" style="border-radius: 50%"></a>
                         <span class="user-name">${users[cou.count-1].userName}</span>
                         <span id="user-id" user_id="${users[cou.count-1].userId}" style="opacity: 0">${users[cou.count-1].userId}</span>
                     </div>
+
                     <div class="view-r" butn_id="${sessionScope.get("user").userName}"><!--关注，见photo-list-->
                         <c:if test="${focusList[cou.count-1] == 0}">
                             <input type="button" class="btn-focus" value="关注">
@@ -254,11 +260,6 @@
                         </c:if>
                     </div><!--关注-->
                 </div><!--头像+关注-->
-
-                <%--<div class="view-cover"><!--图片的显示，见phot-list:设置了个边框颜色？？？-->--%>
-
-                    <%--<img class="hot_pics" src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">--%>
-
 
                     <div class="view-cover"><!--图片的显示，见photo-list:设置了个边框颜色？？？-->
                         <a href="/picture-detail/${var.picId}">

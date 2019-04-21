@@ -29,4 +29,8 @@ public interface PictureDao {
 
    /* String getPicturePathByPhotoId(@Param("photoId") int photoId);*/
     List<String> getTag(int picId);
+
+    List<Integer> getAlbumPics(@Param("userId") int userId) throws Exception;
+    void deletePicture(@Param("pictureId") long pictureId)throws Exception;
+    void changeStory(@Param("pictureId") long pictureId, @Param("story") String story)throws Exception;
 }

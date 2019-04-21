@@ -58,9 +58,27 @@ public class PictureController {
     }
 
     @RequestMapping(value = "/picture-detail/{picId}")
-    public String pictureDetail(@PathVariable int picId,ModelMap model){
+    public String pictureDetail(@PathVariable int picId,ModelMap model) throws Exception{
         model.put("picTag",pictureDao.getTag(picId));
         model.put("picId",picId);
+        try {
+            Picture p = pictureService.getPicture(picId);
+            model.put("picture",p);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "picture-detail";
+    }
+
+    @RequestMapping("/deletePicture")
+    public void deletePicture(int picId, HttpServletRequest request, HttpServletResponse response)throws Exception
+    {
+        pictureService.deletePicture(picId);
+    }
+
+    @RequestMapping("/changeStory")
+    public void changeStory(int picId, String story, HttpServletResponse response, HttpServletRequest request)throws Exception
+    {
+        pictureService.changeStory(picId,story);
     }
 }
