@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/default/other-album.css">
 
     <link rel="stylesheet" href="/css/load.css">
+    <script src="/js/jquery-3.3.1.min.js"></script>
 
     <script type="text/javascript">
         function load() {
@@ -115,28 +116,10 @@
         </div>
     </div>
 </div>
-<header id="header" class="header">
-    <section class="layout">
-        <div class="l-content view-lr">
-            <div class="header-l">
-                <a href="pic-index.html"><img src="/img/logo.png" class="logo"></a>
-            </div>
-            <div class="user-r">
-                        <span class="search-box login-search">
-                            <input type="text" class="input-search">
 
-                            <img src="/img/icon_search.png" alt="search" class="icon-search">
-                        </span>
-                <a href="myalbum.html"><img src="/showT/${user_id}" alt="我的头像" class="user"></a>
-                <span class="user">Askiran</span>
-                <img src="/img/icon-dropdown.png" class="user">
-            </div>
-        </div>
-    </section>
-</header>
+<%@include file="header.jsp"%>
+
 <!--header用King的---->
-
-
 <main id="main" class="main">
 
     <section class="detail">
@@ -172,19 +155,19 @@
 
                 <c:forEach items="${albumPics}" var="var" varStatus="cou">
 
-                    <c:if test="${cou.count ==1 && (cou.count-1) %2==0}">
+                    <c:if test="${cou.count ==1 && (cou.count-1) %6==0}">
                     <tr>
                     </c:if>
-                            <td>
-                                <c:if test="${cou.count <= 2}">
+                            <td id="pics_td">
+                                <c:if test="${cou.count <= 6}">
                                     <img class="hot_pics" src="/show/${var}"  alt="photo-1" width="216px" height="216px">
                                 </c:if>
-                                <c:if test="${cou.count > 2}">
+                                <c:if test="${cou.count > 6}">
                                     <img class="hot_pics" src="/img/whiteboard.png" data-src="/show/${var}"  alt="photo-1" width="216px" height="216px">
                                 </c:if>
 
                             </td>
-                    <c:if test="${cou.count%2==0}">
+                    <c:if test="${cou.count%6==0}">
                     <tr>
                     </c:if>
                 </c:forEach>

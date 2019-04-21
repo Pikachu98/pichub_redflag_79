@@ -23,10 +23,15 @@
     <link rel="stylesheet" href="/default/myalbum.css">
     <link rel="stylesheet" href="/default/edit.css">
 
+    <link rel="stylesheet" href="css/bootstrap.css" >
+
     <script src="/default/js/jquery-3.3.1.js"></script>
+
+    <script src="js/bootstrap3.0.3.min.js"></script>
     <script src="/js/album.js"></script>
 
     <script type="text/javascript">
+
         $(document).ready(function () {
             $("#btn-upload").click(function () {
                 $("#uploadWindow").slideDown(300);
@@ -94,24 +99,7 @@
 </head>
 
 <body>
-<header id="header" class="header">
-    <section class="layout">
-        <div class="l-content view-lr">
-            <div class="header-l">
-                <img src="img/logo.png" class="logo">
-            </div>
-            <div class="user-r">
-                        <span class="search-box login-search">
-                            <input type="text" class="input-search">
-                            <!-- <i class="icon icon-search"></i> -->
-                            <img src="img/icon_search.png" alt="search" class="icon-search">
-                        </span>
-                <img src="showT/${sessionScope.get("user").userId}" alt="我的头像" class="user">
-                <span class="user">${sessionScope.get("user").userName}</span>
-            </div>
-        </div>
-    </section>
-</header>
+<%@include file="header.jsp"%>
 <main id="main" class="main">
     <section class="detail">
         <div>
@@ -174,10 +162,30 @@
                                     </div>
                                     <div>${list.albumName}</div><%--相册名字--%>
                                 </a>
+                        <a href="javascript:void(0);" onclick="a(${list.albumId})">
+                            <div class="album-cover">
+                                <img src="/img/pho-18.png" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
+                            </div>
+                            <div>${list.albumName}</div><%--相册名字--%>
+                        </a>
+                        <div class="btn-group" style="position: absolute;right:1px;top:21px;">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="height: 5px;">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">删除</a></li>
+                                <li><a href="#">重命名</a></li>
+                                <li><a href="#">Help</a></li>
+                            </ul>
+                        </div>
 
 
-                            </li>    </div>
+
+
+                    </li>
+                </div>
                         </c:forEach>
+
             </ul>
             <script>
                 function a(albumId) {
@@ -202,12 +210,23 @@
                               $.each(result,function(n,value) {
                                   $(".listAlbum").remove();
                                   var trs = "";
-                                  trs += "<div class='listPicture'> " +
-                                      "<a href="+"/picture-detail/"+value.picId+" >" +
+                                  trs += "<div class='listPicture' style='display:relative;'> " +
+                                      "<a href='#' >" +
                                       "<div class='album-cover'>" +
-                                      "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='200' width='200'><%--相册封面图片--%> "+
-                                      "</div>"
-                                      +"<a href= "+"/downloadO/"+value.picId +" style='margin-left: 20px;'><img src='/img/i-download.png'></img></a>"+
+                                      "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='150' width='250'><%--相册封面图片--%> "+
+                                      "</div>" +
+                                      "<div class='btn-group' style='position: absolute;right:1px;top:21px;'>"+
+                                      "<button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown' style='height: 5px;'>"+
+                                      "<span class='caret'></span>"+
+                                      "</button>"+
+                                      "<ul class='dropdown-menu' role='menu'>"+
+                                      "<li><a href='#'>删除</a></li>"+
+                                      "<li><a href='#'>description</a></li>"+
+                                  "<li><a href='#'>重命名</a></li>"+
+                                  "<li><a href='#'>Help</a></li>"+
+                                  "</ul>"+
+                                  "</div>"+
+                                      <%-- +"<div>"+value.picName+"</div><%--相册名字--%>
                                       "  </a> " +
                                       "</div>";
 

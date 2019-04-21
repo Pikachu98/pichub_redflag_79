@@ -8,7 +8,7 @@
                 url: "/signout",
                 type: "get",
                 success: function () {
-                    alert("您已退出");
+                    // alert("您已退出");
                     window.location.href = "/";
                 },
                 error:function () {
@@ -16,6 +16,19 @@
                 }
             });
         })
+    });
+
+
+    //个人中心下拉列表
+    $(document).ready(function () {
+        $("#dropDown").click(function () {
+            var node = $("#dropDownlist");
+            if(node.is(':hidden')){　　//如果node是隐藏的则显示node元素，否则隐藏
+                node.show();
+            }else{
+                node.hide();
+            }
+        });
     });
 
 </script>
@@ -34,7 +47,7 @@
                             <img src="/img/icon_search.png" alt="search" class="icon-search">
                         </span>
                     <a href="/myAlbum" target="_blank">
-                        <img id="header-avatar" src="showT/${sessionScope.get("user").userId}" alt="我的头像" class="user">
+                        <img style="border-radius: 50%" id="header-avatar" src="showT/${sessionScope.get("user").userId}" alt="我的头像" class="user">
                     </a>
                     <span class="user">${sessionScope.get("user").userName}</span>
                     <%--下拉列表--%>
