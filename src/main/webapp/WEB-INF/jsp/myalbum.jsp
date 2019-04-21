@@ -71,6 +71,9 @@
             visi.style.marginLeft=-135;
             visi.style.marginTop=0;
 
+            var picvisi = document.getElementById("test");
+            picvisi.style.visibility="visible";
+
             // $(".btn-choose-pic").visibility=hidden;
 
             reader.onloadend = function () {

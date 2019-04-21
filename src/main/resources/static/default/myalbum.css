@@ -139,6 +139,11 @@
     padding: 10px 240px 10px 0;
     letter-spacing: 2px;
 }
+
+#test{
+    visibility:hidden;
+}
+
 .btn-choose-pic{
     display: inline-block;
     padding: 0 1.5em;
@@ -151,6 +156,7 @@
     background-color: #EC414D;
     margin-left: 522px;
     margin-top: 278px;
+
 }
 
 .choosed{
