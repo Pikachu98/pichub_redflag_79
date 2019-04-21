@@ -153,8 +153,8 @@
 
                         <c:forEach begin="1" end="${totalPages}" varStatus="loop">
                             <c:set var="active" value="${loop.index==page?'active':''}"/>
-                            <li class="${active}"><a
-                                    href="<c:url value="/listmyLike?page=${loop.index}"/>">${loop.index}</a>
+                            <li class="${active}">
+                                <a href="<c:url value="/listmyLike?page=${loop.index}"/>">${loop.index}</a>
                             </li>
                         </c:forEach>
                         <li>
