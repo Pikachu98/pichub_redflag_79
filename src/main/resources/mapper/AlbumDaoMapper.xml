@@ -16,6 +16,10 @@
         select * from album where user_id=#{userId}
     </select>
 
+    <delete id="deleteAlbum">
+        delete from album where album_id=#{albumId}
+    </delete>
+
     <insert id="insertAlbumAndPicture">
         insert into album_picture (album_id, pic_id) values (#{albumId},#{picId})
     </insert>
@@ -33,8 +37,11 @@
         update album set album_name=#{albumName} where album_id=#{albumId}
     </update>
 
-    <update id="changeTumbnailPath">
+    <!--<update id="changeTumbnailPath">
         update album set cover_thumbnail_path=#{path} where album_id=#{albumId}
-    </update>
+    </update>-->
 
+    <select id="getCoverId" resultType="java.lang.Integer">
+        select pic_id from album_picture where album_id=#{albumId} limit 1
+    </select>
 </mapper>

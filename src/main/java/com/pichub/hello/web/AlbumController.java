@@ -5,6 +5,8 @@ import com.pichub.hello.bo.Picture;
 import com.pichub.hello.bo.User;
 import com.pichub.hello.service.AlbumService;
 import com.pichub.hello.service.FocusService;
+import org.apache.xerces.util.HTTPInputSource;
+import org.json.HTTP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -60,9 +62,7 @@ public class AlbumController {
         List<Album> myAlbumList = albumService.getMyAlbumList(User.getCurrentUser(request).getUserId());
         model.put("MyFocus",focusService.showMyFocus(User.getCurrentUser(request).getUserId().intValue()).size());
         model.put("FocusMe",focusService.showFocusMe(User.getCurrentUser(request).getUserId().intValue()).size());
-
         model.put("albumList",myAlbumList);
-
         listAlbum(model,request);
         return "myalbum";
 
@@ -70,8 +70,15 @@ public class AlbumController {
 
     @RequestMapping(value = "/myAlbum/listAlbum",method = RequestMethod.POST)
     @ResponseBody
-    public int listAlbum(ModelMap model,HttpServletRequest request){
-        model.put("listAlbum",albumService.listAlbum(User.getCurrentUser(request).getUserId()));
+    public int listAlbum(ModelMap model,HttpServletRequest request)throws Exception
+    {
+        List<Album> albumList =albumService.listAlbum(User.getCurrentUser(request).getUserId());
+        List<Integer> coverIds = new ArrayList<Integer>();
+        for (Album a: albumList) {
+            coverIds.add(albumService.getCoverId(a.getAlbumId()));
+        }
+        model.put("listAlbum",albumList);
+        model.put("coverIds",coverIds);
         return 1;
     }
 
@@ -91,6 +98,18 @@ public class AlbumController {
         List<Picture> picList = albumService.getPictures(albumId);
         model.put("picsList",picList);
         return "myPic";
+    }
+
+    @RequestMapping("/deleteAlbum")
+    public void deleteAlbum(long albumId, HttpServletResponse response, HttpServletRequest request)throws Exception
+    {
+        albumService.deleteAlbum(albumId);
+    }
+
+    @RequestMapping("/changeAlbumName")
+    public void changeName(long albumId, String name, HttpServletRequest request, HttpServletResponse response)throws Exception
+    {
+        albumService.changeName(albumId, name);
     }
 
 }
