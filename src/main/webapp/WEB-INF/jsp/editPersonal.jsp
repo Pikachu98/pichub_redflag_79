@@ -53,7 +53,7 @@
     <section class="layout">
         <div class="l-content view-lr">
             <div class="header-l">
-                <a href="pic-index.html"><img src="/img/logo.png" class="logo"></a>
+                <a href=""><img src="/img/logo.png" class="logo"></a>
             </div>
             <div class="user-r">
                         <span class="search-box login-search">

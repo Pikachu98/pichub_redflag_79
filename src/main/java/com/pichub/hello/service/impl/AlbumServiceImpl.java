@@ -33,15 +33,17 @@ public class AlbumServiceImpl implements AlbumService {
         return albumDao.listAlbum(userId);
     }
 
-    @Override
-    public Album createAlbum() {
-        return null;
-    }
 
     @Override
-    public Album deleteAlbum() {
-        return null;
+    public void deleteAlbum(long albumId) {
+        albumDao.deleteAlbum(albumId);
     }
+
+    public void changeName(long albumId, String name)throws Exception
+    {
+        albumDao.changeName(albumId, name);
+    }
+
 
     @Override
     public int createAlbum(Album album) {
@@ -84,5 +86,18 @@ public class AlbumServiceImpl implements AlbumService {
             }
         }
         return pics;
+    }
+
+    public int getCoverId(long albumId)throws Exception
+    {
+        Integer id = albumDao.getCoverId(albumId);
+        if(id != null)
+        {
+            return id;
+        }
+        else
+        {
+            return 0;
+        }
     }
 }

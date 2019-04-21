@@ -80,14 +80,15 @@
             $(".heart").on("click",function () {
                 var likeId = $(this).parents(".view").find(".view-cover").find(".hot_pics").attr("pic_id");
                 var count = $(this).parents(".focus-msg").find(".focus-num").attr("count");
-                if($(this).attr("src") == "img/i-2.png")
+
+                if($(this).attr("src").indexOf("img/i-2.png")>=0)
                 {
                     $(this).attr("src","img/i-2-1.png");
                     $(this).parents(".focus-msg").find(".focus-num").attr("count",++count);
                     $(this).parents(".focus-msg").find(".focus-num").text(count + "人喜欢");
 
                 }
-                else 
+                else
                 {
                     $(this).attr("src","img/i-2.png");
                     $(this).parents(".focus-msg").find(".focus-num").attr("count",--count);

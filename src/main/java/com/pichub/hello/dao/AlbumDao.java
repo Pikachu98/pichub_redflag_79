@@ -19,12 +19,15 @@ public interface AlbumDao {
     int createAlbum(@Param("album") Album album);
 
     //删除相册
-    Album deleteAlbum(@Param("album_id") Long album_id);
+    void deleteAlbum(@Param("albumId") Long album_id);
 
     List<Album> getMyAlbumList(@Param("userId") long userId)throws Exception;
     int insertAlbumAndPicture(@Param("picId")long picId, @Param("albumId")long albumId)throws Exception;
 
     //得到相册内的相片id
     List<Integer> getPictures(@Param("albumId") Long albumId);
+    int changeName(@Param("albumId") long albumId, @Param("albumName") String albumName)throws Exception;
+    //int changeThumbnailPath(@Param("albumId") long albumId, @Param("Path") String path)throws Exception;
+    Integer getCoverId(@Param("albumId") long albumId)throws Exception;
 
 }
