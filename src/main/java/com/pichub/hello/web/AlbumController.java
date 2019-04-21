@@ -104,12 +104,15 @@ public class AlbumController {
     public void deleteAlbum(long albumId, HttpServletResponse response, HttpServletRequest request)throws Exception
     {
         albumService.deleteAlbum(albumId);
+
+        response.sendRedirect("myalbum");
     }
 
     @RequestMapping("/changeAlbumName")
     public void changeName(long albumId, String name, HttpServletRequest request, HttpServletResponse response)throws Exception
     {
         albumService.changeName(albumId, name);
+        response.sendRedirect("myalbum");
     }
 
 }

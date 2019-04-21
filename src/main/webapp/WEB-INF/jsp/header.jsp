@@ -38,7 +38,9 @@
         <section class="layout">
             <div class="l-content view-lr">
                 <div class="header-l">
-                    <img src="/img/logo.png" class="logo">
+
+                    <a href="/"><img src="/img/logo.png" class="logo"></a>
+
                 </div>
                 <div class="user-r">
                         <span class="search-box login-search">

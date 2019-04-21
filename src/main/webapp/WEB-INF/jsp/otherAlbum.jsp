@@ -102,6 +102,47 @@
             selectorName:".hot_pics"
         });
     </script>
+    <script>
+        $(function () {
+            $(".btn-focus").on("click",function () {
+                var focusId = ${user_id};
+                var loginUser = $(".other-note").attr("butn_id");
+                var count = $("#fanNumber").attr("count");
+                if(loginUser != ""){
+                    if($(".btn-focus").text() == "已关注")
+                    {
+                        $(".btn-focus").text("关注");
+                        $("#fanNumber").attr("count",--count);
+                        $("#fanNumber").text(count);
+                    }
+                    else
+                    {
+                        $(".btn-focus").text("已关注");
+                        $("#fanNumber").attr("count",++count);
+                        $("#fanNumber").text(count);
+                        // alert($(this).val());
+                    }
+                }
+
+                else{
+                    alert("请先登录");
+                }
+
+
+                $.ajax({
+                    type: "Get",
+                    url: "/user/doInsertFocus",
+                    dataType: "json",
+                    data:{
+                        "userId1": focusId
+                    },
+                    success:function (result) {
+
+                    }
+                })
+            })
+        })
+    </script>
 </head>
 
 <body onload="load()">
@@ -128,15 +169,20 @@
                 <div class="other-avator"><img  style="border-radius: 50%;" src="/showA/${user_id}" alt="我是头像">
                 </div>
 
-                <div class="other-note">
+                <div class="other-note" butn_id="${sessionScope.get("user").userName}">
                     <div><span class="other-note-title">${user.userName}</span>   <!---------------------------->
-                        <a href="javascript:void(0)" class="btn-focus other-focus-btn">关注</a>
+                        <c:if test="${checkFocus == 0}">
+                            <a href="javascript:void(0)" class="btn-focus">关注</a>
+                        </c:if>
+                        <c:if test="${checkFocus == 1}">
+                            <a href="javascript:void(0)" class="btn-focus">已关注</a>
+                        </c:if>
                     </div>
 
                     <div class="other-note-decription">${user.userDescription}</div>
                     <div class="other-focus">
                         <div class="fans">
-                            <div class="number">${FocusMe}</div>
+                            <div class="number" id="fanNumber" count="${FocusMe}">${FocusMe}</div>
                             <div class="ch">粉丝</div>
                         </div>
                         <div class="focus-person">

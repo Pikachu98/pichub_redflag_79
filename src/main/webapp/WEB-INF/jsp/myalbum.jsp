@@ -42,7 +42,23 @@
                 $("#uploadWindow").slideUp(300);
                 $(".backGround").hide();
             })
+
         });
+
+
+
+        $(document).ready(function () {
+            $(".rename").click(function () {
+                $("#renameWindow").slideDown(300);
+                $("#fake").attr("album",$(this).attr("album"));
+            })
+
+            $(".x").click(function () {
+                $("#renameWindow").slideUp(300);
+            })
+
+        });
+
 
         $(document).ready(function () {
             $("#btn-create").click(function () {
@@ -94,6 +110,47 @@
                 preview.src = "";
             }
         }
+    </script>
+
+    <script>
+        $(function () {
+            $(".delAlbum").click(function () {
+                $.ajax({
+                    type:"POST",
+                    url:"/deleteAlbum",
+                    dataType:"json",
+                    data:{
+                        "albumId":$("#fake").attr("album")
+                    },
+                    success:function () {
+                        alert("删除成功");
+                    },
+                    error:function () {
+                        alert("删除失败");
+                    }
+                })
+            })
+
+            $(".btn-rename").click(function () {
+                $.ajax({
+                    type:"POST",
+                    url:"/changeAlbumName",
+                    dataType:"json",
+                    data:{
+                        "albumId":$("#fake").attr("album"),
+                        "name":$(".newName").val()
+                    },
+                    success:function () {
+                        window.location.reload();
+                    },
+                    error:function () {
+                        window.location.reload();
+                    }
+                })
+            })
+
+
+        })
     </script>
 
 </head>
@@ -153,27 +210,32 @@
         <div class="my-root">
             <ul class="my-album">
                         <c:forEach items="${listAlbum}" var="list" varStatus="cou" ><!--一个循环元素一个包装-->
-                <div class="listAlbum"><li class="cover-item my-cover-item">
+                <div class="listAlbum" style="position: relative;">
+
+                    <li class="cover-item my-cover-item">
 
 
-                                <a href="javascript:void(0);" onclick="a(${list.albumId})">
+                        <a href="javascript:void(0);" onclick="a(${list.albumId})">
                                     <div class="album-cover">
                                         <img src="show/${coverIds[cou.count-1]}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
                                     </div>
                                     <div>${list.albumName}</div><%--相册名字--%>
-                                </a>
+                        </a>
+
                         <div class="btn-group" style="position: absolute;right:1px;top:21px;">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="height: 5px;">
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">删除</a></li>
-                                <li><a href="#">重命名</a></li>
+                                <li><a href="javascript:void(0)" class="delAlbum" >删除</a></li><%--/deleteAlbum?albumId=${list.albumId}--%>
+                                <li><a href="javascript:void(0)" class="rename" album="${list.albumId}">重命名</a></li>
+
+
+
+
                                 <li><a href="#">Help</a></li>
                             </ul>
                         </div>
-
-
 
 
                     </li>
@@ -204,24 +266,26 @@
                               $.each(result,function(n,value) {
                                   $(".listAlbum").remove();
                                   var trs = "";
-                                  trs += "<div class='listPicture' style='display:relative;'> " +
-                                      "<a href="+"/picture-detail/"+value.picId+" >" +
-                                      "<div class='album-cover'>" +
+                                  trs += "<div class='listPicture' style='position:relative;'> " +
+                                      "<a href='#' >" +
+                                      "<div class='album-cover' style='position:absolute;'>" +
                                       "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='150' width='250'><%--相册封面图片--%> "+
                                       "</div>" +
-                                      "<div class='btn-group' style='position: absolute;right:1px;top:21px;'>"+
+                                      "  </a> " +
+                                      "<div class='btn-group' style='position: absolute;right:-35px;top:4px;'>"+
                                       "<button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown' style='height: 5px;'>"+
                                       "<span class='caret'></span>"+
                                       "</button>"+
+
+                                      <%-- +"<div>"+value.picName+"</div><%--相册名字--%>
+
                                       "<ul class='dropdown-menu' role='menu'>"+
                                       "<li><a href='#'>删除</a></li>"+
                                       "<li><a href='#'>description</a></li>"+
-                                  "<li><a href='#'>重命名</a></li>"+
-                                  "<li><a href='#'>Help</a></li>"+
-                                  "</ul>"+
-                                  "</div>"+
-                                      <%-- +"<div>"+value.picName+"</div><%--相册名字--%>
-                                      "  </a> " +
+                                      "<li><a href='#'>重命名</a></li>"+
+                                      "<li><a href='#'>Help</a></li>"+
+                                      "</ul>"+
+                                      "</div>"+
                                       "</div>";
 
                                   /*                               trs += " < tr > <td > " + value.picPath +" < /td> <td>"
@@ -249,6 +313,21 @@
                 <a href="javascript:void(0)" class="choose-btn">下一页</a>
             </div>
 
+        </div>
+        <!--重命名悬浮窗-->
+        <div id="renameWindow" >
+            <div style="float: right">
+                <label class="x" style="margin-top:2px;margin-left: -169%;font-size: 25px;">-</label>
+            </div>
+            <div>
+                <div class="item">
+                    <input type="text" class="item-text newName" placeholder="新名称" />
+                </div>
+                <div>
+                    <button class="btn-sub btn-rename">确认</button>
+                </div>
+                <label style="visibility: hidden;" id="fake" album=""></label>
+            </div>
         </div>
         <!--上传悬浮窗-->
         <form id="uploadWindow" action="/uploadFile" enctype="multipart/form-data" method="post" >
