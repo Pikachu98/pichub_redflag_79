@@ -67,7 +67,7 @@
     <section class="detail">
         <div>
             <div class="detail-l">
-                <div class="other-avator"><img src="showT/${sessionScope.get("user").userId}" alt="我是头像">
+                <div class="other-avator"><img src="showT/${sessionScope.get("user").userId}" alt="我是头像" style="border-radius:50%">
                 </div>
 
                 <div class="other-note">

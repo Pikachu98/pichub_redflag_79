@@ -64,31 +64,12 @@
         </div>
     </div>
 </div>
-<header id="header" class="header">
-    <section class="layout">
-        <div class="l-content view-lr">
-            <div class="header-l">
-                <a href="/"><img src="img/logo.png" class="logo"></a>
-            </div>
-            <div class="user-r">
-                        <span class="search-box login-search">
-                            <input type="text" class="input-search">
-                            <!-- <i class="icon icon-search"></i> -->
-                            <img src="img/icon_search.png" alt="search" class="icon-search">
-                        </span>
-                <img src="showT/${sessionScope.get("user").userId}" alt="我的头像" class="user">
-                <span class="user">${sessionScope.get("user").userName}</span>
-
-                <img src="img/icon-dropdown.png" class="user">
-            </div>
-        </div>
-    </section>
-</header>
+<%@include file="header.jsp"%>
 <main id="main" class="main">
     <section class="detail">
         <div>
             <div class="detail-l">
-                <div class="other-avator"><img src="showA/${sessionScope.get("user").userId}" alt="我是头像">
+                <div class="other-avator"><img src="showA/${sessionScope.get("user").userId}" alt="我是头像" style="border-radius:50%">
                 </div>
 
                 <div class="other-note">
@@ -165,7 +146,7 @@
                         <c:forEach var="user" items="${currentPageUsers}" varStatus="cou">
                         <li class="user-item">
                             <div class="user-cover">
-                                <img src="showC/${USERS[cou.count-1].userId}" alt="avator" onerror="javascript:this.src='/img/cat-1.png'"><!---->
+                                <img src="showC/${usesr.userId}" alt="avator" onerror="javascript:this.src='/img/cat-1.png'"><!---->
 
                             </div>
                             <div class="userName">
