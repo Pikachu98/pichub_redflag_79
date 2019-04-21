@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,6 +45,13 @@ public class UserController
             return result;
         }
 
+    }
+
+    @RequestMapping("/signout")
+    @ResponseBody
+    public String execute(HttpSession session){
+        session.invalidate();
+        return "header";
     }
 
     @RequestMapping(value="/user/checkUserNameExist")

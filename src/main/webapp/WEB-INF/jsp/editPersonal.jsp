@@ -62,7 +62,7 @@
                             <img src="/img/icon_search.png" alt="search" class="icon-search">
                         </span>
                 <img src="/avatar/${userId}/thumbnail.jpg" alt="我的头像" class="user">
-                <span class="user">Crush</span>
+                <span class="user">${sessionScope.get("user").userName}</span>
                 <img src="/img/icon-dropdown.png" class="user">
             </div>
         </div>
@@ -98,7 +98,7 @@
         <div class="sidebar">
             <div class="sidebar-btn"><a href="/myAlbum"><img src="/img/i-1.png"
                                                                  class="icon-my">我的相册</a></div>
-            <div class="sidebar-btn"><a href="mylike.html"><img src="/img/i-2.png"
+            <div class="sidebar-btn"><a href="/listmyLike"><img src="/img/i-2.png"
                                                                 class="icon-my">我喜欢的</a></div>
             <div class="sidebar-btn"><a href="/listFans"><img src="/img/i-3.png"
                                                                 class="icon-my">我的粉丝</a></div>

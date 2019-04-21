@@ -62,6 +62,35 @@
             $("#point-out").css("visibility","hidden");
         }
     </script>
+
+    <script type="text/javascript">
+        function previewFile() {
+            var preview = document.querySelector("#test");
+            var file    = document.querySelector('input[type=file]').files[0];
+            var reader  = new FileReader();
+            var visi = document.getElementById("label_sele");
+            visi.style.visibility="hidden";
+            visi.style.marginLeft=-135;
+            visi.style.marginTop=0;
+
+            var picvisi = document.getElementById("test");
+            picvisi.style.visibility="visible";
+
+            // $(".btn-choose-pic").visibility=hidden;
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            }
+
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+    </script>
+
 </head>
 
 <body>
@@ -79,7 +108,6 @@
                         </span>
                 <img src="showT/${sessionScope.get("user").userId}" alt="我的头像" class="user">
                 <span class="user">${sessionScope.get("user").userName}</span>
-                <img src="img/icon-dropdown.png" class="user">
             </div>
         </div>
     </section>
@@ -88,7 +116,7 @@
     <section class="detail">
         <div>
             <div class="detail-l">
-                <div class="other-avator"><img src="showA/${sessionScope.get("user").userId}" alt="我是头像">
+                <div class="other-avator"><img style="border-radius:50%" src="showA/${sessionScope.get("user").userId}" alt="我是头像">
                 </div>
 
                 <div class="other-note">
@@ -114,7 +142,7 @@
         <div class="sidebar">
             <div class="focus-now"><a href="/myAlbum"><img src="/img/i-1-1.png"
                                                                      class="icon-my">我的相册</a></div>
-            <div class="sidebar-btn"><a href="javascript:void(0)"><img src="/img/i-2.png"
+            <div class="sidebar-btn"><a href="/listmyLike"><img src="/img/i-2.png"
                                                                        class="icon-my">我喜欢的</a></div>
             <div class="sidebar-btn"><a href="/listFans"><img src="/img/i-3.png"
                                                                        class="icon-my">我的粉丝</a></div>
@@ -150,11 +178,6 @@
 
                             </li>    </div>
                         </c:forEach>
-
-
-
-
-
             </ul>
             <script>
                 function a(albumId) {
@@ -233,9 +256,10 @@
             <div class="choosed">
                 <!--<a class="btn-choose-pic">--><!--<img src="img/pic.png"
                                 style="vertical-align:middle;height: 25px;padding-bottom: 5px;">选择照片-->
-                <label for="upload" class="btn-choose-pic">
+                <label for="upload" class="btn-choose-pic" id="label_sele">
                     <img src="/img/pic.png" style="vertical-align:middle;height: 25px;padding-bottom: 5px;">选择照片</label>
-                <input type="file" name="file" id="upload" style="display: none;">
+                <input type="file" name="file" id="upload" onchange="previewFile()" style="display: none;">
+                <img src="" height="200px" id="test" alt="Image preview...">
                 <input type="text" name="album" id="album-id" value="" style="display: none">
                 <!--</a>-->
             </div>
@@ -268,13 +292,13 @@
                     <textarea class="create-description"></textarea>
                     <span>0/2000</span>
                 </div>
-            <div class="album-authority">
-                <span>权限：</span>
-                <select class="create-album-name">
-                    <option value="">仅自己查看</option>
-                    <option value="">公开</option>
-                </select>
-            </div>
+            <%--<div class="album-authority">--%>
+                <%--<span>权限：</span>--%>
+                <%--<select class="create-album-name">--%>
+                    <%--<option value="">仅自己查看</option>--%>
+                    <%--<option value="">公开</option>--%>
+                <%--</select>--%>
+            <%--</div>--%>
             <div class="create-footer">
                 <a href="javascript:void(0)" class="btn-confirm">确认</a>
                 <a href="javascript:void(0)" class="btn-cancel">取消</a>
