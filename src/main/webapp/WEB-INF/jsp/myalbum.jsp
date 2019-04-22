@@ -324,7 +324,7 @@
                     <input type="text" class="item-text newName" placeholder="新名称" />
                 </div>
                 <div>
-                    <button class="btn-sub btn-rename">确认</button>
+                    <button class="btn btn-rename">确认</button>
                 </div>
                 <label style="visibility: hidden;" id="fake" album=""></label>
             </div>
