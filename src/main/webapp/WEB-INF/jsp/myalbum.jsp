@@ -342,7 +342,7 @@
                     <input type="text" class="item-text newName" placeholder="新名称" />
                 </div>
                 <div>
-                    <button class="btn-sub btn-rename">确认</button>
+                    <button class="btn btn-rename">确认</button>
                 </div>
                 <label style="visibility: hidden;" id="fake" album=""></label>
             </div>
@@ -377,7 +377,7 @@
                 <%--<a href="javascript:void(0)" class="btn-start-upload">开始上传</a>--%>
                 <input type="submit" class="btn-start-upload" style="visibility: hidden" value="开始上传">
                     <label id="point-out" style="visibility: visible">请选择相册</label>
-                <a href="javascript:void(0)" class="btn-add">继续添加</a>
+                    <label for="upload" class="btn-start-upload">重新选择</label>
                 <span class="continue">共1张照片（上传过程中请不要删除原始照片）</span>
             </div>
         </form>

@@ -285,10 +285,31 @@
     /* hack for IE6 */
     top: 50%;
     left: 50%;
-    margin: -235px 0 0 -269px;
+    margin: -180px 0 0 -269px;
     /* 注意,201表示高度的一半,480也是按自己需要自己调整*/
     width: 525px;
-    height: 471px;
+    height: 160px;
     padding: 1px;
     text-align: center;
+}
+.newName{
+    width: 400px;
+    height: 40px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    border-radius: 4px;
+    color: #999999;
+    padding: 7px;
+    margin-top: 25px;
+}
+
+.btn-rename{
+    margin-top: 20px;
+    width: 300px;
+    height: 45px;
+    background-color: #EC414D;
+    border-radius: 4px;
+    border-style: none;
+    color: #ffffff;
+    font-size: 18px;
 }
