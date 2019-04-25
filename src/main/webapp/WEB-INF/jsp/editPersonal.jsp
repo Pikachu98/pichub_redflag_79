@@ -153,10 +153,8 @@
                         <img src="img/QQ.png" class="pic-ava QQ">
                     </div>
                     <hr class="hr" />
-                    <div class="btn-save">
                         <%--<a href="javascript:void(0)">保存设置</a>--%>
-                        <input type="submit" value="保存设置">
-                    </div>
+                    <input class="btn-save" type="submit" value="保存设置">
                 </form>
             </div>
     </section>

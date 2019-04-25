@@ -92,11 +92,22 @@ public class AlbumController {
         return albumService.getPictures(albumId);
     }
 
-    @RequestMapping(value = "/albumContent/{albumId}",method = RequestMethod.POST)
-    public String getAlbumContent(@PathVariable("albumId") Long albumId, String pathName, ModelMap model, HttpServletRequest request, HttpServletResponse response)throws Exception
-    {
+    @RequestMapping(value = "/albumContent/{albumId}")
+    public String getAlbumContent(@PathVariable long albumId, String pathName, ModelMap model, HttpServletRequest request, HttpServletResponse response)throws Exception {
+//        albumId = Long.parseLong(request.getParameter("albumId"));
         List<Picture> picList = albumService.getPictures(albumId);
-        model.put("picsList",picList);
+        model.put("MyFocus",focusService.showMyFocus(User.getCurrentUser(request).getUserId().intValue()).size());
+        model.put("FocusMe",focusService.showFocusMe(User.getCurrentUser(request).getUserId().intValue()).size());
+
+//        String errorMessage = "";
+//        if(picList.size() == 0){
+//            errorMessage="这个相册是空的";
+//            model.put("errorMessage",errorMessage);
+//        }
+//        else {
+            model.put("picsList", picList);
+//            model.put("errorMessage",errorMessage);
+//        }
         return "myPic";
     }
 

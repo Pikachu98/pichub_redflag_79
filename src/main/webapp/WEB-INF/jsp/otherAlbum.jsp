@@ -200,20 +200,20 @@
             <table>
                 <c:forEach items="${albumPics}" var="var" varStatus="cou">
                     <c:if test="${cou.count ==1 && (cou.count-1) %6==0}">
-                    <tr>
+                        <tr>
                     </c:if>
-                            <td id="pics_td">
-                                <c:if test="${cou.count <= 18}">
-                                    <a href="/picture-detail/${var}">
-                                        <img class="hot_pics" src="/show/${var}"  alt="photo-1" width="216px" height="216px">
-                                    </a>
-                                </c:if>
-                                <c:if test="${cou.count > 18}">
-                                    <a href="/picture-detail/${var}">
-                                        <img class="hot_pics" src="/img/whiteboard.png" data-src="/show/${var}"  alt="photo-1" width="216px" height="216px">
-                                    </a>
-                                </c:if>
-                            </td>
+                    <td>
+                        <c:if test="${cou.count <= 18}">
+                            <a href="/picture-detail/${var}">
+                                <img class="hot_pics" src="/show/${var}"  alt="photo-1" width="216px" height="216px">
+                            </a>
+                        </c:if>
+                        <c:if test="${cou.count > 18}">
+                            <a href="/picture-detail/${var}">
+                                <img class="hot_pics" src="/img/whiteboard.png" data-src="/show/${var}"  alt="photo-1" width="216px" height="216px">
+                            </a>
+                        </c:if>
+                    </td>
                     <c:if test="${cou.count%6==0}">
                     </tr>
                     </c:if>
