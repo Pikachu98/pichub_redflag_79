@@ -1,6 +1,7 @@
 .other-root {
     width: 1522px;
     margin: 0 auto;
+    margin-left: 230px;
     margin-top: 27px;
     height: 914.52px;
 }
@@ -10,16 +11,36 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.album-cover{
-    background-color: #ffffff;
-    border-color: #707070;
-    -webkit-box-shadow: #666 0px 0px 10px;
-   -moz-box-shadow: #666 0px 0px 10px;
-   box-shadow: #666 0px 0px 5px;
+
+.cover:hover{
+    -webkit-transform: scale(1.1);
+    -webkit-transition: 0.5s;
 }
+
 .cover{
-    border-color: #707070;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-color: white;
+    border-style: solid;
+    border-width: 5px;
+    box-shadow: #666 0px 0px 5px;
 }
 .cover-item{
     margin-top:20px;
 }
+
+.hot_pics{
+    margin-right: 20px;
+    margin-top: 20px;
+    border-color: white;
+    border-style: solid;
+    border-width: 5px;
+    box-shadow: #666 0px 0px 5px;
+}
+
+.hot_pics:hover{
+    -webkit-transform: scale(1.1);
+    -webkit-transition: 0.5s;
+}
+

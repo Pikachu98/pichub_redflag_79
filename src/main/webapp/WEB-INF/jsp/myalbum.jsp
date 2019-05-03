@@ -31,7 +31,7 @@
     <script src="/js/album.js"></script>
 
     <script type="text/javascript">
-
+        <%--上传相片--%>
         $(document).ready(function () {
             $("#btn-upload").click(function () {
                 $("#uploadWindow").slideDown(300);
@@ -42,8 +42,23 @@
                 $("#uploadWindow").slideUp(300);
                 $(".backGround").hide();
             })
+
         });
 
+        //重命名相册
+        $(document).ready(function () {
+            $(".rename").click(function () {
+                $("#renameWindow").slideDown(300);
+                $("#fake").attr("album",$(this).attr("album"));
+            })
+
+            $(".x").click(function () {
+                $("#renameWindow").slideUp(300);
+            })
+
+        });
+
+        //创建相册
         $(document).ready(function () {
             $("#btn-create").click(function () {
                 $("#createWindow").slideDown(300);
@@ -55,8 +70,6 @@
                 $(".backGround").hide();
             })
         });
-
-        
     </script>
     <script type="text/javascript">
         function select() {
@@ -94,6 +107,47 @@
                 preview.src = "";
             }
         }
+    </script>
+
+    <script>
+        $(function () {
+
+            $(".delAlbum").click(function () {
+                $.ajax({
+                    type:"POST",
+                    url:"/deleteAlbum",
+                    dataType:"json",
+                    data:{
+                        "albumId":$("#fake").attr("album")
+                    },
+                    success:function () {
+                        alert("删除成功");
+                    },
+                    error:function () {
+                        alert("删除失败");
+                    }
+                })
+            })
+
+            $(".btn-rename").click(function () {
+                $.ajax({
+                    type:"POST",
+                    url:"/changeAlbumName",
+                    dataType:"json",
+                    data:{
+                        "albumId":$("#fake").attr("album"),
+                        "name":$(".newName").val()
+                    },
+                    success:function () {
+                        window.location.reload();
+                    },
+                    error:function () {
+                        window.location.reload();
+                    }
+                })
+            })
+
+        })
     </script>
 
 </head>
@@ -150,42 +204,63 @@
             </a>
         </div>
 
-        <div class="my-root">
+        <section>
+            <div class="other-root">
+                <table>
+                    <c:forEach items="${listAlbum}" var="list" varStatus="cou" >
+                        <c:if test="${cou.count ==1 && (cou.count-1) %6==0}">
+                            <tr>
+                        </c:if>
+                        <td>
+                            <c:if test="${cou.count <= 18}">
+                                <div class="album-cover">
+                                    <a href="/albumContent/${list.albumId}">
+                                    <img src="show/${coverIds[cou.count-1]}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
+                                    </a>
+                                </div>
+                                <div style="margin-left:40px">${list.albumName}</div><%--相册名字--%>
+                            </c:if>
+                            <c:if test="${cou.count > 18}">
+                                <div class="album-cover">
+                                    <a href="/albumContent/${list.albumId}">
+                                    <img src="show/${coverIds[cou.count-1]}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
+                                    </a>
+                                </div>
+                                <div style="margin-left:40px;">${list.albumName}</div><%--相册名字--%>
+                            </c:if>
+                        </td>
+                        <c:if test="${cou.count%6==0}">
+                            </tr>
+                        </c:if>
+                    </c:forEach>
+                </table>
+            </div>
+        </section>
+
+<%--        <div class="my-root">
             <ul class="my-album">
-                        <c:forEach items="${listAlbum}" var="list" varStatus="cou" ><!--一个循环元素一个包装-->
-                <div class="listAlbum"><li class="cover-item my-cover-item">
-
-
-                                <a href="javascript:void(0);" onclick="a(${list.albumId})">
-                                    <div class="album-cover">
-                                        <img src="show/${coverIds[cou.count-1]}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
-                                    </div>
-                                    <div>${list.albumName}</div><%--相册名字--%>
-                                </a>
-                        <a href="javascript:void(0);" onclick="a(${list.albumId})">
-                            <div class="album-cover">
-                                <img src="/img/pho-18.png" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
+                <c:forEach items="${listAlbum}" var="list" varStatus="cou" ><!--一个循环元素一个包装-->
+                    <div class="listAlbum" style="position: relative;">
+                        <li class="cover-item my-cover-item">
+                            <a href="javascript:void(0);" onclick="a(${list.albumId})">
+                                        <div class="album-cover">
+                                            <img src="show/${coverIds[cou.count-1]}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover" height="100" width="100">&lt;%&ndash;相册封面图片&ndash;%&gt;
+                                        </div>
+                                        <div>${list.albumName}</div>&lt;%&ndash;相册名字&ndash;%&gt;
+                            </a>
+                            <div class="btn-group" style="position: absolute;right:1px;top:21px;">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="height: 5px;">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="javascript:void(0)" class="delAlbum" >删除</a></li>&lt;%&ndash;/deleteAlbum?albumId=${list.albumId}&ndash;%&gt;
+                                    <li><a href="javascript:void(0)" class="rename" album="${list.albumId}">重命名</a></li>
+                                    <li><a href="#">Help</a></li>
+                                </ul>
                             </div>
-                            <div>${list.albumName}</div><%--相册名字--%>
-                        </a>
-                        <div class="btn-group" style="position: absolute;right:1px;top:21px;">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="height: 5px;">
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">删除</a></li>
-                                <li><a href="#">重命名</a></li>
-                                <li><a href="#">Help</a></li>
-                            </ul>
-                        </div>
-
-
-
-
-                    </li>
-                </div>
-                        </c:forEach>
-
+                        </li>
+                    </div>
+                </c:forEach>
             </ul>
             <script>
                 function a(albumId) {
@@ -210,24 +285,26 @@
                               $.each(result,function(n,value) {
                                   $(".listAlbum").remove();
                                   var trs = "";
-                                  trs += "<div class='listPicture' style='display:relative;'> " +
+                                  trs += "<div class='listPicture' style='position:relative;'> " +
                                       "<a href='#' >" +
-                                      "<div class='album-cover'>" +
-                                      "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='150' width='250'><%--相册封面图片--%> "+
+                                      "<div class='album-cover' style='position:absolute;'>" +
+                                      "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='150' width='250'>&lt;%&ndash;相册封面图片&ndash;%&gt; "+
                                       "</div>" +
-                                      "<div class='btn-group' style='position: absolute;right:1px;top:21px;'>"+
+                                      "  </a> " +
+                                      "<div class='btn-group' style='position: absolute;right:-35px;top:4px;'>"+
                                       "<button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown' style='height: 5px;'>"+
                                       "<span class='caret'></span>"+
                                       "</button>"+
+
+                                      &lt;%&ndash; +"<div>"+value.picName+"</div>&lt;%&ndash;相册名字&ndash;%&gt;
+
                                       "<ul class='dropdown-menu' role='menu'>"+
                                       "<li><a href='#'>删除</a></li>"+
                                       "<li><a href='#'>description</a></li>"+
-                                  "<li><a href='#'>重命名</a></li>"+
-                                  "<li><a href='#'>Help</a></li>"+
-                                  "</ul>"+
-                                  "</div>"+
-                                      <%-- +"<div>"+value.picName+"</div><%--相册名字--%>
-                                      "  </a> " +
+                                      "<li><a href='#'>重命名</a></li>"+
+                                      "<li><a href='#'>Help</a></li>"+
+                                      "</ul>"+
+                                      "</div>"+
                                       "</div>";
 
                                   /*                               trs += " < tr > <td > " + value.picPath +" < /td> <td>"
@@ -247,7 +324,7 @@
                     })
                 }
 
-            </script>
+            </script>--%>
 
             <div class="choose-page">
                 <a href="javascript:void(0)" class="choose-btn">上一页</a>
@@ -255,6 +332,21 @@
                 <a href="javascript:void(0)" class="choose-btn">下一页</a>
             </div>
 
+        <%--</div>--%>
+        <!--重命名悬 浮窗-->
+        <div id="renameWindow" >
+            <div style="float: right">
+                <label class="x" style="margin-top:2px;margin-left: -169%;font-size: 25px;">-</label>
+            </div>
+            <div>
+                <div class="item">
+                    <input type="text" class="item-text newName" placeholder="新名称" />
+                </div>
+                <div>
+                    <button class="btn btn-rename">确认</button>
+                </div>
+                <label style="visibility: hidden;" id="fake" album=""></label>
+            </div>
         </div>
         <!--上传悬浮窗-->
         <form id="uploadWindow" action="/uploadFile" enctype="multipart/form-data" method="post" >
@@ -286,45 +378,92 @@
                 <%--<a href="javascript:void(0)" class="btn-start-upload">开始上传</a>--%>
                 <input type="submit" class="btn-start-upload" style="visibility: hidden" value="开始上传">
                     <label id="point-out" style="visibility: visible">请选择相册</label>
-                <a href="javascript:void(0)" class="btn-add">继续添加</a>
+                    <label for="upload" class="btn-start-upload">重新选择</label>
                 <span class="continue">共1张照片（上传过程中请不要删除原始照片）</span>
             </div>
         </form>
         <div class="backGround"></div>
-            <!--上传窗口-->
-            <!--创建相册悬浮窗-->
-            <div id="createWindow">
-                <div style="float: right">
-                    <label class="x" style="margin-top:2px;margin-left: -169%;font-size: 25px;">-</label>
-                </div>
+        <!--上传窗口-->
 
-                <div style="background-color:#F8F8F8">
-                    <span class="create-title">创建相册</span>
-                </div>
-                <div class="about-album">
-                    <span class="lbl-create1">相册名称：</span>
-                    <input type="text" class="create-album-name">
-                    <span>0/30</span>
-                </div>
-                <div class="album-des">
-                    <span>相册描述：</span>
-                    <textarea class="create-description"></textarea>
-                    <span>0/2000</span>
-                </div>
-            <%--<div class="album-authority">--%>
-                <%--<span>权限：</span>--%>
-                <%--<select class="create-album-name">--%>
-                    <%--<option value="">仅自己查看</option>--%>
-                    <%--<option value="">公开</option>--%>
-                <%--</select>--%>
-            <%--</div>--%>
-            <div class="create-footer">
-                <a href="javascript:void(0)" class="btn-confirm">确认</a>
-                <a href="javascript:void(0)" class="btn-cancel">取消</a>
+        <!--创建相册悬浮窗-->
+        <div id="createWindow">
+            <div style="float: right">
+                <label class="x" style="margin-top:2px;margin-left: -169%;font-size: 25px;">-</label>
             </div>
+
+            <div style="background-color:#F8F8F8">
+                <span class="create-title">创建相册</span>
+            </div>
+            <div class="about-album">
+                <span class="lbl-create1">相册名称：</span>
+                <input type="text" class="create-album-name">
+                <span>0/30</span>
+            </div>
+            <div class="album-des">
+                <span>相册描述：</span>
+                <textarea class="create-description"></textarea>
+                <span>0/2000</span>
+            </div>
+        <%--<div class="album-authority">--%>
+            <%--<span>权限：</span>--%>
+            <%--<select class="create-album-name">--%>
+                <%--<option value="">仅自己查看</option>--%>
+                <%--<option value="">公开</option>--%>
+            <%--</select>--%>
+        <%--</div>--%>
+        <div class="create-footer">
+            <a href="javascript:void(0)" class="btn-confirm">确认</a>
+            <a href="javascript:void(0)" class="btn-cancel">取消</a>
         </div>
+    </div>
         <div class="backGround"></div>
         <!--创建相册窗口-->
+
+        <!--查看相册内容悬浮窗-->
+       <%-- <div class='listPicture' style='position:relative;'>
+        <a href='#'>
+        <div class='album-cover' style='position:absolute;'>
+        <img src=/show/"+${value.picId} alt='photo-1' class='cover' height='150' width='250'>&lt;%&ndash;相册封面图片&ndash;%&gt;
+        </div>
+        </a>
+        <div class='btn-group' style='position: absolute;right:-35px;top:4px;'>
+        <button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown' style='height: 5px;'>
+        <span class='caret'></span>
+        </button>
+
+
+        <ul class='dropdown-menu' role='menu'>
+        <li><a href='#'>删除</a></li>
+        <li><a href='#'>description</a></li>
+        <li><a href='#'>重命名</a></li>
+        <li><a href='#'>Help</a></li>
+        </ul>
+        </div>
+        </div>
+
+
+        <div id="albumContent">
+            <div style="float: right">
+                <label class="x" style="margin-top:2px;margin-left: -169%;font-size: 25px;">-</label>
+            </div>
+
+            <div style="background-color:#F8F8F8">
+                <span class="create-title">创建相册</span>
+            </div>
+            <div class="about-album">
+                <span class="lbl-create1">相册名称：</span>
+                <input type="text" class="create-album-name">
+                <span>0/30</span>
+            </div>
+            <div class="album-des">
+                <span>相册描述：</span>
+                <textarea class="create-description"></textarea>
+                <span>0/2000</span>
+            </div>
+        </div>
+       --%> <div class="backGround"></div>
+        <!--创建相册窗口-->
+
     </section>
 
 </main>
