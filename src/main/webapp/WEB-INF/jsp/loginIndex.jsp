@@ -1,10 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" import="java.util.*" language="java" %>
+<%@ page import="com.sun.scenario.effect.Color4f" %>
+<!DOCTYPE PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
 <html lang="en">
 <head>
 
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>index</title>
     <link rel="stylesheet" href="/default/reset.css">
     <link rel="stylesheet" href="/default/view.css">
@@ -78,21 +82,24 @@
     <script>
         $(function () {
             $(".heart").on("click",function () {
+
                 var likeId = $(this).parents(".view").find(".view-cover").find(".hot_pics").attr("pic_id");
                 var count = $(this).parents(".focus-msg").find(".focus-num").attr("count");
+                if(loginUser != "") {
+                    if ($(this).attr("src").indexOf("img/i-2.png") >= 0) {
+                        $(this).attr("src", "img/i-2-1.png");
+                        $(this).parents(".focus-msg").find(".focus-num").attr("count", ++count);
+                        $(this).parents(".focus-msg").find(".focus-num").text(count + "人喜欢");
 
-                if($(this).attr("src").indexOf("img/i-2.png")>=0)
-                {
-                    $(this).attr("src","img/i-2-1.png");
-                    $(this).parents(".focus-msg").find(".focus-num").attr("count",++count);
-                    $(this).parents(".focus-msg").find(".focus-num").text(count + "人喜欢");
-
+                    }
+                    else {
+                        $(this).attr("src", "img/i-2.png");
+                        $(this).parents(".focus-msg").find(".focus-num").attr("count", --count);
+                        $(this).parents(".focus-msg").find(".focus-num").text(count + "人喜欢");
+                    }
                 }
-                else
-                {
-                    $(this).attr("src","img/i-2.png");
-                    $(this).parents(".focus-msg").find(".focus-num").attr("count",--count);
-                    $(this).parents(".focus-msg").find(".focus-num").text(count + "人喜欢");
+                else{
+                    alert("请先登录");
                 }
                 
                 $.ajax({
@@ -111,6 +118,18 @@
         })
     </script>
 </head>
+    <%
+        Cookie[] cookies = request.getCookies();
+        Cookie remember = null;
+        if(cookies != null && cookies.length > 0){
+            for(Cookie c: cookies){
+                if(c.getName().equals("remember")){
+                    remember = c;
+                }
+            }
+        }
+    %>
+
 
 <body>
 
@@ -174,9 +193,15 @@
                     <input type="password" id="user_pwd"  name="password1" class="item-text" placeholder="密码"/>
                 </div>
 
+                <%--<div class="law-check">--%>
+                    <%--<input type="checkbox" class="radio-btn">--%>
+                    <%--<span class="law">自动登录</span>--%>
+                    <%--<a href="javascript:void(0)" class="reset-pass" id="btn-reset">重置密码</a>--%>
+                <%--</div>--%>
+
                 <div class="law-check">
                     <input type="checkbox" class="radio-btn">
-                    <span class="law">自动登录</span>
+                    <span class="law">记住密码</span>
                     <a href="javascript:void(0)" class="reset-pass" id="btn-reset">重置密码</a>
                 </div>
 
