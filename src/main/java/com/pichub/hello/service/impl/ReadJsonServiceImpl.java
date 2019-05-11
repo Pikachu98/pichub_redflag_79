@@ -16,9 +16,13 @@ public class ReadJsonServiceImpl implements ReadJsonService {
     PictureDao pictureDao;
 
     @Override
-    public String getBaiDuJson(int pictureId,String result) {
+    public String getBaiDuJson(int pictureId,String result){
         if (result==null)
             return null;
+        /*if (jsonObjName.get("error_code")!=null){
+            if ((int)jsonObjName.get("error_code")==216200)
+            System.out.println("pictureId="+pictureId+":"+"此图片路径正确但文件已损坏或此文件不是图片>>>"+"result="+result);
+        }*/
         else {
             JSONObject jsonObjName = new JSONObject(result);
             int result_num=(int)jsonObjName.get("result_num");
