@@ -16,13 +16,11 @@
     <link rel="stylesheet" href="/default/header.css">
     <link rel="stylesheet" href="/default/photo-list.css">
     <link rel="stylesheet" href="/default/register.css">
-
     <script src="/js/jquery-3.3.1.js"></script>
     <script src="/js/jquery.validate.min.js"></script>
     <script src="/js/jquery.validate.extend.js"></script>
     <script src="/layui/layui.js"></script>
     <script src="/js/register.js"></script>
-    <%--<script src="/js/testCookie.js"></script>--%>
     <!--瀑布流-->
 
 
@@ -84,7 +82,6 @@
     <script>
         $(function () {
             $(".heart").on("click",function () {
-
                 var likeId = $(this).parents(".view").find(".view-cover").find(".hot_pics").attr("pic_id");
                 var count = $(this).parents(".focus-msg").find(".focus-num").attr("count");
                 if(loginUser != "") {
@@ -103,7 +100,7 @@
                 else{
                     alert("请先登录");
                 }
-                
+
                 $.ajax({
                     type: "Get",
                     url: "/belike/reverseState",
@@ -120,18 +117,6 @@
         })
     </script>
 </head>
-    <%--<%--%>
-        <%--Cookie[] cookies = request.getCookies();--%>
-        <%--Cookie remember = null;--%>
-        <%--if(cookies != null && cookies.length > 0){--%>
-            <%--for(Cookie c: cookies){--%>
-                <%--if(c.getName().equals("remember")){--%>
-                    <%--remember = c;--%>
-                <%--}--%>
-            <%--}--%>
-        <%--}--%>
-    <%--%>--%>
-
 
 <body>
 
@@ -222,12 +207,6 @@
                     <input type="password" id="user_pwd"  name="password1" class="item-text" placeholder="密码" value="<%=psw%>"/>
                 </div>
 
-                <%--<div class="law-check">--%>
-                    <%--<input type="checkbox" class="radio-btn">--%>
-                    <%--<span class="law">自动登录</span>--%>
-                    <%--<a href="javascript:void(0)" class="reset-pass" id="btn-reset">重置密码</a>--%>
-                <%--</div>--%>
-
                 <div class="law-check">
                     <input type="checkbox" class="radio-btn" id="remPwd" <%=checked%>>
                     <span class="law">记住密码</span>
@@ -282,16 +261,12 @@
             <div>
                 <img src="img/itro_logo.png" alt="BigLogo">
             </div>
-            <div class="index-btn">
-                <a href="javascript:void(0)">
-                    <img src="img/banner-button.png" alt="加入我们">
-                </a>
-            </div>
+
 
         </div>
     </section>
     <!-- A样式通用 -->
-    <section class="layout layout-main">
+    <section class="layout layout-main" id="show">
         <div id="masonry" class="photo-list"> <!--主页下方所有图片窗体元素-->
         <c:forEach items="${picsList}" var="var" varStatus="cou"><!--一个循环元素一个包装-->
             <c:if test="${var.delState > 0}">
@@ -316,8 +291,8 @@
                     </div><!--头像+关注-->
 
                     <div class="view-cover"><!--图片的显示，见photo-list:设置了个边框颜色？？？-->
-                        <a href="/picture-detail/${var.picId}">
-                            <img class="hot_pics" src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">
+                        <a href="/picture-detail/${var.picId}" target="_blank">
+                        <img class="hot_pics" src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">
                         </a>
                     </div>
 

@@ -93,16 +93,37 @@
     </section>
     <section class="myL">
         <div class="sidebar">
-            <div class="sidebar-btn"><a href="/myAlbum"><img src="img/i-1.png"
-                                                                 class="icon-my">我的相册</a></div>
-            <div class="sidebar-btn"><a href="/listmyLike"><img src="img/i-2.png"
-                                                                class="icon-my">我喜欢的</a></div>
-            <div class="sidebar-btn"><a href="/listFans"><img src="img/i-3.png"
-                                                              class="icon-my">我的粉丝</a></div>
-            <div class="focus-now"><a href="/list"><img src="img/i-4-1.png"
-                                                                 class="icon-my">我关注的</a></div>
-            <div class="sidebar-btn"><a href="/editPersonal"><img src="img/i-5.png"
-                                                                      class="icon-my">修改个人资料</a></div>
+            <a href="/myAlbum">
+                <div class="sidebar-btn">
+                    <img src="/img/i-1.png" class="icon-my">我的相册
+                </div>
+            </a>
+
+            <a href="/listmyLike">
+                <div class="sidebar-btn">
+                    <img src="/img/i-2.png" class="icon-my">我喜欢的
+                </div>
+            </a>
+
+            <a href="/listFans">
+                <div class="sidebar-btn">
+                    <img src="/img/i-3.png" class="icon-my">我的粉丝
+                </div>
+            </a>
+
+            <a href="/list">
+                <div class="focus-now">
+                    <img src="/img/i-4-1.png" class="icon-my">我关注的
+                </div>
+            </a>
+
+            <a href="/editPersonal">
+                <div class="sidebar-btn">
+                    <img src="/img/i-5.png" class="icon-my">修改个人资料
+                </div>
+            </a>
+
+
         </div>
 
         <div class="my-root">

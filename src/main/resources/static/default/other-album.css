@@ -12,7 +12,7 @@
     justify-content: space-between;
 }
 
-.cover:hover{
+.album-cover:hover{
     -webkit-transform: scale(1.1);
     -webkit-transition: 0.5s;
 }

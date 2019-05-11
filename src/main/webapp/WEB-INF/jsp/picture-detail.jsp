@@ -77,6 +77,12 @@
         </c:forEach>
     </div>
     <div class="text">
+        <c:if test="${heart==0}">
+            <a><img class="heart" src="/img/i-2.png" alt="我是一颗black心"></a>
+        </c:if>
+        <c:if test="${heart==1}">
+            <a><img class="heart" src="/img/i-2-1.png" alt="我是一颗red心"></a>
+        </c:if>
         <%--<a href="javascript:void(0)"><img src="/img/heart.png"></img></a>--%>
         <a href="/downloadO/${picture.picId}" style="margin-left: 20px;"><img src="/img/i-download.png"></img></a>
 

@@ -109,6 +109,11 @@ public class PictureServicempl implements PictureService{
         return pictureDao.getAlbumPics(userId);
     }
 
+    @Override
+    public int getLove(long userId, long picId) throws Exception{
+        return pictureDao.getLove(userId,picId);
+
+    }
     public void deletePicture(int pictureId)throws Exception
     {
         pictureDao.deletePicture(pictureId);

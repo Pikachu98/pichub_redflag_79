@@ -17,6 +17,8 @@ public interface PictureDao {
     String getPictureOriginPath(long pictureId)throws Exception;
     String getPictureThumbnailPath(long pictureId)throws Exception;
 
+    int getLove(@Param("userId")long userId,@Param("picId") long picId) throws Exception;
+
     List<Picture> getHotPicture() throws Exception;
     int checkMaxPictureId();
     int checkMaxPictureTagId();

@@ -25,6 +25,13 @@
     </select>
 
 
+    <!--判断照片是否有被点赞-->
+    <select id = "getLove" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM belike WHERE user_id = #{userId} and pic_id = #{picId};
+    </select>
+
+
+
     <insert id="insertPicture" parameterType="com.pichub.hello.bo.Picture">
         insert into picture (pic_name,upload_time,del_state,pic_story,user_id,pic_path,pic_thumbnail_path,pic_size)
         values (#{picName},#{uploadTime},#{delState},#{picStory},#{userId},#{picPath},#{picThumbnailPath},#{picSize})
