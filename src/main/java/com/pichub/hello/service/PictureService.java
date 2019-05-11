@@ -17,6 +17,8 @@ public interface PictureService {
     List<Integer> getLike() throws Exception;
     List<Integer> getHotPicId() throws Exception;
 
+    int getLove(long userId, long picId ) throws Exception;
+
     int getPictureId(String picName)throws Exception;
     ModelMap getTag(List<Integer> picId);
 

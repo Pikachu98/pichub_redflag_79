@@ -160,11 +160,14 @@
                     </c:if>
                             <td id="pics_td">
                                 <c:if test="${cou.count <= 6}">
-                                    <img class="hot_pics" src="/show/${var}"  alt="photo-1" width="216px" height="216px">
+                                    <a href="/picture-detail/${var}">
+                                    <img class="hot_pics" src="/show/${var}"  alt="photo-1" width="216px" height="216px"></a>
                                 </c:if>
                                 <c:if test="${cou.count > 6}">
+                                <a href="/picture-detail/${var}">
                                     <img class="hot_pics" src="/img/whiteboard.png" data-src="/show/${var}"  alt="photo-1" width="216px" height="216px">
-                                </c:if>
+                                </a>
+                                    </c:if>
 
                             </td>
                     <c:if test="${cou.count%6==0}">

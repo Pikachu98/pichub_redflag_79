@@ -44,8 +44,8 @@ public class UpanddownController {
 
     @RequestMapping(value = "/uploadFile" ,method = RequestMethod.POST)
     public void uploadFile(@RequestParam(value="file") MultipartFile file, //@RequestParam(value = "story")String story,
-                             /*@RequestParam(value = "userId") long userId,*/ @RequestParam(value = "album") long albumId,
-                             HttpServletRequest request, HttpServletResponse response)
+            /*@RequestParam(value = "userId") long userId,*/ @RequestParam(value = "album") long albumId,
+                           HttpServletRequest request, HttpServletResponse response)
     {
         if(file == null && file.getSize() > 0)
         {
@@ -58,7 +58,8 @@ public class UpanddownController {
         String fileName = file.getOriginalFilename();
         String exName = fileName.substring(fileName.lastIndexOf(".") + 1 );
         String newOriginiName = UUID.randomUUID().toString().replaceAll("-","") + "." + exName;
-        String originPicturePath = this.getClass().getResource("/").getPath() + File.separator+"originPictures"+File.separator;
+        String originPicturePath = getParent(request.getServletContext().getRealPath("/"))
+                + "resources"+File.separator+"originPictures"+File.separator;
 
         String finalOriginPath = originPicturePath +newOriginiName;
         FileOutputStream fos = null;//upload origin picture
@@ -86,7 +87,8 @@ public class UpanddownController {
 
         //insert thumbnail picture
         String newThumbnailName = UUID.randomUUID().toString().replaceAll("-","") + "." + exName;
-        String thumbnailPath = this.getClass().getResource("/").getPath() + File.separator+"static"+File.separator+"thumbnail"+File.separator;
+        String thumbnailPath = getParent(request.getServletContext().getRealPath("/"))
+                + "resources"+File.separator+"static"+File.separator+"thumbnail"+File.separator;
         String finalThumbnailPath = thumbnailPath + newThumbnailName;
         fos = null;
         try{
@@ -151,6 +153,117 @@ public class UpanddownController {
 
     }
 
+    @RequestMapping(value = "/uploadFileInside" ,method = RequestMethod.POST)
+    public void uploadFileInside(@RequestParam(value="file") MultipartFile file, //@RequestParam(value = "story")String story,
+                             /*@RequestParam(value = "userId") long userId,*/ @RequestParam(value = "album") long albumId,
+                             HttpServletRequest request, HttpServletResponse response)
+    {
+        if(file == null && file.getSize() > 0)
+        {
+            return /*"{" + "false" + "}"*/;
+        }
+
+        //insert origin picture
+        User user = User.getCurrentUser(request);
+        long userId = user.getUserId();
+        String fileName = file.getOriginalFilename();
+        String exName = fileName.substring(fileName.lastIndexOf(".") + 1 );
+        String newOriginiName = UUID.randomUUID().toString().replaceAll("-","") + "." + exName;
+        String originPicturePath = getParent(request.getServletContext().getRealPath("/"))
+                             + "resources"+File.separator+"originPictures"+File.separator;
+
+        String finalOriginPath = originPicturePath +newOriginiName;
+        FileOutputStream fos = null;//upload origin picture
+        try {
+            fos = new FileOutputStream(finalOriginPath);
+            fos.write(file.getBytes());
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        //insert thumbnail picture
+        String newThumbnailName = UUID.randomUUID().toString().replaceAll("-","") + "." + exName;
+        String thumbnailPath = getParent(request.getServletContext().getRealPath("/"))
+                              + "resources"+File.separator+"static"+File.separator+"thumbnail"+File.separator;
+        String finalThumbnailPath = thumbnailPath + newThumbnailName;
+        fos = null;
+        try{
+            fos = new FileOutputStream(finalThumbnailPath);
+            fos.write(file.getBytes());
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        File tFile;
+        if(exName!="jpg")//change file if it isn't jpg
+        {
+            tFile = new File(conversion(finalThumbnailPath));
+            File otFile = new File(finalThumbnailPath);//origin thumbnail file
+            otFile.delete();
+            finalThumbnailPath = finalThumbnailPath.substring(0,finalThumbnailPath.lastIndexOf(".")) + ".jpg";
+            handleDpi(tFile,300,300);
+        }
+        else
+        {
+            tFile = new File(finalThumbnailPath);
+            handleDpi(tFile,300,300);
+        }
+
+
+
+        //insert to database
+        Picture picture = new Picture();
+        picture.setPicName(newOriginiName);
+        picture.setUploadTime(new Date());
+        picture.setDelState(1);
+        picture.setPicStory(null);           ///////////////////////////////////////////
+        picture.setUserId(userId);
+        picture.setPicPath(real2realative(finalOriginPath));
+        picture.setPicThumbnailPath(real2realative(finalThumbnailPath));
+        picture.setPicSize(file.getSize());
+
+        try {
+            pictureService.insertPicture(picture);
+            int picId = pictureService.getPictureId(picture.getPicName());
+            albumService.insertAlbumAndPicture(picId,albumId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            response.sendRedirect("/albumContent/"+albumId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return /*"myalbum"*/;
+
+    }
+
 
 
     @RequestMapping(value = "/uploadAvatar",method = RequestMethod.POST)
@@ -169,7 +282,8 @@ public class UpanddownController {
         String avatarName = avatar.getOriginalFilename();
         String exName = avatarName.substring(avatarName.lastIndexOf(".") + 1 );
         String dirName = String.valueOf(userId);
-        String avatarPath = this.getClass().getResource("/").getPath() + File.separator+"static"+File.separator+"avatar"+File.separator + dirName;
+        String avatarPath = getParent(request.getServletContext().getRealPath("/"))
+                + "resources"+File.separator+"static"+File.separator+"avatar"+File.separator + dirName;
         File file = new File(avatarPath);
 
         if(!file.exists())
@@ -243,7 +357,8 @@ public class UpanddownController {
     {
         Picture p = pictureService.getPicture(picId);
         String picName = p.getPicName();
-        String path = this.getClass().getResource("/").getPath() + File.separator+"originPictures"+File.separator + picName;
+        String path = getParent(request.getServletContext().getRealPath("/"))
+                + "resources"+File.separator+"originPictures"+File.separator + picName;
         long picUserId = p.getUserId();
         long userId = User.getCurrentUser(request).getUserId();
         if(userId == picUserId)
@@ -267,7 +382,8 @@ public class UpanddownController {
     {
         Picture p = pictureService.getPicture(picId);
         String picName = p.getPicThumbnailPath().substring(p.getPicThumbnailPath().lastIndexOf("/") + 1);
-        String path = this.getClass().getResource("/").getPath() + File.separator+"static"+File.separator+"thumbnail"+File.separator + picName;
+        String path = getParent(request.getServletContext().getRealPath("/"))
+                + "resources"+File.separator+"static"+File.separator+"thumbnail"+File.separator + picName;
         File f = new File(path);
         BufferedInputStream br = new BufferedInputStream(new FileInputStream(f));
         byte[] buf = new byte[1024];
