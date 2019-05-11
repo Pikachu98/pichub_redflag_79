@@ -371,7 +371,7 @@
                                       <%-- +"<div>"+value.picName+"</div>&lt;%&ndash;相册名字--%>
 
                                       "<ul class='dropdown-menu' role='menu'>"+
-                                      "<li><a href='#' onclick='delPic("+value.picId+")'>删除</a></li>"+
+                                      "<li><a href='#' onclick='delPic(${value.picId})'>删除</a></li>"+
                                       "<li><a href='#'>description</a></li>"+
                                       "<li><a href='#'>重命名</a></li>"+
                                       "<li><a href='#'>Help</a></li>"+
