@@ -24,11 +24,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
         System.out.println(request.getRequestURI());
         String url=request.getRequestURI();
 //        List<String> interList = new
-        if(url.startsWith("/css/") ||url.startsWith("/picture-detail/") || url.startsWith("/js/")|| url.startsWith("/show/")|| url.startsWith("js/")
+        if(url.startsWith("/user/")||url.startsWith("/layui/")||url.startsWith("/doReset")||url.startsWith("/getCheckCode")||
+                url.startsWith("/css/") ||url.startsWith("/picture-detail/") || url.startsWith("/js/")|| url.startsWith("/show/")|| url.startsWith("js/")
                 || url.startsWith("/album-pics/") || url.startsWith("/showA/")|| url.startsWith("/default/")|| url.startsWith("/img/") || url.equals("/") || url.equals("/doLogin") || url.startsWith("/showT")) {
             return true;
         }
-        if (user == null) {
+        else if (user == null) {
 //            System.out.println("尚未登录，调到登录页面");
             response.sendRedirect("/");
             return false;
