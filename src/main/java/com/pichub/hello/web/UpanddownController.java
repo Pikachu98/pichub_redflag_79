@@ -58,8 +58,7 @@ public class UpanddownController {
         String fileName = file.getOriginalFilename();
         String exName = fileName.substring(fileName.lastIndexOf(".") + 1 );
         String newOriginiName = UUID.randomUUID().toString().replaceAll("-","") + "." + exName;
-        String originPicturePath = getParent(request.getServletContext().getRealPath("/"))
-                             + "resources"+File.separator+"originPictures"+File.separator;
+        String originPicturePath = this.getClass().getResource("/").getPath() + File.separator+"originPictures"+File.separator;
 
         String finalOriginPath = originPicturePath +newOriginiName;
         FileOutputStream fos = null;//upload origin picture
@@ -87,8 +86,7 @@ public class UpanddownController {
 
         //insert thumbnail picture
         String newThumbnailName = UUID.randomUUID().toString().replaceAll("-","") + "." + exName;
-        String thumbnailPath = getParent(request.getServletContext().getRealPath("/"))
-                              + "resources"+File.separator+"static"+File.separator+"thumbnail"+File.separator;
+        String thumbnailPath = this.getClass().getResource("/").getPath() + File.separator+"static"+File.separator+"thumbnail"+File.separator;
         String finalThumbnailPath = thumbnailPath + newThumbnailName;
         fos = null;
         try{
@@ -171,8 +169,7 @@ public class UpanddownController {
         String avatarName = avatar.getOriginalFilename();
         String exName = avatarName.substring(avatarName.lastIndexOf(".") + 1 );
         String dirName = String.valueOf(userId);
-        String avatarPath = getParent(request.getServletContext().getRealPath("/"))
-                + "resources"+File.separator+"static"+File.separator+"avatar"+File.separator + dirName;
+        String avatarPath = this.getClass().getResource("/").getPath() + File.separator+"static"+File.separator+"avatar"+File.separator + dirName;
         File file = new File(avatarPath);
 
         if(!file.exists())
@@ -246,8 +243,7 @@ public class UpanddownController {
     {
         Picture p = pictureService.getPicture(picId);
         String picName = p.getPicName();
-        String path = getParent(request.getServletContext().getRealPath("/"))
-                + "resources"+File.separator+"originPictures"+File.separator + picName;
+        String path = this.getClass().getResource("/").getPath() + File.separator+"originPictures"+File.separator + picName;
         long picUserId = p.getUserId();
         long userId = User.getCurrentUser(request).getUserId();
         if(userId == picUserId)
@@ -271,8 +267,7 @@ public class UpanddownController {
     {
         Picture p = pictureService.getPicture(picId);
         String picName = p.getPicThumbnailPath().substring(p.getPicThumbnailPath().lastIndexOf("/") + 1);
-        String path = getParent(request.getServletContext().getRealPath("/"))
-                + "resources"+File.separator+"static"+File.separator+"thumbnail"+File.separator + picName;
+        String path = this.getClass().getResource("/").getPath() + File.separator+"static"+File.separator+"thumbnail"+File.separator + picName;
         File f = new File(path);
         BufferedInputStream br = new BufferedInputStream(new FileInputStream(f));
         byte[] buf = new byte[1024];

@@ -5,6 +5,7 @@
          version="4.0">
 
 
+<!--
 <servlet>
 <servlet-name>spmvc</servlet-name>
 <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -14,5 +15,6 @@
 <servlet-name>spmvc</servlet-name>
 <url-pattern>*.do</url-pattern>
 </servlet-mapping>
+-->
 
 </web-app>
