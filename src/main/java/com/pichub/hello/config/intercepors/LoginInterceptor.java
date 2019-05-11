@@ -24,7 +24,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
         System.out.println(request.getRequestURI());
         String url=request.getRequestURI();
 //        List<String> interList = new
-        if(url.startsWith("/css/") ||url.startsWith("/picture-detail/") || url.startsWith("/js/")|| url.startsWith("/show/")|| url.startsWith("js/")
+        if(url.startsWith("/css/") ||url.startsWith("/picture-detail/") || url.startsWith("/js/")||url.startsWith("/layui/")|| url.startsWith("/show/")|| url.startsWith("js/")
                 || url.startsWith("/album-pics/") || url.startsWith("/showA/")|| url.startsWith("/default/")|| url.startsWith("/img/") || url.equals("/") || url.equals("/doLogin") || url.startsWith("/showT")) {
             return true;
         }

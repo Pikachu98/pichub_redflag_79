@@ -55,6 +55,48 @@ layui.use("form", function () {
 });
 
 $(function () {
+    //为表单的必填文本框添加提示信息（选择form中的所有后代input元素）
+    $("div :input.required").each(function () {
+        //通过jquery api：$("HTML字符串") 创建jquery对象
+        var $required = $("<strong class='high'>*</strong>");
+        //添加到this对象的父级对象下
+        $(this).parent().append($required);
+    });
+
+    //为表单元素添加失去焦点事件
+    $("div :input").blur(function(){
+        var $parent = $(this).parent();
+        $parent.find(".msg").remove(); //删除以前的提醒元素（find()：查找匹配元素集中元素的所有匹配元素）
+        //验证姓名
+        if($(this).is("#userName")){
+            var nameVal = $.trim(this.value); //原生js去空格方式：this.replace(/(^\s*)|(\s*$)/g, "")
+            var regName = /[~#^$@%&!*()<>:;'"{}【】  ]/;
+            if(nameVal == "" || nameVal.length < 6 || regName.test(nameVal)){
+                var errorMsg = " 姓名非空，长度6位以上，不包含特殊字符！";
+                //class='msg onError' 中间的空格是层叠样式的格式
+                $parent.append("<span class='msg' style='color: red; position:relative; left:-55px; top:-7px'>" + errorMsg + "</span>");
+            }
+        }
+        //验证邮箱
+        if($(this).is("#registerEmail")){
+            var emailVal = $.trim(this.value);
+            var regEmail = /.+@.+\.[a-zA-Z]{2,4}$/;
+            if(emailVal== "" || (emailVal != "" && !regEmail.test(emailVal))){
+                var errorMsg = " 请输入正确的E-Mail住址！";
+                $parent.append("<span class='msg' style='color: red; position:relative; left:-135px; top:-7px'>" + errorMsg + "</span>");
+            }
+        }
+        //两次密码一致
+        if($(this).is("#password2")){
+            var p2 = $("#password2").value;
+            var p1 = $('#password1').value;
+            if(p1 == p2) {
+                var errorMsg = " 两次密码不一致！";
+                $parent.append("<span class='msg' style='color: red; position:relative; left:-105px; top:-7px'>" + errorMsg + "</span>");
+            }
+        }
+
+/*
     $("#signupForm").validate({
         debug: true, //调试模式，即使验证成功也不会跳转到目标页面
         onkeyup: null,//当丢失焦点时才触发验证请求
@@ -104,6 +146,7 @@ $(function () {
                 email: "邮箱格式不正确"
             }
         }
+*/
     });
 
     $("#send").on("click", function () {
