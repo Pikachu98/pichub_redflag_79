@@ -113,18 +113,19 @@
         $(function () {
 
             $(".delAlbum").click(function () {
+                var albumId = $(this).attr("album");
                 $.ajax({
                     type:"POST",
                     url:"/deleteAlbum",
                     dataType:"json",
                     data:{
-                        "albumId":$("#fake").attr("album")
+                        "albumId":albumId
                     },
                     success:function () {
                         alert("删除成功");
                     },
                     error:function () {
-                        alert("删除失败");
+                        window.location.reload();
                     }
                 })
             })
@@ -204,7 +205,7 @@
             </a>
         </div>
 
-        <section>
+        <%--<section>
             <div class="other-root">
                 <table>
                     <c:forEach items="${listAlbum}" var="list" varStatus="cou" >
@@ -216,20 +217,20 @@
                                 <c:if test="${list.albumState > 0}">
                                     <div class="album-cover">
                                         <a href="/albumContent/${list.albumId}">
-                                            <img src="show/${coverIds[cou.count-1]}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
+                                            <img src="show/${coverIds[cou.count-1]}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover" height="100" width="100">&lt;%&ndash;相册封面图片&ndash;%&gt;
                                         </a>
                                     </div>
-                                    <div style="margin-left:40px">${list.albumName}</div><%--相册名字--%>
+                                    <div style="margin-left:40px">${list.albumName}</div>&lt;%&ndash;相册名字&ndash;%&gt;
                                 </c:if>
                             </c:if>
                             <c:if test="${cou.count > 18}">
                                 <c:if test="${list.albumState > 0}">
                                     <div class="album-cover">
                                         <a href="/albumContent/${list.albumId}">
-                                            <img src="show/${coverIds[cou.count-1]}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
+                                            <img src="show/${coverIds[cou.count-1]}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover" height="100" width="100">&lt;%&ndash;相册封面图片&ndash;%&gt;
                                         </a>
                                     </div>
-                                    <div style="margin-left:40px;">${list.albumName}</div><%--相册名字--%>
+                                    <div style="margin-left:40px;">${list.albumName}</div>&lt;%&ndash;相册名字&ndash;%&gt;
                                 </c:if>
                             </c:if>
                         </td>
@@ -239,31 +240,34 @@
                     </c:forEach>
                 </table>
             </div>
-        </section>
+        </section>--%>
 
         <div class="my-root">
             <ul class="my-album">
                 <c:forEach items="${listAlbum}" var="list" varStatus="cou" ><!--一个循环元素一个包装-->
                     <div class="listAlbum" style="position: relative;">
-                        <li class="cover-item my-cover-item">
-                            <a href="javascript:void(0);" onclick="a(${list.albumId})">
-                                        <div class="album-cover">
-                                            <img src="show/${coverIds[cou.count-1]}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
-                                        </div>
-                                        <div>${list.albumName}</div><%--相册名字--%>
-                            </a>
-                            <div class="btn-group" style="position: absolute;right:1px;top:21px;">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="height: 5px;">
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="javascript:void(0)" class="delAlbum" >删除</a></li><%--/deleteAlbum?albumId=${list.albumId}--%>
-                                    <li><a href="javascript:void(0)" class="rename" album="${list.albumId}">重命名</a></li>
-                                    <li><a href="#">Help</a></li>
-                                </ul>
-                            </div>
-                        </li>
+                        <c:if test="${list.albumState > 0}">
+                            <li class="cover-item my-cover-item">
+                                <a href="javascript:void(0);" onclick="a(${list.albumId})">
+                                    <div class="album-cover">
+                                        <img src="show/${coverIds[cou.count-1]}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
+                                    </div>
+                                    <div>${list.albumName}</div><%--相册名字--%>
+                                </a>
+                                <div class="btn-group" style="position: absolute;right:1px;top:21px;">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="height: 5px;">
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="javascript:void(0)" album="${list.albumId}" class="delAlbum" >删除</a></li><%--/deleteAlbum?albumId=${list.albumId}--%>
+                                        <li><a href="javascript:void(0)" class="rename" album="${list.albumId}">重命名</a></li>
+                                        <li><a href="#">Help</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </c:if>
                     </div>
+
                 </c:forEach>
             </ul>
             <script>
@@ -286,16 +290,24 @@
                                   "</div>";
                               //$(".my-album").append(trs);
                           }else {
+                              var trs = "<table>";
                               $.each(result,function(n,value) {
+                                  console.info(n);
+                                  console.info(value);
                                   $(".listAlbum").remove();
-                                  var trs = "";
-                                  trs += "<div class='listPicture' style='position:relative;'> " +
+                                  if(n%5 == 0)
+                                  {
+                                      trs += "<tr>";
+                                  }
+                                  trs +=  <%--"<c:if test='${value.delState > 0}'>"+--%>
+                                      "<td>" +
+                                      "<div class='listPicture' style='position:relative;'> " +
                                       "<a href='#' >" +
-                                      "<div class='album-cover' style='position:absolute;'>" +
+                                      "<div class='album-cover' style='position1:absolute;'>" +
                                       "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='150' width='250'><%--相册封面图片--%> "+
                                       "</div>" +
                                       "  </a> " +
-                                      "<div class='btn-group' style='position: absolute;right:-35px;top:4px;'>"+
+                                      "<div class='btn-group' style='position: absolute;right:25px;top:25px;'>"+
                                       "<button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown' style='height: 5px;'>"+
                                       "<span class='caret'></span>"+
                                       "</button>"+
@@ -309,14 +321,21 @@
                                       "<li><a href='#'>Help</a></li>"+
                                       "</ul>"+
                                       "</div>"+
-                                      "</div>";
+                                      "</div>"+
+                                      "</td>";
+
+
+                                  if(n%4 == 0 && n > 1)
+                                  {
+                                      trs += "</tr>";
+                                  }
 
                                   /*                               trs += " < tr > <td > " + value.picPath +" < /td> <td>"
                                                                      + value.picName +"</td > </tr>";*/
-                                  var tbody = "";
-                                  tbody += trs;
-                                  $(".my-album").append(tbody);
                               });
+                              trs += "</table>";
+                              $(".my-album").append(trs);
+
                           }
 
                             /*alert("加载相册内照片完成");*/
@@ -424,12 +443,12 @@
         <!--创建相册窗口-->
 
         <!--查看相册内容悬浮窗-->
-        <div class='listPicture' style='position:relative;'>
+        <%--<div class='listPicture' style='position:relative;'>
         <a href='#'>
         <div class='album-cover' style='position:absolute;'>
         <img src=/show/"+${value.picId} alt='photo-1' class='cover' height='150' width='250'>
         </div>
-        </a>
+        </a>--%>
         <div class='btn-group' style='position: absolute;right:-35px;top:4px;'>
         <button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown' style='height: 5px;'>
         <span class='caret'></span>
@@ -446,7 +465,7 @@
         </div>
 
 
-        <div id="albumContent">
+        <%--<div id="albumContent">
             <div style="float: right">
                 <label class="x" style="margin-top:2px;margin-left: -169%;font-size: 25px;">-</label>
             </div>
@@ -465,7 +484,7 @@
                 <span>0/2000</span>
             </div>
         </div>
-       <div class="backGround"></div>
+       <div class="backGround"></div>--%>
         <!--创建相册窗口-->
 
         </div>
