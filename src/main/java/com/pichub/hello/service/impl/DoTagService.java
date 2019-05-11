@@ -8,8 +8,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-@Component
-public class DoTagService implements ApplicationRunner {
+public class DoTagService {
     @Autowired
     PictureDao pictureDao;
     @Autowired
@@ -17,14 +16,7 @@ public class DoTagService implements ApplicationRunner {
     @Autowired
     BaiDuAiService baiDuAiService;
 
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
-        while(true) {
-            this.doTag();
-            //System.out.println("自动执行");
-            //Thread.sleep(600000);
-        }
-    }
+
     public void doTag() throws Exception{
         while(true){
             int MaxPictureTagId=pictureDao.checkMaxPictureTagId();
@@ -42,7 +34,7 @@ public class DoTagService implements ApplicationRunner {
             }
             //进行一段时间的休眠
             System.out.println("图片ai打标签功能进入休眠状态》》》》》》》》10分钟会自动运行一次");
-            Thread.sleep(600000);
+            //Thread.sleep(600000);
         }
     }
 }
