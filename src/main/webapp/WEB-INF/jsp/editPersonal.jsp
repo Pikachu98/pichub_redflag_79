@@ -103,29 +103,49 @@
     </section>
     <section class="myL">
         <div class="sidebar">
-            <div class="sidebar-btn"><a href="/myAlbum"><img src="/img/i-1.png"
-                                                                 class="icon-my">我的相册</a></div>
-            <div class="sidebar-btn"><a href="/listmyLike"><img src="/img/i-2.png"
-                                                                class="icon-my">我喜欢的</a></div>
-            <div class="sidebar-btn"><a href="/listFans"><img src="/img/i-3.png"
-                                                                class="icon-my">我的粉丝</a></div>
-            <div class="sidebar-btn"><a href="/list"><img src="/img/i-4.png"
-                                                                 class="icon-my">我关注的</a></div>
-            <div class="focus-now"><a href="/editPersonal"><img src="/img/i-5-1.png"
-                                                                    class="icon-my">修改个人资料</a></div>
+            <a href="/myAlbum">
+                <div class="sidebar-btn">
+                    <img src="/img/i-1.png" class="icon-my">我的相册
+                </div>
+            </a>
+
+            <a href="/listmyLike">
+                <div class="sidebar-btn">
+                    <img src="/img/i-2.png" class="icon-my">我喜欢的
+                </div>
+            </a>
+
+            <a href="/listFans">
+                <div class="sidebar-btn">
+                    <img src="/img/i-3.png" class="icon-my">我的粉丝
+                </div>
+            </a>
+
+            <a href="/list">
+                <div class="sidebar-btn">
+                    <img src="/img/i-4.png" class="icon-my">我关注的
+                </div>
+            </a>
+
+            <a href="/editPersonal">
+                <div class="focus-now">
+                    <img src="/img/i-5-1.png" class="icon-my">修改个人资料
+                </div>
+            </a>
+
         </div>
             <div class="edit">
                 <form id="updateWindow" action="/uploadAvatar" enctype="multipart/form-data" method="post">
                     <div class="no-avator">
                         <span class="lbl">头像</span>
                         <img src="/showA/${userId}" height="150px" id="avatar" class="pic-ava" >
-                        <label for="upload"  id="label_sele" style="color: #2EBDE6">选择照片</label>
+                        <a href="javascript:void(0)"><label for="upload" id="label_sele" style="color: #2EBDE6; padding-left: 20px; font-size: 15px">选择照片</label></a>
                         <input type="file" name="avatar" id="upload" onchange="previewFile()" style="display: none;">
                     </div>
                     <hr class="hr"/>
                     <div>
                         <span class="lbl">昵称</span>
-                        <input type="text" class="name-now" placeholder="${userName}" id="newUserName">
+                        <input type="text" class="name-now" value="${userName}" id="newUserName">
                         <a href="javascript:void(0)" style="color:#2EBDE6" id="btnChangeName">修改</a>
                     </div>
                     <div>
@@ -141,7 +161,7 @@
                     </div>
                     <div>
                         <span class="lbl">邮箱</span>
-                        <input type="email" placeholder="${userEmail}" class="name-now">
+                        <input type="email" value="${userEmail}" class="name-now">
                     </div>
                     <div>
                         <span class="lbl">签名</span>

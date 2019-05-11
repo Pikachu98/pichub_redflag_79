@@ -44,6 +44,117 @@ public class UpanddownController {
 
     @RequestMapping(value = "/uploadFile" ,method = RequestMethod.POST)
     public void uploadFile(@RequestParam(value="file") MultipartFile file, //@RequestParam(value = "story")String story,
+            /*@RequestParam(value = "userId") long userId,*/ @RequestParam(value = "album") long albumId,
+                           HttpServletRequest request, HttpServletResponse response)
+    {
+        if(file == null && file.getSize() > 0)
+        {
+            return /*"{" + "false" + "}"*/;
+        }
+
+        //insert origin picture
+        User user = User.getCurrentUser(request);
+        long userId = user.getUserId();
+        String fileName = file.getOriginalFilename();
+        String exName = fileName.substring(fileName.lastIndexOf(".") + 1 );
+        String newOriginiName = UUID.randomUUID().toString().replaceAll("-","") + "." + exName;
+        String originPicturePath = getParent(request.getServletContext().getRealPath("/"))
+                + "resources"+File.separator+"originPictures"+File.separator;
+
+        String finalOriginPath = originPicturePath +newOriginiName;
+        FileOutputStream fos = null;//upload origin picture
+        try {
+            fos = new FileOutputStream(finalOriginPath);
+            fos.write(file.getBytes());
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        //insert thumbnail picture
+        String newThumbnailName = UUID.randomUUID().toString().replaceAll("-","") + "." + exName;
+        String thumbnailPath = getParent(request.getServletContext().getRealPath("/"))
+                + "resources"+File.separator+"static"+File.separator+"thumbnail"+File.separator;
+        String finalThumbnailPath = thumbnailPath + newThumbnailName;
+        fos = null;
+        try{
+            fos = new FileOutputStream(finalThumbnailPath);
+            fos.write(file.getBytes());
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        File tFile;
+        if(exName!="jpg")//change file if it isn't jpg
+        {
+            tFile = new File(conversion(finalThumbnailPath));
+            File otFile = new File(finalThumbnailPath);//origin thumbnail file
+            otFile.delete();
+            finalThumbnailPath = finalThumbnailPath.substring(0,finalThumbnailPath.lastIndexOf(".")) + ".jpg";
+            handleDpi(tFile,300,300);
+        }
+        else
+        {
+            tFile = new File(finalThumbnailPath);
+            handleDpi(tFile,300,300);
+        }
+
+
+
+        //insert to database
+        Picture picture = new Picture();
+        picture.setPicName(newOriginiName);
+        picture.setUploadTime(new Date());
+        picture.setDelState(1);
+        picture.setPicStory(null);           ///////////////////////////////////////////
+        picture.setUserId(userId);
+        picture.setPicPath(real2realative(finalOriginPath));
+        picture.setPicThumbnailPath(real2realative(finalThumbnailPath));
+        picture.setPicSize(file.getSize());
+
+        try {
+            pictureService.insertPicture(picture);
+            int picId = pictureService.getPictureId(picture.getPicName());
+            albumService.insertAlbumAndPicture(picId,albumId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            response.sendRedirect("myAlbum");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return /*"myalbum"*/;
+
+    }
+
+    @RequestMapping(value = "/uploadFileInside" ,method = RequestMethod.POST)
+    public void uploadFileInside(@RequestParam(value="file") MultipartFile file, //@RequestParam(value = "story")String story,
                              /*@RequestParam(value = "userId") long userId,*/ @RequestParam(value = "album") long albumId,
                              HttpServletRequest request, HttpServletResponse response)
     {
@@ -144,7 +255,7 @@ public class UpanddownController {
         }
 
         try {
-            response.sendRedirect("myAlbum");
+            response.sendRedirect("/albumContent/"+albumId);
         } catch (IOException e) {
             e.printStackTrace();
         }

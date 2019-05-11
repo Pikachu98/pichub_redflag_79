@@ -94,10 +94,12 @@ public class AlbumController {
 
     @RequestMapping(value = "/albumContent/{albumId}")
     public String getAlbumContent(@PathVariable long albumId, String pathName, ModelMap model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-//        albumId = Long.parseLong(request.getParameter("albumId"));
         List<Picture> picList = albumService.getPictures(albumId);
+        Album albumObj = albumService.getAlbum(albumId);
         model.put("MyFocus",focusService.showMyFocus(User.getCurrentUser(request).getUserId().intValue()).size());
         model.put("FocusMe",focusService.showFocusMe(User.getCurrentUser(request).getUserId().intValue()).size());
+        model.put("album",albumObj);
+        model.put("albumId",albumId);
 
 //        String errorMessage = "";
 //        if(picList.size() == 0){

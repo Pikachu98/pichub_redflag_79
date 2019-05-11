@@ -228,11 +228,7 @@
             <div>
                 <img src="img/itro_logo.png" alt="BigLogo">
             </div>
-            <div class="index-btn">
-                <a href="javascript:void(0)">
-                    <img src="img/banner-button.png" alt="加入我们">
-                </a>
-            </div>
+
 
         </div>
     </section>
@@ -262,7 +258,7 @@
                 </div><!--头像+关注-->
 
                     <div class="view-cover"><!--图片的显示，见photo-list:设置了个边框颜色？？？-->
-                        <a href="/picture-detail/${var.picId}">
+                        <a href="/picture-detail/${var.picId}" target="_blank">
                         <img class="hot_pics" src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">
                         </a>
                     </div>
