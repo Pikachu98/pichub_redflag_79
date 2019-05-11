@@ -31,9 +31,6 @@ public class UserServiceImpl implements UserService {
             if (inputPsw.equals(trueUser.getUserPassword())) {
                 request.getSession().setAttribute("userName", trueUser.getUserName());
                 request.getSession().setAttribute("userId", trueUser.getUserId());
-
-//                request.getSession().setAttribute("userName", trueUser.getUserName());
-//                request.getSession().setAttribute("userId", trueUser.getUserId());
                 request.getSession().setAttribute("user", trueUser);
 
                 return 200;//欢迎登陆

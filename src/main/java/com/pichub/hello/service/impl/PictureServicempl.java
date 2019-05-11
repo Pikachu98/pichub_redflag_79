@@ -43,8 +43,6 @@ public class PictureServicempl implements PictureService{
     @Override
     public List<Integer> getHotPicId() throws Exception {
         List<Integer> lala = pictureDao.getHotPicId();
-        for(int i =0; i<lala.size();i++)
-            System.out.println(lala.get(i) + "我在这呢看这里看着了");
         return pictureDao.getHotPicId();
     }
 
