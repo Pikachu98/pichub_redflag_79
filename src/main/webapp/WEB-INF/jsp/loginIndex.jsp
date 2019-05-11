@@ -283,7 +283,7 @@
                 <img src="img/itro_logo.png" alt="BigLogo">
             </div>
             <div class="index-btn">
-                <a href="javascript:void(0)">
+                <a href="#show">
                     <img src="img/banner-button.png" alt="加入我们">
                 </a>
             </div>
@@ -291,7 +291,7 @@
         </div>
     </section>
     <!-- A样式通用 -->
-    <section class="layout layout-main">
+    <section class="layout layout-main" id="show">
         <div id="masonry" class="photo-list"> <!--主页下方所有图片窗体元素-->
         <c:forEach items="${picsList}" var="var" varStatus="cou"><!--一个循环元素一个包装-->
 

@@ -132,8 +132,7 @@ public class IndexController {
         response.reset();
         response.setContentType("image/jpeg");
         String path = pictureService.getPicture(picId).getPicName();
-        /*this.getClass().getResource("/").getPath() + "*/
-        path =  this.getClass().getResource("/").getPath() + "/originPictures/"+path ;
+        path =  getParent(request.getServletContext().getRealPath("/")) + "/resources/originPictures/"+path ;
         outputFile(path,response);
     }
 
@@ -142,7 +141,7 @@ public class IndexController {
     {
         response.reset();
         response.setContentType("image/jpeg");
-        String path =  this.getClass().getResource("/").getPath() + "/static/avatar/" + String.valueOf(userId) +"/square.jpg";
+        String path =  getParent(request.getServletContext().getRealPath("/")) + "/resources/static/avatar/" + String.valueOf(userId) +"/square.jpg";
         outputFile(path,response);
     }
 
@@ -151,7 +150,7 @@ public class IndexController {
     {
         response.reset();
         response.setContentType("image/jpeg");
-        String path = this.getClass().getResource("/").getPath() + "/static/avatar/" + String.valueOf(userId) + "/page.jpg";
+        String path = getParent(request.getServletContext().getRealPath("/")) + "/resources/static/avatar/" + String.valueOf(userId) + "/page.jpg";
         outputFile(path,response);
     }
 
@@ -160,7 +159,7 @@ public class IndexController {
     {
         response.reset();
         response.setContentType("image/jpeg");
-        String path =  this.getClass().getResource("/").getPath() + "/static/avatar/" + String.valueOf(userId) +"/thumbnail.jpg";
+        String path =  getParent(request.getServletContext().getRealPath("/")) + "/resources/static/avatar/" + String.valueOf(userId) +"/thumbnail.jpg";
         outputFile(path,response);
     }
 
