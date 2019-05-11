@@ -87,7 +87,6 @@ public class AlbumController {
     public List<Picture> listPicture(ModelMap model, HttpServletRequest request, long albumId){
         albumId = Long.parseLong(request.getParameter("albumId"));
         model.put("listPicture",albumService.getPictures(albumId));//albumService.getPictures(albumId)方法需要检查调试
-        model.put("count",albumService.getPictures(albumId).size());
         if (albumService.getPictures(albumId)==null)
             return null;
         return albumService.getPictures(albumId);
@@ -95,12 +94,10 @@ public class AlbumController {
 
     @RequestMapping(value = "/albumContent/{albumId}")
     public String getAlbumContent(@PathVariable long albumId, String pathName, ModelMap model, HttpServletRequest request, HttpServletResponse response)throws Exception {
+//        albumId = Long.parseLong(request.getParameter("albumId"));
         List<Picture> picList = albumService.getPictures(albumId);
-        Album albumObj = albumService.getAlbum(albumId);
         model.put("MyFocus",focusService.showMyFocus(User.getCurrentUser(request).getUserId().intValue()).size());
         model.put("FocusMe",focusService.showFocusMe(User.getCurrentUser(request).getUserId().intValue()).size());
-        model.put("album",albumObj);
-        model.put("albumId",albumId);
 
 //        String errorMessage = "";
 //        if(picList.size() == 0){

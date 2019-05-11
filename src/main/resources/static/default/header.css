@@ -42,9 +42,6 @@
     width: 0;
     padding: 16px;
     border-radius: 4px;
-    position: absolute;
-    right: 90px;
-    top:15px;
     border: none;
     background-color: transparent;
     font-size: 16px;
@@ -78,19 +75,10 @@
     margin-right: 20px;
 }
 
-#dropDown{
-    position: absolute;
-    top: 25px;
-    right: 8px;
-}
-
 .user{
     vertical-align: middle;
-    /*padding-left: 14px;*/
+    padding-left: 14px;
     border-radius: 50%;
-    position: absolute;
-    top: 15px;
-    right: 70px;
 }
 
 .login-search{

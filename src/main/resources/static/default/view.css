@@ -58,8 +58,9 @@
 .icon-search {
     display: inline-block;
     position: absolute;
-    top: 25px;
-    right: 35px;
+    top: 50%;
+    right: 10px;
+    margin-top: -10px;
 }
 
 .btn, .btn-login {
@@ -171,7 +172,6 @@
     display: none;
     position: absolute;
     right: 3px;
-    top: 55px;
     background-color: #4e4d4dde;
 }
 

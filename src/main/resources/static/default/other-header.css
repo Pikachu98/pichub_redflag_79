@@ -2,13 +2,12 @@
     float: right;
     margin-top: 5px;
     height: 42px;
-    margin-right: 30px;
+    margin-right: 20px;
 }
 
 .user{
     vertical-align: middle;
-    /*padding-left: 14px;*/
-    right: 75px;
+    padding-left: 14px;
 }
 
 .login-search{

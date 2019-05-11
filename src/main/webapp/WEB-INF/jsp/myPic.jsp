@@ -102,7 +102,7 @@
 
 
     </script>
-    <%--<script type="text/javascript">
+    <script type="text/javascript">
         function select() {
             var index = $("#album-list option:selected");
             var getAlbumId = index.attr("var");
@@ -110,7 +110,7 @@
             $(".btn-start-upload").css("visibility","visible");
             $("#point-out").css("visibility","hidden");
         }
-    </script>--%>
+    </script>
 
     <script type="text/javascript">
         function previewFile() {
@@ -214,37 +214,16 @@
     </section>
     <section>
         <div class="sidebar">
-            <a href="/myAlbum">
-                <div class="focus-now">
-                    <img src="/img/i-1-1.png" class="icon-my">我的相册
-                </div>
-            </a>
-
-            <a href="/listmyLike">
-                <div class="sidebar-btn">
-                    <img src="/img/i-2.png" class="icon-my">我喜欢的
-                </div>
-            </a>
-
-            <a href="/listFans">
-                <div class="sidebar-btn">
-                    <img src="/img/i-3.png" class="icon-my">我的粉丝
-                </div>
-            </a>
-
-            <a href="/list">
-                <div class="sidebar-btn">
-                    <img src="/img/i-4.png" class="icon-my">我关注的
-                </div>
-            </a>
-
-            <a href="/editPersonal">
-                <div class="sidebar-btn">
-                    <img src="/img/i-5.png" class="icon-my">修改个人资料
-                </div>
-            </a>
-
-
+            <div class="focus-now"><a href="/myAlbum"><img src="/img/i-1-1.png"
+                                                           class="icon-my">我的相册</a></div>
+            <div class="sidebar-btn"><a href="/listmyLike"><img src="/img/i-2.png"
+                                                                class="icon-my">我喜欢的</a></div>
+            <div class="sidebar-btn"><a href="/listFans"><img src="/img/i-3.png"
+                                                              class="icon-my">我的粉丝</a></div>
+            <div class="sidebar-btn"><a href="/list"><img src="/img/i-4.png"
+                                                          class="icon-my">我关注的</a></div>
+            <div class="sidebar-btn"><a href="/editPersonal"><img src="/img/i-5.png"
+                                                                  class="icon-my">修改个人资料</a></div>
         </div>
 
         <div class="toolsbar">
@@ -265,26 +244,26 @@
                 <%--<c:if test="${errorMessage != \"这个相册是空的\"}">--%>
                 <table>
                     <c:forEach items="${picsList}" var="list" varStatus="cou" >
-                        <c:if test="${cou.count ==1 && (cou.count-1) %5==0}">
+                        <c:if test="${cou.count ==1 && (cou.count-1) %4==0}">
                             <tr>
                         </c:if>
                         <td>
                             <c:if test="${cou.count <= 18}">
                                 <div class="album-cover">
-                                    <a href="/picture-detail/${list.picId}" target="_blank">
+                                    <a href="/picture-detail/${list.picId}">
                                     <img src= "/show/${list.picId}" alt='photo-1' class='cover'>
                                     </a>
                                 </div>
                             </c:if>
                             <c:if test="${cou.count > 18}">
                                 <div class="album-cover">
-                                    <a href="/picture-detail/${list.picId}" target="_blank">
+                                    <a href="/picture-detail/${list.picId}">
                                     <img src="/show/${list.picId}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover"><%--相册封面图片--%>
                                     </a>
                                 </div>
                             </c:if>
                         </td>
-                        <c:if test="${cou.count%5==0}">
+                        <c:if test="${cou.count%4==0}">
                             </tr>
                         </c:if>
                     </c:forEach>
@@ -300,7 +279,7 @@
         </div>
 
         <%--</div>--%>
-        <!--重命名悬浮窗-->
+        <!--重命名悬 浮窗-->
         <div id="renameWindow" >
             <div style="float: right">
                 <label class="x" style="margin-top:2px;margin-left: -169%;font-size: 25px;">-</label>
@@ -316,13 +295,20 @@
             </div>
         </div>
         <!--上传悬浮窗-->
-        <form id="uploadWindow" action="/uploadFileInside" enctype="multipart/form-data" method="post" >
+        <form id="uploadWindow" action="/uploadFile" enctype="multipart/form-data" method="post" >
             <div style="float: right">
                 <label class="x" style="margin-top:2px;margin-left: -169%;font-size: 25px;">-</label>
             </div>
 
             <div class="uploadPic">
-                <span style="position: absolute;left: 47%;padding-top:10px;font-size: 18px" >上传照片</span>
+                <span class="uploadP">上传照片</span>
+                <span class="uploadPath">上传到</span>
+                <select class="upload-album" id = "album-list" onchange="select()">
+                    <option>请选择相册</option>
+                    <c:forEach items="${albumList}" var="var">
+                        <option var="${var.albumId}">${var.albumName}</option>
+                    </c:forEach>
+                </select>
             </div>
             <div class="choosed">
                 <!--<a class="btn-choose-pic">--><!--<img src="img/pic.png"
@@ -331,13 +317,13 @@
                     <img src="/img/pic.png" style="vertical-align:middle;height: 25px;padding-bottom: 5px;">选择照片</label>
                 <input type="file" name="file" id="upload" onchange="previewFile()" style="display: none;">
                 <img src="" height="200px" id="test" alt="Image preview...">
-                <input type="text" name="album" id="album-id" value="${albumId}" style="display: none">
+                <input type="text" name="album" id="album-id" value="" style="display: none">
                 <!--</a>-->
             </div>
             <div class="upload-footer">
                 <%--<a href="javascript:void(0)" class="btn-start-upload">开始上传</a>--%>
-                <input type="submit" class="btn-start-upload" value="开始上传">
-                <%--<label id="point-out" style="visibility: visible">请选择相册</label>--%>
+                <input type="submit" class="btn-start-upload" style="visibility: hidden" value="开始上传">
+                <label id="point-out" style="visibility: visible">请选择相册</label>
                 <label for="upload" class="btn-start-upload">重新选择</label>
                 <span class="continue">共1张照片（上传过程中请不要删除原始照片）</span>
             </div>
