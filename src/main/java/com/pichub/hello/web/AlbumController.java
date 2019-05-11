@@ -64,6 +64,30 @@ public class AlbumController {
         model.put("FocusMe",focusService.showFocusMe(User.getCurrentUser(request).getUserId().intValue()).size());
         model.put("albumList",myAlbumList);
         listAlbum(model,request);
+
+        String p = request.getParameter("page");
+        int page;
+        try{
+            page = Integer.valueOf(p);
+        }catch (NumberFormatException e){
+            page=1;
+        }
+        int totalAlbum = myAlbumList.size();
+        int albumPerPage = 10;
+        int totalPages = totalAlbum%albumPerPage==0?totalAlbum/albumPerPage:totalAlbum/albumPerPage+1;
+        int beginIndex = (page-1)*albumPerPage;
+        int endIndex = beginIndex+albumPerPage;
+        if(endIndex>totalPages)
+            endIndex = totalPages;
+
+        request.setAttribute("totalAlbum",totalAlbum);
+        request.setAttribute("albumPerPage",albumPerPage);
+        request.setAttribute("totalPages",totalPages);
+        request.setAttribute("beginIndex",beginIndex);
+        request.setAttribute("endIndex",endIndex);
+        request.setAttribute("page",page);
+        request.setAttribute("albumList",myAlbumList);
+
         return "myalbum";
 
     }
@@ -115,15 +139,12 @@ public class AlbumController {
     public void deleteAlbum(long albumId, HttpServletResponse response, HttpServletRequest request)throws Exception
     {
         albumService.deleteAlbum(albumId);
-
-        response.sendRedirect("myalbum");
     }
 
     @RequestMapping("/changeAlbumName")
     public void changeName(long albumId, String name, HttpServletRequest request, HttpServletResponse response)throws Exception
     {
         albumService.changeName(albumId, name);
-        response.sendRedirect("myalbum");
     }
 
 }
