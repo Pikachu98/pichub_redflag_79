@@ -251,14 +251,14 @@
                             <c:if test="${cou.count <= 18}">
                                 <div class="album-cover">
                                     <a href="/picture-detail/${list.picId}">
-                                    <img src= "/show/${list.picId}" alt='photo-1' class='cover' height='150px' width='250px'>
+                                    <img src= "/show/${list.picId}" alt='photo-1' class='cover'>
                                     </a>
                                 </div>
                             </c:if>
                             <c:if test="${cou.count > 18}">
                                 <div class="album-cover">
                                     <a href="/picture-detail/${list.picId}">
-                                    <img src="/show/${list.picId}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover" height="100px" width="100px"><%--相册封面图片--%>
+                                    <img src="/show/${list.picId}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover"><%--相册封面图片--%>
                                     </a>
                                 </div>
                             </c:if>

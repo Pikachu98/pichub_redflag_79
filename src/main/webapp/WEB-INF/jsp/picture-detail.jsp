@@ -28,8 +28,35 @@
 
     <!-- <script src="theme/default/js/register.js"></script> -->
 
+    <script>
+        $(function () {
+            $(".heart").on("click",function () {
+                var likeId = $(this).parents(".father").find(".l").attr("pic_id");
+                if ($(this).attr("src").indexOf("/img/i-2.png") >= 0) {
+                    $(this).attr("src", "/img/i-2-1.png");
+                }
+                else{
+                    $(this).attr("src", "/img/i-2.png");
+                }
+
+                $.ajax({
+                    type: "Get",
+                    url: "/belike/reverseState",
+                    dataType: "json",
+                    data: {
+                        "pictureId": likeId
+                    },
+                    success:function (result) {
+
+                    }
+                })
 
 
+            })
+
+
+        })
+    </script>
     <script type="text/javascript">
         function load() {
             var a= setTimeout("loading.style.transition='opacity 0.3s'",0)
@@ -43,7 +70,8 @@
     <script type="text/javascript">
         $(function() {
             $("#picture").click(function () {
-                window.history.back();
+                // window.history.back();
+                window.location.href = "/";
             });
         });
     </script>
@@ -64,31 +92,32 @@
     </div>
 </div>
 
-<div class="l">
-    <img src="/show/${picId}">
-
-</div>
-<div class="r">
-    <div style="padding-top:10px;margin-left: 93%;"><a href="javascript:void(0)" ><img src="/img/i-close.png" id="picture"></img></a></div>
-    <div class="text first">Picture Description：${picture.picStory}</div>
-    <div class="text">Tags：
-        <c:forEach  items="${picTag}" var="tag" >
-            <a href="javascript:void(0)" class="tag">${tag}</a>
-        </c:forEach>
-    </div>
-    <div class="text">
-        <c:if test="${heart==0}">
-            <a><img class="heart" src="/img/i-2.png" alt="我是一颗black心"></a>
-        </c:if>
-        <c:if test="${heart==1}">
-            <a><img class="heart" src="/img/i-2-1.png" alt="我是一颗red心"></a>
-        </c:if>
-        <%--<a href="javascript:void(0)"><img src="/img/heart.png"></img></a>--%>
-        <a href="/downloadO/${picture.picId}" style="margin-left: 20px;"><img src="/img/i-download.png"></img></a>
+<div class = "father">
+    <div class="l" pic_id = "${picId}">
+        <img src="/show/${picId}">
 
     </div>
-</div>
+    <div class="r">
+        <div style="padding-top:10px;margin-left: 93%;"><a href="javascript:void(0)" ><img src="/img/i-close.png" id="picture"></img></a></div>
+        <div class="text first">Picture Description：${picture.picStory}</div>
+        <div class="text">Tags：
+            <c:forEach  items="${picTag}" var="tag" >
+                <a href="javascript:void(0)" class="tag">${tag}</a>
+            </c:forEach>
+        </div>
+        <div class="text">
+            <c:if test="${heart==0}">
+                <a><img class="heart" src="/img/i-2.png" alt="我是一颗black心"></a>
+            </c:if>
+            <c:if test="${heart==1}">
+                <a><img class="heart" src="/img/i-2-1.png" alt="我是一颗red心"></a>
+            </c:if>
+            <%--<a href="javascript:void(0)"><img src="/img/heart.png"></img></a>--%>
+            <a href="/downloadO/${picture.picId}" style="margin-left: 20px;"><img src="/img/i-download.png"></img></a>
 
+        </div>
+    </div>
+</div>
 
 </section>
 <!-- A样式通用 -->
