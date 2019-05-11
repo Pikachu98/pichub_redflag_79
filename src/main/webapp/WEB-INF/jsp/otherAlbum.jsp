@@ -102,47 +102,6 @@
             selectorName:".hot_pics"
         });
     </script>
-    <script>
-        $(function () {
-            $(".btn-focus").on("click",function () {
-                var focusId = ${user_id};
-                var loginUser = $(".other-note").attr("butn_id");
-                var count = $("#fanNumber").attr("count");
-                if(loginUser != ""){
-                    if($(".btn-focus").text() == "已关注")
-                    {
-                        $(".btn-focus").text("关注");
-                        $("#fanNumber").attr("count",--count);
-                        $("#fanNumber").text(count);
-                    }
-                    else
-                    {
-                        $(".btn-focus").text("已关注");
-                        $("#fanNumber").attr("count",++count);
-                        $("#fanNumber").text(count);
-                        // alert($(this).val());
-                    }
-                }
-
-                else{
-                    alert("请先登录");
-                }
-
-
-                $.ajax({
-                    type: "Get",
-                    url: "/user/doInsertFocus",
-                    dataType: "json",
-                    data:{
-                        "userId1": focusId
-                    },
-                    success:function (result) {
-
-                    }
-                })
-            })
-        })
-    </script>
 </head>
 
 <body onload="load()">
@@ -166,23 +125,18 @@
     <section class="detail">
         <div>
             <div class="detail-l">
-                <div class="other-avator"><img  style="border-radius: 50%;" src="/showA/${user_id}" alt="我是头像">
+                <div class="other-avator"><img  style="border-radius:50%" src="/showA/${user_id}" alt="我是头像">
                 </div>
 
-                <div class="other-note" butn_id="${sessionScope.get("user").userName}">
+                <div class="other-note">
                     <div><span class="other-note-title">${user.userName}</span>   <!---------------------------->
-                        <c:if test="${checkFocus == 0}">
-                            <a href="javascript:void(0)" class="btn-focus">关注</a>
-                        </c:if>
-                        <c:if test="${checkFocus == 1}">
-                            <a href="javascript:void(0)" class="btn-focus">已关注</a>
-                        </c:if>
+                        <a href="javascript:void(0)" class="btn-focus other-focus-btn">关注</a>
                     </div>
 
                     <div class="other-note-decription">${user.userDescription}</div>
                     <div class="other-focus">
                         <div class="fans">
-                            <div class="number" id="fanNumber" count="${FocusMe}">${FocusMe}</div>
+                            <div class="number">${FocusMe}</div>
                             <div class="ch">粉丝</div>
                         </div>
                         <div class="focus-person">
@@ -198,26 +152,29 @@
     <section>
         <div class="other-root">
             <table>
+
                 <c:forEach items="${albumPics}" var="var" varStatus="cou">
+
                     <c:if test="${cou.count ==1 && (cou.count-1) %6==0}">
                         <tr>
                     </c:if>
-                    <td>
-                        <c:if test="${cou.count <= 18}">
-                            <a href="/picture-detail/${var}">
-                                <img class="hot_pics" src="/show/${var}"  alt="photo-1" width="216px" height="216px">
-                            </a>
-                        </c:if>
-                        <c:if test="${cou.count > 18}">
-                            <a href="/picture-detail/${var}">
-                                <img class="hot_pics" src="/img/whiteboard.png" data-src="/show/${var}"  alt="photo-1" width="216px" height="216px">
-                            </a>
-                        </c:if>
-                    </td>
+                            <td id="pics_td">
+                                <c:if test="${cou.count <= 6}">
+                                    <a href="/picture-detail/${var}">
+                                    <img class="hot_pics" src="/show/${var}"  alt="photo-1" width="216px" height="216px"></a>
+                                </c:if>
+                                <c:if test="${cou.count > 6}">
+                                <a href="/picture-detail/${var}">
+                                    <img class="hot_pics" src="/img/whiteboard.png" data-src="/show/${var}"  alt="photo-1" width="216px" height="216px">
+                                </a>
+                                    </c:if>
+
+                            </td>
                     <c:if test="${cou.count%6==0}">
-                    </tr>
+                        <tr>
                     </c:if>
                 </c:forEach>
+
             </table>
         </div>
     </section>

@@ -1,10 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" import="java.util.*" language="java" %>
+<%@ page import="com.sun.scenario.effect.Color4f" %>
+<!DOCTYPE PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
 <html lang="en">
 <head>
 
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>index</title>
     <link rel="stylesheet" href="/default/reset.css">
     <link rel="stylesheet" href="/default/view.css">
@@ -80,21 +84,23 @@
             $(".heart").on("click",function () {
                 var likeId = $(this).parents(".view").find(".view-cover").find(".hot_pics").attr("pic_id");
                 var count = $(this).parents(".focus-msg").find(".focus-num").attr("count");
+                if(loginUser != "") {
+                    if ($(this).attr("src").indexOf("img/i-2.png") >= 0) {
+                        $(this).attr("src", "img/i-2-1.png");
+                        $(this).parents(".focus-msg").find(".focus-num").attr("count", ++count);
+                        $(this).parents(".focus-msg").find(".focus-num").text(count + "人喜欢");
 
-                if($(this).attr("src").indexOf("img/i-2.png")>=0)
-                {
-                    $(this).attr("src","img/i-2-1.png");
-                    $(this).parents(".focus-msg").find(".focus-num").attr("count",++count);
-                    $(this).parents(".focus-msg").find(".focus-num").text(count + "人喜欢");
+                    }
+                    else {
+                        $(this).attr("src", "img/i-2.png");
+                        $(this).parents(".focus-msg").find(".focus-num").attr("count", --count);
+                        $(this).parents(".focus-msg").find(".focus-num").text(count + "人喜欢");
+                    }
+                }
+                else{
+                    alert("请先登录");
+                }
 
-                }
-                else
-                {
-                    $(this).attr("src","img/i-2.png");
-                    $(this).parents(".focus-msg").find(".focus-num").attr("count",--count);
-                    $(this).parents(".focus-msg").find(".focus-num").text(count + "人喜欢");
-                }
-                
                 $.ajax({
                     type: "Get",
                     url: "/belike/reverseState",
@@ -114,6 +120,33 @@
 
 <body>
 
+<%
+    String name="";
+//    String psw="123";
+//    String name="";
+    String psw="";
+
+    String checked="";
+    Cookie[] cookies=request.getCookies();
+    if(cookies!=null&&cookies.length>0){
+        //遍历Cookie
+        for(int i=0;i<cookies.length;i++){
+            Cookie cookie=cookies[i];
+            //此处类似与Map有name和value两个字段,name相等才赋值,并处理编码问题 
+            if("name".equals(cookie.getName())){
+                name=cookie.getValue();
+                //将"记住我"设置为勾选 
+                checked="checked";
+            }
+            if("psw".equals(cookie.getName())){
+                psw=cookie.getValue();
+            }
+        }
+    }
+%>
+
+
+
 <%@include file="header.jsp"%>
 
 <main id="main" class="main">
@@ -127,10 +160,10 @@
                     <a href="javascript:void(0)" class="btn-use">注册</a>
                 </div>
                 <div class="item item-name">
-                    <input type="text" id="userName" name="userName" class="layui-input item-text" placeholder="昵称"/>
+                    <input type="text" id="userName" name="userName" class="layui-input item-text" placeholder="昵称" />
                 </div>
                 <div class="item">
-                    <input type="password" id="password1" name="password1" class="layui-input item-text" placeholder="密码"/>
+                    <input type="password" id="password1" name="password1" class="layui-input item-text" placeholder="密码" />
                 </div>
                 <div class="item">
                     <input type="password" id="password2" name="password2" class="layui-input item-text" placeholder="确认密码" />
@@ -168,15 +201,15 @@
                     <a href="javascript:void(0)" id="btn-register" class="btn-nouse">注册</a>
                 </div>
                 <div class="item item-name">
-                    <input type="text" id="user_email" name="email" class="item-text" lay-verify="required" placeholder="请输入邮箱或用户名"/>
+                    <input type="text" id="user_email" name="email" class="item-text" lay-verify="required" placeholder="请输入邮箱或用户名" value="<%=name%>"/>
                 </div>
                 <div class="item">
-                    <input type="password" id="user_pwd"  name="password1" class="item-text" placeholder="密码"/>
+                    <input type="password" id="user_pwd"  name="password1" class="item-text" placeholder="密码" value="<%=psw%>"/>
                 </div>
 
                 <div class="law-check">
-                    <input type="checkbox" class="radio-btn">
-                    <span class="law">自动登录</span>
+                    <input type="checkbox" class="radio-btn" id="remPwd" <%=checked%>>
+                    <span class="law">记住密码</span>
                     <a href="javascript:void(0)" class="reset-pass" id="btn-reset">重置密码</a>
                 </div>
 
@@ -233,29 +266,29 @@
         </div>
     </section>
     <!-- A样式通用 -->
-    <section class="layout layout-main">
+    <section class="layout layout-main" id="show">
         <div id="masonry" class="photo-list"> <!--主页下方所有图片窗体元素-->
         <c:forEach items="${picsList}" var="var" varStatus="cou"><!--一个循环元素一个包装-->
+            <c:if test="${var.delState > 0}">
+                <div class="view">   <!--这里设置了边框格式-->
 
-            <div class="view">   <!--这里设置了边框格式-->
+                    <div class="view-other view-lr"><!--把头像和关注放在一起，见photo-list(line-height:60px)-->
 
-                <div class="view-other view-lr"><!--把头像和关注放在一起，见photo-list(line-height:60px)-->
+                        <div class="view-l"><!--头像 photo-list和description一起-->
+                            <a href="/album-pics/${users[cou.count-1].userId}"><img src="/showT/${users[cou.count-1].userId}" alt="头像" style="border-radius: 50%"></a>
+                            <span class="user-name">${users[cou.count-1].userName}</span>
+                            <span id="user-id" user_id="${users[cou.count-1].userId}" style="opacity: 0">${users[cou.count-1].userId}</span>
+                        </div>
 
-                    <div class="view-l"><!--头像 photo-list和description一起-->
-                        <a href="/album-pics/${users[cou.count-1].userId}"><img src="/showT/${users[cou.count-1].userId}" alt="头像" style="border-radius: 50%"></a>
-                        <span class="user-name">${users[cou.count-1].userName}</span>
-                        <span id="user-id" user_id="${users[cou.count-1].userId}" style="opacity: 0">${users[cou.count-1].userId}</span>
-                    </div>
-
-                    <div class="view-r" butn_id="${sessionScope.get("user").userName}"><!--关注，见photo-list-->
-                        <c:if test="${focusList[cou.count-1] == 0}">
-                            <input type="button" class="btn-focus" value="关注">
-                        </c:if>
-                        <c:if test="${focusList[cou.count-1] == 1}">
-                            <input type="button" class="btn-focus" value="已关注">
-                        </c:if>
-                    </div><!--关注-->
-                </div><!--头像+关注-->
+                        <div class="view-r" butn_id="${sessionScope.get("user").userName}"><!--关注，见photo-list-->
+                            <c:if test="${focusList[cou.count-1] == 0}">
+                                <input type="button" class="btn-focus" value="关注">
+                            </c:if>
+                            <c:if test="${focusList[cou.count-1] == 1}">
+                                <input type="button" class="btn-focus" value="已关注">
+                            </c:if>
+                        </div><!--关注-->
+                    </div><!--头像+关注-->
 
                     <div class="view-cover"><!--图片的显示，见photo-list:设置了个边框颜色？？？-->
                         <a href="/picture-detail/${var.picId}" target="_blank">
@@ -264,22 +297,24 @@
                     </div>
 
 
-                <div class="description"><!--故事，见photo-list-->
-                    <p>${var.picStory}</p>
-                </div>
-                <div><!--分割线-->
-                    <img src="img/line.png" alt="我是一条分割线">
-                </div>
-                <div class="focus-msg"><!--喜欢，见photo-list-->
-                    <c:if test="${belikeList[cou.count-1] == 0}">
-                        <a><img class="heart" src="img/i-2.png" alt="我是一颗black心"></a>
-                    </c:if>
-                    <c:if test="${belikeList[cou.count-1] == 1}">
-                        <a><img class="heart" src="img/i-2-1.png" alt="我是一颗red心"></a>
-                    </c:if>
-                    <span class="focus-num" count="${likeCount[cou.count-1]}">${likeCount[cou.count-1]}人喜欢</span>
-                </div>
-            </div><!--这里是一整套的包装-->
+                    <div class="description"><!--故事，见photo-list-->
+                        <p>${var.picStory}</p>
+                    </div>
+                    <div><!--分割线-->
+                        <img src="img/line.png" alt="我是一条分割线">
+                    </div>
+                    <div class="focus-msg"><!--喜欢，见photo-list-->
+                        <c:if test="${belikeList[cou.count-1] == 0}">
+                            <a><img class="heart" src="img/i-2.png" alt="我是一颗black心"></a>
+                        </c:if>
+                        <c:if test="${belikeList[cou.count-1] == 1}">
+                            <a><img class="heart" src="img/i-2-1.png" alt="我是一颗red心"></a>
+                        </c:if>
+                        <span class="focus-num" count="${likeCount[cou.count-1]}">${likeCount[cou.count-1]}人喜欢</span>
+                    </div>
+                </div><!--这里是一整套的包装-->
+            </c:if>
+
 
         </c:forEach>
         </div>

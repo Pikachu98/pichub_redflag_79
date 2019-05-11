@@ -1,6 +1,11 @@
 var count = 0;
 $(function () {
     $("#login").on("click", function () {
+        var checkedVal = "0";
+        if ($("#remPwd").prop("checked")) {
+            checkedVal = "1";
+        }
+
         if ($("#login").hasClass("Logging")) {
             return;
         }
@@ -31,7 +36,8 @@ $(function () {
             dataType: "json",
             data: {
                 "userEmail": userEmail,
-                "userPassword": userPassword
+                "userPassword": userPassword,
+                "rememberMe": checkedVal
             },
             success:function (user) {
                 $("#login").removeClass("Logging");

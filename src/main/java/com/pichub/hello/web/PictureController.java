@@ -1,6 +1,7 @@
 package com.pichub.hello.web;
 
 import com.pichub.hello.bo.Picture;
+import com.pichub.hello.bo.User;
 import com.pichub.hello.dao.PictureDao;
 import com.pichub.hello.service.PictureService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,9 +59,13 @@ public class PictureController {
     }
 
     @RequestMapping(value = "/picture-detail/{picId}")
-    public String pictureDetail(@PathVariable int picId,ModelMap model) throws Exception{
+    public String pictureDetail(@PathVariable int picId,ModelMap model,HttpServletRequest request) throws Exception{
         model.put("picTag",pictureDao.getTag(picId));
         model.put("picId",picId);
+        User user = User.getCurrentUser(request);
+        long userId=user.getUserId();
+        model.put("heart",pictureService.getLove(userId, picId));
+
         try {
             Picture p = pictureService.getPicture(picId);
             model.put("picture",p);

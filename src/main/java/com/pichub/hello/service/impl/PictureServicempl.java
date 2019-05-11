@@ -43,8 +43,6 @@ public class PictureServicempl implements PictureService{
     @Override
     public List<Integer> getHotPicId() throws Exception {
         List<Integer> lala = pictureDao.getHotPicId();
-        for(int i =0; i<lala.size();i++)
-            System.out.println(lala.get(i) + "我在这呢看这里看着了");
         return pictureDao.getHotPicId();
     }
 
@@ -111,6 +109,11 @@ public class PictureServicempl implements PictureService{
         return pictureDao.getAlbumPics(userId);
     }
 
+    @Override
+    public int getLove(long userId, long picId) throws Exception{
+        return pictureDao.getLove(userId,picId);
+
+    }
     public void deletePicture(int pictureId)throws Exception
     {
         pictureDao.deletePicture(pictureId);

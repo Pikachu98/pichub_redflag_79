@@ -258,23 +258,23 @@
             </div>
         </section>
 
-<%--        <div class="my-root">
+        <div class="my-root">
             <ul class="my-album">
                 <c:forEach items="${listAlbum}" var="list" varStatus="cou" ><!--一个循环元素一个包装-->
                     <div class="listAlbum" style="position: relative;">
                         <li class="cover-item my-cover-item">
                             <a href="javascript:void(0);" onclick="a(${list.albumId})">
                                         <div class="album-cover">
-                                            <img src="show/${coverIds[cou.count-1]}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover" height="100" width="100">&lt;%&ndash;相册封面图片&ndash;%&gt;
+                                            <img src="show/${coverIds[cou.count-1]}" onerror="javascript:this.src='/img/pho-18.png'" alt="photo-1" class="cover" height="100" width="100"><%--相册封面图片--%>
                                         </div>
-                                        <div>${list.albumName}</div>&lt;%&ndash;相册名字&ndash;%&gt;
+                                        <div>${list.albumName}</div><%--相册名字--%>
                             </a>
                             <div class="btn-group" style="position: absolute;right:1px;top:21px;">
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="height: 5px;">
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="javascript:void(0)" class="delAlbum" >删除</a></li>&lt;%&ndash;/deleteAlbum?albumId=${list.albumId}&ndash;%&gt;
+                                    <li><a href="javascript:void(0)" class="delAlbum" >删除</a></li><%--/deleteAlbum?albumId=${list.albumId}--%>
                                     <li><a href="javascript:void(0)" class="rename" album="${list.albumId}">重命名</a></li>
                                     <li><a href="#">Help</a></li>
                                 </ul>
@@ -309,7 +309,7 @@
                                   trs += "<div class='listPicture' style='position:relative;'> " +
                                       "<a href='#' >" +
                                       "<div class='album-cover' style='position:absolute;'>" +
-                                      "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='150' width='250'>&lt;%&ndash;相册封面图片&ndash;%&gt; "+
+                                      "<img src= "+"/show/"+value.picId+" "+"alt='photo-1' class='cover' height='150' width='250'><%--相册封面图片--%> "+
                                       "</div>" +
                                       "  </a> " +
                                       "<div class='btn-group' style='position: absolute;right:-35px;top:4px;'>"+
@@ -317,7 +317,7 @@
                                       "<span class='caret'></span>"+
                                       "</button>"+
 
-                                      &lt;%&ndash; +"<div>"+value.picName+"</div>&lt;%&ndash;相册名字&ndash;%&gt;
+                                      <%-- +"<div>"+value.picName+"</div>&lt;%&ndash;相册名字--%>
 
                                       "<ul class='dropdown-menu' role='menu'>"+
                                       "<li><a href='#'>删除</a></li>"+
@@ -345,7 +345,7 @@
                     })
                 }
 
-            </script>--%>
+            </script>
 
             <div class="choose-page">
                 <a href="javascript:void(0)" class="choose-btn">上一页</a>
@@ -441,10 +441,10 @@
         <!--创建相册窗口-->
 
         <!--查看相册内容悬浮窗-->
-       <%-- <div class='listPicture' style='position:relative;'>
+        <div class='listPicture' style='position:relative;'>
         <a href='#'>
         <div class='album-cover' style='position:absolute;'>
-        <img src=/show/"+${value.picId} alt='photo-1' class='cover' height='150' width='250'>&lt;%&ndash;相册封面图片&ndash;%&gt;
+        <img src=/show/"+${value.picId} alt='photo-1' class='cover' height='150' width='250'><%--相册封面图片--%>
         </div>
         </a>
         <div class='btn-group' style='position: absolute;right:-35px;top:4px;'>
@@ -482,7 +482,7 @@
                 <span>0/2000</span>
             </div>
         </div>
-       --%> <div class="backGround"></div>
+        <div class="backGround"></div>
         <!--创建相册窗口-->
 
     </section>
