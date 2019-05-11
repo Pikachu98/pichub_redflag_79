@@ -9,16 +9,16 @@
     </select>
 
     <insert id="createAlbum" useGeneratedKeys="true" keyProperty="userId" keyColumn="album_id" parameterType="com.pichub.hello.bo.Album">
-        insert into album (album_name, user_id) values (#{album.albumName},#{album.userId})
+        insert into album (album_name, user_id, album_state) values (#{album.albumName},#{album.userId},1)
     </insert>
 
     <select id="getMyAlbumList" resultType="com.pichub.hello.bo.Album">
         select * from album where user_id=#{userId}
     </select>
 
-    <delete id="deleteAlbum">
-        delete from album where album_id=#{albumId}
-    </delete>
+    <update id="deleteAlbum">
+        update album set album_state=0 where album_id=#{albumId}
+    </update>
 
     <insert id="insertAlbumAndPicture">
         insert into album_picture (album_id, pic_id) values (#{albumId},#{picId})
