@@ -83,7 +83,7 @@ $(function () {
             var regEmail = /.+@.+\.[a-zA-Z]{2,4}$/;
             if(emailVal== "" || (emailVal != "" && !regEmail.test(emailVal))){
                 var errorMsg = " 请输入正确的E-Mail住址！";
-                $parent.append("<span class='msg' style='color: red; position:relative; left:-135px; top:-7px'>" + errorMsg + "</span>");
+                $parent.append("<span class='msg' style='color: red; position:relative; left:-105px; top:-7px'>" + errorMsg + "</span>");
             }
         }
         //两次密码一致
@@ -92,7 +92,7 @@ $(function () {
             var p1 = $('#password1').value;
             if(p1 == p2) {
                 var errorMsg = " 两次密码不一致！";
-                $parent.append("<span class='msg' style='color: red; position:relative; left:-105px; top:-7px'>" + errorMsg + "</span>");
+                $parent.append("<span class='msg' style='color: red; position:relative; left:-135px; top:-7px'>" + errorMsg + "</span>");
             }
         }
 
@@ -135,7 +135,7 @@ $(function () {
             },
             password1: {
                 required: "请输入密码"
-            },
+            },  
             password2: {
                 required: "请再次输入密码",
                 equalTo: "两次密码必须一致" //表示和id="spass"的值相同
