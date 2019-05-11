@@ -235,7 +235,7 @@
                     <a href="javascript:void(0)" id="resetTitle" class="log-he btn-use">重置密码</a>
                 </div>
                 <div class="item item-name">
-                    <input type="text" name="username" id="email" class="item-text" placeholder="已绑定邮箱"/>
+                    <input type="email" name="email" id="email" class="item-text" placeholder="已绑定邮箱"/>
                 </div>
                 <div class="item">
                     <input type="text" id="checkCode" name="checkCode" class="item-text item-check" lay-verify="required" placeholder="验证码"/>
@@ -247,7 +247,6 @@
                 <div class="item">
                     <input type="password" id="con_new_pwd" class="item-text" placeholder="新密码" />
                 </div>
-
 
                 <div >
                     <button lay-submit lay-filter="register" id="btnSub" class="btn-sub">重置</button>

@@ -87,9 +87,16 @@ public class AlbumController {
     public List<Picture> listPicture(ModelMap model, HttpServletRequest request, long albumId){
         albumId = Long.parseLong(request.getParameter("albumId"));
         model.put("listPicture",albumService.getPictures(albumId));//albumService.getPictures(albumId)方法需要检查调试
+        model.put("count",albumService.getPictures(albumId).size());
         if (albumService.getPictures(albumId)==null)
             return null;
-        return albumService.getPictures(albumId);
+
+        List<Picture> p = new ArrayList<Picture>();
+        for (Picture t :albumService.getPictures(albumId)) {
+            if(t.getDelState() > 0)
+                p.add(t);
+        }
+        return p;
     }
 
     @RequestMapping(value = "/albumContent/{albumId}")
