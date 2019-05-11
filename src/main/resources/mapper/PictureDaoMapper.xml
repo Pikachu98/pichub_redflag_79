@@ -66,10 +66,9 @@
         SELECT pic_id FROM picture WHERE user_id = #{userId};
     </select>
 
-
-    <delete id="deletePicture">
-        delete from picture where pic_id=#{pictureId}
-    </delete>
+    <update id="deletePicture">
+        update picture set del_state=0 where pic_id=#{pictureId}
+    </update>
 
     <update id="changeStory">
         update picture set pic_story=#{pictureStory} where pic_id=#{pictureId}

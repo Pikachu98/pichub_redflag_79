@@ -240,50 +240,52 @@
     <section class="layout layout-main">
         <div id="masonry" class="photo-list"> <!--主页下方所有图片窗体元素-->
         <c:forEach items="${picsList}" var="var" varStatus="cou"><!--一个循环元素一个包装-->
+            <c:if test="${var.delState > 0}">
+                <div class="view">   <!--这里设置了边框格式-->
 
-            <div class="view">   <!--这里设置了边框格式-->
+                    <div class="view-other view-lr"><!--把头像和关注放在一起，见photo-list(line-height:60px)-->
 
-                <div class="view-other view-lr"><!--把头像和关注放在一起，见photo-list(line-height:60px)-->
+                        <div class="view-l"><!--头像 photo-list和description一起-->
+                            <a href="/album-pics/${users[cou.count-1].userId}"><img src="/showT/${users[cou.count-1].userId}" alt="头像" style="border-radius: 50%"></a>
+                            <span class="user-name">${users[cou.count-1].userName}</span>
+                            <span id="user-id" user_id="${users[cou.count-1].userId}" style="opacity: 0">${users[cou.count-1].userId}</span>
+                        </div>
 
-                    <div class="view-l"><!--头像 photo-list和description一起-->
-                        <a href="/album-pics/${users[cou.count-1].userId}"><img src="/showT/${users[cou.count-1].userId}" alt="头像" style="border-radius: 50%"></a>
-                        <span class="user-name">${users[cou.count-1].userName}</span>
-                        <span id="user-id" user_id="${users[cou.count-1].userId}" style="opacity: 0">${users[cou.count-1].userId}</span>
-                    </div>
-
-                    <div class="view-r" butn_id="${sessionScope.get("user").userName}"><!--关注，见photo-list-->
-                        <c:if test="${focusList[cou.count-1] == 0}">
-                            <input type="button" class="btn-focus" value="关注">
-                        </c:if>
-                        <c:if test="${focusList[cou.count-1] == 1}">
-                            <input type="button" class="btn-focus" value="已关注">
-                        </c:if>
-                    </div><!--关注-->
-                </div><!--头像+关注-->
+                        <div class="view-r" butn_id="${sessionScope.get("user").userName}"><!--关注，见photo-list-->
+                            <c:if test="${focusList[cou.count-1] == 0}">
+                                <input type="button" class="btn-focus" value="关注">
+                            </c:if>
+                            <c:if test="${focusList[cou.count-1] == 1}">
+                                <input type="button" class="btn-focus" value="已关注">
+                            </c:if>
+                        </div><!--关注-->
+                    </div><!--头像+关注-->
 
                     <div class="view-cover"><!--图片的显示，见photo-list:设置了个边框颜色？？？-->
                         <a href="/picture-detail/${var.picId}">
-                        <img class="hot_pics" src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">
+                            <img class="hot_pics" src="show/${var.picId}" pic_id="${var.picId}" alt="photo-1" width="301px">
                         </a>
                     </div>
 
 
-                <div class="description"><!--故事，见photo-list-->
-                    <p>${var.picStory}</p>
-                </div>
-                <div><!--分割线-->
-                    <img src="img/line.png" alt="我是一条分割线">
-                </div>
-                <div class="focus-msg"><!--喜欢，见photo-list-->
-                    <c:if test="${belikeList[cou.count-1] == 0}">
-                        <a><img class="heart" src="img/i-2.png" alt="我是一颗black心"></a>
-                    </c:if>
-                    <c:if test="${belikeList[cou.count-1] == 1}">
-                        <a><img class="heart" src="img/i-2-1.png" alt="我是一颗red心"></a>
-                    </c:if>
-                    <span class="focus-num" count="${likeCount[cou.count-1]}">${likeCount[cou.count-1]}人喜欢</span>
-                </div>
-            </div><!--这里是一整套的包装-->
+                    <div class="description"><!--故事，见photo-list-->
+                        <p>${var.picStory}</p>
+                    </div>
+                    <div><!--分割线-->
+                        <img src="img/line.png" alt="我是一条分割线">
+                    </div>
+                    <div class="focus-msg"><!--喜欢，见photo-list-->
+                        <c:if test="${belikeList[cou.count-1] == 0}">
+                            <a><img class="heart" src="img/i-2.png" alt="我是一颗black心"></a>
+                        </c:if>
+                        <c:if test="${belikeList[cou.count-1] == 1}">
+                            <a><img class="heart" src="img/i-2-1.png" alt="我是一颗red心"></a>
+                        </c:if>
+                        <span class="focus-num" count="${likeCount[cou.count-1]}">${likeCount[cou.count-1]}人喜欢</span>
+                    </div>
+                </div><!--这里是一整套的包装-->
+            </c:if>
+
 
         </c:forEach>
         </div>
