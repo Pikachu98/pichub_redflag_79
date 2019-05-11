@@ -108,6 +108,24 @@
             }
         }
     </script>
+    <script type="text/javascript">
+        function delPic(picId) {
+            $.ajax({
+                type:"GET",
+                url:"/deletePicture",
+                dataType:"Text",
+                data:{
+                    "picId":picId
+                },
+                success:function () {
+                    window.location.reload();
+                },
+                error:function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest, textStatus, errorThrown);
+                }
+            })
+        }
+    </script>
 
     <script>
         $(function () {
@@ -337,8 +355,8 @@
                                   {
                                       trs += "<tr>";
                                   }
-                                  trs +=  <%--"<c:if test='${value.delState > 0}'>"+--%>
-                                      "<td>" +
+
+                                  trs += "<td>" +
                                       "<div class='listPicture' style='position:relative;'> " +
                                       "<a href='#' >" +
                                       "<div class='album-cover' style='position1:absolute;'>" +
@@ -353,7 +371,7 @@
                                       <%-- +"<div>"+value.picName+"</div>&lt;%&ndash;相册名字--%>
 
                                       "<ul class='dropdown-menu' role='menu'>"+
-                                      "<li><a href='#'>删除</a></li>"+
+                                      "<li><a href='#' onclick='delPic("+value.picId+")'>删除</a></li>"+
                                       "<li><a href='#'>description</a></li>"+
                                       "<li><a href='#'>重命名</a></li>"+
                                       "<li><a href='#'>Help</a></li>"+

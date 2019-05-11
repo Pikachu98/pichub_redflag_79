@@ -90,7 +90,13 @@ public class AlbumController {
         model.put("count",albumService.getPictures(albumId).size());
         if (albumService.getPictures(albumId)==null)
             return null;
-        return albumService.getPictures(albumId);
+
+        List<Picture> p = new ArrayList<Picture>();
+        for (Picture t :albumService.getPictures(albumId)) {
+            if(t.getDelState() > 0)
+                p.add(t);
+        }
+        return p;
     }
 
     @RequestMapping(value = "/albumContent/{albumId}")
