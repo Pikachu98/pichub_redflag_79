@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int insertUser(User user) throws Exception {
-
+        System.out.println(user.getUserEmail());
         return userDao.insertUser(user);
     }
 

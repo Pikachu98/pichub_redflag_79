@@ -26,11 +26,11 @@
     </div>
     <div class="int">
         <label for="email">邮箱：</label>
-        <input id="email" type="email" name="username" class="required layui-input" lay-verify="required"/>
+        <input type="email" id="email" name="email" class="required layui-input" lay-verify="required"/>
     </div>
     <div class="int">
         <label>邮箱验证码：</label>
-        <input id="checkCode" type="text" name="checkCode" class="layui-input" lay-verify="required"/>
+        <input type="text" id="checkCode" name="checkCode" class="layui-input" lay-verify="required"/>
         <button id="sendCheckCode" type="button" class="layui-btn layui-btn-normal">获取验证码</button>
     </div>
     <div class="int">
@@ -128,14 +128,15 @@
             }
 
             //验证密码
-            if($(this).is("#password2")) {
-                var pass1 = $("#password1").val();
-                var pass2 = $("#password2").val();
-                if (pass1 != pass2) {
+            /*if($(this).is("#password2")) {
+                var pass1 = document.getElementById("password1").value;
+                var pass2 = document.getElementById("password2").value;
+
+                if (pass1.equals(pass2)==false) {
                     var errorMsg = "确认密码不相同！";
                     $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
                 }
-            }
+            }*/
             //验证邮箱
             if($(this).is("#email")){
                 var emailVal = $.trim(this.value);
@@ -188,7 +189,6 @@
                     "userName":userName,
                     "userPassword": $("#password1").val(),
                     "userEmail": $("#email").val(),
-                    "userPhone": $("#phone").val(),
                     "inputCheckCode": inputCheckCode
                 },
                 success: function (result) {

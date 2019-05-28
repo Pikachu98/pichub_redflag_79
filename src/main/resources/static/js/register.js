@@ -88,9 +88,9 @@ $(function () {
         }
         //两次密码一致
         if($(this).is("#password2")){
-            var p2 = $("#password2").value;
-            var p1 = $('#password1').value;
-            if(p1 == p2) {
+            var pass1 = document.getElementById("password1").value;
+            var pass2 = document.getElementById("password2").value;
+            if(pass1 != pass2) {
                 var errorMsg = " 两次密码不一致！";
                 $parent.append("<span class='msg' style='color: red; position:relative; left:-135px; top:-7px'>" + errorMsg + "</span>");
             }
@@ -177,7 +177,7 @@ $(function () {
             data: {
                 "userName": userName,
                 "userPassword": $("#password1").val(),
-                "userEmail": $("#email").val(),
+                "userEmail": $("#registerEmail").val(),
                 // "userPhone": $("#phone").val(),
                 "inputCheckCode": inputCheckCode
             },
